@@ -1,0 +1,3821 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://equipe-laurence.github.io/doc/configuration-secrets-audit/">
+      
+      
+        <link rel="prev" href="../guide-acquisition-numero-acs/">
+      
+      
+        <link rel="next" href="../sms-compliance/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.50">
+    
+    
+      
+        <title>Audit de configuration et secrets — EquipeLaurence - Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#audit-de-configuration-et-secrets-equipelaurence" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-header__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Audit de configuration et secrets — EquipeLaurence
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Recherche">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Recherche">
+  <button type="button" class="md-search__button">
+    Recherche
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-activites-utilisateurs/" class="md-tabs__link">
+          
+  
+  Utilisation courante
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Architecture & Conception
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../local-development/" class="md-tabs__link">
+          
+  
+  Développement
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Exploitation & Conformité
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plan-de-tests/" class="md-tabs__link">
+          
+  
+  Planification & CI/CD
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-nav__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Accueil
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Utilisation courante
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Utilisation courante
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-activites-utilisateurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Activités des utilisateurs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture & Conception
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Architecture & Conception
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Vue d'ensemble
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-feature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SMS Feature
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Développement
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement local
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-sms-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-bruno-nethris-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tester avec Bruno
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharepoint-permission-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Permissions SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exploitation & Conformité
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Exploitation & Conformité
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-synchronisation-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Synchronisation Nethris → SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-acs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro ACS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration & Secrets
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration & Secrets
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sommaire-executif" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Sommaire exécutif
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventaire-principal-de-la-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Inventaire principal de la configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details-des-sections-de-configuration-et-diagrammes-de-flux" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Détails des sections de configuration et diagrammes de flux
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Détails des sections de configuration et diagrammes de flux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configuration-nethris" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1. CONFIGURATION NETHRIS
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. CONFIGURATION NETHRIS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-nethrisbaseurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.1 Nethris:BaseUrl
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-nethrisappid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.2 Nethris:AppId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-nethrisbusinesscode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.3 Nethris:BusinessCode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-nethrisusercode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.4 Nethris:UserCode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-nethrisuserpassword" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.5 Nethris:UserPassword
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-nethrislanguage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.6 Nethris:Language
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configuration-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2. CONFIGURATION SHAREPOINT
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. CONFIGURATION SHAREPOINT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-sharepointsiteid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.1 SharePoint:SiteId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-sharepointdriveid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.2 SharePoint:DriveId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-sharepointrootfolder" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.3 SharePoint:RootFolder
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configuration-du-registre-azure-table-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3. CONFIGURATION DU REGISTRE (Azure Table Storage)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. CONFIGURATION DU REGISTRE (Azure Table Storage)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ledgertableserviceuri" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3.1 Ledger:TableServiceUri
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ledgertablename" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3.2 Ledger:TableName
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configuration-acs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4. CONFIGURATION ACS
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. CONFIGURATION ACS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-acsconnectionstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4.1 Acs:ConnectionString
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-acsphonenumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4.2 Acs:PhoneNumber
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-configuration-azure-ad" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5. CONFIGURATION AZURE AD
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. CONFIGURATION AZURE AD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-azureadtenantid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5.1 AzureAd:TenantId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-azureadclientid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5.2 AzureAd:ClientId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-azureadaudience" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5.3 AzureAd:Audience
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-systeme-et-bascules-de-fonctionnalite" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        6. SYSTÈME ET BASCULES DE FONCTIONNALITÉ
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. SYSTÈME ET BASCULES DE FONCTIONNALITÉ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-appconfigurationendpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        6.1 AppConfiguration:Endpoint
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-azurewebjobsstorage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        6.2 AzureWebJobsStorage
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-smsenabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        6.3 Sms:Enabled
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-identite-managee-et-authentification-azure-ad" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        7. IDENTITÉ MANAGÉE ET AUTHENTIFICATION AZURE AD
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. IDENTITÉ MANAGÉE ET AUTHENTIFICATION AZURE AD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-identite-managee-assignee-par-le-systeme" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        7.1 Identité managée assignée par le système
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-identifiants-de-developpement-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        8. IDENTIFIANTS DE DÉVELOPPEMENT LOCAL
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. IDENTIFIANTS DE DÉVELOPPEMENT LOCAL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-simulation-de-lidentite-managee-localsettingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        8.1 Simulation de l'identité managée (local.settings.json)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventaire-des-secrets-et-variables-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Inventaire des secrets et variables GitHub Actions
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inventaire des secrets et variables GitHub Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secrets-niveau-organisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Secrets (niveau organisation)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-niveau-organisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Variables (niveau organisation)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#couches-de-liaison-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couches de liaison de configuration
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Couches de liaison de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#couche-1-pattern-options-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couche 1 : Pattern Options (Core)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couche-2-iconfiguration-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couche 2 : IConfiguration (exécution)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couche-3-parametres-du-function-app-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couche 3 : Paramètres du Function App (Azure)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couche-4-azure-app-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couche 4 : Azure App Configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrice-de-flux-des-secrets-et-de-la-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Matrice de flux des secrets et de la configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classifications-de-securite" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Classifications de sécurité
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classifications de sécurité">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secrets-hautement-sensibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🔴 Secrets hautement sensibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-sensible" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🟡 Configuration sensible
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-non-sensible" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🟢 Configuration non sensible
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tableau-de-variance-par-environnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Tableau de variance par environnement
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-de-key-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Structure de Key Vault
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure de Key Vault">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secrets-approvisionnes-conditionnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Secrets approvisionnés (conditionnels)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-du-coffre" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configuration du coffre
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributions-de-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Attributions de rôle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-et-verifications-au-demarrage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Validation et vérifications au démarrage
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-compliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Conformité SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Planification & CI/CD
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Planification & CI/CD
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-de-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan de tests
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposal-cicd-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Optimisation CI/CD
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publication de la documentation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sommaire-executif" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Sommaire exécutif
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventaire-principal-de-la-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Inventaire principal de la configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#details-des-sections-de-configuration-et-diagrammes-de-flux" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Détails des sections de configuration et diagrammes de flux
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Détails des sections de configuration et diagrammes de flux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configuration-nethris" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1. CONFIGURATION NETHRIS
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. CONFIGURATION NETHRIS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-nethrisbaseurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.1 Nethris:BaseUrl
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-nethrisappid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.2 Nethris:AppId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-nethrisbusinesscode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.3 Nethris:BusinessCode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-nethrisusercode" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.4 Nethris:UserCode
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-nethrisuserpassword" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.5 Nethris:UserPassword
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-nethrislanguage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.6 Nethris:Language
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configuration-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2. CONFIGURATION SHAREPOINT
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. CONFIGURATION SHAREPOINT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-sharepointsiteid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.1 SharePoint:SiteId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-sharepointdriveid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.2 SharePoint:DriveId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-sharepointrootfolder" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.3 SharePoint:RootFolder
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configuration-du-registre-azure-table-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3. CONFIGURATION DU REGISTRE (Azure Table Storage)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. CONFIGURATION DU REGISTRE (Azure Table Storage)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ledgertableserviceuri" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3.1 Ledger:TableServiceUri
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ledgertablename" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3.2 Ledger:TableName
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configuration-acs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4. CONFIGURATION ACS
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. CONFIGURATION ACS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-acsconnectionstring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4.1 Acs:ConnectionString
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-acsphonenumber" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4.2 Acs:PhoneNumber
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-configuration-azure-ad" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5. CONFIGURATION AZURE AD
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. CONFIGURATION AZURE AD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-azureadtenantid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5.1 AzureAd:TenantId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-azureadclientid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5.2 AzureAd:ClientId
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-azureadaudience" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5.3 AzureAd:Audience
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-systeme-et-bascules-de-fonctionnalite" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        6. SYSTÈME ET BASCULES DE FONCTIONNALITÉ
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. SYSTÈME ET BASCULES DE FONCTIONNALITÉ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-appconfigurationendpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        6.1 AppConfiguration:Endpoint
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-azurewebjobsstorage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        6.2 AzureWebJobsStorage
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-smsenabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        6.3 Sms:Enabled
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-identite-managee-et-authentification-azure-ad" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        7. IDENTITÉ MANAGÉE ET AUTHENTIFICATION AZURE AD
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. IDENTITÉ MANAGÉE ET AUTHENTIFICATION AZURE AD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-identite-managee-assignee-par-le-systeme" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        7.1 Identité managée assignée par le système
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-identifiants-de-developpement-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        8. IDENTIFIANTS DE DÉVELOPPEMENT LOCAL
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. IDENTIFIANTS DE DÉVELOPPEMENT LOCAL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-simulation-de-lidentite-managee-localsettingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        8.1 Simulation de l'identité managée (local.settings.json)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventaire-des-secrets-et-variables-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Inventaire des secrets et variables GitHub Actions
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inventaire des secrets et variables GitHub Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secrets-niveau-organisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Secrets (niveau organisation)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables-niveau-organisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Variables (niveau organisation)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#couches-de-liaison-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couches de liaison de configuration
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Couches de liaison de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#couche-1-pattern-options-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couche 1 : Pattern Options (Core)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couche-2-iconfiguration-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couche 2 : IConfiguration (exécution)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couche-3-parametres-du-function-app-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couche 3 : Paramètres du Function App (Azure)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#couche-4-azure-app-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Couche 4 : Azure App Configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrice-de-flux-des-secrets-et-de-la-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Matrice de flux des secrets et de la configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classifications-de-securite" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Classifications de sécurité
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classifications de sécurité">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secrets-hautement-sensibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🔴 Secrets hautement sensibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-sensible" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🟡 Configuration sensible
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-non-sensible" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🟢 Configuration non sensible
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tableau-de-variance-par-environnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Tableau de variance par environnement
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-de-key-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Structure de Key Vault
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure de Key Vault">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#secrets-approvisionnes-conditionnels" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Secrets approvisionnés (conditionnels)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-du-coffre" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configuration du coffre
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attributions-de-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Attributions de rôle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-et-verifications-au-demarrage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Validation et vérifications au démarrage
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="./.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Exploitation & Conformité
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="audit-de-configuration-et-secrets-equipelaurence">Audit de configuration et secrets — EquipeLaurence<a class="headerlink" href="#audit-de-configuration-et-secrets-equipelaurence" title="Permanent link">&para;</a></h1>
+<p><strong>Date de l'audit :</strong> 2026-05-11<br />
+<strong>Système :</strong> Azure Function App synchronisant les rapports Nethris vers SharePoint<br />
+<strong>Portée :</strong> Toutes les clés de configuration, valeurs secrètes, variables d'environnement et leur traçabilité complète</p>
+<hr />
+<h2 id="sommaire-executif">Sommaire exécutif<a class="headerlink" href="#sommaire-executif" title="Permanent link">&para;</a></h2>
+<p>Le système EquipeLaurence gère la configuration et les secrets à travers <strong>6 sections de configuration</strong>, <strong>15+ secrets
+GitHub Actions</strong> et <strong>plusieurs paramètres Bicep spécifiques aux environnements</strong>. La configuration transite par <strong>4 chemins
+distincts</strong> :</p>
+<ol>
+<li><strong>Chemin des secrets :</strong> GitHub Secrets → Paramètres Bicep → Key Vault → Références Key Vault dans App Configuration →
+   Code</li>
+<li><strong>Chemin de config 1 :</strong> Paramètres Bicep → App Configuration Store → Code</li>
+<li><strong>Chemin de config 2 :</strong> Paramètres directs du Function App (Bicep) → Variables d'environnement → Pattern Options</li>
+<li><strong>Chemin dev local :</strong> <code>local.settings.json</code> → IConfiguration → Pattern Options</li>
+</ol>
+<hr />
+<h2 id="inventaire-principal-de-la-configuration">Inventaire principal de la configuration<a class="headerlink" href="#inventaire-principal-de-la-configuration" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Clé</th>
+<th>Type</th>
+<th>Source(s)</th>
+<th>Environnements</th>
+<th>Utilisé par</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nethris</strong></td>
+<td>BaseUrl</td>
+<td>Config</td>
+<td>Param Bicep (défaut)</td>
+<td>Tous</td>
+<td><code>NethrisAuthClient</code>, <code>NethrisReportClient</code></td>
+</tr>
+<tr>
+<td><strong>Nethris</strong></td>
+<td>AppId</td>
+<td>Config</td>
+<td>Param Bicep (défaut)</td>
+<td>Tous</td>
+<td><code>NethrisAuthClient</code></td>
+</tr>
+<tr>
+<td><strong>Nethris</strong></td>
+<td>BusinessCode</td>
+<td>Config</td>
+<td>Param Bicep (défaut)</td>
+<td>Tous</td>
+<td><code>NethrisAuthClient</code></td>
+</tr>
+<tr>
+<td><strong>Nethris</strong></td>
+<td>UserCode</td>
+<td>Config</td>
+<td>Param Bicep, diffère en prod</td>
+<td>Dev/Test/Prod</td>
+<td><code>NethrisAuthClient</code></td>
+</tr>
+<tr>
+<td><strong>Nethris</strong></td>
+<td>UserPassword</td>
+<td>Secret</td>
+<td>GitHub Secret → Key Vault → App Config</td>
+<td>Dev/Test/Prod</td>
+<td><code>NethrisAuthClient</code></td>
+</tr>
+<tr>
+<td><strong>Nethris</strong></td>
+<td>Language</td>
+<td>Config</td>
+<td>Param Bicep (défaut)</td>
+<td>Tous</td>
+<td><code>NethrisAuthClient</code></td>
+</tr>
+<tr>
+<td><strong>SharePoint</strong></td>
+<td>SiteId</td>
+<td>Config</td>
+<td>Param Bicep (diffère par env)</td>
+<td>Tous</td>
+<td><code>SharePointClient</code></td>
+</tr>
+<tr>
+<td><strong>SharePoint</strong></td>
+<td>DriveId</td>
+<td>Config</td>
+<td>Param Bicep (diffère par env)</td>
+<td>Tous</td>
+<td><code>SharePointClient</code></td>
+</tr>
+<tr>
+<td><strong>SharePoint</strong></td>
+<td>RootFolder</td>
+<td>Config</td>
+<td>Param Bicep (défaut)</td>
+<td>Tous</td>
+<td><code>SharePointClient</code></td>
+</tr>
+<tr>
+<td><strong>Ledger</strong></td>
+<td>TableServiceUri</td>
+<td>Config</td>
+<td>Généré par Bicep (compte de stockage)</td>
+<td>Tous</td>
+<td><code>TableStorageSyncLedger</code></td>
+</tr>
+<tr>
+<td><strong>Ledger</strong></td>
+<td>TableName</td>
+<td>Config</td>
+<td>Param Bicep (défaut)</td>
+<td>Tous</td>
+<td><code>TableStorageSyncLedger</code></td>
+</tr>
+<tr>
+<td><strong>Acs</strong></td>
+<td>ConnectionString</td>
+<td>Secret</td>
+<td>Ressource ACS → Key Vault → App Config</td>
+<td>Tous</td>
+<td><code>AcsSmsClient</code></td>
+</tr>
+<tr>
+<td><strong>Acs</strong></td>
+<td>PhoneNumber</td>
+<td>Config</td>
+<td>Variable GitHub / <code>local.settings.json</code> → App Configuration</td>
+<td>Selon activation SMS</td>
+<td><code>AcsSmsClient</code></td>
+</tr>
+<tr>
+<td><strong>AzureAd</strong></td>
+<td>TenantId</td>
+<td>Config</td>
+<td>Param Bicep (défaut)</td>
+<td>Tous</td>
+<td>Middleware d'authentification</td>
+</tr>
+<tr>
+<td><strong>AzureAd</strong></td>
+<td>ClientId</td>
+<td>Config</td>
+<td>Param Bicep (défaut)</td>
+<td>Tous</td>
+<td>Middleware d'authentification</td>
+</tr>
+<tr>
+<td><strong>AzureAd</strong></td>
+<td>Audience</td>
+<td>Config</td>
+<td>Param Bicep (défaut)</td>
+<td>Tous</td>
+<td>Middleware d'authentification</td>
+</tr>
+<tr>
+<td><strong>Système</strong></td>
+<td>AzureWebJobsStorage</td>
+<td>Spécial</td>
+<td>Calculé / basé sur l'identité</td>
+<td>Tous</td>
+<td>Accès Table Storage du registre</td>
+</tr>
+<tr>
+<td><strong>Système</strong></td>
+<td>AZURE_TENANT_ID</td>
+<td>Spécial</td>
+<td><code>local.settings.json</code> (dev)</td>
+<td>Dev uniquement</td>
+<td>Authentification par identité managée</td>
+</tr>
+<tr>
+<td><strong>Système</strong></td>
+<td>AZURE_CLIENT_ID</td>
+<td>Spécial</td>
+<td><code>local.settings.json</code> (dev)</td>
+<td>Dev uniquement</td>
+<td>Authentification par identité managée</td>
+</tr>
+<tr>
+<td><strong>Système</strong></td>
+<td>AZURE_CLIENT_SECRET</td>
+<td>Spécial</td>
+<td><code>local.settings.json</code> (dev)</td>
+<td>Dev uniquement</td>
+<td>Authentification par identité managée</td>
+</tr>
+<tr>
+<td><strong>Feature</strong></td>
+<td>Sms:Enabled</td>
+<td>Flag</td>
+<td>Param Bicep (défaut=false)</td>
+<td>Tous</td>
+<td>Bascule de fonctionnalité pour les SMS</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="details-des-sections-de-configuration-et-diagrammes-de-flux">Détails des sections de configuration et diagrammes de flux<a class="headerlink" href="#details-des-sections-de-configuration-et-diagrammes-de-flux" title="Permanent link">&para;</a></h2>
+<h3 id="1-configuration-nethris">1. CONFIGURATION NETHRIS<a class="headerlink" href="#1-configuration-nethris" title="Permanent link">&para;</a></h3>
+<h4 id="11-nethrisbaseurl">1.1 Nethris:BaseUrl<a class="headerlink" href="#11-nethrisbaseurl" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (non sensible)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep GitHub (main.bicep)
+  ├─ Défaut : &#39;https://clients.nethris.com/CSPaySuiteServices/wsWebSuiteService.svc/V.1.00&#39;
+  │
+  ├─ infra/parameters/{env}.bicepparam
+  │  └─ dev/test/prod : même valeur par défaut
+  │
+  ├─ Flux de déploiement Bicep (infra/modules/functionApp.bicep &amp; appConfiguration.bicep)
+  │  ├─ Paramètre FunctionApp : &#39;Nethris__BaseUrl&#39; = valeur du paramètre
+  │  └─ Paramètre AppConfig :  &#39;Nethris:BaseUrl&#39; = valeur du paramètre
+  │
+  ├─ Résolution à l&#39;exécution
+  │  ├─ Le Function App lit : variable d&#39;env Nethris__BaseUrl (définie par Bicep)
+  │  ├─ Liaison IConfiguration : configuration[&quot;Nethris:BaseUrl&quot;]
+  │  └─ Pattern Options : NethrisOptions.BaseUrl (depuis AppConfig et paramètre direct)
+  │
+  └─ Consommation dans le code
+     └─ Constructeur NethrisAuthClient : Définit HttpClient.BaseAddress
+         └─ BaseUrl.TrimEnd(&#39;/&#39;) + &quot;/&quot; → point de terminaison pour tous les appels Nethris API
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.Nethris:BaseUrl</code><br />
+<strong>Cohérence des noms de propriétés :</strong></p>
+<ul>
+<li>Paramètres Bicep : <code>nethrisBaseUrl</code></li>
+<li>Paramètres Function App : <code>Nethris__BaseUrl</code> (style variable d'env Azure)</li>
+<li>AppConfiguration : <code>Nethris:BaseUrl</code> (style section options)</li>
+<li>Classe Options : <code>NethrisOptions.BaseUrl</code> (propriété POCO)</li>
+</ul>
+<hr />
+<h4 id="12-nethrisappid">1.2 Nethris:AppId<a class="headerlink" href="#12-nethrisappid" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (non sensible — mais spécifique au client, traiter avec précaution)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep GitHub (main.bicep)
+  ├─ Défaut : &#39;BE120EFD-DD3A-44CB-A17A-08538C6D7988&#39;
+  │
+  ├─ infra/parameters/{env}.bicepparam
+  │  └─ dev/test/prod : même valeur
+  │
+  ├─ Flux de déploiement Bicep
+  │  ├─ Paramètre FunctionApp : &#39;Nethris__AppId&#39;
+  │  └─ Paramètre AppConfig :  &#39;Nethris:AppId&#39;
+  │
+  ├─ Résolution à l&#39;exécution
+  │  └─ Pattern Options : NethrisOptions.AppId
+  │
+  └─ Consommation dans le code
+     └─ NethrisAuthClient.LoginAsync()
+        └─ Sérialisé dans le JSON de connexion : AppID = _options.AppId
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.Nethris:AppId</code></p>
+<hr />
+<h4 id="13-nethrisbusinesscode">1.3 Nethris:BusinessCode<a class="headerlink" href="#13-nethrisbusinesscode" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (non sensible — spécifique au client)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep GitHub (main.bicep)
+  ├─ Défaut : &#39;PM10397&#39;
+  │
+  ├─ infra/parameters/{env}.bicepparam
+  │  └─ dev/test/prod : même valeur
+  │
+  ├─ Flux de déploiement Bicep
+  │  ├─ Paramètre FunctionApp : &#39;Nethris__BusinessCode&#39;
+  │  └─ Paramètre AppConfig :  &#39;Nethris:BusinessCode&#39;
+  │
+  ├─ Résolution à l&#39;exécution
+  │  └─ Pattern Options : NethrisOptions.BusinessCode
+  │
+  └─ Consommation dans le code
+     └─ NethrisAuthClient.LoginAsync()
+        └─ Sérialisé dans la requête de connexion : businessCode = _options.BusinessCode
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.Nethris:BusinessCode</code></p>
+<hr />
+<h4 id="14-nethrisusercode">1.4 Nethris:UserCode<a class="headerlink" href="#14-nethrisusercode" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (sensible — spécifique au compte)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep GitHub (main.bicep)
+  ├─ Défaut : &#39;EQLAPI2&#39;
+  │
+  ├─ infra/parameters/{env}.bicepparam
+  │  ├─ dev.bicepparam :   &#39;EQLAPI2&#39;
+  │  ├─ test.bicepparam :  &#39;EQLAPI2&#39;
+  │  └─ prod.bicepparam :  &#39;EQLAPI2 ◄── DIFFÈRE EN PRODUCTION
+  │
+  ├─ Flux de déploiement Bicep
+  │  ├─ Paramètre FunctionApp : &#39;Nethris__UserCode&#39;
+  │  └─ Paramètre AppConfig :  &#39;Nethris:UserCode&#39;
+  │
+  ├─ Résolution à l&#39;exécution
+  │  └─ Pattern Options : NethrisOptions.UserCode
+  │
+  └─ Consommation dans le code
+     └─ NethrisAuthClient.LoginAsync()
+        └─ Sérialisé dans la requête de connexion : userCode = _options.UserCode
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.Nethris:UserCode</code> = <code>'EQLAPI2'</code><br />
+<strong>⚠️ Variance d'environnement :</strong> La production utilise <code>'EQLAPI2</code> (contexte de compte différent)</p>
+<hr />
+<h4 id="15-nethrisuserpassword">1.5 Nethris:UserPassword<a class="headerlink" href="#15-nethrisuserpassword" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> 🔴 Secret (hautement sensible)</p>
+<div class="highlight"><pre><span></span><code>FLUX A : GitHub Actions → Key Vault → App Configuration (déploiement Prod/Test)
+═══════════════════════════════════════════════════════════════════════════════
+
+  Secret d&#39;organisation GitHub
+  ├─ Nom du secret : NETHRIS_USER_PASSWORD
+  └─ Valeur : (chiffrée dans GitHub)
+      │
+      ├─ Déclencheur CI/CD : workflow infra-deploy.yml
+      │  └─ Étape : &quot;Deploy infrastructure&quot;
+      │     └─ Commande : az deployment group create
+      │        └─ Paramètre : --parameters nethrisUserPasswordValue=&quot;${{ secrets.NETHRIS_USER_PASSWORD }}&quot;
+      │
+      ├─ Traitement Bicep (main.bicep)
+      │  ├─ Paramètre : @secure() param nethrisUserPasswordValue string = &#39;&#39;
+      │  │
+      │  └─ Module : keyVault (keyVault.bicep)
+      │     └─ Condition : if (shouldProvisionNethrisUserPassword)
+      │        ├─ Évalue : !empty(nethrisUserPasswordValue) &amp;&amp; !contains(toLower(value), &#39;placeholder&#39;)
+      │        │
+      │        └─ Crée un secret Azure Key Vault
+      │           ├─ Nom du coffre : ${prefix}-${env}-kv-${uniqueString}
+      │           ├─ Nom du secret : &#39;nethris-user-password&#39;
+      │           └─ Valeur du secret : (chiffrée dans Key Vault)
+      │
+      └─ Azure Key Vault
+         ├─ URI : https://{keyVaultName}.vault.azure.net/
+         ├─ URI du secret : {keyVaultUri}/secrets/nethris-user-password/
+         │
+         ├─ Accès RBAC
+         │  ├─ Rôle : Key Vault Secrets User (4633458b-17de-408a-b874-0445c86b69e6)
+         │  └─ Principal : identité managée du Function App
+         │
+         └─ → Le Function App lit via DefaultAzureCredential + identité managée
+            │
+            ├─ App Configuration (appConfiguration.bicep)
+            │  ├─ ConfigStore : ${prefix}-${environment}-appconfig-${uniqueString}
+            │  ├─ Clé : &#39;Nethris:UserPassword&#39;
+            │  ├─ Content Type : &#39;application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8&#39;
+            │  └─ Valeur (JSON) : {&quot;uri&quot;:&quot;https://{keyVaultUri}secrets/nethris-user-password/&quot;}
+            │
+            └─ FunctionAppStartup.ConfigureAppConfiguration()
+               └─ AddAzureAppConfiguration(options =&gt;
+                  ├─ Connexion au point de terminaison App Configuration
+                  ├─ ConfigureKeyVault(keyVault =&gt; keyVault.SetCredential(credential))
+                  └─ Résout l&#39;URI du secret → récupère la valeur réelle depuis Key Vault
+
+
+FLUX B : Développement local (local.settings.json, NON CHIFFRÉ POUR DEV UNIQUEMENT)
+═════════════════════════════════════════════════════════════════════════════
+
+  local.settings.json (DEV UNIQUEMENT — .gitignored)
+  ├─ IsEncrypted : false
+  ├─ Clé : Nethris:UserPassword
+  └─ Valeur : (identifiant dev/sandbox)
+      │
+      └─ Exécution : l&#39;hôte Azure Functions charge directement dans IConfiguration
+
+
+FLUX C : IConfiguration → Pattern Options
+═════════════════════════════════════════════════════════════════════════════
+
+  FunctionAppStartup.ConfigureServices()
+  ├─ services.AddOptions&lt;NethrisOptions&gt;()
+  │  ├─ .BindConfiguration(NethrisOptions.SectionName)  // &quot;Nethris&quot;
+  │  ├─ .ValidateDataAnnotations()
+  │  └─ .ValidateOnStart()
+  │
+  └─ Liaison de propriété
+     └─ NethrisOptions.UserPassword ← IConfiguration[&quot;Nethris:UserPassword&quot;]
+        ├─ En prod : Résolu depuis la référence Key Vault d&#39;App Configuration
+        └─ En dev : Résolu depuis local.settings.json
+
+
+CONSOMMATION DANS LE CODE
+═════════════════
+
+  NethrisAuthClient(HttpClient, IOptions&lt;NethrisOptions&gt;, ILogger)
+  ├─ Constructeur : _options = options.Value
+  │
+  └─ LoginAsync()
+     └─ Sérialisation JSON :
+        ├─ userPassword = _options.UserPassword
+        │
+        └─ Journalisation : (masqué)
+           └─ &quot;password {PasswordMask}&quot; = new string(&#39;*&#39;, _options.UserPassword.Length)
+</code></pre></div>
+<p><strong>⚠️ NOTES DE SÉCURITÉ :</strong></p>
+<ul>
+<li><strong>Jamais versionné dans Git</strong> — <code>local.settings.json</code> est dans le <code>.gitignore</code></li>
+<li><strong>Production :</strong> Existe uniquement dans Azure Key Vault, jamais exposé dans le code</li>
+<li><strong>Validation :</strong> Champ requis (<code>[Required]</code>) — le déploiement échoue s'il est manquant</li>
+<li><strong>Contrôle d'accès :</strong> Seule l'identité managée du Function App peut lire depuis Key Vault</li>
+</ul>
+<hr />
+<h4 id="16-nethrislanguage">1.6 Nethris:Language<a class="headerlink" href="#16-nethrislanguage" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (non sensible)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep GitHub (main.bicep)
+  ├─ Défaut : &#39;Fr-CA&#39;
+  │
+  ├─ infra/parameters/{env}.bicepparam
+  │  └─ dev/test/prod : même valeur
+  │
+  ├─ Flux de déploiement Bicep
+  │  ├─ Paramètre FunctionApp : &#39;Nethris__Language&#39;
+  │  └─ Paramètre AppConfig :  &#39;Nethris:Language&#39;
+  │
+  └─ Consommation dans le code
+     └─ NethrisAuthClient.LoginAsync()
+        └─ Sérialisé dans la requête de connexion : language = _options.Language
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.Nethris:Language</code> = <code>'Fr-CA'</code></p>
+<hr />
+<h3 id="2-configuration-sharepoint">2. CONFIGURATION SHAREPOINT<a class="headerlink" href="#2-configuration-sharepoint" title="Permanent link">&para;</a></h3>
+<h4 id="21-sharepointsiteid">2.1 SharePoint:SiteId<a class="headerlink" href="#21-sharepointsiteid" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (sensible — spécifique au tenant)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep GitHub (main.bicep)
+  ├─ Requis (pas de défaut)
+  │
+  ├─ infra/parameters/{env}.bicepparam
+  │  ├─ dev.bicepparam :   &#39;8af7122d-d534-4a93-8063-e1ad30625eaf&#39;
+  │  ├─ test.bicepparam :  &#39;&lt;test-sharepoint-site-id&gt;&#39; (espace réservé)
+  │  └─ prod.bicepparam :  &#39;8af7122d-d534-4a93-8063-e1ad30625eaf&#39;
+  │
+  ├─ Flux de déploiement Bicep
+  │  ├─ Paramètre FunctionApp (direct) : &#39;SharePoint__SiteId&#39;
+  │  └─ Paramètre AppConfig : &#39;SharePoint:SiteId&#39;
+  │
+  ├─ Résolution à l&#39;exécution
+  │  └─ Pattern Options : SharePointOptions.SiteId
+  │
+  └─ Consommation dans le code
+     └─ SharePointClient.UploadFileAsync()
+        └─ Appel Graph API via GraphServiceClient
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.SharePoint:SiteId</code><br />
+<strong>⚠️ Environnement test :</strong> Valeur d'espace réservé — doit être remplacée avant le déploiement test</p>
+<hr />
+<h4 id="22-sharepointdriveid">2.2 SharePoint:DriveId<a class="headerlink" href="#22-sharepointdriveid" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (sensible — spécifique au tenant)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep GitHub (main.bicep)
+  ├─ Requis (pas de défaut)
+  │
+  ├─ infra/parameters/{env}.bicepparam
+  │  ├─ dev.bicepparam :   &#39;b!LRL3ijTVk0qAY-GtMGJer6GfblQs-vVNgoevbYdE_0mBptlIJA3pQJkw7kd8VsHt&#39;
+  │  ├─ test.bicepparam :  &#39;&lt;test-sharepoint-drive-id&gt;&#39; (espace réservé)
+  │  └─ prod.bicepparam :  &#39;b!LRL3ijTVk0qAY-GtMGJer6GfblQs-vVNgoevbYdE_0mBptlIJA3pQJkw7kd8VsHt&#39;
+  │
+  ├─ Flux de déploiement Bicep
+  │  ├─ Paramètre FunctionApp (direct) : &#39;SharePoint__DriveId&#39;
+  │  └─ Paramètre AppConfig : &#39;SharePoint:DriveId&#39;
+  │
+  ├─ Résolution à l&#39;exécution
+  │  └─ Pattern Options : SharePointOptions.DriveId
+  │
+  └─ Consommation dans le code
+     └─ SharePointClient.UploadFileAsync()
+        └─ Graph SDK : _graphClient.Drives[driveId].Root.ItemWithPath(path)
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.SharePoint:DriveId</code><br />
+<strong>⚠️ Environnement test :</strong> Valeur d'espace réservé — doit être remplacée avant le déploiement test</p>
+<hr />
+<h4 id="23-sharepointrootfolder">2.3 SharePoint:RootFolder<a class="headerlink" href="#23-sharepointrootfolder" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (non sensible)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep GitHub (main.bicep)
+  ├─ Défaut : &#39;/FSources/Nethris&#39;
+  │
+  ├─ infra/parameters/{env}.bicepparam
+  │  └─ dev/test/prod : même valeur
+  │
+  ├─ Flux de déploiement Bicep
+  │  └─ App Configuration : &#39;SharePoint:RootFolder&#39;
+  │     (PAS dans les paramètres directs du Function App — uniquement via AppConfig)
+  │
+  ├─ Résolution à l&#39;exécution
+  │  └─ Pattern Options : SharePointOptions.RootFolder
+  │
+  └─ Consommation dans le code
+     └─ SharePointClient.UploadFileAsync(folderPath)
+        └─ Chemin de base : RootFolder (aucun sous-dossier date ajouté)
+        └─ Chemin final : &#39;/FSources/Nethris/NomRapport_horodatage.ext&#39;
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.SharePoint:RootFolder</code> = <code>'/FSources/Nethris'</code></p>
+<hr />
+<h3 id="3-configuration-du-registre-azure-table-storage">3. CONFIGURATION DU REGISTRE (Azure Table Storage)<a class="headerlink" href="#3-configuration-du-registre-azure-table-storage" title="Permanent link">&para;</a></h3>
+<h4 id="31-ledgertableserviceuri">3.1 Ledger:TableServiceUri<a class="headerlink" href="#31-ledgertableserviceuri" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (semi-sensible — identifiant d'infrastructure)</p>
+<div class="highlight"><pre><span></span><code>CALCULÉ PAR MAIN.BICEP (pas un paramètre direct)
+════════════════════════════════════════════════
+
+  main.bicep → storage.bicep
+  ├─ Génère : Nom du compte de stockage
+  │  └─ Patron : ${prefix}${environment}st${uniqueString()} (p. ex. eqldevstXXXXXXXX)
+  │
+  ├─ Sortie du module storage : storageAccountName
+  │
+  └─ main.bicep calcule :
+     └─ tableServiceUri = &#39;https://${storage.outputs.name}.table.${az.environment().suffixes.storage}/&#39;
+
+
+Flux de déploiement Bicep
+═════════════════════
+
+  functionApp.bicep
+  ├─ Paramètre : tableServiceUri (calculé par main.bicep)
+  ├─ Paramètre FunctionApp : &#39;Ledger__TableServiceUri&#39; = tableServiceUri
+  │
+  └─ appConfiguration.bicep
+     ├─ Paramètre AppConfig : &#39;Ledger:TableServiceUri&#39;
+     └─ Content-Type : &#39;text/plain&#39;
+
+
+Résolution à l&#39;exécution
+═══════════════════
+
+  FunctionAppStartup.ConfigureServices()
+  └─ Pattern Options : LedgerOptions.TableServiceUri
+
+
+Consommation dans le code
+════════════════
+
+  LedgerTableServiceClientFactory.Create()
+  └─ Crée : new TableServiceClient(
+       new Uri(ledgerOptions.TableServiceUri),
+       new DefaultAzureCredential()
+     )
+     ├─ Utilise l&#39;identité managée (pas de chaîne de connexion nécessaire)
+     └─ Accède aux : tables du compte de stockage
+
+
+Contrôle d&#39;accès (RBAC)
+═════════════════
+
+  main.bicep crée l&#39;attribution de rôle :
+  ├─ Rôle : Storage Blob Data Owner, Queue Data Contributor, Table Data Contributor
+  ├─ Principal : identité managée du Function App
+  └─ Portée : compte de stockage
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.Ledger:TableServiceUri</code></p>
+<hr />
+<h4 id="32-ledgertablename">3.2 Ledger:TableName<a class="headerlink" href="#32-ledgertablename" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (non sensible)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep GitHub (main.bicep)
+  ├─ Défaut : &#39;SyncLedger&#39;
+  │
+  ├─ infra/parameters/{env}.bicepparam
+  │  └─ dev/test/prod : même valeur
+  │
+  ├─ Flux de déploiement Bicep
+  │  └─ Paramètre AppConfig : &#39;Ledger:TableName&#39;
+  │
+  ├─ Résolution à l&#39;exécution
+  │  └─ Pattern Options : LedgerOptions.TableName
+  │
+  └─ Consommation dans le code
+     └─ var tableClient = serviceClient.GetTableClient(ledgerOptions.TableName)
+</code></pre></div>
+<p><strong>Développement local :</strong> <code>local.settings.json</code> → <code>Values.Ledger:TableName</code> = <code>'SyncLedger'</code></p>
+<hr />
+<h3 id="4-configuration-acs">4. CONFIGURATION ACS<a class="headerlink" href="#4-configuration-acs" title="Permanent link">&para;</a></h3>
+<h4 id="41-acsconnectionstring">4.1 Acs:ConnectionString<a class="headerlink" href="#41-acsconnectionstring" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> 🔴 Secret (hautement sensible — chaîne de connexion ACS)</p>
+<div class="highlight"><pre><span></span><code>FLUX A : Ressource ACS → Key Vault → App Configuration
+═══════════════════════════════════════════════════════════
+
+  main.bicep
+      ├─ module acsService
+      │  └─ Déploie la ressource Azure Communication Services
+      │
+      ├─ secretAcsConnectionString
+      │  ├─ Secret Key Vault : &#39;acs-connection-string&#39;
+      │  └─ Valeur : acsService.outputs.connectionString
+      │
+      └─ appConfiguration.bicep
+         ├─ Paramètre AppConfig : &#39;Acs:ConnectionString&#39;
+         ├─ Content-Type : &#39;application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8&#39;
+         └─ Valeur : {&quot;uri&quot;:&quot;https://{keyVaultUri}/secrets/acs-connection-string/&quot;}
+
+
+FLUX B : Développement local
+═════════════════════════════
+
+  local.settings.json → Values.Acs:ConnectionString
+
+
+CONSOMMATION DANS LE CODE
+═════════════════
+
+  FunctionAppStartup.IsSmsEnabled()
+  ├─ Vérifie : configuration[&quot;Acs:ConnectionString&quot;]
+  │  └─ Si présent et non vide → SMS potentiellement activé
+  │
+  └─ Constructeur AcsSmsClient
+     └─ new SmsClient(opts.ConnectionString)
+</code></pre></div>
+<p><strong>⚠️ APPROVISIONNEMENT :</strong> Cette valeur est générée par l'infrastructure ACS et stockée dans Key Vault avant d'être exposée à
+App Configuration sous forme de référence.</p>
+<hr />
+<h4 id="42-acsphonenumber">4.2 Acs:PhoneNumber<a class="headerlink" href="#42-acsphonenumber" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> 🟡 Configuration sensible (numéro d'envoi ACS en E.164)</p>
+<div class="highlight"><pre><span></span><code>FLUX A : Variable GitHub → App Configuration
+═════════════════════════════════════════════
+
+  Variable d&#39;environnement GitHub
+      ├─ Nom : ACS_PHONE_NUMBER
+      │
+      ├─ Workflow infra-deploy.yml
+      │  └─ Paramètre : --parameters acsPhoneNumberValue=&quot;${{ vars.ACS_PHONE_NUMBER }}&quot;
+      │
+      └─ appConfiguration.bicep
+         ├─ Paramètre AppConfig : &#39;Acs:PhoneNumber&#39;
+         ├─ Content-Type : &#39;text/plain&#39;
+         └─ Valeur : la valeur de la variable (ex. +1-613-867-5309)
+
+
+FLUX B : Développement local
+═════════════════════════════
+
+  local.settings.json → Values.Acs:PhoneNumber
+
+
+CONSOMMATION DANS LE CODE
+═════════════════
+
+  FunctionAppStartup.IsSmsEnabled()
+  ├─ Vérifie : configuration[&quot;Acs:PhoneNumber&quot;]
+  │
+  └─ AcsSmsClient.SendSmsAsync()
+     └─ SmsClient.SendAsync(from: opts.PhoneNumber, ...)
+</code></pre></div>
+<p><strong>⚠️ APPROVISIONNEMENT CONDITIONNEL :</strong> La clé <code>Acs:PhoneNumber</code> dans App Configuration est créée seulement si
+<code>acsPhoneNumberValue</code> est fourni au déploiement.</p>
+<hr />
+<h3 id="5-configuration-azure-ad">5. CONFIGURATION AZURE AD<a class="headerlink" href="#5-configuration-azure-ad" title="Permanent link">&para;</a></h3>
+<h4 id="51-azureadtenantid">5.1 AzureAd:TenantId<a class="headerlink" href="#51-azureadtenantid" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (non sensible — identifiant de tenant organisationnel)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep → Paramètre AppConfig : &#39;AzureAd:TenantId&#39;
+  └─ Défaut : &#39;d218ec82-6fd8-44fe-953f-ac6b7a063b96&#39;
+  └─ Identique pour tous les environnements
+  └─ → AadAuthOptions.TenantId
+  └─ → AddMicrosoftIdentityWebApi() pour l&#39;authentification du point de terminaison SMS
+</code></pre></div>
+<h4 id="52-azureadclientid">5.2 AzureAd:ClientId<a class="headerlink" href="#52-azureadclientid" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (non sensible — inscription d'application)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep → Paramètre AppConfig : &#39;AzureAd:ClientId&#39;
+  └─ Défaut : &#39;3948f2a7-b0ab-44e7-a086-e424ce13c1de&#39;
+  └─ Identique pour tous les environnements
+  └─ → AadAuthOptions.ClientId
+  └─ → AddMicrosoftIdentityWebApi() pour la validation des jetons
+</code></pre></div>
+<p><strong>Note :</strong> Ceci est l'identifiant d'application Azure AD pour le point de terminaison API SMS, distinct du AppId Nethris.</p>
+<h4 id="53-azureadaudience">5.3 AzureAd:Audience<a class="headerlink" href="#53-azureadaudience" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (non sensible)</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep → Paramètre AppConfig : &#39;AzureAd:Audience&#39;
+  └─ Défaut : &#39;api://3948f2a7-b0ab-44e7-a086-e424ce13c1de&#39;
+  └─ Identique pour tous les environnements
+  └─ → Validation du jeton Bearer : token.aud == AadAuthOptions.Audience
+</code></pre></div>
+<hr />
+<h3 id="6-systeme-et-bascules-de-fonctionnalite">6. SYSTÈME ET BASCULES DE FONCTIONNALITÉ<a class="headerlink" href="#6-systeme-et-bascules-de-fonctionnalite" title="Permanent link">&para;</a></h3>
+<h4 id="61-appconfigurationendpoint">6.1 AppConfiguration:Endpoint<a class="headerlink" href="#61-appconfigurationendpoint" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Configuration (identifiant d'infrastructure calculé)</p>
+<div class="highlight"><pre><span></span><code>CALCULÉ PAR MAIN.BICEP
+══════════════════════
+
+  main.bicep calcule :
+  ├─ appConfigName = &#39;${prefix}-${environment}-appconfig-${uniqueString(resourceGroup().id)}&#39;
+  └─ appConfigurationEndpoint = &#39;https://${appConfigName}.azconfig.io&#39;
+
+  functionApp.bicep
+  └─ Paramètre FunctionApp : &#39;AppConfiguration__Endpoint&#39; = appConfigurationEndpoint
+
+  FunctionAppStartup.ConfigureAppConfiguration()
+  └─ var endpoint = configuration[&quot;AppConfiguration:Endpoint&quot;]
+     └─ AddAzureAppConfiguration(options =&gt; Connect(endpointUri, credential))
+</code></pre></div>
+<p><strong>⚠️ PARAMÈTRE D'AMORÇAGE :</strong> Nécessaire AVANT que le fournisseur AppConfiguration puisse charger les autres paramètres.
+Réside dans les paramètres du Function App (pas dans AppConfiguration lui-même).</p>
+<hr />
+<h4 id="62-azurewebjobsstorage">6.2 AzureWebJobsStorage<a class="headerlink" href="#62-azurewebjobsstorage" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Spécial (connexion d'infrastructure)</p>
+<div class="highlight"><pre><span></span><code>PRODUCTION (basé sur l&#39;identité — pas de clé de stockage)
+═════════════════════════════════════════════
+
+  functionApp.bicep
+  └─ Paramètre FunctionApp : &#39;AzureWebJobsStorage__accountName&#39; = storageAccountName
+     └─ Utilise DefaultAzureCredential + identité managée (pas de chaîne de connexion)
+
+  RBAC :
+  ├─ Storage Blob Data Owner
+  ├─ Queue Data Contributor
+  └─ Table Data Contributor
+
+
+DÉVELOPPEMENT LOCAL (émulateur)
+════════════════════════════
+
+  local.settings.json → AzureWebJobsStorage = &#39;UseDevelopmentStorage=true&#39;
+  └─ Se connecte à l&#39;émulateur Azurite local
+</code></pre></div>
+<hr />
+<h4 id="63-smsenabled">6.3 Sms:Enabled<a class="headerlink" href="#63-smsenabled" title="Permanent link">&para;</a></h4>
+<p><strong>Classification :</strong> Bascule de fonctionnalité</p>
+<div class="highlight"><pre><span></span><code>Paramètre Bicep (main.bicep)
+  ├─ param smsEnabled bool = false (défaut : DÉSACTIVÉ)
+  │
+  └─ functionApp.bicep crée :
+     ├─ &#39;Sms__Enabled&#39; = smsEnabled ? &#39;true&#39; : &#39;false&#39;
+     ├─ &#39;AzureWebJobs.SendEmergencySms.Disabled&#39; = smsEnabled ? &#39;false&#39; : &#39;true&#39;     ◄── INVERSÉ
+     └─ &#39;AzureWebJobs.AcsInboundSms.Disabled&#39; = smsEnabled ? &#39;false&#39; : &#39;true&#39; ◄── INVERSÉ
+
+  FunctionAppStartup.IsSmsEnabled()
+  ├─ Vérification 1 : configuration.GetValue&lt;bool?&gt;(&quot;Sms:Enabled&quot;)
+  └─ Vérification 2 (repli) : Si Acs:ConnectionString + Acs:PhoneNumber sont présents → activé
+
+  INSCRIPTION DI CONDITIONNELLE
+  ├─ if (smsEnabled) : Enregistrer AcsSmsClient + auth AzureAd
+  └─ else : Enregistrer DisabledSmsClient (stub)
+</code></pre></div>
+<p><strong>⚠️ DOUBLE CONTRÔLE :</strong> Le flag de configuration (<code>Sms:Enabled</code>) et les flags de liaison Function
+(<code>AzureWebJobs.{FunctionName}.Disabled</code>) doivent être alignés.</p>
+<hr />
+<h3 id="7-identite-managee-et-authentification-azure-ad">7. IDENTITÉ MANAGÉE ET AUTHENTIFICATION AZURE AD<a class="headerlink" href="#7-identite-managee-et-authentification-azure-ad" title="Permanent link">&para;</a></h3>
+<h4 id="71-identite-managee-assignee-par-le-systeme">7.1 Identité managée assignée par le système<a class="headerlink" href="#71-identite-managee-assignee-par-le-systeme" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>functionApp.bicep
+├─ identity : type : &#39;SystemAssigned&#39;
+│  └─ Crée un principal de service géré par le système
+│
+├─ Sortie : functionApp.outputs.principalId → utilisé pour les attributions de rôle
+
+Attributions de rôle créées (main.bicep) :
+  1. Function App → Compte de stockage (Storage Blob Data Owner + Queue + Table)
+  2. Function App → Key Vault (Key Vault Secrets User)
+  3. Function App → App Configuration (App Configuration Data Reader)
+
+Utilisation dans le code :
+  DefaultAzureCredential()
+  ├─ GraphServiceClient (SharePoint)
+  ├─ Connexion Azure App Configuration
+  └─ Résolution des secrets Key Vault
+</code></pre></div>
+<p><strong>⚠️ AUCUN SECRET STOCKÉ :</strong> L'identité managée est automatiquement gérée par Azure. L'accès est contrôlé entièrement par
+RBAC.</p>
+<hr />
+<h3 id="8-identifiants-de-developpement-local">8. IDENTIFIANTS DE DÉVELOPPEMENT LOCAL<a class="headerlink" href="#8-identifiants-de-developpement-local" title="Permanent link">&para;</a></h3>
+<h4 id="81-simulation-de-lidentite-managee-localsettingsjson">8.1 Simulation de l'identité managée (local.settings.json)<a class="headerlink" href="#81-simulation-de-lidentite-managee-localsettingsjson" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>local.settings.json (DEV UNIQUEMENT — .gitignored)
+├─ AZURE_TENANT_ID     → chaîne de variables d&#39;env DefaultAzureCredential
+├─ AZURE_CLIENT_ID     → authentification par principal de service
+└─ AZURE_CLIENT_SECRET → authentification par principal de service
+
+ALTERNATIVE : Authentification Azure CLI
+  Chaîne de repli DefaultAzureCredential :
+  1. Variables d&#39;environnement (AZURE_CLIENT_ID, etc.)
+  2. Identité managée (dans Azure)
+  3. Azure CLI (az login)
+  4. PowerShell (Connect-AzAccount)
+</code></pre></div>
+<p><strong>⚠️ Ces identifiants NE DOIVENT JAMAIS être versionnés dans Git.</strong></p>
+<hr />
+<h2 id="inventaire-des-secrets-et-variables-github-actions">Inventaire des secrets et variables GitHub Actions<a class="headerlink" href="#inventaire-des-secrets-et-variables-github-actions" title="Permanent link">&para;</a></h2>
+<h3 id="secrets-niveau-organisation">Secrets (niveau organisation)<a class="headerlink" href="#secrets-niveau-organisation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nom du secret</th>
+<th>Utilisé dans</th>
+<th>Étape</th>
+<th>Objectif</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AZURE_CLIENT_ID</code></td>
+<td><code>infra-deploy.yml</code>, <code>function-deploy.yml</code></td>
+<td>Connexion Azure</td>
+<td>Échange de jeton OIDC</td>
+</tr>
+<tr>
+<td><code>AZURE_TENANT_ID</code></td>
+<td><code>infra-deploy.yml</code>, <code>function-deploy.yml</code></td>
+<td>Connexion Azure</td>
+<td>Identifiant de tenant Azure</td>
+</tr>
+<tr>
+<td><code>AZURE_SUBSCRIPTION_ID</code></td>
+<td><code>infra-deploy.yml</code>, <code>function-deploy.yml</code></td>
+<td>Connexion Azure</td>
+<td>Abonnement cible</td>
+</tr>
+<tr>
+<td><code>NETHRIS_USER_PASSWORD</code></td>
+<td><code>infra-deploy.yml</code></td>
+<td>Infrastructure</td>
+<td>Bicep → Key Vault</td>
+</tr>
+<tr>
+<td><code>ACS_ACCOUNT_SID</code></td>
+<td><code>infra-deploy.yml</code></td>
+<td>Infrastructure</td>
+<td>Bicep → Key Vault</td>
+</tr>
+<tr>
+<td><code>ACS_AUTH_TOKEN</code></td>
+<td><code>infra-deploy.yml</code></td>
+<td>Infrastructure</td>
+<td>Bicep → Key Vault</td>
+</tr>
+<tr>
+<td><code>NETHRIS_SANDBOX_BASE_URL</code></td>
+<td><code>integration-tests.yml</code></td>
+<td>Tests</td>
+<td>URL du sandbox</td>
+</tr>
+<tr>
+<td><code>NETHRIS_SANDBOX_APP_ID</code></td>
+<td><code>integration-tests.yml</code></td>
+<td>Tests</td>
+<td>AppId du sandbox</td>
+</tr>
+<tr>
+<td><code>NETHRIS_SANDBOX_BUSINESS_CODE</code></td>
+<td><code>integration-tests.yml</code></td>
+<td>Tests</td>
+<td>Code d'entreprise du sandbox</td>
+</tr>
+<tr>
+<td><code>NETHRIS_SANDBOX_USER_CODE</code></td>
+<td><code>integration-tests.yml</code></td>
+<td>Tests</td>
+<td>Code utilisateur du sandbox</td>
+</tr>
+<tr>
+<td><code>NETHRIS_SANDBOX_USER_PASSWORD</code></td>
+<td><code>integration-tests.yml</code></td>
+<td>Tests</td>
+<td>Mot de passe du sandbox</td>
+</tr>
+<tr>
+<td><code>ACS_TEST_ACCOUNT_SID</code></td>
+<td><code>integration-tests.yml</code></td>
+<td>Tests</td>
+<td>SID de test Azure Communication Services</td>
+</tr>
+<tr>
+<td><code>ACS_TEST_AUTH_TOKEN</code></td>
+<td><code>integration-tests.yml</code></td>
+<td>Tests</td>
+<td>Jeton de test Azure Communication Services</td>
+</tr>
+<tr>
+<td><code>ACS_TEST_FROM_NUMBER</code></td>
+<td><code>integration-tests.yml</code></td>
+<td>Tests</td>
+<td>Numéro expéditeur de test</td>
+</tr>
+<tr>
+<td><code>ACS_TEST_TO_NUMBER</code></td>
+<td><code>integration-tests.yml</code></td>
+<td>Tests</td>
+<td>Numéro destinataire de test</td>
+</tr>
+</tbody>
+</table>
+<h3 id="variables-niveau-organisation">Variables (niveau organisation)<a class="headerlink" href="#variables-niveau-organisation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nom de la variable</th>
+<th>Utilisé dans</th>
+<th>Objectif</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AZURE_RESOURCE_GROUP</code></td>
+<td><code>infra-deploy.yml</code></td>
+<td>Groupe de ressources cible</td>
+<td><code>eql-dev-rg</code></td>
+</tr>
+<tr>
+<td><code>FUNCTION_APP_NAME</code></td>
+<td><code>function-deploy.yml</code></td>
+<td>Nom du Function App</td>
+<td><code>eql-dev-func-XXXXX</code></td>
+</tr>
+<tr>
+<td><code>ACS_FROM_NUMBER</code></td>
+<td><code>infra-deploy.yml</code></td>
+<td>Numéro expéditeur Azure Communication Services</td>
+<td><code>+15153208181</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="couches-de-liaison-de-configuration">Couches de liaison de configuration<a class="headerlink" href="#couches-de-liaison-de-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="couche-1-pattern-options-core">Couche 1 : Pattern Options (Core)<a class="headerlink" href="#couche-1-pattern-options-core" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Classes C# (EquipeLaurence.Core/Configuration/)
+├─ NethrisOptions          (section : &quot;Nethris&quot;)
+├─ SharePointOptions       (section : &quot;SharePoint&quot;)
+├─ LedgerOptions           (section : &quot;Ledger&quot;)
+├─ AcsOptions           (section : &quot;Azure Communication Services&quot;)
+└─ AadAuthOptions          (section : &quot;AzureAd&quot;)
+
+FunctionAppStartup.ConfigureServices()
+├─ services.AddOptions&lt;{ClasseOptions}&gt;()
+│  ├─ .BindConfiguration(&quot;{SectionName}&quot;)
+│  ├─ .ValidateDataAnnotations()
+│  └─ .ValidateOnStart()  ◄── Échoue au démarrage si manquant/invalide
+│
+└─ [Required] sur toutes les propriétés → validation DataAnnotations appliquée
+</code></pre></div>
+<h3 id="couche-2-iconfiguration-execution">Couche 2 : IConfiguration (exécution)<a class="headerlink" href="#couche-2-iconfiguration-execution" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Ordre de résolution (Azure) :
+  1. Paramètres directs du Function App (Nethris__BaseUrl)
+  2. Azure App Configuration Store (via AddAzureAppConfiguration)
+  3. Références Azure Key Vault (résolues lors du chargement AppConfig)
+
+Ordre de résolution (local) :
+  1. local.settings.json (priorité la plus élevée)
+  2. Variables d&#39;environnement
+  3. appsettings.json (non utilisé dans ce projet)
+</code></pre></div>
+<h3 id="couche-3-parametres-du-function-app-azure">Couche 3 : Paramètres du Function App (Azure)<a class="headerlink" href="#couche-3-parametres-du-function-app-azure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Définis par Bicep (functionApp.bicep)
+├─ PARAMÈTRES DIRECTS
+│  ├─ AppConfiguration__Endpoint      (amorçage)
+│  ├─ Nethris__BaseUrl/AppId/BusinessCode/UserCode/UserPassword/Language
+│  ├─ SharePoint__SiteId/DriveId
+│  ├─ Ledger__TableServiceUri
+│  ├─ Sms__Enabled
+│  └─ AzureWebJobs.{FunctionName}.Disabled
+│
+└─ RÉFÉRENCES KEY VAULT
+   └─ Format : &#39;@Microsoft.KeyVault(VaultName={nom};SecretName={secret})&#39;
+</code></pre></div>
+<h3 id="couche-4-azure-app-configuration">Couche 4 : Azure App Configuration<a class="headerlink" href="#couche-4-azure-app-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Défini par Bicep (appConfiguration.bicep)
+├─ Paires clé-valeur simples (Content-Type : &#39;text/plain&#39;)
+│  └─ Tous les paramètres non secrets
+│
+└─ Références Key Vault
+   ├─ Content-Type : &#39;application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8&#39;
+   └─ Valeur : &#39;{&quot;uri&quot;:&quot;https://{coffre}.vault.azure.net/secrets/{secret}/&quot;}&#39;
+</code></pre></div>
+<hr />
+<h2 id="matrice-de-flux-des-secrets-et-de-la-configuration">Matrice de flux des secrets et de la configuration<a class="headerlink" href="#matrice-de-flux-des-secrets-et-de-la-configuration" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────────────────────┐
+│                    SOURCE → TRANSPORT → STOCKAGE → RÉSOLUTION               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│ CHEMIN DE PRODUCTION                                                        │
+│ ════════════════                                                            │
+│                                                                             │
+│ GitHub Secret (chiffré)                                                     │
+│   ↓  infra-deploy.yml : secrets.XXX                                         │
+│ az deployment group create --parameters XXX=&quot;${{ secrets.XXX }}&quot;            │
+│   ↓  Bicep @secure() param                                                  │
+│ keyVault.bicep → Secret Azure Key Vault (chiffré au repos)                  │
+│   ↓  Référence URI Key Vault                                                │
+│ appConfiguration.bicep → Référence Key Vault dans AppConfig                 │
+│   ↓  AddAzureAppConfiguration + ConfigureKeyVault                           │
+│ IConfiguration[&quot;Section:Clé&quot;] → résolu depuis Key Vault                     │
+│   ↓  Liaison Pattern Options                                                │
+│ {ClasseOptions}.Propriété → en mémoire uniquement                           │
+│                                                                             │
+│ CHEMIN DE DÉVELOPPEMENT LOCAL                                               │
+│ ══════════════════════                                                      │
+│                                                                             │
+│ local.settings.json (non chiffré, .gitignored)                              │
+│   ↓  Hôte Azure Functions                                                   │
+│ IConfiguration[&quot;Section:Clé&quot;]                                               │
+│   ↓  Liaison Pattern Options                                                │
+│ {ClasseOptions}.Propriété → en mémoire uniquement                           │
+│                                                                             │
+│ CHEMIN DE CONFIG NON SECRET                                                 │
+│ ══════════════════════                                                      │
+│                                                                             │
+│ Paramètre Bicep (infra/parameters/{env}.bicepparam)                         │
+│   ↓  Déploiement Bicep                                                      │
+│ appConfiguration.bicep → Clé-valeur AppConfig (texte brut)                  │
+│   ↓  AddAzureAppConfiguration                                               │
+│ IConfiguration[&quot;Section:Clé&quot;]                                               │
+│   ↓  Liaison Pattern Options                                                │
+│ {ClasseOptions}.Propriété                                                   │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="classifications-de-securite">Classifications de sécurité<a class="headerlink" href="#classifications-de-securite" title="Permanent link">&para;</a></h2>
+<h3 id="secrets-hautement-sensibles">🔴 Secrets hautement sensibles<a class="headerlink" href="#secrets-hautement-sensibles" title="Permanent link">&para;</a></h3>
+<p><strong>Stockage :</strong> Azure Key Vault (chiffré au repos et en transit)<br />
+<strong>Accès :</strong> Identité managée du Function App uniquement (RBAC)</p>
+<table>
+<thead>
+<tr>
+<th>Clé</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Nethris:UserPassword</code></td>
+<td>Mot de passe du compte API Nethris</td>
+</tr>
+<tr>
+<td><code>Acs:ConnectionString</code></td>
+<td>Chaîne de connexion Azure Communication Services</td>
+</tr>
+<tr>
+<td><code>AZURE_CLIENT_SECRET</code></td>
+<td>Principal de service Azure (dev uniquement)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration-sensible">🟡 Configuration sensible<a class="headerlink" href="#configuration-sensible" title="Permanent link">&para;</a></h3>
+<p><strong>Stockage :</strong> App Configuration ou paramètres du Function App (texte brut, portée limitée)<br />
+<strong>Accès :</strong> Function App et développeurs (via Azure RBAC)</p>
+<table>
+<thead>
+<tr>
+<th>Clé</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Nethris:UserCode</code></td>
+<td>Nom d'utilisateur du compte Nethris (diffère dev/prod)</td>
+</tr>
+<tr>
+<td><code>Nethris:AppId</code></td>
+<td>Identifiant d'application Nethris spécifique au client</td>
+</tr>
+<tr>
+<td><code>Nethris:BusinessCode</code></td>
+<td>Code d'entreprise du client</td>
+</tr>
+<tr>
+<td><code>SharePoint:SiteId</code></td>
+<td>Identifiant de site SharePoint du tenant</td>
+</tr>
+<tr>
+<td><code>SharePoint:DriveId</code></td>
+<td>Identifiant de bibliothèque de documents SharePoint</td>
+</tr>
+<tr>
+<td><code>Acs:PhoneNumber</code></td>
+<td>Numéro de téléphone expéditeur SMS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration-non-sensible">🟢 Configuration non sensible<a class="headerlink" href="#configuration-non-sensible" title="Permanent link">&para;</a></h3>
+<p><strong>Stockage :</strong> App Configuration ou paramètres du Function App (texte brut)</p>
+<table>
+<thead>
+<tr>
+<th>Clé</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Nethris:BaseUrl</code></td>
+<td>URL du point de terminaison API Nethris (public)</td>
+</tr>
+<tr>
+<td><code>Nethris:Language</code></td>
+<td>Code de langue (« Fr-CA »)</td>
+</tr>
+<tr>
+<td><code>SharePoint:RootFolder</code></td>
+<td>Chemin de la structure de dossiers</td>
+</tr>
+<tr>
+<td><code>Ledger:TableName</code></td>
+<td>Nom de la table Azure</td>
+</tr>
+<tr>
+<td><code>AzureAd:TenantId</code></td>
+<td>Identifiant de tenant Azure AD</td>
+</tr>
+<tr>
+<td><code>AzureAd:ClientId</code></td>
+<td>Identifiant d'application Azure AD</td>
+</tr>
+<tr>
+<td><code>AzureAd:Audience</code></td>
+<td>Identifiant d'audience du jeton</td>
+</tr>
+<tr>
+<td><code>Sms:Enabled</code></td>
+<td>Bascule de fonctionnalité</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="tableau-de-variance-par-environnement">Tableau de variance par environnement<a class="headerlink" href="#tableau-de-variance-par-environnement" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Paramètre</th>
+<th>Dev</th>
+<th>Test</th>
+<th>Prod</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nethrisUserCode</code></td>
+<td><code>EQLAPI2</code></td>
+<td><code>EQLAPI2</code></td>
+<td>`EQLAPI2</td>
+<td><strong>Diffère en prod</strong></td>
+</tr>
+<tr>
+<td><code>sharePointSiteId</code></td>
+<td><code>8af7122d-...</code></td>
+<td><code>&lt;espace réservé&gt;</code></td>
+<td><code>8af7122d-...</code></td>
+<td>Test nécessite une configuration</td>
+</tr>
+<tr>
+<td><code>sharePointDriveId</code></td>
+<td><code>b!LRL3ij...</code></td>
+<td><code>&lt;espace réservé&gt;</code></td>
+<td><code>b!LRL3ij...</code></td>
+<td>Test nécessite une configuration</td>
+</tr>
+<tr>
+<td><code>deployerPrincipalId</code></td>
+<td><code>53f80690-...</code></td>
+<td><em>(vide)</em></td>
+<td><code>fd03534b-...</code></td>
+<td>Dev : Eric, Prod : responsable DevOps</td>
+</tr>
+<tr>
+<td><code>smsEnabled</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td><code>false</code></td>
+<td>Désactivé partout par défaut</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="structure-de-key-vault">Structure de Key Vault<a class="headerlink" href="#structure-de-key-vault" title="Permanent link">&para;</a></h2>
+<h3 id="secrets-approvisionnes-conditionnels">Secrets approvisionnés (conditionnels)<a class="headerlink" href="#secrets-approvisionnes-conditionnels" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nom du secret</th>
+<th>Approvisionné si</th>
+<th>Patron d'accès</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nethris-user-password</code></td>
+<td><code>nethrisUserPasswordValue</code> non vide</td>
+<td>Référence Key Vault dans App Config</td>
+</tr>
+<tr>
+<td><code>acs-connection-string</code></td>
+<td>Toujours (à partir de la ressource ACS)</td>
+<td>Référence Key Vault dans App Config</td>
+</tr>
+<tr>
+<td><code>acs-phone-number</code></td>
+<td><code>acsPhoneNumberValue</code> non vide</td>
+<td>Référence Key Vault dans App Config</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration-du-coffre">Configuration du coffre<a class="headerlink" href="#configuration-du-coffre" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Nommage :</strong> <code>${prefix}-${environment}-kv-${uniqueString(resourceGroup().id)}</code></li>
+<li><strong>SKU :</strong> <code>standard</code></li>
+<li><strong>Autorisation RBAC :</strong> Activée (pas de politiques d'accès)</li>
+<li><strong>Suppression réversible :</strong> Activée (rétention de 90 jours)</li>
+</ul>
+<h3 id="attributions-de-role">Attributions de rôle<a class="headerlink" href="#attributions-de-role" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Principal</th>
+<th>Rôle</th>
+<th>Objectif</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identité managée du Function App</td>
+<td>Key Vault Secrets User</td>
+<td>Lecture des secrets</td>
+</tr>
+<tr>
+<td>Principal du déployeur (dev seul.)</td>
+<td>Key Vault Administrator</td>
+<td>CRUD complet durant le développement</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="validation-et-verifications-au-demarrage">Validation et vérifications au démarrage<a class="headerlink" href="#validation-et-verifications-au-demarrage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">services</span><span class="p">.</span><span class="n">AddOptions</span><span class="o">&lt;</span><span class="n">NethrisOptions</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">BindConfiguration</span><span class="p">(</span><span class="n">NethrisOptions</span><span class="p">.</span><span class="n">SectionName</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">ValidateDataAnnotations</span><span class="p">()</span><span class="w">  </span><span class="c1">// Valide les annotations [Required], [Url]</span>
+<span class="w">    </span><span class="p">.</span><span class="n">ValidateOnStart</span><span class="p">();</span><span class="w">          </span><span class="c1">// Échoue immédiatement si invalide</span>
+</code></pre></div>
+<p><strong>Règles de validation :</strong></p>
+<ul>
+<li><code>[Required]</code> sur toutes les propriétés → échoue si manquant</li>
+<li><code>[Url]</code> sur <code>BaseUrl</code> → valide le format URI</li>
+<li>Si la validation échoue → le démarrage du Function App échoue → le déploiement est interrompu</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../guide-acquisition-numero-acs/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Acquisition numéro ACS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Acquisition numéro ACS
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../sms-compliance/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Conformité SMS">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Conformité SMS
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/equipe-laurence/integration-nethris" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","navigation.tracking","search.suggest","search.highlight","content.code.annotate","content.tabs.link","toc.follow"],"search":"../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copié dans le presse-papier","clipboard.copy":"Copier dans le presse-papier","search.result.more.one":"1 de plus sur cette page","search.result.more.other":"# de plus sur cette page","search.result.none":"Aucun document trouvé","search.result.one":"1 document trouvé","search.result.other":"# documents trouvés","search.result.placeholder":"Taper pour démarrer la recherche","search.result.term.missing":"Non trouvé","select.version":"Sélectionner la version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7f30b55.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

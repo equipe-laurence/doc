@@ -1,0 +1,3111 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://equipe-laurence.github.io/doc/guide-acquisition-numero-acs/">
+      
+      
+        <link rel="prev" href="../guide-synchronisation-nethris-sharepoint/">
+      
+      
+        <link rel="next" href="../configuration-secrets-audit/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.50">
+    
+    
+      
+        <title>Guide d'acquisition d'un numéro de téléphone — Azure Communication Services - Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guide-dacquisition-dun-numero-de-telephone-azure-communication-services" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-header__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guide d'acquisition d'un numéro de téléphone — Azure Communication Services
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Recherche">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Recherche">
+  <button type="button" class="md-search__button">
+    Recherche
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-activites-utilisateurs/" class="md-tabs__link">
+          
+  
+  Utilisation courante
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Architecture & Conception
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../local-development/" class="md-tabs__link">
+          
+  
+  Développement
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Exploitation & Conformité
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plan-de-tests/" class="md-tabs__link">
+          
+  
+  Planification & CI/CD
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-nav__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Accueil
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Utilisation courante
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Utilisation courante
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-activites-utilisateurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Activités des utilisateurs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture & Conception
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Architecture & Conception
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Vue d'ensemble
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-feature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SMS Feature
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Développement
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement local
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-sms-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-bruno-nethris-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tester avec Bruno
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharepoint-permission-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Permissions SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exploitation & Conformité
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Exploitation & Conformité
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-synchronisation-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Synchronisation Nethris → SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro ACS
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro ACS
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Vue d'ensemble
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-prerequis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 1 — Prérequis
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 1 — Prérequis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abonnement-et-ressource-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ✅ Abonnement et ressource Azure
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documents-a-preparer-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📋 Documents à préparer (checklist)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-type-de-numero-toll-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 2 — Type de numéro (Toll-Free)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 2 — Type de numéro (Toll-Free)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-sans-frais" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ❓ Pourquoi sans-frais?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarification-canada" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        💰 Tarification (Canada)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-3-acquisition-du-numero-dans-le-portail-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 3 — Acquisition du numéro dans le portail Azure
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 3 — Acquisition du numéro dans le portail Azure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-naviguer-vers-la-ressource-acs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1. Naviguer vers la ressource ACS
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lancer-lacquisition" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2. Lancer l'acquisition
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-selectionner-les-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3. Sélectionner les options
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-confirmer-et-acquerir" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4. Confirmer et acquérir
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-verifier-lacquisition" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5. Vérifier l'acquisition
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-4-verification-toll-free-obligatoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 4 — Vérification Toll-Free (obligatoire)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 4 — Vérification Toll-Free (obligatoire)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acceder-au-formulaire-de-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📝 Accéder au formulaire de vérification
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remplir-le-formulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📋 Remplir le formulaire
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soumettre" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ✅ Soumettre
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delai-de-traitement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ⏱️ Délai de traitement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-5-conformite-reglementaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 5 — Conformité réglementaire
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 5 — Conformité réglementaire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#casl-loi-canadienne-anti-pourriel" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📜 CASL — Loi canadienne anti-pourriel
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loi-25-quebec-efvp-obligatoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🛡️ Loi 25 (Québec) — EFVP obligatoire
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crtc-autorites-de-regulation-canadiennes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📞 CRTC — Autorités de régulation canadiennes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-6-configuration-technique-post-acquisition" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 6 — Configuration technique post-acquisition
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 6 — Configuration technique post-acquisition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connexion-string-et-key-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🔐 Connexion String et Key Vault
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webhook-entrant-pour-opt-out-event-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🪝 Webhook entrant pour opt-out (Event Grid)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-7-plan-daction" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 7 — Plan d'action
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 7 — Plan d&#x27;action">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#semaine-1-actions-immediates" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaine 1 — Actions immédiates
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaines-23-conformite-reglementaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaines 2–3 — Conformité réglementaire
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaines-45-developpement-technique" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaines 4–5 — Développement technique
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaines-56-validation-et-deploiement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaines 5–6 — Validation et déploiement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaines-7-exploitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaines 7+ — Exploitation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ressources-et-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ressources et références
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ressources et références">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentation-microsoft" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation Microsoft
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-equipe-laurence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation Équipe Laurence
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conformite-canada" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Conformité Canada
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-frequentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Questions fréquentes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Questions fréquentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-puis-je-utiliser-un-numero-local-long-code-pour-le-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Puis-je utiliser un numéro local (long code) pour le SMS?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-combien-de-temps-avant-que-mon-numero-soit-utilisable" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Combien de temps avant que mon numéro soit utilisable?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-et-si-la-verification-toll-free-est-rejetee" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Et si la vérification toll-free est rejetée?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-dois-je-completer-lefvp-loi-25-avant-ou-apres-la-verification-toll-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Dois-je compléter l'EFVP (Loi 25) avant ou après la vérification toll-free?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-les-employes-ont-ils-besoin-dun-consentement-ecrit-pour-le-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Les employés ont-ils besoin d'un consentement écrit pour le SMS?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-acs-gere-t-il-automatiquement-les-stop-comme-twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: ACS gère-t-il automatiquement les STOP comme Twilio?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-quel-est-le-cout-exact" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Quel est le coût exact?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-puis-je-utiliser-un-numero-toll-free-pour-la-voix-et-le-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Puis-je utiliser un numéro toll-free pour la voix ET le SMS?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support-et-depannage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Support et dépannage
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Support et dépannage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-courantes-lors-de-la-soumission-du-formulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs courantes lors de la soumission du formulaire
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signification-du-statut-du-numero" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Signification du statut du numéro
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prochaines-etapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prochaines étapes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-secrets-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration & Secrets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-compliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Conformité SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Planification & CI/CD
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Planification & CI/CD
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-de-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan de tests
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposal-cicd-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Optimisation CI/CD
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publication de la documentation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Vue d'ensemble
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-prerequis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 1 — Prérequis
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 1 — Prérequis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abonnement-et-ressource-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ✅ Abonnement et ressource Azure
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documents-a-preparer-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📋 Documents à préparer (checklist)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-type-de-numero-toll-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 2 — Type de numéro (Toll-Free)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 2 — Type de numéro (Toll-Free)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-sans-frais" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ❓ Pourquoi sans-frais?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tarification-canada" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        💰 Tarification (Canada)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-3-acquisition-du-numero-dans-le-portail-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 3 — Acquisition du numéro dans le portail Azure
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 3 — Acquisition du numéro dans le portail Azure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-naviguer-vers-la-ressource-acs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1. Naviguer vers la ressource ACS
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lancer-lacquisition" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2. Lancer l'acquisition
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-selectionner-les-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3. Sélectionner les options
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-confirmer-et-acquerir" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4. Confirmer et acquérir
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-verifier-lacquisition" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5. Vérifier l'acquisition
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-4-verification-toll-free-obligatoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 4 — Vérification Toll-Free (obligatoire)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 4 — Vérification Toll-Free (obligatoire)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acceder-au-formulaire-de-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📝 Accéder au formulaire de vérification
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remplir-le-formulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📋 Remplir le formulaire
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soumettre" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ✅ Soumettre
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delai-de-traitement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ⏱️ Délai de traitement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-5-conformite-reglementaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 5 — Conformité réglementaire
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 5 — Conformité réglementaire">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#casl-loi-canadienne-anti-pourriel" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📜 CASL — Loi canadienne anti-pourriel
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loi-25-quebec-efvp-obligatoire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🛡️ Loi 25 (Québec) — EFVP obligatoire
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crtc-autorites-de-regulation-canadiennes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        📞 CRTC — Autorités de régulation canadiennes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-6-configuration-technique-post-acquisition" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 6 — Configuration technique post-acquisition
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 6 — Configuration technique post-acquisition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connexion-string-et-key-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🔐 Connexion String et Key Vault
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webhook-entrant-pour-opt-out-event-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        🪝 Webhook entrant pour opt-out (Event Grid)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-7-plan-daction" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étape 7 — Plan d'action
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 7 — Plan d&#x27;action">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#semaine-1-actions-immediates" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaine 1 — Actions immédiates
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaines-23-conformite-reglementaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaines 2–3 — Conformité réglementaire
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaines-45-developpement-technique" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaines 4–5 — Développement technique
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaines-56-validation-et-deploiement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaines 5–6 — Validation et déploiement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semaines-7-exploitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Semaines 7+ — Exploitation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ressources-et-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ressources et références
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ressources et références">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentation-microsoft" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation Microsoft
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-equipe-laurence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation Équipe Laurence
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conformite-canada" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Conformité Canada
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-frequentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Questions fréquentes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Questions fréquentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q-puis-je-utiliser-un-numero-local-long-code-pour-le-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Puis-je utiliser un numéro local (long code) pour le SMS?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-combien-de-temps-avant-que-mon-numero-soit-utilisable" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Combien de temps avant que mon numéro soit utilisable?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-et-si-la-verification-toll-free-est-rejetee" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Et si la vérification toll-free est rejetée?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-dois-je-completer-lefvp-loi-25-avant-ou-apres-la-verification-toll-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Dois-je compléter l'EFVP (Loi 25) avant ou après la vérification toll-free?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-les-employes-ont-ils-besoin-dun-consentement-ecrit-pour-le-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Les employés ont-ils besoin d'un consentement écrit pour le SMS?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-acs-gere-t-il-automatiquement-les-stop-comme-twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: ACS gère-t-il automatiquement les STOP comme Twilio?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-quel-est-le-cout-exact" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Quel est le coût exact?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q-puis-je-utiliser-un-numero-toll-free-pour-la-voix-et-le-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Q: Puis-je utiliser un numéro toll-free pour la voix ET le SMS?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support-et-depannage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Support et dépannage
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Support et dépannage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-courantes-lors-de-la-soumission-du-formulaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs courantes lors de la soumission du formulaire
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signification-du-statut-du-numero" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Signification du statut du numéro
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prochaines-etapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prochaines étapes
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="./.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Exploitation & Conformité
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="guide-dacquisition-dun-numero-de-telephone-azure-communication-services">Guide d'acquisition d'un numéro de téléphone — Azure Communication Services<a class="headerlink" href="#guide-dacquisition-dun-numero-de-telephone-azure-communication-services" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Ce guide couvre l'acquisition complète d'un numéro sans-frais (toll-free) pour l'envoi de SMS via Azure Communication
+Services (ACS) depuis une ressource en région Canada East.</p>
+<p><strong>Audience :</strong> Administrateurs Azure, responsables RH, responsable vie privée<br />
+<strong>Durée totale :</strong> 2–6 semaines (selon scenario réglementaire)</p>
+</blockquote>
+<hr />
+<h2 id="vue-densemble">Vue d'ensemble<a class="headerlink" href="#vue-densemble" title="Permanent link">&para;</a></h2>
+<p>L'acquisition d'un numéro SMS dans Azure Communication Services suit ces étapes clés :</p>
+<ol>
+<li><strong>Prérequis</strong> — Vérifier la ressource ACS et préparer le dossier documentaire</li>
+<li><strong>Type de numéro</strong> — Choisir toll-free (SMS recommandé au Canada)</li>
+<li><strong>Acquisition du portail</strong> — Obtenir le numéro en 5 minutes</li>
+<li><strong>Vérification toll-free</strong> — Soumettre le formulaire de conformité (obligatoire depuis nov. 2023)</li>
+<li><strong>Conformité réglementaire</strong> — Respecter CASL, Loi 25, CRTC</li>
+<li><strong>Configuration technique</strong> — Intégrer le numéro avec Key Vault et webhooks</li>
+<li><strong>Plan d'action</strong> — Étapes de déploiement et d'approbation</li>
+</ol>
+<p>Pour le contexte réglementaire complet, consultez <a href="../sms-compliance/">Conformité SMS</a>.</p>
+<hr />
+<h2 id="etape-1-prerequis">Étape 1 — Prérequis<a class="headerlink" href="#etape-1-prerequis" title="Permanent link">&para;</a></h2>
+<h3 id="abonnement-et-ressource-azure">✅ Abonnement et ressource Azure<a class="headerlink" href="#abonnement-et-ressource-azure" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Abonnement Azure actif</strong> — Les comptes d'essai (trial) ne supportent pas l'acquisition de numéros SMS. Utilisez un
+      abonnement payant.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Ressource Azure Communication Services</strong> — Créée en <strong>région Canada East</strong> (Quebec City). ACS supporte SMS dans
+      Canada Central (Toronto) et Canada East; Canada East est recommandé pour les données québécoises.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Rôle d'accès</strong> — Vous disposez d'un rôle <strong>Contributor</strong> ou <strong>Owner</strong> sur la ressource ACS.</li>
+</ul>
+<p><strong>Vérifier votre ressource :</strong></p>
+<div class="highlight"><pre><span></span><code>az<span class="w"> </span>communication<span class="w"> </span>show<span class="w"> </span>--name<span class="w"> </span>&lt;resource-name&gt;<span class="w"> </span>--resource-group<span class="w"> </span>&lt;rg&gt;<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;location&quot;</span>
+<span class="c1"># Doit afficher : canadaeast</span>
+</code></pre></div>
+<h3 id="documents-a-preparer-checklist">📋 Documents à préparer (checklist)<a class="headerlink" href="#documents-a-preparer-checklist" title="Permanent link">&para;</a></h3>
+<p>Avant de commencer le processus de portail, rassemblez ces documents. Ils seront requis lors de la soumission du formulaire
+de vérification toll-free.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Raison sociale complète</strong> — Nom officiel de votre organisation (ex. : <code>Équipe Laurence Inc.</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Adresse commerciale officielle</strong> — Adresse physique complète (rue, ville, province, code postal) — <strong>en Canada</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Coordonnées du responsable</strong> — Nom complet, titre, adresse courriel professionnelle, numéro de téléphone</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Description du cas d'usage</strong> — Résumé de votre utilisation (ex. :
+      <code>Notifications d'urgence et de sécurité aux employés</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Volume estimé mensuel</strong> — Nombre approximatif de SMS par mois (ex. : <code>100–500</code> ou <code>2000</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>2–3 exemples de messages types</strong> — Snippets de messages réels que vous enverrez (accents français acceptés)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Preuve du mécanisme d'opt-out</strong> — Capture d'écran ou document montrant comment les utilisateurs se désinscrire
+      (STOP/ARRET)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Clause de consentement</strong> — Copie du libellé utilisé dans votre contrat d'emploi ou manuel des employés mentionnant
+      les SMS</li>
+</ul>
+<hr />
+<h2 id="etape-2-type-de-numero-toll-free">Étape 2 — Type de numéro (Toll-Free)<a class="headerlink" href="#etape-2-type-de-numero-toll-free" title="Permanent link">&para;</a></h2>
+<h3 id="pourquoi-sans-frais">❓ Pourquoi sans-frais?<a class="headerlink" href="#pourquoi-sans-frais" title="Permanent link">&para;</a></h3>
+<p>Au Canada, les options pour l'envoi de SMS via Azure Communication Services sont limitées :</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>SMS via ACS</th>
+<th>Délai</th>
+<th>Recommandation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Toll-Free (1-8XX-XXXX-XXXX)</strong></td>
+<td>✅ Oui</td>
+<td>1–15 jours</td>
+<td>✅ <strong>Recommandé</strong></td>
+</tr>
+<tr>
+<td><strong>Long Code local (10 chiffres)</strong></td>
+<td>❌ Non (voix seulement)</td>
+<td>—</td>
+<td>❌ Ne supporte pas SMS</td>
+</tr>
+<tr>
+<td><strong>Short Code (5–6 chiffres)</strong></td>
+<td>✅ Oui (via CWTA)</td>
+<td>4–12 semaines</td>
+<td>⚠️ Non applicable ici</td>
+</tr>
+<tr>
+<td><strong>Alphanumeric Sender ID</strong></td>
+<td>❌ Non au Canada</td>
+<td>—</td>
+<td>❌ Non disponible</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusion :</strong> Les numéros sans-frais sont la <strong>seule option viable</strong> pour envoyer du SMS via ACS au Canada. Un numéro
+local (long code) n'accepte que la <strong>voix</strong>, pas le SMS.</p>
+<h3 id="tarification-canada">💰 Tarification (Canada)<a class="headerlink" href="#tarification-canada" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Coût</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Numéro sans-frais (locationaires)</strong></td>
+<td>$2.00 CAD/mois</td>
+</tr>
+<tr>
+<td><strong>SMS sortant</strong></td>
+<td>$0.0085 CAD par segment*</td>
+</tr>
+<tr>
+<td><strong>SMS entrant</strong></td>
+<td>Non disponible au Canada</td>
+</tr>
+</tbody>
+</table>
+<p>*Un segment = 160 caractères (GSM-7). Les accents français utilisent UCS-2 et réduisent à 70 caractères par SMS.</p>
+<p><strong>Exemple de coûts mensuels :</strong></p>
+<ul>
+<li>1 numéro sans-frais + 500 SMS (150 segments) = $2.00 + $1.28 = <strong>~$3.28 CAD/mois</strong></li>
+<li>1 numéro sans-frais + 5 000 SMS (1 500 segments) = $2.00 + $12.75 = <strong>~$14.75 CAD/mois</strong></li>
+</ul>
+<hr />
+<h2 id="etape-3-acquisition-du-numero-dans-le-portail-azure">Étape 3 — Acquisition du numéro dans le portail Azure<a class="headerlink" href="#etape-3-acquisition-du-numero-dans-le-portail-azure" title="Permanent link">&para;</a></h2>
+<h3 id="1-naviguer-vers-la-ressource-acs">1. Naviguer vers la ressource ACS<a class="headerlink" href="#1-naviguer-vers-la-ressource-acs" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Accédez au <a href="https://portal.azure.com">portail Azure</a></li>
+<li>Cherchez votre <strong>Communication Services resource</strong> (groupe de ressources cible)</li>
+<li>Cliquez sur la ressource ACS pour ouvrir le tableau de bord</li>
+<li>Dans le menu de gauche, sélectionnez <strong>Phone numbers</strong> (ou <strong>Numéros de téléphone</strong>)</li>
+</ol>
+<h3 id="2-lancer-lacquisition">2. Lancer l'acquisition<a class="headerlink" href="#2-lancer-lacquisition" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Cliquez sur le bouton <strong>+ Get</strong> (ou <strong>+ Obtenir</strong>)</li>
+<li>Une fenêtre de configuration s'ouvre avec le formulaire d'acquisition</li>
+</ol>
+<h3 id="3-selectionner-les-options">3. Sélectionner les options<a class="headerlink" href="#3-selectionner-les-options" title="Permanent link">&para;</a></h3>
+<p>Remplissez le formulaire avec ces valeurs :</p>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Country/Region</strong></td>
+<td><code>Canada</code> 🍁</td>
+</tr>
+<tr>
+<td><strong>Phone number type</strong></td>
+<td><code>Toll-Free</code></td>
+</tr>
+<tr>
+<td><strong>SMS capability</strong></td>
+<td><code>Send and receive</code> ✅</td>
+</tr>
+<tr>
+<td><strong>Quantity</strong></td>
+<td><code>1</code> (pour commencer)</td>
+</tr>
+</tbody>
+</table>
+<p>Cliquez sur <strong>Search</strong> pour afficher les numéros disponibles.</p>
+<h3 id="4-confirmer-et-acquerir">4. Confirmer et acquérir<a class="headerlink" href="#4-confirmer-et-acquerir" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Sélectionnez un numéro sans-frais dans la liste (ex. : <code>+1-833-123-4567</code>)</li>
+<li>Cliquez sur <strong>Next</strong> ou <strong>Continue</strong></li>
+<li>L'écran de confirmation affiche :</li>
+<li>Le numéro acquis</li>
+<li>Le coût mensuel ($2.00 CAD)</li>
+<li>Les capacités (SMS send/receive)</li>
+<li>Cliquez sur <strong>Acquire</strong> pour finaliser</li>
+</ol>
+<p>!!! note "Acquisition instantanée" Le numéro est acquis dans votre ressource ACS <strong>immédiatement</strong> (moins de 5 minutes).
+Cependant, il n'est <strong>pas utilisable pour l'envoi de SMS</strong> jusqu'à la vérification toll-free (Étape 4).</p>
+<h3 id="5-verifier-lacquisition">5. Vérifier l'acquisition<a class="headerlink" href="#5-verifier-lacquisition" title="Permanent link">&para;</a></h3>
+<p>Retournez à l'onglet <strong>Phone numbers</strong> de votre ressource ACS. Vous devriez voir votre numéro dans la liste avec le statut
+<strong>Unverified</strong> (non vérifié).</p>
+<div class="highlight"><pre><span></span><code>Toll-Free: +1-833-123-4567
+  Status: Unverified 🔴
+  Capabilities: SMS (send/receive)
+  Monthly cost: $2.00 CAD
+</code></pre></div>
+<hr />
+<h2 id="etape-4-verification-toll-free-obligatoire">Étape 4 — Vérification Toll-Free (obligatoire)<a class="headerlink" href="#etape-4-verification-toll-free-obligatoire" title="Permanent link">&para;</a></h2>
+<p>!!! warning "⚠️ ÉTAPE OBLIGATOIRE DEPUIS LE 8 NOVEMBRE 2023" Les transporteurs canadiens bloquent tous les SMS en provenance
+de numéros sans-frais <strong>non vérifiés</strong>. La vérification n'est pas optionnelle.</p>
+<h3 id="acceder-au-formulaire-de-verification">📝 Accéder au formulaire de vérification<a class="headerlink" href="#acceder-au-formulaire-de-verification" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Dans votre ressource ACS, allez à <strong>Phone numbers</strong> → sélectionnez votre numéro</li>
+<li>Cliquez sur l'onglet <strong>Regulatory documents</strong> (ou <strong>Documents réglementaires</strong>)</li>
+<li>Sélectionnez <strong>Toll-Free Verification Form</strong> dans la liste</li>
+<li>Cliquez sur <strong>Apply</strong> ou <strong>+ Add</strong></li>
+</ol>
+<h3 id="remplir-le-formulaire">📋 Remplir le formulaire<a class="headerlink" href="#remplir-le-formulaire" title="Permanent link">&para;</a></h3>
+<p>Le formulaire comprend plusieurs sections. Remplissez chaque champ avec les informations préparées à l'étape 1 :</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Champs</th>
+<th>Détails</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Business Info</strong></td>
+<td>Raison sociale</td>
+<td>Nom légal de votre organisation</td>
+</tr>
+<tr>
+<td></td>
+<td>Adresse commerciale</td>
+<td>Adresse physique complète (Canada uniquement)</td>
+</tr>
+<tr>
+<td></td>
+<td>Type d'entreprise</td>
+<td>Sélectionnez le plus proche (ex. : <em>Business</em> ou <em>Non-profit</em>)</td>
+</tr>
+<tr>
+<td><strong>Contact Person</strong></td>
+<td>Nom complet</td>
+<td>Personne responsable du numéro</td>
+</tr>
+<tr>
+<td></td>
+<td>Titre/fonction</td>
+<td>Rôle (ex. : <em>HR Manager</em>, <em>IT Director</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td>Courriel professionnel</td>
+<td>Adresse courriel d'accès continu</td>
+</tr>
+<tr>
+<td></td>
+<td>Numéro de téléphone</td>
+<td>Numéro professionnel (peut être différent du numéro SMS)</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Description détaillée</td>
+<td>Résumé de votre utilisation (ex. : <em>Emergency notifications to employees</em>)</td>
+</tr>
+<tr>
+<td></td>
+<td>Volume mensuel estimé</td>
+<td>Nombre approximatif (ex. : <em>500 SMS/month</em>)</td>
+</tr>
+<tr>
+<td><strong>Message Samples</strong></td>
+<td>2–3 exemples</td>
+<td>Copier/coller des vrais messages que vous enverrez</td>
+</tr>
+<tr>
+<td></td>
+<td>Consentement</td>
+<td>Cochez la case confirmant que vous avez le consentement explicite</td>
+</tr>
+<tr>
+<td><strong>Opt-Out</strong></td>
+<td>Mécanisme STOP/ARRET</td>
+<td>Décrivez comment les utilisateurs peuvent se désinscrire</td>
+</tr>
+</tbody>
+</table>
+<h3 id="soumettre">✅ Soumettre<a class="headerlink" href="#soumettre" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Relisez tous les champs pour les erreurs ou omissions</li>
+<li>Cochez la case d'engagement légal (si présente)</li>
+<li>Cliquez sur <strong>Submit</strong> ou <strong>Envoyer</strong></li>
+</ol>
+<p>!!! tip "Conseil : Approbation plus rapide" Fournissez des exemples de messages clairs et courts. Les applications
+incomplètes ou vagues rallongent le processus.</p>
+<h3 id="delai-de-traitement">⏱️ Délai de traitement<a class="headerlink" href="#delai-de-traitement" title="Permanent link">&para;</a></h3>
+<p>Une fois le formulaire soumis, le statut du numéro passe à <strong>Verification Pending</strong> (vérification en cours).</p>
+<table>
+<thead>
+<tr>
+<th>Scénario</th>
+<th>Délai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cas optimal</strong></td>
+<td>1–2 jours ouvrables</td>
+</tr>
+<tr>
+<td><strong>Cas standard</strong></td>
+<td>5–10 jours ouvrables</td>
+</tr>
+<tr>
+<td><strong>Cas complexe</strong> (information manquante)</td>
+<td>Jusqu'à 15 jours ouvrables</td>
+</tr>
+<tr>
+<td><strong>Rejet + resoumission</strong></td>
+<td>+5–10 jours supplémentaires</td>
+</tr>
+</tbody>
+</table>
+<p>Microsoft vous informera par courriel à l'adresse du responsable une fois la vérification terminée. Le statut passe à
+<strong>Verified</strong> (vérifié) 🟢 lorsqu'il est approuvé.</p>
+<p>!!! note "Pas de rejet = pas de SMS" Si vous tentez d'envoyer un SMS avec un numéro non vérifié, votre message sera <strong>bloqué
+en amont par le transporteur</strong>. Attendez la vérification avant les tests.</p>
+<hr />
+<h2 id="etape-5-conformite-reglementaire">Étape 5 — Conformité réglementaire<a class="headerlink" href="#etape-5-conformite-reglementaire" title="Permanent link">&para;</a></h2>
+<h3 id="casl-loi-canadienne-anti-pourriel">📜 CASL — Loi canadienne anti-pourriel<a class="headerlink" href="#casl-loi-canadienne-anti-pourriel" title="Permanent link">&para;</a></h3>
+<p>La <strong>Loi canadienne anti-pourriel (CASL)</strong> encadre tous les messages électroniques commerciaux au Canada, y compris les SMS.</p>
+<p>!!! tip "✅ Bonne nouvelle : Exemption pour SMS d'urgence" Les SMS d'urgence et de sécurité aux employés sont <strong>exemptés</strong> du
+consentement préalable si : - L'employé est en relation d'emploi actuelle - Le SMS concerne un risque de sécurité ou une
+urgence - Le message n'est pas promotionnel</p>
+<p><strong>Checklist CASL :</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Documenter la relation d'emploi</strong> — Conservez les registres d'embauche et les dossiers RH pour justifier la relation
+      d'emploi.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Implémenter le mécanisme STOP/ARRET</strong> — Tous les SMS sortants doivent permettre la désinscription immédiate en
+      répondant <code>STOP</code> ou <code>ARRET</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Conserver les registres d'opt-out</strong> — Maintenez un registre des employés qui se désincrivent (voir
+      <a href="../sms-compliance/#desinscription">Conformité SMS — Désinscription</a> pour la table <code>SmsOptOut</code>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Identification de l'expéditeur</strong> — Le SMS doit clairement identifier votre organisation (ex. :
+      <code>[Emergency Alert - Équipe Laurence]</code>).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Auditer les consentements</strong> — Conservez des preuves (contrats, manuels) que les employés consentent au SMS lors de
+      l'embauche.</li>
+</ul>
+<h3 id="loi-25-quebec-efvp-obligatoire">🛡️ Loi 25 (Québec) — EFVP obligatoire<a class="headerlink" href="#loi-25-quebec-efvp-obligatoire" title="Permanent link">&para;</a></h3>
+<p>La <strong>Loi 25 — Loi sur la protection des renseignements personnels</strong> du Québec est la loi de confidentialité la plus stricte
+au Canada.</p>
+<p>!!! warning "⚠️ ACTION OBLIGATOIRE : EFVP avant déploiement" Vous <strong>devez</strong> compléter une <strong>Étude de faisabilité et d'impact
+sur la vie privée (EFVP)</strong> AVANT de déployer votre système SMS. L'EFVP documente les risques de confidentialité liés aux
+données qui transiteront par l'infrastructure Microsoft (notamment les serveurs US).</p>
+<p><strong>Responsabilités :</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Mandater le responsable vie privée</strong> — Nommez une personne (généralement un DPO ou responsable RH) pour mener l'EFVP.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Documenter le flux de données</strong> — Décrivez comment les numéros de cellulaire et les messages transitent via ACS vers
+      les serveurs Microsoft (Canada East region, mais traitement possible aux É-U).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Analyser les risques transfrontaliers</strong> — Les serveurs de Microsoft incluent des installations aux É-U; documentez
+      les garanties contractuelles (Microsoft Cloud Agreement) et les limitations de confidentialité.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Rétention des données</strong> — Définissez une politique de rétention (minimum 2 ans pour les journaux d'audit conformément
+      à la Loi 25).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Obtenir l'approbation</strong> — L'EFVP doit être approuvée par la direction avant le déploiement en production.</li>
+</ul>
+<p>Pour plus de détails, consultez la
+<a href="../sms-compliance/#considerations-relatives-a-la-loi-25-quebec">Politique de conformité Loi 25</a>.</p>
+<h3 id="crtc-autorites-de-regulation-canadiennes">📞 CRTC — Autorités de régulation canadiennes<a class="headerlink" href="#crtc-autorites-de-regulation-canadiennes" title="Permanent link">&para;</a></h3>
+<p>Le <strong>Conseil de la radiodiffusion et des télécommunications canadiennes (CRTC)</strong> régule les SMS au Canada.</p>
+<p><strong>Obligations CRTC :</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Vérification toll-free</strong> — Complètement conforme via le formulaire ACS (couvre les exigences CRTC).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>STOP/ARRET keywords</strong> — Vous devez <strong>honorer les demandes d'opt-out immédiatement</strong>. Une réponse lente viole la
+      réglementation CRTC.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>No unsolicited SMS</strong> — Aucun SMS non sollicité (marketing, publicité) aux employés. Les notifications de sécurité
+      sont autorisées.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Identity and routing</strong> — Le numéro sans-frais affiche correctement votre organisation (pas d'usurpation d'identité).</li>
+</ul>
+<p>!!! note "Implémentation : Webhooks Event Grid" ACS ne supprime pas automatiquement les destinataires qui envoient STOP
+(contrairement à Twilio). Vous devez implémenter une fonction Azure qui écoute les messages entrants (Event Grid) et met à
+jour la table <code>SmsOptOut</code>. Voir <a href="../guide-sms-api/#4-post-apismsdelivery-status">Guide d'intégration API SMS — Inbound SMS</a>.</p>
+<hr />
+<h2 id="etape-6-configuration-technique-post-acquisition">Étape 6 — Configuration technique post-acquisition<a class="headerlink" href="#etape-6-configuration-technique-post-acquisition" title="Permanent link">&para;</a></h2>
+<h3 id="connexion-string-et-key-vault">🔐 Connexion String et Key Vault<a class="headerlink" href="#connexion-string-et-key-vault" title="Permanent link">&para;</a></h3>
+<p>Une fois votre numéro vérifié, intégrez-le dans votre architecture.</p>
+<p><strong>Où stocker la connexion :</strong></p>
+<ol>
+<li>Dans votre <strong>Key Vault</strong> (ex. : <code>eql-kv-prod</code>), créez un secret :</li>
+<li><strong>Name:</strong> <code>acs-connection-string</code></li>
+<li>
+<p><strong>Value:</strong> Copiez la chaîne de connexion depuis votre ressource ACS (portail → <strong>Keys</strong> → Connection String)</p>
+</li>
+<li>
+<p>Dans <strong>App Configuration</strong> (ex. : <code>eql-appconfig-prod</code>), créez une clé :</p>
+</li>
+<li><strong>Key:</strong> <code>Acs:ConnectionString</code></li>
+<li><strong>Content Type:</strong> <code>application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8</code></li>
+<li>
+<p><strong>Value:</strong>
+     <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;uri&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://&lt;your-keyvault&gt;.vault.azure.net/secrets/acs-connection-string/&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Référencez cette clé dans votre code C# :
+   <div class="highlight"><pre><span></span><code><span class="kt">var</span><span class="w"> </span><span class="n">connectionString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">configuration</span><span class="p">[</span><span class="s">&quot;Acs:ConnectionString&quot;</span><span class="p">];</span>
+<span class="kt">var</span><span class="w"> </span><span class="n">smsClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SmsClient</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Uri</span><span class="p">(</span><span class="n">connectionString</span><span class="p">));</span>
+</code></pre></div></p>
+</li>
+</ol>
+<p>Pour les étapes détaillées, consultez <a href="../guide-configuration-fournisseur-sms/">Guide de configuration du fournisseur SMS</a>.</p>
+<h3 id="webhook-entrant-pour-opt-out-event-grid">🪝 Webhook entrant pour opt-out (Event Grid)<a class="headerlink" href="#webhook-entrant-pour-opt-out-event-grid" title="Permanent link">&para;</a></h3>
+<p>Pour gérer les réponses STOP/ARRET, configurez un webhook :</p>
+<ol>
+<li><strong>Créer une fonction Azure</strong> pour recevoir les SMS entrants</li>
+<li>Endpoint: <code>POST /api/sms/inbound/acs</code></li>
+<li>
+<p>Trigger: Event Grid (<code>Microsoft.Communication.IncomingSMSReceived</code>)</p>
+</li>
+<li>
+<p><strong>Écouter les mots-clés</strong> : STOP, STOPALL, UNSUBSCRIBE, CANCEL, END, QUIT, <strong>ARRET</strong> (français)</p>
+</li>
+<li>
+<p><strong>Mettre à jour la table <code>SmsOptOut</code></strong> avec le numéro qui s'est désinscrit</p>
+</li>
+<li>
+<p><strong>Retourner TwiML vide</strong> (<code>200 text/xml</code>) pour confirmer la réception</p>
+</li>
+</ol>
+<p>Pour la configuration complète, consultez <a href="../guide-sms-api/">Guide d'intégration API SMS — Gestion des STOP/ARRET</a>.</p>
+<hr />
+<h2 id="etape-7-plan-daction">Étape 7 — Plan d'action<a class="headerlink" href="#etape-7-plan-daction" title="Permanent link">&para;</a></h2>
+<h3 id="semaine-1-actions-immediates">Semaine 1 — Actions immédiates<a class="headerlink" href="#semaine-1-actions-immediates" title="Permanent link">&para;</a></h3>
+<p><strong>Objectif :</strong> Amorcer le processus réglementaire et acquérir le numéro.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Mandater responsable vie privée</strong> — Nommez le responsable qui mènera l'EFVP</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Préparer le dossier documentaire</strong> — Rassemblez tous les documents (section 1)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Vérifier la ressource ACS</strong> — Confirmez la région Canada East, l'accès Contributor</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Acquérir le numéro toll-free</strong> — Complétez le portail (Étape 3 — 5 min)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Soumettre la vérification toll-free</strong> — Remplissez et soumettez le formulaire (Étape 4 — 30 min)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Informer la direction</strong> — Notification que le processus a commencé (EFVP + vérification en attente)</li>
+</ul>
+<p><strong>Durée:</strong> ~2 heures de travail</p>
+<hr />
+<h3 id="semaines-23-conformite-reglementaire">Semaines 2–3 — Conformité réglementaire<a class="headerlink" href="#semaines-23-conformite-reglementaire" title="Permanent link">&para;</a></h3>
+<p><strong>Objectif :</strong> Obtenir l'approbation réglementaire et finaliser la conformité.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Mentalité EFVP</strong> — Le responsable vie privée amorce l'Étude de faisabilité et d'impact</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Documenter le consentement SMS</strong> — Ajoutez une clause dans le contrat d'emploi ou le manuel RH</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Préparer le mécanisme opt-out</strong> — Concevoir le flux pour honorer STOP/ARRET</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Vérification toll-free approuvée?</strong> — Vérifiez votre courriel; le numéro doit passer à <strong>Verified</strong> 🟢</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Revue CASL</strong> — Documentez pourquoi les SMS d'urgence sont exemptés</li>
+</ul>
+<p><strong>Durée:</strong> 2–3 jours ouvrables (principalement en attente de la vérification Microsoft)</p>
+<hr />
+<h3 id="semaines-45-developpement-technique">Semaines 4–5 — Développement technique<a class="headerlink" href="#semaines-45-developpement-technique" title="Permanent link">&para;</a></h3>
+<p><strong>Objectif :</strong> Intégrer le numéro ACS dans le système et mettre en place les mécanismes de conformité.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Stockage de la connexion</strong> — Copier la chaîne de connexion vers Key Vault + App Configuration</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Implémenter le webhook inbound</strong> — Créer la fonction Event Grid pour capturer les STOP/ARRET</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Table <code>SmsOptOut</code></strong> — Déployer/mettre à jour la table Azure Storage pour les désinscriptions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Table <code>SmsAuditLog</code></strong> — Implémenter l'audit (rétention 2 ans minimum)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Réponse automatique bilingue</strong> — Test avec <code>ARRET</code> (français) + <code>STOP</code> (anglais)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Tests unitaires</strong> — Vérifier la logique opt-out et la désinscription</li>
+</ul>
+<p><strong>Durée:</strong> ~15 heures de développement</p>
+<hr />
+<h3 id="semaines-56-validation-et-deploiement">Semaines 5–6 — Validation et déploiement<a class="headerlink" href="#semaines-56-validation-et-deploiement" title="Permanent link">&para;</a></h3>
+<p><strong>Objectif :</strong> Tester complètement le système et le déployer en production.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>EFVP approuvée</strong> — Confirmation que l'Étude de faisabilité et d'impact est terminée et approuvée</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Test end-to-end opt-out</strong> — Envoyer un SMS test; répondre <code>STOP</code>, vérifier la désinscription</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Test bilingue</strong> — Envoyer avec <code>ARRET</code> (français); vérifier que la désinscription fonctionne</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Validation piste d'audit</strong> — Vérifier que <code>SmsAuditLog</code> enregistre chaque tentative</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Revue sécurité</strong> — Audit final avant production (secrets en Key Vault, pas de hardcoding)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Communication aux employés</strong> — Informer les employés que le SMS est désormais actif (procédure opt-out)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Déploiement production</strong> — Passer le switch <code>Sms:Provider</code> de <code>"Disabled"</code> à <code>"Acs"</code> dans App Configuration</li>
+</ul>
+<p><strong>Durée:</strong> 1–2 semaines (principalement attente d'approbations)</p>
+<hr />
+<h3 id="semaines-7-exploitation">Semaines 7+ — Exploitation<a class="headerlink" href="#semaines-7-exploitation" title="Permanent link">&para;</a></h3>
+<p><strong>Objectif :</strong> Surveiller et maintenir le système en production.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Surveillance des erreurs</strong> — Surveiller le taux d'échec des SMS dans Application Insights</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Gestion des opt-out</strong> — Traiter les demandes d'opt-out manuelles (si nécessaire)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Rapport mensuel</strong> — Documenter le volume de SMS, les taux de désinscription, les coûts</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Conformité continue</strong> — Audit annuel de l'EFVP et des consentements</li>
+</ul>
+<hr />
+<h2 id="ressources-et-references">Ressources et références<a class="headerlink" href="#ressources-et-references" title="Permanent link">&para;</a></h2>
+<h3 id="documentation-microsoft">Documentation Microsoft<a class="headerlink" href="#documentation-microsoft" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/azure/communication-services/concepts/sms/sms-number-types">ACS — SMS Number Types</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/communication-services/concepts/numbers/phone-number-management-for-canada">ACS — Phone Number Management for Canada</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/communication-services/concepts/sms/concepts-sms-compliance">ACS — SMS Compliance Overview</a></li>
+<li><a href="https://learn.microsoft.com/en-us/azure/communication-services/concepts/numbers/concepts-phone-number-country-availability">ACS — Toll-Free Verification</a></li>
+</ul>
+<h3 id="documentation-equipe-laurence">Documentation Équipe Laurence<a class="headerlink" href="#documentation-equipe-laurence" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../sms-compliance/">Conformité SMS</a> — Détails sur CASL, Loi 25, gestion opt-out, audit</li>
+<li><a href="../guide-sms-api/">Guide d'intégration API SMS</a> — Implémentation technique des webhooks inbound</li>
+<li><a href="../guide-configuration-fournisseur-sms/">Guide de configuration du fournisseur SMS</a> — Stockage de secrets et configuration
+  App</li>
+</ul>
+<h3 id="conformite-canada">Conformité Canada<a class="headerlink" href="#conformite-canada" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://crtc.gc.ca/eng/internet/anti.htm">CASL — Loi canadienne anti-pourriel (CRTC)</a></li>
+<li><a href="https://www.crtc.gc.ca/eng/publications/notices/general/phon9908.htm">CRTC — Unsolicited SMS Guidelines</a></li>
+<li><a href="https://www.cai.gouv.qc.ca/">Loi 25 — Commission d'accès à l'information du Québec (CAI)</a></li>
+</ul>
+<hr />
+<h2 id="questions-frequentes">Questions fréquentes<a class="headerlink" href="#questions-frequentes" title="Permanent link">&para;</a></h2>
+<h3 id="q-puis-je-utiliser-un-numero-local-long-code-pour-le-sms">Q: Puis-je utiliser un numéro local (long code) pour le SMS?<a class="headerlink" href="#q-puis-je-utiliser-un-numero-local-long-code-pour-le-sms" title="Permanent link">&para;</a></h3>
+<p><strong>R:</strong> Non. Les numéros locaux 10 chiffres au Canada supportent <strong>uniquement la voix</strong> via ACS. Le SMS n'est pas disponible.
+Vous devez utiliser un numéro sans-frais.</p>
+<h3 id="q-combien-de-temps-avant-que-mon-numero-soit-utilisable">Q: Combien de temps avant que mon numéro soit utilisable?<a class="headerlink" href="#q-combien-de-temps-avant-que-mon-numero-soit-utilisable" title="Permanent link">&para;</a></h3>
+<p><strong>R:</strong></p>
+<ul>
+<li>Acquisition: 5 min (statut <strong>Unverified</strong>)</li>
+<li>Vérification: 1–15 jours ouvrables (statut <strong>Verified</strong>)</li>
+<li><strong>Total: 1–15 jours de délai avant le premier SMS</strong></li>
+</ul>
+<h3 id="q-et-si-la-verification-toll-free-est-rejetee">Q: Et si la vérification toll-free est rejetée?<a class="headerlink" href="#q-et-si-la-verification-toll-free-est-rejetee" title="Permanent link">&para;</a></h3>
+<p><strong>R:</strong> Microsoft enverra une notification expliquant pourquoi (ex. : information manquante, cas d'usage insuffisant).
+Corrigez la demande et resoumettez. Attendez-vous à +5–10 jours.</p>
+<h3 id="q-dois-je-completer-lefvp-loi-25-avant-ou-apres-la-verification-toll-free">Q: Dois-je compléter l'EFVP (Loi 25) avant ou après la vérification toll-free?<a class="headerlink" href="#q-dois-je-completer-lefvp-loi-25-avant-ou-apres-la-verification-toll-free" title="Permanent link">&para;</a></h3>
+<p><strong>R:</strong> La <strong>vérification toll-free</strong> peut commencer immédiatement. L'<strong>EFVP</strong> doit être complétée <strong>AVANT la mise en
+production</strong>. Vous pouvez les paralléliser pendant les semaines 2–3.</p>
+<h3 id="q-les-employes-ont-ils-besoin-dun-consentement-ecrit-pour-le-sms">Q: Les employés ont-ils besoin d'un consentement écrit pour le SMS?<a class="headerlink" href="#q-les-employes-ont-ils-besoin-dun-consentement-ecrit-pour-le-sms" title="Permanent link">&para;</a></h3>
+<p><strong>R:</strong> Pour les <strong>SMS d'urgence et de sécurité</strong>, la relation d'emploi suffit (exemption CASL). Cependant, le <strong>consentement
+documenté</strong> (via contrat, manuel) est recommandé pour des raisons d'audit et de conformité Loi 25.</p>
+<h3 id="q-acs-gere-t-il-automatiquement-les-stop-comme-twilio">Q: ACS gère-t-il automatiquement les STOP comme Twilio?<a class="headerlink" href="#q-acs-gere-t-il-automatiquement-les-stop-comme-twilio" title="Permanent link">&para;</a></h3>
+<p><strong>R:</strong> Non. ACS <strong>reçoit</strong> les messages STOP mais ne supprime pas automatiquement les destinataires. Vous devez implémenter
+un webhook (Event Grid) qui écoute les SMS entrants et met à jour votre table <code>SmsOptOut</code>.</p>
+<h3 id="q-quel-est-le-cout-exact">Q: Quel est le coût exact?<a class="headerlink" href="#q-quel-est-le-cout-exact" title="Permanent link">&para;</a></h3>
+<p><strong>R:</strong></p>
+<ul>
+<li>$2.00 CAD/mois par numéro (locationaires)</li>
+<li>$0.0085 CAD par segment SMS (160 caractères, accents = 70)</li>
+<li><strong>Aucun frais pour les SMS entrants (STOP/ARRET)</strong></li>
+</ul>
+<p>Exemple: 1 000 SMS/mois + 1 numéro = $2.00 + ~$8.50 = ~$10.50 CAD/mois</p>
+<h3 id="q-puis-je-utiliser-un-numero-toll-free-pour-la-voix-et-le-sms">Q: Puis-je utiliser un numéro toll-free pour la voix ET le SMS?<a class="headerlink" href="#q-puis-je-utiliser-un-numero-toll-free-pour-la-voix-et-le-sms" title="Permanent link">&para;</a></h3>
+<p><strong>R:</strong> Oui. Un numéro sans-frais acquis pour le SMS supportera aussi la voix si vous le configurez (IVR, transferts, etc.).
+Les deux canaux sont autorisés.</p>
+<hr />
+<h2 id="support-et-depannage">Support et dépannage<a class="headerlink" href="#support-et-depannage" title="Permanent link">&para;</a></h2>
+<h3 id="erreurs-courantes-lors-de-la-soumission-du-formulaire">Erreurs courantes lors de la soumission du formulaire<a class="headerlink" href="#erreurs-courantes-lors-de-la-soumission-du-formulaire" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Erreur</th>
+<th>Cause probable</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Country must be Canada"</td>
+<td>Adresse invalide ou non-canadienne</td>
+<td>Utilisez une adresse physique complète au Canada</td>
+</tr>
+<tr>
+<td>"Use case description too short"</td>
+<td>Moins de 50 caractères</td>
+<td>Détaillez votre cas (ex. : "Emergency safety notifications to 300+ employees")</td>
+</tr>
+<tr>
+<td>"No valid contact person"</td>
+<td>Courriel ou téléphone invalide</td>
+<td>Utilisez le courriel professionnel et le numéro complet</td>
+</tr>
+<tr>
+<td>"Submission failed"</td>
+<td>Timeout ou erreur réseau</td>
+<td>Attendre 5 min et réessayer; vérifier la connexion</td>
+</tr>
+</tbody>
+</table>
+<h3 id="signification-du-statut-du-numero">Signification du statut du numéro<a class="headerlink" href="#signification-du-statut-du-numero" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Statut</th>
+<th>Signification</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unverified</strong> 🔴</td>
+<td>Nouvellement acquis; en attente de vérification</td>
+<td>Soumettre le formulaire toll-free</td>
+</tr>
+<tr>
+<td><strong>Verification Pending</strong> ⏳</td>
+<td>Formulaire soumis; Microsoft examine</td>
+<td>Attendre (1–15 jours ouvrables)</td>
+</tr>
+<tr>
+<td><strong>Verified</strong> 🟢</td>
+<td>Approuvé; prêt pour les SMS</td>
+<td>Configurer la connexion et tester</td>
+</tr>
+<tr>
+<td><strong>Verification Failed</strong> 🔴</td>
+<td>Rejeté; répondre aux commentaires</td>
+<td>Lire l'email; corriger et resoumettele formulaire</td>
+</tr>
+<tr>
+<td><strong>Restricted</strong> 🟡</td>
+<td>Restrictions temporaires appliquées</td>
+<td>Contacter support Azure pour détails</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="prochaines-etapes">Prochaines étapes<a class="headerlink" href="#prochaines-etapes" title="Permanent link">&para;</a></h2>
+<p>Une fois votre numéro vérifié (<strong>Verified</strong> 🟢) :</p>
+<ol>
+<li>Stockez la chaîne de connexion dans Key Vault</li>
+<li>Implémentez le webhook Event Grid pour opt-out</li>
+<li>Déployez les tables <code>SmsAuditLog</code> et <code>SmsOptOut</code> dans Azure Storage</li>
+<li>Testez l'envoi et la réception avec un employé pilote</li>
+<li>Activez la fonction SMS en production</li>
+<li>Notifiez les employés de la nouvelle capacité SMS</li>
+</ol>
+<p>Pour l'implémentation technique, consultez <a href="../guide-sms-api/">Guide d'intégration API SMS</a>.</p>
+<hr />
+<p><strong>Dernière mise à jour:</strong> 2026-05-20<br />
+<strong>Responsable:</strong> Oracle (Project Manager)<br />
+<strong>Version:</strong> 1.0</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../guide-synchronisation-nethris-sharepoint/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Synchronisation Nethris → SharePoint">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Synchronisation Nethris → SharePoint
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../configuration-secrets-audit/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Configuration &amp; Secrets">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Configuration & Secrets
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/equipe-laurence/integration-nethris" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","navigation.tracking","search.suggest","search.highlight","content.code.annotate","content.tabs.link","toc.follow"],"search":"../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copié dans le presse-papier","clipboard.copy":"Copier dans le presse-papier","search.result.more.one":"1 de plus sur cette page","search.result.more.other":"# de plus sur cette page","search.result.none":"Aucun document trouvé","search.result.one":"1 document trouvé","search.result.other":"# documents trouvés","search.result.placeholder":"Taper pour démarrer la recherche","search.result.term.missing":"Non trouvé","select.version":"Sélectionner la version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7f30b55.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

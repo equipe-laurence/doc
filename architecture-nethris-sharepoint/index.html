@@ -1,0 +1,2670 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://equipe-laurence.github.io/doc/architecture-nethris-sharepoint/">
+      
+      
+        <link rel="prev" href="../guide-activites-utilisateurs/">
+      
+      
+        <link rel="next" href="../sms-feature/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.50">
+    
+    
+      
+        <title>Architecture d'intégration Nethris → SharePoint + SMS d'urgence - Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-dintegration-nethris-sharepoint-sms-durgence" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-header__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture d'intégration Nethris → SharePoint + SMS d'urgence
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Recherche">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Recherche">
+  <button type="button" class="md-search__button">
+    Recherche
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-activites-utilisateurs/" class="md-tabs__link">
+          
+  
+  Utilisation courante
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="././" class="md-tabs__link">
+          
+  
+  Architecture & Conception
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../local-development/" class="md-tabs__link">
+          
+  
+  Développement
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Exploitation & Conformité
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plan-de-tests/" class="md-tabs__link">
+          
+  
+  Planification & CI/CD
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-nav__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Accueil
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Utilisation courante
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Utilisation courante
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-activites-utilisateurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Activités des utilisateurs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture & Conception
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Architecture & Conception
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Vue d'ensemble
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Vue d'ensemble
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Vue d'ensemble
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagramme-des-composantes-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Diagramme des composantes Azure
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-du-cycle-de-synchronisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Séquence du cycle de synchronisation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responsabilites-par-couche" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Responsabilités par couche
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Responsabilités par couche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-equipelaurencecore" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Core (<code>EquipeLaurence.Core</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-equipelaurenceinfrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Infrastructure (<code>EquipeLaurence.Infrastructure</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions-equipelaurencefunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Functions (<code>EquipeLaurence.Functions</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contrats-dinterfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Contrats d'interfaces
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contrats d&#x27;interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-du-pipeline-nethris-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Interfaces du pipeline Nethris → SharePoint
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-du-pipeline-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Interfaces du pipeline SMS
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-orchestrateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Service orchestrateur
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modeles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Modèles
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exigences-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exigences de configuration
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exigences de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametres-de-lapplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Paramètres de l'application
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-des-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Gestion des secrets
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strategie-de-gestion-des-erreurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Stratégie de gestion des erreurs
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stratégie de gestion des erreurs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isolation-par-rapport" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Isolation par rapport
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garantie-de-session-nethris" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Garantie de session Nethris
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#politique-de-reessai" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Politique de réessai
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journalisation-et-observabilite" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Journalisation et observabilité
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alertes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Alertes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#considerations-de-securite" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Considérations de sécurité
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Considérations de sécurité">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flux-dauthentification" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flux d'authentification
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#securite-reseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Sécurité réseau
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-du-moindre-privilege" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Principe du moindre privilège
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inscription-di-functionappstartupconfigureservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Inscription DI (<code>FunctionAppStartup.ConfigureServices</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-de-dossiers-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Structure de dossiers SharePoint
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-sms-durgence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pipeline SMS d'urgence
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline SMS d&#x27;urgence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flux-denvoi-post-apismssend" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flux d'envoi (<code>POST /api/sms/send</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webhook-entrant-post-apismsinbound" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Webhook entrant (<code>POST /api/sms/inbound</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation-conditionnelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Activation conditionnelle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-feature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SMS Feature
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Développement
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement local
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-sms-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-bruno-nethris-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tester avec Bruno
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharepoint-permission-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Permissions SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exploitation & Conformité
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Exploitation & Conformité
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-synchronisation-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Synchronisation Nethris → SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-acs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro ACS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-secrets-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration & Secrets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-compliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Conformité SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Planification & CI/CD
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Planification & CI/CD
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-de-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan de tests
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposal-cicd-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Optimisation CI/CD
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publication de la documentation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Vue d'ensemble
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagramme-des-composantes-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Diagramme des composantes Azure
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-du-cycle-de-synchronisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Séquence du cycle de synchronisation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responsabilites-par-couche" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Responsabilités par couche
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Responsabilités par couche">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-equipelaurencecore" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Core (<code>EquipeLaurence.Core</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-equipelaurenceinfrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Infrastructure (<code>EquipeLaurence.Infrastructure</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions-equipelaurencefunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Functions (<code>EquipeLaurence.Functions</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contrats-dinterfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Contrats d'interfaces
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contrats d&#x27;interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-du-pipeline-nethris-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Interfaces du pipeline Nethris → SharePoint
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-du-pipeline-sms" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Interfaces du pipeline SMS
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-orchestrateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Service orchestrateur
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modeles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Modèles
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exigences-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exigences de configuration
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exigences de configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametres-de-lapplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Paramètres de l'application
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-des-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Gestion des secrets
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strategie-de-gestion-des-erreurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Stratégie de gestion des erreurs
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stratégie de gestion des erreurs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isolation-par-rapport" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Isolation par rapport
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garantie-de-session-nethris" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Garantie de session Nethris
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#politique-de-reessai" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Politique de réessai
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journalisation-et-observabilite" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Journalisation et observabilité
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alertes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Alertes
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#considerations-de-securite" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Considérations de sécurité
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Considérations de sécurité">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flux-dauthentification" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flux d'authentification
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#securite-reseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Sécurité réseau
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principe-du-moindre-privilege" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Principe du moindre privilège
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inscription-di-functionappstartupconfigureservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Inscription DI (<code>FunctionAppStartup.ConfigureServices</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-de-dossiers-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Structure de dossiers SharePoint
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-sms-durgence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pipeline SMS d'urgence
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline SMS d&#x27;urgence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flux-denvoi-post-apismssend" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flux d'envoi (<code>POST /api/sms/send</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webhook-entrant-post-apismsinbound" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Webhook entrant (<code>POST /api/sms/inbound</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activation-conditionnelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Activation conditionnelle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="./.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="././" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Architecture & Conception
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="architecture-dintegration-nethris-sharepoint-sms-durgence">Architecture d'intégration Nethris → SharePoint + SMS d'urgence<a class="headerlink" href="#architecture-dintegration-nethris-sharepoint-sms-durgence" title="Permanent link">&para;</a></h1>
+<h2 id="vue-densemble">Vue d'ensemble<a class="headerlink" href="#vue-densemble" title="Permanent link">&para;</a></h2>
+<p>Ce document décrit l'architecture de l'application Azure Function qui :</p>
+<ol>
+<li><strong>Synchronise les rapports Nethris</strong> — récupère les rapports automatisés du système RH Nethris et les téléverse dans une
+   bibliothèque de documents SharePoint privée chaque nuit. Un registre de synchronisation (Azure Table Storage) empêche les
+   doublons.</li>
+<li><strong>Envoie des SMS d'urgence</strong> — diffuse des messages textes via Azure Communication Services aux employés d'un emplacement
+   donné, avec gestion des opt-out, idempotence, et piste d'audit.</li>
+</ol>
+<h2 id="diagramme-des-composantes-azure">Diagramme des composantes Azure<a class="headerlink" href="#diagramme-des-composantes-azure" title="Permanent link">&para;</a></h2>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGRhdGEtZGlhZ3JhbS10eXBlPSJERVNDUklQVElPTiIgc3R5bGU9IndpZHRoOjk4NHB4O2hlaWdodDo5NzhweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB3aWR0aD0iOTg0cHgiIGhlaWdodD0iOTc4cHgiIHZpZXdCb3g9IjAgMCA5ODQgOTc4IiB6b29tQW5kUGFuPSJtYWduaWZ5IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyI+PD9wbGFudHVtbCAxLjIwMjYuN2JldGE4Pz48ZGVmcy8+PGcgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGxlbmd0aEFkanVzdD0ic3BhY2luZyI+PGcgY2xhc3M9InRpdGxlIiBkYXRhLXNvdXJjZS1saW5lPSIxMSI+PHRleHQgeD0iMzIzLjE2NiIgeT0iMjIuOTk1IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0IiB0ZXh0TGVuZ3RoPSIzMzEuNDY4IiBmb250LXdlaWdodD0iNzAwIj5BcmNoaXRlY3R1cmUg4oCUIE5ldGhyaXMgwrcgU2hhcmVQb2ludCDCtyBTTVM8L3RleHQ+PC9nPjwhLS1jbHVzdGVyIFJlc291cmNlIEdyb3VwLS0+PGcgY2xhc3M9ImNsdXN0ZXIiIGRhdGEtcXVhbGlmaWVkLW5hbWU9IlJlc291cmNlIEdyb3VwIiBpZD0iZW50MDAwMyIgZGF0YS1zb3VyY2UtbGluZT0iMTYiPjxwYXRoIGQ9Ik0yMDYuOTMsNDMuMjk3IEwzMzMuNjk4LDQzLjI5NyBBMy43NSwzLjc1IDAgMCAxIDMzNi4xOTgsNDUuNzk3IEwzNDMuMTk4LDY1LjU5NCBMOTY3LjMsNjUuNTk0IEEyLjUsMi41IDAgMCAxIDk2OS44LDY4LjA5NCBMOTY5LjgsNzQzLjc5NyBBMi41LDIuNSAwIDAgMSA5NjcuMyw3NDYuMjk3IEwyMDYuOTMsNzQ2LjI5NyBBMi41LDIuNSAwIDAgMSAyMDQuNDMsNzQzLjc5NyBMMjA0LjQzLDQ1Ljc5NyBBMi41LDIuNSAwIDAgMSAyMDYuOTMsNDMuMjk3IiBzdHlsZT0ic3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjEuNTsiIGZpbGw9Im5vbmUiLz48bGluZSB4MT0iMjA0LjQzIiB5MT0iNjUuNTk0IiB4Mj0iMzQzLjE5OCIgeTI9IjY1LjU5NCIgc3R5bGU9InN0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoxLjU7Ii8+PHRleHQgeD0iMjA4LjQzIiB5PSI1OC4yOTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjEyNS43NjgiIGZvbnQtd2VpZ2h0PSI3MDAiPlJlc291cmNlIEdyb3VwPC90ZXh0PjwvZz48IS0tY2x1c3RlciBTZXJ2aWNlcyBleHRlcm5lcy0tPjxnIGNsYXNzPSJjbHVzdGVyIiBkYXRhLXF1YWxpZmllZC1uYW1lPSJTZXJ2aWNlcyBleHRlcm5lcyIgaWQ9ImVudDAwMTAiIGRhdGEtc291cmNlLWxpbmU9IjI1Ij48cmVjdCB4PSI1MjcuNzciIHk9Ijc3MC4yOTciIHdpZHRoPSIxODcuNTgiIGhlaWdodD0iMTk0IiBmaWxsPSJub25lIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7IiByeD0iMi41IiByeT0iMi41Ii8+PHRleHQgeD0iNTUxLjE1IiB5PSI3ODUuMjkyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0IiB0ZXh0TGVuZ3RoPSIxNDAuODIiIGZvbnQtd2VpZ2h0PSI3MDAiPlNlcnZpY2VzIGV4dGVybmVzPC90ZXh0PjwvZz48IS0tZW50aXR5IGZ1bmNBcHAtLT48ZyBjbGFzcz0iZW50aXR5IiBkYXRhLXF1YWxpZmllZC1uYW1lPSJSZXNvdXJjZSBHcm91cC5mdW5jQXBwIiBpZD0iZW50MDAwNCIgZGF0YS1zb3VyY2UtbGluZT0iMTciPjxyZWN0IHg9IjIyMC40MyIgeT0iNTAzLjMyNyIgd2lkdGg9IjEzOS41NyIgaGVpZ2h0PSIxNDEuOTQ3IiBmaWxsPSIjRkZGIiBzdHlsZT0ic3Ryb2tlOiMzQzdGQzA7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSIyMzkuODEiIHk9IjUyNC40NjYiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjEwMC44MTEiIGZvbnQtc3R5bGU9Iml0YWxpYyI+wqtBenVyZUZ1bmN0aW9uwrs8L3RleHQ+PHRleHQgeD0iMjMwLjQzIiB5PSI1NDIuMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiB0ZXh0TGVuZ3RoPSI3OC43MTEiIGZvbnQtd2VpZ2h0PSI3MDAiPkZ1bmN0aW9uPC90ZXh0Pjx0ZXh0IHg9IjMwOS4xNDEiIHk9IjU0Mi4xNDciIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSI3MDAiPsKgPC90ZXh0Pjx0ZXh0IHg9IjMxNC43MTEiIHk9IjU0Mi4xNDciIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTYiIHRleHRMZW5ndGg9IjM1LjI4OSIgZm9udC13ZWlnaHQ9IjcwMCI+QXBwPC90ZXh0PjxpbWFnZSB3aWR0aD0iNzUiIGhlaWdodD0iNzUiIHg9IjI1Mi41MjMiIHk9IjU0NS45MjEiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBRXNBQUFCTENBWUFBQUE0VG5ycUFBQU9PVWxFUVZSNFh1MmJlM0JjVlIzSEM0Z3dJRUlwS2lEeUh1b00rRUJIUjBaUlIwZEh3WEVZVVdkMFZFYWt2R3c3cFZKUmtGS2dMWS9TRm5sa3lvUldCRXF4YlFwOTBKWW1hZHJTaGladFF0TTJmU1RaN0NiWjdIczNlM2YzM24zY3ZmZjYvVzJ5SWZtZHU3djNicGFrbmVrZm4zOSsyWFB1T2QvN083L3orNTF6TThrd2pFbW5zSVpnT0VWaEJNTXBDaU1ZVGxFWXdYQWlrRWhyMytrS3BXb3FoYXJwVS9nenlrRXdURFJKVmZ1MmF5RDl6djYraERGV1d2b1NXZlMxTnF2cEYvTG5sSU5nbUdnaWlucEhtMGRXK01UdDB1Sk9hRWY4aWsvSjZOL1ZEZVBUL0RubElCZ21rcFNxMzlnemtINlRUN3djRHZUTFVrUlc1MENvVC9IbmxJdGdtRWhDc2pyem9GZE84SW5icGRVdHk0NVFhZ1B2ZjZ3SWhva2luZFdud3F1Vzg0bmJoWmJmVWI5eUxKSFJmc0tmTVZZRXcwVGhqMmNlL2FoZmp1L3RpUnZsc3E4dm9iWDdsZjVBUW4yTzkxOEpCTU5FZ0szOTRtT0JaSFZ0UjlRb2w3ck9xTkhjbS9BSEVwbFBSQ2hDTUV3RXZuaG1VVk52UE00RnNNTnVaeXpoaXFTcWVkK1ZSRENNTjdwdW5ObnVVMWJ3eWR1aHJpTktjV29aNzd2U0NJYnhCckhxSlhoVmxBdGdoNE5lcFNHZTFuN0crNjQwZ21HOE9leFYxdFIzUm5VdWdGVVExQ1VFOUhudzBMTjQzNVZHTUl3bm1PUWk3R0orTG9CVlB1aU9HWDBENmVkUXpueU85LzFKSUJqS3BWL0tQSUV5cGNFYnkveU8vNjBRaDd6eXR1MWRrc1pGc0VwWEtMa0krZG5sdkY4aWs5VXZRdDdWY0R5UWJGQXJKS1pnS0FjUzZ2WDlnZjRuYS91TWxhM0JROWlWL3NoL3cwRzJQcmZSRmUvbkFsaGxYMTljQ2l2cUgzaS9oSnpXcnRqZUdkMzgrTFkrNDZsNnQzSElxMnlHcUZmdzM5bEZNTmpGSTZVZmUyTi8wUE8zRFM3ajdqVU80OEdOTHVPTmxrQ2JNNXo2RS8vdFNBNTY1TDN3cWl3WHdRcUlVekY0OERQd25tdDR2N0ZVZGlxRXFwbTd0VGMzSHVMWmhuNERYbCtUVkxXcC9QZDJFQXgyd0lBZmZxTWxHSmc5SkZTZU9SQnNWV3V3elN0bFREMXNRRkduSXkveWNoR3NzQXR4eWkybGwwS29xM20vOFhUMmhrWm43SzE1Ny9lTkdnK3hlSWVIaXV0VlNrYTdnYmV6aW1Dd0FsWHl2bGhtOXNxV1lIVFd1MDVoWVBmWGRCdFZlM3o5cVBYbThiWUVpdVgyY3IzS0VVcXVTS21hSUJRaEpiTTNienNlYlpteFRod1RzWFNueDBCSjlUb0UreXB2YXdYQlVBcE5OODVGeG4zL3F0WlFlc1k3NHFCSXFLZnErL3YzT09NdnBiTDYxMWo3TTdCTWZydlRJWVc1Q0ZaQWtkeUNpVjdMeDVRSHUrTG44WUttdmJvMzBEYmRaR3pFODd0eWd2MFgvZkN4bFVRd0ZBT0RPUjhlTmUxL0IwTEd2V3U3aFlIY0I2RVcxcms5T2FIVTBVS1JONlpWL2ZwRFB0bGQzMmwvQjhSbW9FU1U3QjE0V1ovbDR4bzFSdDJZNG81bTdsclc2RC95MTNYaUdBY0Y4MEt3QkhtWXJTVXBHQW9Cb1M1QWpMcHpUVnRJZUhoT0tJZzN2ODRkK05DVkUwcHc4Nnl1WDRCSnZJSUVWT1ZDbEdLSFE4cGl4NjFCSDVhT2h5SG8rYjY0K3BjWGQvc2MwOWQxNjN5c0JDM0pBLzJKdCt3RWZjRmdCbm5Vb0ZCaDRhRUVlUm0yNlVoVGIrSkZMTDNyZVh2eXFtUkcrMHBUVDV6cU9FR01Zc0FMczRlOWNqY0VPSnYzV3d4azlPZUVsZXlkOEtJZWhJdnNQU2JqcHFDUFhibkdhbG9oR0RpNUdCWEwzTFc2b0ZBTzQ5RXR2UW5Fa3hmdzBDL3o5Z1NTd2kvQU01WndJVXBSMXhuTjduSEZlaEM0LzF6TzhUQzFvYmJQN3lUQnVrMEZvN1NDOGpDTThTTGVuaU1ZK01Nb21GT000ZzhoNk9FUGJlcFI4WGFlTjh0NWhqaE56bWczd3VzRU1Vb0JvZHcwV1pNK2JaRVhyTkNTWEZEbk50cDl5aTZ0UkgwcEdFWkM2UUh5cFF6RkkvNEE0c0dOUFVhN1gxa0NqN29LdnorTnR5Znd4cjdva1RKUDJWMStxUHRTdlFQcDJuSThpa045WUhPNGsyS1lXZEMvQjZzRDFRY2Q4elR6dGlNUkRIazhTRGpmYkFsS2NGK3g4eEZDSVpoZmhjR2N3ZHZuaWFlMTc2RkdzMzJ3aDNKbVQ5YkMwckFLdk9ZY0N2cTBTMDQzeWNQdWcyQlBiT3ZMSFBFciszbmJQSUtCZ0NjOFJwbTVXY0pKYitFZldIcHdXd2lsa1ZBRjN6eTg2bkszbEZsUTN5VUpZaFFEOGE4TzIzcWhaVjAybXE2Zjc0Nm03M3Axcjc5dGhvbUhVZW96SkZpejJZWWlkRWhGTWRWNnZJUWhhTmVqWUk0WTlXOHN2U3VOSWg1RklBSDlLUkpBTnhlakdNMjlpZlpnUXAzRys2b1VTRCttOUVUUzAxWTBCMXJOa21vS09VL1d1clVqUG1VblA2MFkxVkgrOUNCZkZQTk9LRDJnWFc4b21KdkdxRHdaZUpVemtsNjRxWDNBZU9kUTJCSU5YWktDT0xVY3krOWkzbDhsb1V6ZkdVbmQvZHErd0Q0endXajFJTGtXVGl1R08zQ0VVNCtoOGZEcHdTaWg0Sjd6YS9zQ1RiM3hGNUdGVzByaW9zbnNMNXQ3NDhkWFl5ZTF5c2IyU0FhQnZXMWZiN3k2VW1CSlZjTkRKdlB4MFkxU2QzaElNSk1sU1ZCYWdUblh5T25CeERYWDBCbE9QVnpkNUEvTVdpK3FUTFhld25xM0Y1bTVhY0pwQmdaeUdRYnl6SHRIQmdSQnhoT3FOdWcwRmQ1eEdSL2o0RGlOUWNHYXpUMk13TndOekgwVm5XaE04c2JTZjEvZTVJL09OUG54Y0ZHY0syR3NWK3J3cXR2aFZXMTg4T1BKV2dpRkdLaGlXUyttQ29TUDhXUEI5SXZoTEhjamhoVThyWGg2dTV0dXUxK2ZSQjBYVW5WK3JidlE2VUZCaHR4N3laYWpFK2RWYTFGdDFCNlBKbm9HVWxVb2UwcCtRWk0vcmFqR0xzazF5UFB5SHA4eDZWOWJlazFQRUdhdmR5SG9SbHBqS2UzM3ZQTml3S3QrZ3hwd1A1L0FlRkVEb2VvNnBLZ3JrcloxNFVxaG95T1lmUGJoelQyQ0ZnUWRhRTVhMlJwc21MWGVsUnBaTjFGKzlkSWVMMVg3TXR6NFRleCtsb0k2OHBqSjNhRlUxZFpqRStOVk5RZEpxT2lBSzVKYXpzZFdERHJOUUpwejI3RkE4dTIzUHdvWmZKT2pUQUFGdVRmM1k3aGZMWUo3a3JiTW1SQ3FDaTYzQ2NHWjhoNDZSK3FOcGxkVEtzQWZ3cEZTMnE4UkRKdjRKTVlEQ3ViYmprZWpUcHRDd2FNdURNbnFmUWM4Y3U1QWtsNzA4cWFBOFFBMk85TGozcHBjM2hVNjRGR2VHVzZFckxZV3JwWmExdWd6M2pzU0daVW83bkhHa2xqVEcwcVZIL0RDRjdaM1NncHlwcXhkMWgwTTZ4UnJ1QWhXV0FNdzVnU2xDWHhNeFVDV2ZwNDNsbmtRY1huVWZDRzZnWUJ2VUdLT2pONlBhbVVCVnRkVm94cTN1dVd0Y0dQVHMvR2h3cmF1Mk0ydm5ORitoSnB5VlhjazFXR1h3ejRsUXNVMkY2SVVKQlR5TXhWRmNCVWZUekhvR3d1VWRZL0FFWVM1RWpRV3ZNUWtZdkR3YVNyclFEK3JNNVI4ZDJlM2VRZTd1cVVVbHVRSC9NSEQ3UTNqZE5wOXdObDI2WXVtbnl0SExBaGxIQThxaXpIMk0vbDRpdEV2cGVjM09tTVpzOU1Rc2pYM0pZeGtScnVXNXBSdkkzUkNYL1k2UXFtVmRPVmswb2tPRDB1U1lNVThyQndPZStXbjdTNURFcW96bUZ5QXVGUDBYSjZERi9Oc295c1dvMis2K0J6cllVTk9sVXlwK2pYOE5FWG9pTUQ2cEF4OEJXVy92RE1TTE9kaFdKS2xZcGhWNkpRRHNTN0F4U2dHQ2RVVlRNNURkbTdyYXI1dklMM2t3NTU0MkZ3b3lXaDFKL3hERnhuREhwVkg2Q3dQM2MwaHMzM0ZUREJpdHpOR1MzSURIY1B3dG5acDg4alZDUENDSUlYWWhBMm9LNVNjaXpGZXd2c3FCb1JhQ3FFQzVEMThQdHU3SkxvaWM2Q3N1WW0zeXlNWVJvTEJYQWZCcWdvSmhsMkVsdVJxdk4zcmVGdXJZRGVhQTY5eWNrR0tBWEczSk5MYU4zbGZ4ZWdkOUNoVG9Sb2dWRnUvZkJpNTFvOTV1NUVJQmc1ZEZSVVRER3Rmb1cvWHNjWnQzY0hsZ2R2WDBQRU1GNlFRaUNkYkI1VHNyYVh1RDBkQ01ZcVdIaTB6UHY2Y1VCNjVCYnZlcmJ3ZFJ6Q1lBY0d1UXd4YlpoYjBDUXlFTXYzWDRJbGY1MjJMRVV5bzk5UjNSQzBmNHpUM0ptcHBVcFFmOGI3TW9QU0FkajBreWpHekdFVkNIZlRJVFJEL050N1dETUZRQ0hqTzFSVDBpd2lXd0pKY1FmOGx3ZHNXb3FVdjBmQ3VCYTlDZHE2aDNteVFCb1U2bC9kakJrcVk4M0o1bEF2cFFXR2g5ZzRvNnUyOGJTRUVRekhvWE1nUlNyNVZTTEM5dzRLVjlqQzh6VjhoVXo3R2hlR2cza3QvNklydGlxZTFXNnltSzFUQ0RHYm01dVBNQ2VXVm15TTJoQ0lFUXlrd2tDbWR3UlFTVnlscmx0RGxQQ3kzSkl2SE1NU2V0bEplaFIweWlRbC9RRUlaSmM3Nzg5QmxxUytXZWFDUmxUQjVhTmVqR0dWMTZZMUVNRmlCM25CSE1Ma1ZIcFl5RmN5VmkyRjBXbUc2UzlMMnZPWG9nSU9MdzRSU0lOUnVDUFVMM3I0UWRIb1FsTlg3c2VrSVk4b0oxVG00NjFrSjVtWUlCanQwQkpLMUVDeHBGaFBnWVFwaUJqOEJPQTJKN0JSNGxhZllEb2lscDZIZlEzYUVJckQxMzVJL1BlRFFkUnpsVVZLSjlLQVlnc0V1eDNPQ1NZS0htZjNIQThxSE13Tng5WkgxaHlNU0Z5alAycmFRanBnUzhzVXp0djhKQUx2cnozYzRZa0ZCcU03Y1hhUy9XTUpwQmNGUURya2w2Zmo0U3o0SVI2Y0FML1BmMFE1VjF5a3BkRDdPUlNMb0JHRkhseFNsZnlUZ2JhMkNXSFF6OHFuVWlMSGthajI3MzJLWklSaktnV0pZWjRpQy9tQ3M2REE1QmNDVy81bXdyTTZ1YVF0bnVFaDVkanBpTVg5Y1hVejVFWCtHRFU3SFV2dFdYaWc2UGNCbVExOExDcldlWFFSRHVkQnBoU2VXcVFva012ODBPd1hBZ0M5dGNFZ1N2RWZuSWhHb0VDUXN2WVYweGM3YjJvWEVsdFBaR3p0Q3llNDA4a04rZWxBdWdtRXMwTTBPZmFiSTdmQ3F5WUdFT3BQT3lMbElPYUdjc1NpRWVyeVMveW1SK3l4ejhPNmc2TTI1SFFUREo0R2MwYVlpRFhCeGtZamRnMExOaGRDWDhuWW5Hb0toMHBDbkladWVzYzRrVmFDNDRvNm01ME9vTC9GMkp5S0NvZElnVi9vR3lpRGhkcHFFUW1xeENESGxTdDdtUkVVd1ZCSTZTVVhWUHdONTFTaWg2UGJFR1VrdExmUlBTaWNxZ3FHU0lLTythVjlmb2pFdkV1VlI3dzhLVllWU3lOWXA1NG1BWUtnVVdjMllqUHB3MW9iMlFhK2lTOUN0eHdaVVp6ajFuNnpKSjBBbkE0S2hVc0Nydm84U1l6c0pSYmMyN3grTEtvNXdhcFZ1NFVPTkV4WEJVQW5vSkJQQmV3N2R3SkJIYlQ0NmtIQ0VVbXY0NzA0MkJFTWx3QTc0UTdyZEpxRTJIb2trMmp6eVd2NmJreEhCTUZab21XRzVQVXJYVmZBc0JVS2Q5QjZWUnpDTUZXVHJQMmp0bDk5RFlGY1BldVZWL084bk00SmhySVJsOWFGMm54TEdycmRDMS9XVE5waWJJUmpHaXFicjU2Rjh1WVQrNVk3LzdXUkhNSnlpTUlMaEZJVVJES2NvelA4QnFUUmxSbVdTdXNZQUFBQUFTVVZPUks1Q1lJST0iLz48dGV4dCB4PSIyNjIuMTQiIHk9IjYzMi40NDQiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjMyLjM4NSIgZm9udC1zdHlsZT0iaXRhbGljIj5bLk5FVDwvdGV4dD48dGV4dCB4PSIyOTQuNTI1IiB5PSI2MzIuNDQ0IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEyIiBmb250LXN0eWxlPSJpdGFsaWMiPsKgPC90ZXh0Pjx0ZXh0IHg9IjI5OC4zMzkiIHk9IjYzMi40NDQiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjE5Ljk1MSIgZm9udC1zdHlsZT0iaXRhbGljIj4xMF08L3RleHQ+PC9nPjwhLS1lbnRpdHkga3YtLT48ZyBjbGFzcz0iZW50aXR5IiBkYXRhLXF1YWxpZmllZC1uYW1lPSJSZXNvdXJjZSBHcm91cC5rdiIgaWQ9ImVudDAwMDUiIGRhdGEtc291cmNlLWxpbmU9IjE4Ij48cmVjdCB4PSI4MjkuMTMiIHk9IjU2NS4zMjciIHdpZHRoPSIxMjQuNjc0IiBoZWlnaHQ9IjE0MS45NDciIGZpbGw9IiNGRkYiIHN0eWxlPSJzdHJva2U6IzNDN0ZDMDtzdHJva2Utd2lkdGg6MC41OyIgcng9IjIuNSIgcnk9IjIuNSIvPjx0ZXh0IHg9Ijg0MC4xMyIgeT0iNTg2LjQ2NiIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMiIgdGV4dExlbmd0aD0iMTAyLjY3NCIgZm9udC1zdHlsZT0iaXRhbGljIj7Cq0F6dXJlS2V5VmF1bHTCuzwvdGV4dD48dGV4dCB4PSI4NDcuOTkiIHk9IjYwNC4xNDciIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTYiIHRleHRMZW5ndGg9IjMzLjY4IiBmb250LXdlaWdodD0iNzAwIj5LZXk8L3RleHQ+PHRleHQgeD0iODgxLjY3IiB5PSI2MDQuMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIj7CoDwvdGV4dD48dGV4dCB4PSI4ODcuMjQiIHk9IjYwNC4xNDciIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTYiIHRleHRMZW5ndGg9IjQ3LjcwMyIgZm9udC13ZWlnaHQ9IjcwMCI+VmF1bHQ8L3RleHQ+PGltYWdlIHdpZHRoPSI3NSIgaGVpZ2h0PSI3NSIgeD0iODUzLjc3NSIgeT0iNjA3LjkyMSIgeGxpbms6aHJlZj0iZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFFc0FBQUJMQ0FZQUFBQTRUbnJxQUFBVjBVbEVRVlI0WHUxY2FYQmMxWlVPbFVsbXlNeGtDRU1JZ1JtU1NraUExSWhKcXBpYUVKalFWWUVCaW1KU0F4bGlRc0FZRTNZeTJHQ3p4TVpzRHQ2d1kvQVlzTURHQ3hnc1M1WTMyWkpzdFJDeVpLMTJxNFdzclZ2cWZkKzMxLzI2KzgzNVdycXRwL3U2cGU1VzI3LzQ4VlhadCsrOTc5N3ZuWFB1T2VlZXA2OUlrdlNWTDFFWUZBMWZJajhVRGVjSzlsQml6WkF6MXQ2aUMyajI5M3MxdTNwY21uZmE3Sm8xVFJiTkt3MG16ZXZIekpxTm45czBXN3VjbWlxTlIzTjAwS2ZwczBZMDR6NWhueUNtZnNMUGR5NmdhRGdiU0tXbGIzcWp5WHU2akdIMTdsTnU5WVlXbS9wUGRVYkhzd2ZIazAvdEc1TWUzYXVUbnFqUlN4UC8xa3NQVitta1I2b20ydjVJYmZqLzQ5VjZhZkgrY1ducElVUDRqZU9XN285NzNlb1dYVkE5N28yL0tvanBxL2xubmcwb0dzb0pkMFQ4K2ZGaGYvWFdEdWZCMXh2TjJpVUh4NldIOStneW0zL3cwMUZwd1NkVGVIci9tUFJhbzBsNnM5a3FiV3ExU1NSVjBodkh6ZEtMZFlacC9ZQS8wQnlMUUJ6TnQrS28wZkwyNXpaMXJkWmJQZWlJTHVYWFVFNG9Hc29CV3pCK2ErT1FyNUkyM2Jpb2RpeXp3Zm03UjdMNFE5VUVZY0JUSkQydk5aaWs5MDg2cEQwYXQxVGI3NUVPRFhpbGcxOTRwZW8rajdTcjF5V3RKd0lYRVptUDdKMGF4d2pIZkE4UUhpZUpmTDNSTkxaWDQ2N3N0MFZXOEdzcUJ4UU5jNEVqbExpclJSOWN2Zm1FdmZtWkErUFNRdHJNL1I5UEVDVGZKQVA2L0tYRkt1MDU3WmFPRFBxa3htRy9BZzFEZnVrQUVRY3lseDB4U285VlQ2Z3BUeHFlZzVjQzFWMTV6T3lrTWF0SDNiSFgwMm5wYS93NlM0V2lvUlRZZ29sNUo4YUNTei9vY0hROGY5aVFWVEYrVTdCRFN3NFpwTGRJeGQ3dmNMcTJkVG5qSUlJbktCOTI5cmlrcloxTzF6dHRqdmpMOVNicHlVbDdKc2REcEtKNE9iQng2eit6Sk9yTytQNWs5TVdYaXFuMHQvbDFGd3RGUTdFWWRNYnUzTkh0R255YTFPMit5YmNyWHp5TTk2UUVoWGQyT3l2ckJuMlZYOWlqNmo1YlpLUlpGNGp4aE15R2JuUFllc1lSN1NRSi9vVFV0aEluNkFvaUR1VElud3U3OXZ1UEpxUjY4d21iMUQ0ZWVqa2tKTC9Mcjc4WUtCcUt3YUF6ZXR1cUpzdjRnMFRRNzNZTlR5TUtKTkZwUjIvWDZpTGJVMDJuVmlXTk9TK1JUSC9mNEl1ditVd1hjTXRKYUJvTlNDZkdnL1l1VTdpWG9jTVlPcVBXQlJTRUVkbjdBN0hrTFhUSy9qMGRJdmZScVZqOWJwdTk1NldqUmdWcFdCZUFGM1pzMkwrY3hsM0s3Nk5RS0JvS3dGZHB3NWNOdTJJM3Zualk2SVEwd1RaTmthVFBrRVQra3JXbXo2TW1GZGlRSFpkS1gyNzB4MWVwUndNaCtlYVBqd1NrSGxOWVovRW4xZ1NGMUIwTTVHNHNHSEJFMjZqL1RJVDlIZWIzeDVLM3Q0NkYxRyszMmsvQnR2R2szVXRTOWhpdHJXSFEvNUl2bXJ5YWpTc0dpb2Faa0tZTmswTjRPYW5RU3JJL2lYdm9qUzNjTTBVVUZraEh1WFdmMXFPeEJCSXI1T09JNE12Ti9zVEs0eVArQkwveERrUEk1d3dsSHVlZkI5QzRTelRXaUlXa0lzMlA2N2RIRHhKaC81bEtwNy9CK2tmaXFXdHBQczFhdFdYZ3lacnBoRUV0UVZpTjFuUFFHVTVNRzFjSUZBMHpnSWhLRTFIUmxUQ2l2OTB4bERHbWJDR1RwNUN2MXh6bU4vM1YrQ1JSL0dZWlJ0eXhTcG83cDFkT0V2QU5TQmlSSE9mSFpRaXpSZXRJQ20raVUrK3Y1ZVBDOGRRbG0xcnRsai9XanFWeHNFd1JOcHl4WStUVTF0RzhOL0xQbXdtS2hueUE2b0dvaFNCcSsxRFdWOEpDNkcybHlkQUtZeDVoQVRmdVBLaWVTVWJVc1J5dytPTVA4YytUZ3lUZ2ZGTFZLRThVQTYycklSUlAvUW9TTEIrWFRLWFByKzMzZXNpQlRUN0tTUmhjRFRvZzNxUStCYnNXaW9aODBIdUVYejU3WUZ5Y3QyT0tLQUNHazA2MVlWS0hXK250L3BWOERCSDhQWk12dm9xa1FtUkVkWnJDVWhjSFYxaWNFMWswYjRwVXRZbWs2VmY4V0JDbTh3ajFkQkJGbVIzRCttRnJpVUNSVE1abWZrdytLQnB5Z1l6MGJSUit1TzdkTlRKTjlTamdsWFJ1NFNheVk5L2gxWUJVN3dxRFQxaExSM3lvMHhpV0dMcE5Tc3lWTEFCcWVzb1NhU2JDYnVMSGs0OTFVVkJJWGtwK1hSdGNuQXhoR1g5c2xFSW1RNWhPWnB6VWl1ZnlVRFR3TVB2amQ1S3pPUTYzNENIWnFRZUowcmxqTjlGQy9vWWZRMFJkU1FiK3pWUG1zS2ZURUZLUXc0Tk8xazdhekgveDh3QWtHUmZTeTZycU5JYVNSSWlDSkRuSS9ZaUNNRkxKbS9sNUFGOVUvTUdXZHZzeFp2aEJHQnpvVnh0TWZqcGRQK0Q3ODFBMHlPR0ppUGVRanpTSW1FenVIcEE0aStRYy9vWFU3Qi80TWNnQUVGSHJTUzNzUENuNTBHdUp4TWlsMk1KbkR5YXpGZk5QV3lOQjlEdEp4QVB3eVhpaUNpVnN6Q3ZNSndlNWorMkZhUW9GOEZabldIeUo3eStIb2tHTzl2SGdVa2dRbkRvMitmL1dqb24xUS80dlNQV3VJb002elViaFJLTlRiMzJmTldyaENaa05HRFBraktsSDNVSTF3NGhMT0RoZ2oybjV2aUFzbCsvRkVhYUcwWmVVUnY5aWVwRnZyV3UyK05pZW9EVWtET0tIWGM0VFBBZHlLQm9ZeUREZlJTZGNoenlFSWFJUW43bEpaZTZRdUVVSVNSQVYzOUJualpqNHpaME5VUGd5STJGazQrS25KNDArYjA5all1cG5uK3VETmE4Mm1pYWxpd0p4Y2lmSW5wR0RHRjdMYzhHZ2FHQ29IL1N0UnVLTkVZWHc1YlZHazQzVTVURytMMERCOUhJNndzOEpVUXp0czBnWVRrbGFVeU9aaTR2NDlYcWo0bzFWR3ZkaCtJZE1IV0hEM3Y3Y1p1YjdNaWdhQURLb3QxSk1wNFpVTVZGZGVzZ1Fwd2kraWU4TGtMamZjc1lSNitZM2N5NHdtNFFCanJENGRES2QvaGEvN2dGNzlBbXlWWDYyUjVCRjl0aFAyckU0eGJsQmdHTGpjRDVyK3J4VlQ5Wk1TUlg4azQwdE5qMFoyNGY1L3NDNFQvaUViRVNFMzhpNVF1dFlVRUdRSEwyV3NJbFU3eXArM1pGRTZqcjZmUi9NQzVPdUIzYmpkRFFMcEw0LzVXMnlZdU1HWC96aE40NmJCK0RoTXNZcE1QV1IwY3pyaThBdzh4dklCMGhDT1FIZmJUYXlnSkNRdklaZk4wQU82Mzl2YXJYcDJWNUIyRDA3aDhWZWM2U1NCT2NDZVYvRjRQMzkzdW9uU0pJWVdkRHA5MDg2MnVndC9JTHZDOURwOHUxQlo2eU5KNFZIRnphbEQyWXlvdVVFUlE4WnNwQzU0QW1Td3g4VEZZWWVRSUJQcCt1ZmNWbkN5RUxjdTBadEJjSC9sSmNzY2pBdmU3dlZWaitSTkp0UXdaZnJUV0hhWkY2cEluRzltUnk2ZnA0Y0hoMWtqSkZUUndxNW5FQ3VuazYyakpUTlJKZ3RKRDZUTDF0S29keXYxNm90QXJOYjgzWU9aL3hLUnloeEF4SDg5Wnhra1dIL1lNVlJrMStlTTMrL3c2RW1xZm9sL3dBNUNsRkRxTXN4OHNEM0VXRTFaUVFkT2huSndqTkFHRThTUXo0MUJLQTFGSmFkekJwNnd0M2JoN0RtQWZJZGY4ejZUUnZVTkJKUUkzWmlaQ0dqc0xQSG1WZXFHSWFkc1NaYWJKb25pRWNtY0RhV0VkejgrY2lpbDVRS3haTVYvTHJsb0JldWdudkV5RUptWlZ1blUvSkZwMGllTnFEeXBFTzlZUGZFOVJJR0xUOXFrcHBIODZzZ2d5V1kyRUplc1k4blJ3NUlGaGErVitPV3FzcUV3d05lNmNTa1ZNMUVGdGxVTGNXclArTFhQVzBQZ1lScS9XZTJyRWFCc09jT0dTVHlINVZraFlUVTdhU0NBdy9nRW5OeXdKYVREcWMxT0pYeHpBZnlZUzRZY2NVTzhRVEpBWnNGb25pYk14Y3d3dktwSVZKQ0hmU1Nvb25Vdi9KdUFBOVN4V3RKRlljWVdRRENQTExIejVPdCt3NzZaRHVUS2pVK2UyQmNrRjg2N05HNDM2T09GL01UNTRJdmxweEhqbWtQVDlLVVpJV2tvM1I2VmVYWTlGelFPT1RQekoyTExPVFJyRUh4endqSStmWHlJRU4rUGdYWnQ4dkp3cWxJaER2QzhlUjE2SlB0VEdxaWdiMlNrMFduMTJwKzBud2c2Ym9RR1FJUytVNmVLQVlFd0RpNXlnbk15ZWFISFlOYWdpaGNpdENCdFFxdWdjVEZzZmxBc1cwRlQ5WmVqWWZzbHFqQzc5bU9od1o4R2lUekdWbUxENHhMOVVPK2dza0N5T2U2aUdLdUI0aXdkcDZvY3dHV2pjQTFHNjdiY08xRzZ6cVBYMmMrV0FQeGlrVzE0OVBJMnRicGtGemhoQXEvWnp2dTdIRnBIdnAwSWwyQmppalNJUEV1aWl3QXZvd25rbHlBY2lKK00yY2JVRWVDbmRScFhWeE1YOEd2YlRhNHdtTEZxaWJMTkxMV3FDMFNTWndLdjJjN2JtNnphOUNCSmZrMmZHYVZLTkFzbWl4QVRFa1hlNkxKY3k1aEZBQmJhR1ByaFdUNlNuNU5oY0FmUzFiczZuRmx5WUpYOEVLZFVScnpDQ3I4bnUyNHVzbWlZYlZSd0x0dGRuUXFpU3dBQjhPa1N1YTFZZVVFMGtObWYyS0RJS1pLcnRXaWFLU2luZzRNdWQxQ0dFUW52UXEvWnpzdU8yTFFJQW5HT24zWTVReVRqekZqbW5VMlROaXc1UHd6am1ndnY3bHlBZ2xISkI2UmdPVFhVQXhpWXVvbjdZYVFSMDdXQTUrTVNMUitGWDdQZG56bXdMZ0dOUXVzMDhlOUxyTW5JajdGVDFnc2ttbnBXMFRZZmJuU3crVUEwdEZJWmVlN3BDMEd1SkU2Ylkxa3pCRUQ0c1IrVzBTRjM3TWR5VnZWeUM4bFNIZGRaUENlNVNjc0JmQnpLR3o0UFRsNHc5MEZoRVdGQXBjaXVCemhMenBLQmMxelpZODVySk9UaFJvSldyY0t2MmM3b3VCVlhsbEhvWTlFZmtySk5vc0huRDUvTEhXUDFoWVo2ekdGay96R2k4VnBTOFNENjdaU2pYa3VrQmRmUWZGeGxnUGcwV3E5aExnUnYyYzdibXl4YWxCVngwS2R0MXB0MHBBclZqYXlBRnl2QjhqVDE5cWljeUxzbERrU3NnWVNhNkUyL0RQbWdwQ1FyS2p0OTJhSlFtNExkYkE2TjBmVzFrNW54bVl4UHd2K0JZbDVXY2xpSU1KK3E3VkdETjBscUNTcGlVaEV3VFAvUGovdlhPR1BKaXQyZERtelpNSFBRb1dod2NlNURuczBub3hoWTJTOTJtQkM4SHRXeUVKUWEvVEg5NUF4RGZGa3pBWWJ4WHFUSVV6Qm5ubWhjSVlURlN1UG02ZVJ0YTdaS2xrQ25GT0tvbnhjVERDeVVEcE5iV2VGTE1BWFM5M1hiNCtPOEdUTWhDR1hNQkFUMDlmdzFUTGxBcmxLRlVqTHlNbDZyOTJCaktrS3YyYzc0c2dFUVZQM2hIcHBuN2J3UUxwWUJJVFViK2lVR2VJSm1RbW5MSkZZTkpINkYzNnVjZ0dCdEx3YUdtU2hRSmpNaGdxL1p6dVM5L3B2eTQ0WVQ4bXpEdHU3bmFjcEJMaVBuN1Fja0pPRmZCUUNZSGtpTHg5UWZFdW4xay81K2VZS09peCtUQytqaXUyZGtVVWgzNFBrWEdkdWVhWU5vQk5SalFKOFJoZ0ZsVUt2T2JLUm43Z2NrSlBWb2c5bWtuaTRyU21FTUFxaFd1amwvcHlmY3k0Z24vS0dIZDJ1SUNNS2lUK2NoRGt6cFFBZG0ycllMWlpXeHVWampkWXphMXE1RlBCa1Fkd0IvSnNuaDhlSnNSQ003aktLUHkvaDV5MFZlZ3FXbDA3YUszWmhzWFdtSEh5L1BWTDF3bUZEVkg2N3M2M1RXVHRiL3JvVWxFb1dKQTlxUzI5OGNUSWxYY2pQV3dwb2Z6L3NNb1Uzc2owenNrNGFRblVVbUgrUDlaczJLQ2drNzF5cnRweEdnUmNiU0VmbkdIbXdTL2dIekJYRmtnV0NBR1JIUjEyeDNlVTA5UFpnNGpaU1FWZUdLSEpFY2NHTU9nK1MzanRRQU16NktRWisxT09xaGlxeU9CRVowejJuM1EyVHZvMmlmNmtnRzdGRU8xbDFrNDhzbGlabXFXS2czeGJ0SlFQL00zNitVa0hTZVFHRlRrOHhGWVRYZmpjWjloY09HM0VLNXIrUkJtaVI2MTZzTTdybHRRNXZITGZvS2ZSWnhQZWRDMHorK0c1VzBTY25xNWxPUlZiSElDZUpnZUxCVjhoV2xmeVZCQTk2YWRmdjdmTWNaWHNGV2ZOMkRxZjI5M3RQeDhUVXRNc2F4ZUJvSW4zdEJ4M09ldFNQc3Z3VzZyUzJkamk2aFdUNXZpQUZXUlM2QkpFM1I3MENJNHNuaDhld0s3YWROdkZEZnI1U2dBT0NudjhhUHM1aXRnb202SWxxZmR3VFNmNkdndjlwOWJLS0NZQk9ZMmpOc2pwalVGNmZ0YUxlRkNHUGV4L2Z0MVNBTExKQlFSQlFQK1NUOXZkN0NpSUxzUGpqRDlKR0ZmV3N4WUlPaVlVN2Uxd1d0c2ZKVC80U05WcHZaekpIWWJGaUFvQ001Ny92NkhZZWhMOEZnNGVKWU1mSTJBL0V4VlJaam1zNVdTVHltVHZBUXNrQ3JNSDRBaksrNS9QekZnb2krNXMwejBwV216VkJGcmxMKzhhS3Evd0R0TGJJNnlzYnpRbFUxTEMwRFp3MDhyVE51VXAzaXNWY3lEbzI0azlyN1pFeitjckJad00rYmhoeVJ0Zmh1MGRHMUlKUE00S1JxanZqRytYN015Z2FHRkxwOU5md1lTTjhybnNucTVWUktJSnl5VEdmMERSWHd1WkNGcDJJd3lFaGRZdFVZa0R0aW9qUGJldHltdGtGRFRUb2R6dUhwWmNiVE5wYzZzZWdhSkFEWDRDK2M4SStyYlQ3a2IyNk5FWG1ZWGRFaEJvVTlWV1ZIS1dTUlhaemlDVHE1bEpmRnNxbmR2VzRHcCtzMGFleVVrVms0VGFlVHVZK3ZyOGNpZ1k1Y0dIYVo0Mjh2UEtZT1pPTGxoTzJWbTIxaElSa3lmYXJWTEs4VWZIMnVkZ3FlbGJsa29PR3NKd29YSGNkNlBkMmtiZWVyY1hLQlVVRGoxZ2k5ZDB1WTJqNXNxUEdhWVRCNEgvWTZXeWoyT2tIL0poQ2tJc3NWTmtjSEppWk1GTEJrck1PeDRZREc1WWZOVGxaSFJZcWhsQUd1dnVVdThVWEZXZWRVOUdRQ3hUaFg5cWlDeTUvYkM5dU82WlU4dW5hY1dsTHUrTVlQdkVvdE5xR0lSZFpBUDdORXlRSFVqa1VKaFdWZFFpVDZ0RzhXMTRpb3RpWFljaXV3S2Q2cjkzZTZBZ2xDcHBMMFpBUEpFRlg0UXRRR0h5Y2tJd3dsSUJ2YUxIMmFheVJ0L0hsQWo4dUgzaXlLTXpLWURheUFEaXhPby93OFd6UFEvcWFQUFRuWUtPZ2VzeWdvM3diRWNyR0Z1dVJNWS93SC95NGZGQTA1QU8rS1hhR3hadnhCU2dMTkprUEJxeHR0dm9veUszeFRwYm56QWFlck8xZHpneG1JZ3NxaXV2MVF3TSs2UXRIOUFpcDQvWDh2QXh3V29lY3NYVTQ5Y2lZSjlrNm9YcFkvK29taTVaVXVxakVwcUpoSmt4OGdpdXE4QVhvbzFWNmNUNUhHQzQ1YXZzOWRYcVA4RCtKVlBxZitmRnk4R1Rsa2l6OEFReFVJek9nMGcrLzA3aE9lekN4SUpmcUk0U3hoeElMS2Q1Y0NUK0syU2NtVWZEU043Yllqb0NvWXBNRGlvWkNRTDdJMS9kcHZmK0hQNklEdlpmWFNDQ1AvMjY3dlo4V3UyYkVGYnVmM3Y0Ti9IZ0FYMnUwRzBKNlZCdmpGR1JsMzZoQXhwOVhBZERPVi9wUm9OMUxObVkrNmlqazgrR3JXUXBmN2thczkxR3Z5L3BDM2RURnc0UkVqVWo0enZDOU5udWp2Z2pWazBQUlVBdyswd1czNE1OR0xBWkhzUHdyVjRRUitNTVhUYVArQnZLV2Y1MUxaUWFkc1MySEIzdytTRXV0ZHZZYSthT0Qvb0FqSkM0a29yTGY0U0J4WnduRWJ5T1NWdTNxZGRtZW13eUtHYkF1WVBIK01lbFRPdlVLTmVhNW9HZ29GdmdDbEdKR3kyTjc5ZUtFbEUwdEZNQnR5U3NOSm9Fa3JRUFg0QVpmWE9XUEpWVVVJZnh0SkpIK1JhY3hmSHlmMXBQZ2llRng1SXd2U0dOMzRzTUd1QTdXWUVJMTZoWlVYYWJ3Vys5M09GenNUMGZKZ2ZYZzR2ajVRd2JkOFpGQUt6bXpzN29ITTBIUlVBcndCU2daM1ZZNm1qMndFYkJqY3RWa1FDM0ZLdzNtaklFZWRjZnVNdnZqMTVDaDNrWVM0K1hKa1lOc1ZickhIRGxERVlVS1kwNk1CYnMyVVdRQmxlZWZnVGdXejhaTGdwZGUyZUhVMmtQaWdtUmFtbk9XUXRFd0Y1RFJYdlBoeE9rVHdGdWRXUGowemZCNDhZaFJlcWZObmpIdW41eHlUU1BwVThMSHZTNEpWK3E0S2M3MUY0Nm1DSnA0U1FEK1FNZjZacXRaYTR1TXByaWMxRnlnYUNnSHhyM3h4UjkwT0tPMDhEanorckVoQm42ekFCSndtMGxheUs1a3lkclI3WkplYTV5NlR1Y0pZb0FyZ0R1KyszZVBKRmZVbTZJZGhsQW52Nlp5UU5GUURzQVp4TjlUSUlkdkhnSnhITmU0TFdISUpXMVFVUndLNjVvdEdhSzJkamd5ZjNtTi93TmpETWlFc1BuZzg2Mm9OMG90dWtDdG1FeWZUL2F3cENCN05pZ2F5Z2tRUm1ISlpYUUNYZDloREEvZ1d4amt4SkRGZ0NUSWdjZ0FLU0NFSXdoc0VSbkEvckZQMm5pZ0g0cUV5VW0xa2plL25JejNaWFF5bHVWcUxCOFVEV2NEK0F4TkVOTS9vbFB3R3R6dzRoTVBjaGZzbTFydG1iL3hoNnpHQzZTRzdKdHNsQ1pDZlJHZWdGejhmU3hVczZBdnFvbkpUZGh1OE1admMwZkVhK2hrdkpwZXlqL3l6endiVURTY0MrQmJHQ0x1T3ZMQ1ZkWkFRa1VIZ3dybDB5TXVRWFhHRVZPaExIR0FNRXl1aG83Y0E3Z2I2QWQ0SXFKS0VGTlg4SmNKNXdLS2hpK1JILzhQTytMM3lpWlVLUVlBQUFBQVNVVk9SSzVDWUlJPSIvPjx0ZXh0IHg9Ijg1Mi42NDYiIHk9IjY5NC40NDQiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9Ijc3LjY0MyIgZm9udC1zdHlsZT0iaXRhbGljIj5bQ3JlZGVudGlhbHNdPC90ZXh0PjwvZz48IS0tZW50aXR5IGFwcENvbmZpZy0tPjxnIGNsYXNzPSJlbnRpdHkiIGRhdGEtcXVhbGlmaWVkLW5hbWU9IlJlc291cmNlIEdyb3VwLmFwcENvbmZpZyIgaWQ9ImVudDAwMDYiIGRhdGEtc291cmNlLWxpbmU9IjE5Ij48cmVjdCB4PSI1NTAuODEiIHk9IjUwMy4zMjciIHdpZHRoPSIxNDEuNTA4IiBoZWlnaHQ9IjE0MS45NDciIGZpbGw9IiNGRkYiIHN0eWxlPSJzdHJva2U6IzNDN0ZDMDtzdHJva2Utd2lkdGg6MC41OyIgcng9IjIuNSIgcnk9IjIuNSIvPjx0ZXh0IHg9IjU2MS44MSIgeT0iNTI0LjQ2NiIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMiIgdGV4dExlbmd0aD0iMTE5LjUwOCIgZm9udC1zdHlsZT0iaXRhbGljIj7Cq0FwcENvbmZpZ3VyYXRpb27CuzwvdGV4dD48dGV4dCB4PSI1NzIuMTIzIiB5PSI1NDIuMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiB0ZXh0TGVuZ3RoPSIzNS4yODkiIGZvbnQtd2VpZ2h0PSI3MDAiPkFwcDwvdGV4dD48dGV4dCB4PSI2MDcuNDEyIiB5PSI1NDIuMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIj7CoDwvdGV4dD48dGV4dCB4PSI2MTIuOTgyIiB5PSI1NDIuMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiB0ZXh0TGVuZ3RoPSI1OC4wMjMiIGZvbnQtd2VpZ2h0PSI3MDAiPkNvbmZpZzwvdGV4dD48aW1hZ2Ugd2lkdGg9Ijc1IiBoZWlnaHQ9Ijc1IiB4PSI1ODMuODcyIiB5PSI1NDUuOTIxIiB4bGluazpocmVmPSJkYXRhOmltYWdlL3BuZztiYXNlNjQsaVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQUVzQUFBQkxDQVlBQUFBNFRucnFBQUFPOFVsRVFWUjRYdTJjZVd3YzlSWEhLYlFGUkZzb2FpdENFRkNwRjZoRUJRRUZwTkJVVUZXOUJIS3BLS0FnUUdscENrbWhnYlRRbGhRRUFhVVZiU1ZDN2tDY0VDZkVqcDNFam1NU3g4RTRsNTA0OFpGZDM3dTIxM3ZmdTNQczdCeDl6OG1FOGZ2TjdNNnUxMDZROHNkSGp0Lys1bmpmZmIvM2UrODM0MXlrYWRwRkY3QUhZN2lBTll6aFBPV1NwS2c4bWhDVnVUcVNvbDV2TW01S1lRem5BMEpXK2FFN21xbHVIVWsxTlEwa2tBTjcrK0w5d0lETy92N0VFZnpzK0dpNnlSVVY2K0tDL0RROVQ2bGhET2VTR0M4LzJPWGpxejRlVExUVTk4VEU3WjBSN2NPVDRaelVkRVcxZW1jc0MrTDFIaHROVjQwbHBOZm9lVXNGWXpnWFpHVDFabGRFWE5ROG1EaTZzenZLQ0dJWEZIZGZYOXpiTVpaZUdlYXlMOVByVEJiR01OMmtSTG1zSjhDWE4vVEUzTlQ1WWdIUmxFT3VsRzhza1hsZFZiVXYwR3NXQzJPWURKQjBiNHp5OHNPK3BMVFlFODhzSG9sbEZnZFMwcUs0S0Q4aFp0VlpkSHdxb3p6UTVlTmE2aHpSREhXNFVDcmF3MXI1c2RCWk5oMFBhWFhPbU9UMDgzL0xLdXFYNmJXTGdURVVBeVRYWDRBdzg1d0I0ZTBqd3lrbkpGNE5rckMycHllbVFmN0p0bzJtaDd2OWZQbFFSSndYU21mbkthcDJCVXk5YjUzeTg0MjFreFJxYzN0STJ3aml2TmNhMUZZZERqRGdaNE5oNFVWSlZxK205MTBvaktFUU9FbjVNVVRSZzdCcWRlK3drV3UyQVFjR0U1bzdLdjZ1THlUOGI3Y3o1cU5qN0ZJQkluMXczRm9rSTl1N0locEUrdk1RWVYrblBoUUNZN0RKeFVsUnZoZWl4UWtpWmFralUwM0ZpWkMyN21oK2tZenM2WWxyTVQ0N3g4UVgyekNHZkdEQ1RHZVVPMkM2Q1ZVMmx2WlNzNlc5Y0tGMEJzTENVeEJkVjFLZjdNSVljcUZxMnVkNVNibjFzRHVsYmV0Z0hTbUVMU2VzMlhxQ0hhOGZzL1pJY1VJaDFkMFJ6WnVVSGdVL2lsb2hHVU11SUNuZjVBZ0lYdXBFSVd3OXc5b2MwYkVlOHBBK0R0R1BXM09FSFZzb25WNiszR3hsdGdOanlBV3NlcmRVZG9SVktvQmR4aDJHRzE1dDRnUUZ4eUJyUVNEOU9EcW1HUGIxeDJWWWtaK2l2dG1CTVZnQmVlcHVXUFVDVkFBN1lFTEdxQ2cyTW9vOXpneXN4NkJibUVmOXN3TmpzQUsralRuVlJTUjB2TGsxT2FiY2RMTUdjbDVQVUpnNnNXQUZtZW1PWnBaUUlmS0JCV091M0hTdU9ESEdyWVQ4K3ozcVp6NFlneGxRVTkwSEhmMEFGU01YSDV5blFpSEhSN210UWxhOWcvcVpEOFpnQmhSelpTMURTVVlRSzFDb1ltdWg2ZURBUUdJd3dtWG5Vai96d1JqTUtGUXNiR1RwRFo1UE5QWW5PTWpCZjZKKzVvTXhtQkhtc21YNyt4T01LRmFjNzJJMTlNWTVmMUlxclZoWWhBYlQwdHdPTC9mdXpsUDVHMlVFa3pvV2xmUUd6eWZ3SGx0Y3lVcG82T2VsUkdVMjlkc0t4cUNUeXNqZmgxNXFWZE5BSWtVRnljV0d0dk5iS0NOWTdNTEN0UmZ5MTEzVWZ6TVlBeUprbGU5Mityak5kclpkS0o4bHNSQ2NCZnY2NHMyUWwzOUFkYUF3QnBoNk4vUUdoYXA2WjR3UndnNmZOYkVRWExrYmVtSnRNQ1cvUS9YSUtWWmZTS2phWGFSUXVGdncvalNLdFJyYUlLemwwRm1kWW1zN1BCWUN4SkZyZzNEQ0w2cXFYWHJRbGF5aEl0aGxPb1ZDY0orOTFoSEZhWFNXV2xpSTdEVHFaa0I5S0xtaVloc1Z5VlFzaUtvOXV4MHhtWXBnbCtrV3E5NFoxOXBHMHhQNEJPcEJYTzNvV0x0c2JnK1BVcEZNeFdvZVREWVZzNm1IKytDNE0xRHNOMW9NK0NBQ2F6OVl6U1p3ZURpbDdYTEVtUEYyZ1JveGxoRGtKM0dqMDFLc2RFYjVKWVN4Z3dxUkR4UUtjd2U5NkZTRER5R2dWbUxFd3VpQ2RvWVpieGZ3Uis3MmNVT0txbDFtS1pZM0tXM2MweE5MVURGeWdjdHVxYU1KejFsK0xQOTBoaXBjYXgyWktKUU81TjN4SnovMEdEdmc5ZHM5YVI3RXV0eFNMQ2dYV2lGWktsUVFLNlpDS0V6WTlUMHhEWjg3NG9xTVU0Mk9RY29oTitJWUtwTE9FWnlLa09qcGNUb1ZzR3JqK1hGQndBZzFmb2FyNlI1bm5KY1YxVnFzVTM2K0F5OUFSVEVESzk5U0M0WGk0L1hSVVhUNEtQekVuR1FVcmJ3dHBGVjJSc1lmNE9yanpHaURpTVBHSHg5L29SajZUaXZlZHgza001eW1lSDRjaTFONWU5ZW53dUxZcXM1SWFjVENXcXJVaFNjS2hXL0Q0RXBHSGNlcE5sNFNnSk1vRW81cEhiRVdpb0ppb09CNFBEN2dQV3B5TEk2cDZqd3RtQzJ4QnNMaTRUb2JaUU0ranFMT1RoWThKMzdiMUlucEFnWEVISWozZ3NYcHZyNEVMNnM1eEFxa3M4c2JldUlSS2c2Tktwd0sxTm5KZ25YUi9uTW8xdW5JT3AyN2JDVjRUbEorQk9IZVNRVXlndThYVUVkTEJiNlhwZWVSNlVTZjV2b2UzUHR0SVg0d0lsWkFOL05GUzdHUVErNWtVNjVIOGxNcEZqNEZhaklwTXFlYThhZzZzeUxpb2dVcnBZZUtaQ3FXT3lxdWcxb3JUa1dhRHJHUWFranloU1R2eVlLckprYlZ4ak4xSFV4QmZOMnluWXBrS2haeXhKMnFxclJvZWFaYUxGemFtMDFXeEh5TTk0VVdCV291VHBjTm45Wlo0S01uS2NxUFVrMHN4UnFDK2RyUUV6TjlqV2dxeGNJcGdOZXdLeFlLaFBrR3dYTGl3Q0NXRktkL3R5c2NWdnJWSUJaZUc2SktnU2hycFhya0ZBc1RXN2VmWDcvRHBPYWFTckV3d2VMeWpTSlFwOHo0R0dvbUxEbjAxd0t3UDhXZjJLdnU2STR3NDYzQVZSZzdCMWhnbWhWRnZaVHFrVk1zSkt1b1Z6a0MvSEw2a0dJcXhmcXdJMkk3cW5aRGdZbmlXcjBEZ1MrVGJBUUI2SEZtWUhRZEhrNDVRdW5zRTFRSENtUFF5V1NWR1QwQi9qL0dxaDV6eXVZaUcxUXpNTEhXUU1uUUNLdmdJWGZLVm5LdmMwUzFEU0JVdnAwT0ZCSWpMTitVUFBPNTBCY1VXbElaNVpkVUIxdGlJVUpXdVg0b0l2d0xWd3hkc0ZKVThEV1FKeHI3b1hXQlBJTXZ4bG50SGxDd1hjRStNWjlRT2xoZ1luK1pUekFFQzFHSG4zZjJoWVJHYjFLcVNJcktiMVZTbURJQ1VTRENiZ3lscGJMZW9QQVAzTUl0aFZqTklKSWRCeWlZRmdwNUxRQVRONjUyaFJTN3gwZlRhb2VYNDV3Qm9UTXV5STlCSmY4VjIyTHBpRmwxeG1nc002OC9KQ3lDM0JLRmpsNzk0SGg0L0pzdWhFSnYzZ2crY2RyY2J2K2FtNEJkOEFXYk5jOTJDS2F6LzRTRyttc0ZpNldENzdESEJIaysvbUZBWDVCZkRLdVM3NU9oUktyVHk2MkRITGZZeUNrZnYremtHTGZKYUhORnhjVVE4bkY2WTNhQU51U04zdURFYStSak10ZWJ0RmhHSU4vTWh5U043N0tuM05ITWM3S2luVDF4SUNYTmdoeXpESnJ6VGE2SStLVHhPQWh6RDcweE8wQWUrVG5OSTNtNFdNaXF0OEgxQXZSY2RpaXBXRXYyakhqK1VEbW9MYWdld3AyRGcxRFEvaFVxNEVkR1lwbkhvWFhaOE1JdXQvWmNqUXVtUkxEVGVOeGdXTnpaN3VFNGVuUDU4TVF6VzZDc3VZN2VoeFg0VnJJL0thMDRNY2FsNmJuc1VGS3hGdGNPZTM2L2JWQkRGbGE3dExWSEE2bjZubGdJZnFaUktQMnpWejhhblNCV1dsSitBcEc0ZGlBc1ZwM3k4eTZZSmxsNm8yWkEwbzFBN3J5WjNvY1ZFSVdYOVlhRWtlT2V0RUxQWlFhTzYvUnhVYnd2SkNIS0R4ZVY0QW1mdzFjblFTeWZMb2dWR0hsdjdSK2JJSmFSQ0M4dmdvaXM3L2J4UXhCdGVVWERONDNoMjc2S25vZUNENHdUZ3Z4VEVFQ2s1NkJBWGczQ2F0L1VIeEwzK3BQWmxmUmNPb3pCRExpNUsxT2lQQ3NFZVNqQ1pXZEJncjhWaXJnMy83elRuYVRpVUJaQXhMMTd5TjhIMC9NbWVsNGpVVjVlQ0pFelJoMHhBd1dUWlBVNmpCeDZIcHg2V1ZtZEFkZTdueDVuQmtRMTU0NkthK2w1ekdBTVpvQkFaYmlQL1diam1QYnVRZi80SHZ4ZmFvZkhvNGFLWThiek8xejRSMDYrR0orZHFaT1JsUm5HRFRZb2dPK0VsYXVTT21PRk81YlptczRvOTBHRXo0QXY4MnBaMWI2Sy8rWWw1ZmF4aExTQ2pyY0NpdEJQT0VnTDFHY3pHSU1aTUUzSy90M2taVVRRZVhvYlRyY2hiWDdWa1BySHF2R2YydE41aElUMnhnK08zVzI4RHBZajFKbDhRTTZMZXhKU0RWVGRHNXhCSVV3L3o4ZHdWRnhOL2JXQ01aalI3ZVBLakFtYkF0TlJXM25JRHdJa295ZTlYQkxmNjNwOXI0Y1paK1M5MW9BYVRFbHpqTmNwUml5c3VBRVpjcE9NLzZhZjU2TEx6eWRoeFZ0Ry9iV0NNWmdCWVhvVFJNTDdLQXAxR20xUXh6d0VVd0ttbGpvRGNzbTFVTnZNUERLY2V2SGwraEZtdkE3dU1zRDBubU84VGpGaVRRWVVkemdtcnFMK1dzRVl6TURjQW4zU3p4cDY0eUhxTk83WlIwMytqaS9NWlIrRHoySjAvQ0lRRjN1OFFGTDZOZVNhTCtuam9ZaDlEa1QzVW9lbUdwakdIcmpYVitqOW04RVlySUFFZkJkRUMxTXF0TGlURVlpOGUraDRFT0liTVA0bDQxak1hMXRPaHFEWWszNmpxT29WbjU1YnZSM3lZZzExWkRxQTFWQ0doV1VMdlg4ekdJTVZFRDJ6dDNWRVJDcFduVE1tUWoxekx4MlB3STJVR2NkaTRzZS9teGF6eWt6ak9KaCtTeUNxZ3RTUjZRSnFyRU84eVJkT1lReG1RTXR3MjRjZDRkcS9tK1NnWlUxajJJYk1vY2RBWFRhN29TZTJkMkprRFdyL2JmWmhHL0VJVk1abnB5RFVPV3VvQTlNSkZLVVJhTkdXVXg4b2pJRUNVWFBuM3Q1NHRWbHlSeFpzZDJHMFZPRFVnanJuR2tqdzN4eExaSjZBL0ZhL3RKRmRFYkV0cWpnUmJvRWM5UkJNeGZFL3dZVWljMEczbngrZ1RpQVFuUUpNMFYySUk4QUhjTnJRTVRsUXNiU0FYclRCR2VBOVZoMENqT21DeGVZUjZqdUZNVkJRckRwSHJKbzZiUVI2UDl6emJxdDF4TjdlZFNxNlluMXIwR0VXaFViQldrZlNId3VTY2d0ZUF3VCt0ajhsdlhiS0lCaDgyN0hCaUZqclRXUmVoU2t5RzRGVXNBaCtYOXJwNVlhcHcwYXd4d05oZlJEeGI0RUlMM05RdkVJaHZOQ2JrTjZBWHZFa05OYVNRYWdPdTMvSHd4ak1jRVhFT2FzUEJ6cVhIL1NuMzJueGMwdjNlZklXblVad0xMWTlDUDcrTFB4c0cwMVg0ZnYyK2pYT0NQWXE1SS9EL1NHaEFhSnpLWHcrb1dqVkdZVXBnMU9IaXFTRCtjL3F2MWVCNW5ndWlQZ09YS2NOZ1hHUDB6RldNQVl6c0kzQS8vVURuRm5sVFdiV3dGU29lV24zaUd5bjNjR0svcFU5by9HTngwSlZ5SXBEL3FyeXRsQVZmTk0zME92Z2Y0eVJ5aWkvd3RXUmZtYUV6NnIzWUZLbUlobWl4Ykp4MTBsbDVES0UyblBCR093QTRsMis3bWlRZjJiN0VDTU9CWHBJQmZMWE1YcU95WUpiS0ZRa0JCODh3R2QxZEh3cFlBeDJRTEZnV2s0UWEyR05TOU0zKzdCRTBPM1E5b2lqOGN4SDlCeVRCWGNLY01lQWlnVlI1Y3ozU0t0WUdJTWRVS3hsVFY1ZUYyVmg5WkMyL21nZ3NxOHY3dGw2TWh4YzBqQWk2RGx0cXNTQ1F2ait2cERRYkJRSzJ4ZDhsRVhIbGdyR1lBZEl4cGZEQ2hoNWR2djRMb05hNTRpS2tJTWV3TSt3dUd2b2lkZThzTk90emdmQjNtejBjSjVFWmhjOVJ5bUF2bTQ1VGp1ZExoOFg4U2FsVFhSY3FXQU1ka0hCWUlrZWd5WGFEMDMwSEZYVExrRTcvTHc0d21lZmFScElSaXM3SS94SVBGT0p1NWIwK0ZLQS85VUx2cUZueE93bHRGTEJHQW9oSzZ2WDRFcEpieEFmbCtGelJvaXlhM0Zqamg3M1dZVXhYTUFheG5BQmF4akRCYXo1UDJuVzJicjFXNUh0QUFBQUFFbEZUa1N1UW1DQyIvPjx0ZXh0IHg9IjU5Mi4yNzMiIHk9IjYzMi40NDQiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjU4LjU4MiIgZm9udC1zdHlsZT0iaXRhbGljIj5bU2V0dGluZ3NdPC90ZXh0PjwvZz48IS0tZW50aXR5IGFwcEluc2lnaHRzLS0+PGcgY2xhc3M9ImVudGl0eSIgZGF0YS1xdWFsaWZpZWQtbmFtZT0iUmVzb3VyY2UgR3JvdXAuYXBwSW5zaWdodHMiIGlkPSJlbnQwMDA3IiBkYXRhLXNvdXJjZS1saW5lPSIyMCI+PHJlY3QgeD0iNTI5LjAzIiB5PSIzMjYuMzI3IiB3aWR0aD0iMTg1LjA3MiIgaGVpZ2h0PSIxNDEuOTQ3IiBmaWxsPSIjRkZGIiBzdHlsZT0ic3Ryb2tlOiMzQzdGQzA7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSI1NDAuMDMiIHk9IjM0Ny40NjYiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjE2My4wNzIiIGZvbnQtc3R5bGU9Iml0YWxpYyI+wqtBenVyZUFwcGxpY2F0aW9uSW5zaWdodHPCuzwvdGV4dD48dGV4dCB4PSI1NjQuOTUzIiB5PSIzNjUuMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiB0ZXh0TGVuZ3RoPSIzNS4yODkiIGZvbnQtd2VpZ2h0PSI3MDAiPkFwcDwvdGV4dD48dGV4dCB4PSI2MDAuMjQyIiB5PSIzNjUuMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIj7CoDwvdGV4dD48dGV4dCB4PSI2MDUuODEyIiB5PSIzNjUuMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiB0ZXh0TGVuZ3RoPSI3Mi4zNjciIGZvbnQtd2VpZ2h0PSI3MDAiPkluc2lnaHRzPC90ZXh0PjxpbWFnZSB3aWR0aD0iNzUiIGhlaWdodD0iNzUiIHg9IjU4My44NzQiIHk9IjM2OC45MjEiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBRXNBQUFCTENBWUFBQUE0VG5ycUFBQVBia2xFUVZSNFh1MmNhV3hjMVJYSEtWMmdxcXBLclFScTNVMXQrVkNwcEdxcFdFcWxSbXFSS2lFK2dBU2hCUXFGUU1nR0JFSVNBaUVMa0JCaUFqUUJRdmFGN0hGc3g0bVgySW1YSkU1c3gzdThiK1B4ekhqMmZkOWV6LzlOYnZ4eTcwdzhNNTZaaUlZUFB6azY3ODE3NS83bjNIUFBYU1kzU1pKMDA5Y2toMkQ0bXNRSWhseWlzdnEzVmZUYTIvYzBtOXEzTlJyYlA2ald0cjkyVEhXRnBhVnEyUTRPdFZ2YTIzU2VkbDhvY2dmL25Gd2hHTEpGTkNyZDZ2QkZIbTdXdUNzUHRWbXExNXpTVmk4NlBtcWJVekFzelR3NEtEMTdZRkI2Y3UrQTlPaXV2aXZNMk4wdjI4RUxoNGVrVjR0VjB0dmw2c2F0RGNicW1rRkg5Wmc5c0RRUWp2NkdmMWUyRUF6WndCT0kvT0wwZ0tQNHZTcE4yK0lTVldRV05menhQZjFYQ1pNSy95SHhGaFNOU0N2SzFhTUhXazFWRktGUDhlL01Cb0loazNpQ2tUKzI2enhiTmwvUUY3eGFQQ0kwT2hOQWVIVGZrMzIyTFVaWGNEYnZReVlSREpsQ2JRdmNmYkROWExqaTVKalF2UmhQN3UyWC9yMXZJQ1ZtN0JhZjgwK0swcGNwMHI0NGIraTdNT3FheGZ1U0tRVERWUEdHSW5kMUdieHpOdFhyajZDNzhBMTdpaHJNbUhrb2xvdFM0ZW45RTUvbnUvSVRYL1pMeThyVVF5VFlxdzUvK0ZIZXQ2a2lHS1lDalZSL2FORzR0NjJ0MWxxZjJEdlJrTWQySTRvR1pQakdUNFZuOXNjR0JVUVdlOWUvU0RBYU9BSW5lbXp0VG4vNElmTHJtN3lmNlNJWTBzVWZpdDdacXZYc1dIdGFhM3ZpY3JkRGw0SHptUmFKNXhtS1lMeUhSUnBHVVJwbFF4Vjl0aDRTN0I4MEV0L0MrNXNPZ2lGZEx1bTlHOWFjMHRoWlJFRW9kQlcrWWRua1dTcEJtR0NJNXVjUEQwV3JCdXo5L2xEa2R0N2ZkQkFNNldEemhuNjF2bFpYaFp6QkhFMVdxQmVQREV1ekM1S0QvMnc4bmlQQlppaTZKUVFjTVBrZUNFV2l0L0orcDRwZ1NKVkFPSExiemlaai9jeURRMWVFd3FqRk4rSnFnU1pBb2JuNCtHaFN6Q21JZlFibEF2OU1RVERGcVBsMitaaEVCZXpmSTlIb2xMcWpZRWlGcUNSOTYreUlzK09sd2xnTjlSang5Q1JDb2FHdmw0aENwTUpjaXJMSkJKdDVhRWoyaHdtMnI4VWttVDJodjVIZjMrRGJrU3lDSVJVY3Z2Q01oY2RVWTRnbU9JUmhuWGRhRUNwTzQxTmwwV1htMFpmRXYrTXF3UTVQQ0ViNVM2S3AxdHBnT1BwTHZoM0pJaGhTNFVpN3BZdENQaHdUYWxCMmlIY1l6S2E4dE9TRVd0cHdSazkveGNhbkM0MjgwanVWR2dtUnpiL3ppbUFVWWVpU1lQTjVnMHZuQ0tLY0VOcVNESUloRldoU3E4R1FqWWg2L3BEb0tDYkpOQitVNm9hYy9YcG5jSnJGRTVvMlRuOHA0UzdaMldUU0k1ZndBa3pHcXNveHFhTFByaHEyK0dlYTNLRnBOTVdaMW1mMHZWblFZZEcrVWFvV2ZBRElZWTlUT1RIMzZMRFVvZk04d3JjaldRUkRNa1NvYnFIaXM1d2l5WThhSjU1UXI5RDBnNzdKZnFybTgvWE8wRXFuUC9JUXcrb05QemRrOXI5WDJtTlRyem1sRlFSNXMwd3RyVHdwQ3JtK1JpYzFqTHAyYVIzQmQyeSs4Rk9LNXoxUDA2djNNRmxIcFBHK0FKUVVZSCtyK1JLSi9DRGZwbVFRRE1sQXcvQjNWMWRwdklncWZHdThZNEFtdDQ0Mm5hZVVHdktDM2hWNm8xSHRicWtaZExRMGpibGJqTzdRQXRpcGdlc090SnFISVJnYXlVQTA4alpBejlodGNJVmV4bWRiTlo2Q2lsNTd5L0Z1VzB1RDJuMmFJdlpqRW5GUlpiK2pHRjhVN3crcndWNDdwa0x1bXNtM0tSa0V3MlJRVkgyZm5GcEo4NzVnb3U2M3NFUWxIVzYzZEZMRFZvN2FBc3RLdXF3dG41d1psOVpWYTZYLzBsOFNyWUVhdHhpTkprRXJkalFaWGU5VC9ra0VjdFBXQm9NRU1XU2h0SjRqMnhzTVppcUNwWGRKeEUvcXhyMFVWV1c0Tm1EeTUzOTJUaS80QkRCWFJmMTNyTXRhNUFsRy9zeTNiVElFdzJRRUk5RWZrN042aXFvb2tpZnZFRmhOalRpbmNwMkI4MVRaNTZOQnl1NjA4ZXk0TkdMeHI4UjFFblExNVpzdVhpQWxGS1ZTOFNXclJIbFBGdXRvaDZWdkZkZE5kMTgwOVZFRXI5UFlnL2tsM1ZiQkp3WjZBOTFycDY0NGwyL2JaQWlHeWFESmNoNGNUNVNya05RUlBTVG9HWk1uOUhyam1MdFEyYWpsRldOeUZ4czB4OFFDUlplc1ozaUJyaFpMRjIxUXUvVFVmUmZpZmdpemlyNkFwWlRRMlhOM05CcE5hbnZnTUFtMnVtN1lhWnFmWUlTRVdCdm95MUpaL1l2NXRrMkdZSmdNbHorY3Q2NWFKODA2SWpvQ3NLNzBlYjArSnBZN3RKVHlTU1VhczRUQTZNY0VTRVdzZFRXNlNML0oxMkwyaE9WY0I3RmdYM1Z5UWpDRldPK2VVemwxS0h4NTN3QktuSGRvUkczWGViSXZGczBEOCtZZGpUOVB3L3h0QVUxZlBxclZVVGQweXQydzIrRExSODU1ZytvcnBRQ1pFQ3NtMkpnOGNsS09ITlk1ZzUvU3RDYi9PSFhEUlNRV1NnWGVSN0NnZUVTcUdYSmtYeXlxbGZKUUZjY3JRREVLNFZ0ZVZxNldEclZiT2lnZnJjQXdUOGwzaUxxbWMxdWo4UW9xYTJBNUUrdlVnS05TZVkxblI1UEpQbUwxbjdCNHdpL2gvdUl1VzZ2eU9nbWxROUxIOVI2RGJ5Y1NQUHhBbFI5dldvUWxvNkpPUzI3RXdoQjhMYkZZRW04ZWMvY1lxQ3ZTbk94MWxTMXdVZ255R1JPTEl1SUwvanBIbWNVYm5zM3UxemlDZTVYWDZmTWJTS2o1VklwOFZ0NW5IMkUrSkJJTEUzM0t1OWtYQzkyUWYzazhzWlpSZnRwOHdTQmRISE1QWVJSanlUblQwQmZ4TWtYd0lrclltNm5HVWlIeFR5WVdLTysxWFQreDRCUzJwNWlqREJTVGhSMFdGSUkyRW13dWd5SmxscUxCczVYWDRrR1JNOWQ2K1RNVWxYT1luYVk2Snl2NzdOSlcrbUtVUWpHeFhvemo2M1VYQzRtZEZ3cGc2cksyT2piODU5Zm9nZ3hLOEN1WVdDVmR0aHJsTlo3MXRicGcwNWdyU09MSWRkYmVGbk1YdTBZamM0U2VMYzhaTWVMeTc1Y0Zpek55WDFleEVpM2l2VWxET3orNnBUb2FRb3hHdFV0aVlpbEhRMGE4dVNUanVvbmxwRHBySmRVM2ZKMlZxbGcwemFsbkNacEdNdzEvUFo1WXcxWi9MZTdmM21pMDh2ZWtJdFppS21QT2pUaXpMNVluRU1takFsQndJRld4V3JTZXJpR0wveUk0MkdZMjhkZmppVFZnOXJmamZwUUwvRDJwaVBVQjNkODVub09pMUIrSzVwMGVzQXNiQ0Y4bHNiYlJwRnh0eThGMEp4S1Z2cWR6Qk9kUWRSeFFPb0JxR2NzZnZLT0p4S3BYdVd5ZDQxNFRvSVR0NDY5ZkxaYVdLbTRuVFZHOEZ0eS81WUloeU4rVGlsaGxQYlpkM21EazkzemJKa013SkFQV3N6YlY2NzM4ZEVKWlowMG1WczJnQXpXWXpKNW1rM0NkRjZ1Q3lvTkdkZXorTDg0YnJyciticFZHZXF0c1lsS3RCRXZPeWxvTGEyVmRlbTl1MXJNQVZrcnBoY1hVOVh5VGlZVTVJYjUxWG9CTWlyV2lJbjVVeFN0S1QzVGJDaDIrOE4xOG01SkJNQ1RKelo1ZzVDOGYxdXFNeXVpS0p4WVREQk5lWlFOUFV1TnBSSkxaMldRVUJPTEZPdFpsbGM0TXgrN0hxa1k2WWkybk9XdXYwWnZiTlhoR2s5cTFtWXBPT3lzanNJYVVhRStRWDNWQTR5djc3VEpZQmVVRlVvS2k5bUNyV1k0dTNQL3B1UW14MEswd3RlTGZCNkV3NkRDaHNNNVcxbXVycy92QzkvTHRTQmJCa0NxN21venR5alZ2ckdmeGpnTnNnU0czc0VZV2Rscmd2QXpta0x4QThjUXE3WW5kdi9HeVdGaVJ4UW9IL3k3QXIyZEJWSnBvVCtmOVR3WEJrQ3BEWnYrUnRhZTFMbFpLeEtKTEhCVVpUTEF2S1U4ZGFqUExLQ01sSGhCcm4rSityT2ZMUWlWSTZvaXExeFJSaFNSUFhialBIWWo4aWZjL0ZRUkRPbERYT0V6ZDBjdnlBNXpqRzNDMVlGcXNnMHNIS0ZyQXBHSVJteWlwNzJ1SjNmOVIzWGpDMFE4c1BEWWhGTXFHN1EyR2NacW0vWmIzTzFVRVE3cnNiVFlkSVpHaUxMcnc3ZktOVUxMaHJGNGUxUUFhendzVVR5eDJmNktFemtDOUJ6L3c1UzB0VlVkbzlNdmovVTBId1pBdVdrY3dmOFBaY1RQN1JpRVkzNGhjaUFXaFdJUlRVbzkwR2J4dFZCZmV4dnViRG9JaFhjTFI2QS9xUjV4N1VDS3diM1YrNGJEUUdBYjIvRkFTQURRZW95WCtNb0dRMjJBRFM0bllNaytNUkYwUW94K3IxdWZSdS9lMW1IeitVT1RuNU4vTnZML3BJQmltQWswaGZucTB3N0tkSGRSQVNZR1RMbnlqQUVZbkpndzc4NEFSRTdzMUFPY1cyTDFZcDFxamlEU3NrZkhQaXdrVkcyUlErNjJ2SFRkUTkvdGRORU5DQWNFd1ZYVE80SU03bW95MXJEc2l3dVlkRlFXRElHZzBRUFR3MTNuWXZZQS9pWU9GUnlZVVdGbzZhdW96K3BieHZrMFZ3VEJWd3BIb0Q2bFlmWjkxeDRrSVM5d2xwd0sydFpRcklEZzZVSFRKMmhzS1IzL0crelpWQkVNbW9DcDVXa21YZGRkOHhWUW9sc05HWWlObGdpby9WUkJSU3FIdzd3OXJ0TDBHVnpEdEtjMjFFQXlaWXREa20va0pqWEtzSVVvZ0dQSWFRRTNFaTVBSXpBN1k1d0MvcGtiZFQ2cnNzMWZ6dm1RS3daQXBxRnErKy9TQW94RDVpaGRMQ1hhM0lVSXk4RXZaU2lEY3hyUGpmU1ozOEt2emN4UWx3eGIvSS9rMDFQTU55d2FJcW9wZVd3SHZReVlSREptRW91dmVtaUZuTFdiOGZPTXlDV3Fyeit2MUkrUE80Q0xlaDB3aUdES055dXFmampvS0orOEEzOUNwZ0I5SzRabkllMlU5dGkzOHV6T05ZTWcwRmsvb1BwbzNHcFMvZU1EUnluaG5KWklGSXVFWjdCY2RWS2c2Qjh5K2RmeTdNNDFneURRMEw3dTlTKzlkd3Y5T0VFY1djWEtRaHo4Z3gxOEh5bCtCNFF6KzlnWkRDYzBlN3VIZm5Xa0VRemJRMkFOM291RktzUktCWDVRaDZnQ2lrTC9PZzhOcE5NVmF5Nzh6R3dpR2JHRHpodTdjMFdnUUdwb0luUDlpOE5kNHNCblNwblgvLzRqbEQwWHZhRlM3dS9tR1pvSXRGd3c2b3p2MEN2L09iQ0FZc2tFMEtuM0g3QW5kajFHUnoxMVQ0YVVpK2JqakJ6UWYvUkgvem13Z0dMSUZOZWdXbFRYd1FOV0F2WE52aXltMCs2SlJtZ28wOTlSMmpIdmVjdmpEV0s4UzNwY05CRU9XdVprSzFlbmRCbTlUdzZncmNGN2xrdExoOUtBRE96WExhYVQ5U1p4M1pBM0JrQXRHYllIU1ZxM0h5M2FrRTRFZDZOb2hKd3BPcWFERElrTlJLVzF2TkVvalZuOVdWaGF1aFdESUJmSEVRc1JVVThSZ2J4QS9TaWpzdEVyN1c4dzQzeTV0cXRkTEg5ZU4wMStEdk1jSU1PL2tuNXR0QkVNdW9GelRSTUlFSWN6eGJwdFVTT0xzYnlWaG1velNaeVRNeHN1YkdSRHBpL042ZVhzZlcyQkZKR0I1cjEzZStzL1dtdFcxRUF5NW9PaVNWWU9Jd1g0aHppMEFpSU50ZkFpMmo0U1JkNnhKelBKZW0xUTM3QlM2S05WdU40WlllNXBOR214dGJXMHdVZzR5WXhsWVBzTkFaWUI4OEVNcFN0UGxMZ3JxNlBxcEFic3M0TGp6Qm9tc1JyV3JsNFNKMElnb0pQUUxvekZoY0dJR294NjYzRkdLTXJDbjJZZ2lWTjVuN0RmNWJneXhrT0NieDl4ZWlBVmh6bEkwMVE3RmhNSHBHcHJyU2JzdW11VHV1YTVHSjYydjFjbm5HM0FnQk4wVVcvLzBqQnREckVHenY3S3EzKzVEZ2ovY2JwWkxBZmJqemZ6TDRtREhHbllrZC96b2dJclpLNGZabWpYdUVPV3NoL25uWmh2QmtBdElwTUdQNjNEWVAzYTRGcU1mdWhjcWMwUVdvb3hQNkF5S1NQeENyTk1kalB5VmYyNjJFUXk1Z0tZK3Q1NGJjWFhpY0JvU09pS0cwUVRpaU1Ub00vbDZQTUhJZlZJR2Q1cVRSVERrQ3Z5M0xKUjM5clRwUEhaZWtFVDBtZnpkSk5ROW1Kanp6OHNGZ2lHWDBOd3VUMk1QYk8zUWVheThNQnhSUkJSV1E2K1hVRUF3NUpwZ09QcHJkeUI4djlNZm5uNHRmS0hJWFZGSitqYi8rVndpR0w0bU1mOERYdWJFYTNuRFE5Z0FBQUFBU1VWT1JLNUNZSUk9Ii8+PHRleHQgeD0iNTg0Ljc5OSIgeT0iNDU1LjQ0NCIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMiIgdGV4dExlbmd0aD0iNzMuNTM1IiBmb250LXN0eWxlPSJpdGFsaWMiPltNb25pdG9yaW5nXTwvdGV4dD48L2c+PCEtLWVudGl0eSBzdG9yYWdlLS0+PGcgY2xhc3M9ImVudGl0eSIgZGF0YS1xdWFsaWZpZWQtbmFtZT0iUmVzb3VyY2UgR3JvdXAuc3RvcmFnZSIgaWQ9ImVudDAwMDgiIGRhdGEtc291cmNlLWxpbmU9IjIxIj48cmVjdCB4PSI1MTgiIHk9IjE0OS4zMjciIHdpZHRoPSIyMDcuMTMxIiBoZWlnaHQ9IjE0MS45NDciIGZpbGw9IiNGRkYiIHN0eWxlPSJzdHJva2U6IzNDN0ZDMDtzdHJva2Utd2lkdGg6MC41OyIgcng9IjIuNSIgcnk9IjIuNSIvPjx0ZXh0IHg9IjU3My41MzMiIHk9IjE3MC40NjYiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9Ijk2LjA2NCIgZm9udC1zdHlsZT0iaXRhbGljIj7Cq0F6dXJlU3RvcmFnZcK7PC90ZXh0Pjx0ZXh0IHg9IjU0Ni44MTUiIHk9IjE4OC4xNDciIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTYiIHRleHRMZW5ndGg9IjcxLjE1NiIgZm9udC13ZWlnaHQ9IjcwMCI+U3RvcmFnZTwvdGV4dD48dGV4dCB4PSI2MTcuOTcyIiB5PSIxODguMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIj7CoDwvdGV4dD48dGV4dCB4PSI2MjMuNTQyIiB5PSIxODguMTQ3IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE2IiB0ZXh0TGVuZ3RoPSI3Mi43NzMiIGZvbnQtd2VpZ2h0PSI3MDAiPkFjY291bnQ8L3RleHQ+PGltYWdlIHdpZHRoPSI3NSIgaGVpZ2h0PSI3NSIgeD0iNTgzLjg3MyIgeT0iMTkxLjkyMSIgeGxpbms6aHJlZj0iZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFFc0FBQUJMQ0FZQUFBQTRUbnJxQUFBRFBVbEVRVlI0WHUzYlMwOFRVUlRBY2ZZbTdseVorQVZjbXVqR0JZbGZ3SmdZZDI1a3BVc1ROVEV1aUluQmhZL0VoWkxnZTJNd0NGSVFXb0pCUUlFV284TzdLb1cydE5EUzZVeW4wOWZNdE5jWlVvSnp6OXpDVlZ4NFBZdmZncE5KeWZubnRreEoyMFFJYVVKN0F3YUlEUXdRR3hnZ05qQkFiR0NBMk1BQXNZRUJZblA5VURDcUorV0NlWDVUTjF1UTJaSXJXMmVxdGRwQkVDdVZOMDZGNHJvL0VGYjFkNHNLUVFyNXNLeXR4cFRLcFlwVk8rU0s1WnZQU3ZkR2s2VHRmUUw5NHJXVUlSbmRiSGJGZWh4TVMvU0ZLRUVlaksrVGhGckJXSHNWVmNvWWE2OHdGZ2VNeFFGamNjQllIREFXQjR6RkFXTnh3RmdjTUJZSEVLdFRrcVZIRXltQ29FU09lbTg0a3l6MFRrYnpZUVRsU3RaeFZ5eWxhRjNZMU0xckNES3MyaEZYckxoYWViVXNsNmNSVkRTcXgzaGpoU0p5ZVZKQVFZOWQveXhXVktuMHlVWHJvbWpXTmVNK3ZTdU5PMVlpWjNSVWErU0FhTlNTZFk3ZWxmWTdzZHEzcnhXSlZyWk8wN3ZTTUZZZHh1S0FzVGhnTEE0WWk4TmZpUlZUSzEzT0E0c21yUnV0OUs0MEVHc2xXKzVmU3BkK0lLaGdWRSs0WXMxdkZLWHB1RTRRWkovQVp1NVlJZHRVTkMrTVlDd1BkdlRDSFNzWTA4bG9KQWMrbHZNdkcvNnVrc25vN3NHNFl3MTlVOEcvVzBYdzh2TW0ySldHc2Vvd0ZnZU14UUZqY2NCWUhKNEUwMlI4UlFQN1lpd1B6MEpwTXJIYStQYUJPOVpvUk5zNnNxTHhMU2hnVnhwM0xPZW1kTXdPSnByZFRwVm5yQzhKWGZwb1AzY1JwSmFvV0JQUnZPUzhMckVNaGxYU1BadmQraEM5S0xwbVpOSm5QdzNwWFduWkl2V2xnZDFpdlptVnlhM2hOWEo5SUNhTTFrQ2NkRXlsd0s0MDdsZ3ZwdFBrN1BPd2NHN1kwZWhkYVJpckRtTnhjR0lGUFBiRldCNnUrbFpKai8xNlRPK0xzVHhjc1dOMTcyZXNnVVdGUFB5MEFYNlJDUFk5VnNDK3gzb2FGUE5rT2JjUWcrSEc5MXBjc1J3OWMxbHlaeVJKYmc2dENlTjIvWTAwdlN1Tk81YmZQbDIrK2V6V3pha28zczdKWkdDcDhhbnlqRFd5bkpONjdSZ0lBdCtSOWk4cFV1ZlhERUZRT20rNFk0MUhOTWw1WTBsZitML3JYOGdTdVVDZHJKaFN1VHNXMFNMMlh6NEY3VmhJbGZ4Rm8zclVGY3VSS1ppWGs1clJqbmFZMWRyaDdUNnVXS2d4TUVCc1lJRFl3QUN4Z1FGaUF3UEVCZ2FJRFF3UTIwL1BValdvRkY4VWZRQUFBQUJKUlU1RXJrSmdnZz09Ii8+PHRleHQgeD0iNTI4IiB5PSIyNzguNDQ0IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEyIiB0ZXh0TGVuZ3RoPSIzNy42OTkiIGZvbnQtc3R5bGU9Iml0YWxpYyI+W1RhYmxlPC90ZXh0Pjx0ZXh0IHg9IjU2NS42OTkiIHk9IjI3OC40NDQiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtc3R5bGU9Iml0YWxpYyI+wqA8L3RleHQ+PHRleHQgeD0iNTY5LjUxNCIgeT0iMjc4LjQ0NCIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMiIgdGV4dExlbmd0aD0iNDYuOTUxIiBmb250LXN0eWxlPSJpdGFsaWMiPlN0b3JhZ2U8L3RleHQ+PHRleHQgeD0iNjE2LjQ2NSIgeT0iMjc4LjQ0NCIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMiIgZm9udC1zdHlsZT0iaXRhbGljIj7CoDwvdGV4dD48dGV4dCB4PSI2MjAuMjc5IiB5PSIyNzguNDQ0IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEyIiBmb250LXN0eWxlPSJpdGFsaWMiPuKAlDwvdGV4dD48dGV4dCB4PSI2MzIuMjc5IiB5PSIyNzguNDQ0IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEyIiBmb250LXN0eWxlPSJpdGFsaWMiPsKgPC90ZXh0Pjx0ZXh0IHg9IjYzNi4wOTQiIHk9IjI3OC40NDQiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjI4LjkyMiIgZm9udC1zdHlsZT0iaXRhbGljIj5TeW5jPC90ZXh0Pjx0ZXh0IHg9IjY2NS4wMTYiIHk9IjI3OC40NDQiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtc3R5bGU9Iml0YWxpYyI+wqA8L3RleHQ+PHRleHQgeD0iNjY4LjgzIiB5PSIyNzguNDQ0IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEyIiB0ZXh0TGVuZ3RoPSI0Ni4zMDEiIGZvbnQtc3R5bGU9Iml0YWxpYyI+TGVkZ2VyXTwvdGV4dD48L2c+PCEtLWVudGl0eSBhY3MtLT48ZyBjbGFzcz0iZW50aXR5IiBkYXRhLXF1YWxpZmllZC1uYW1lPSJSZXNvdXJjZSBHcm91cC5hY3MiIGlkPSJlbnQwMDA5IiBkYXRhLXNvdXJjZS1saW5lPSIyMiI+PHJlY3QgeD0iNTc0LjgzIiB5PSI3OC4xNDciIHdpZHRoPSI5My40NjYiIGhlaWdodD0iMzYuMjk3IiBmaWxsPSIjRjFGMUYxIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSI1ODQuODMiIHk9IjEwMS4xNDIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjI4LjIzOSI+QUNTPC90ZXh0Pjx0ZXh0IHg9IjYxMy4wNjkiIHk9IjEwMS4xNDIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiPsKgPC90ZXh0Pjx0ZXh0IHg9IjYxNy41MTkiIHk9IjEwMS4xNDIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjQwLjc3NiI+KFNNUyk8L3RleHQ+PC9nPjwhLS1lbnRpdHkgbmV0aHJpcy0tPjxnIGNsYXNzPSJlbnRpdHkiIGRhdGEtcXVhbGlmaWVkLW5hbWU9IlNlcnZpY2VzIGV4dGVybmVzLm5ldGhyaXMiIGlkPSJlbnQwMDExIiBkYXRhLXNvdXJjZS1saW5lPSIyNiI+PHBhdGggZD0iTTU3Ny40MzEsODE0LjA0NSBDNTgwLjYxNSw4MDguODczIDU4Ni42NzIsODA4LjgxNyA1ODkuNTYsODE0LjM3OSBDNTkyLjQ4OCw4MDguODM4IDU5NS44NTQsODA4LjQ4NyA2MDAuNDczLDgxMi40MzMgQzYwMy4yMjUsODA2LjQwNSA2MDYuOTE1LDgwNi41NiA2MTEuMDI2LDgxMS4wNzIgQzYxMy40OTksODA2LjA3IDYxOC42MDMsODA1Ljk3NCA2MjEuNzI0LDgxMC4zMzEgQzYyNi4yMTUsODA0LjY2IDYzMS41MTUsODA0LjgyIDYzNC41NDQsODExLjgxMiBDNjM4LjE0LDgwNi4wOTUgNjQzLjYxNyw4MDYuOTU2IDY0Ni4wNzgsODEyLjkzMiBDNjQ5LjUyLDgwNy42NjggNjU0LjY0Miw4MDguNTEgNjU2Ljk2Nyw4MTQuMDU4IEM2NjAuNDQ5LDgwOS4xNjIgNjYzLjU5OCw4MDguNDIzIDY2Ny40MjcsODEzLjcwMSBDNjc3LjQ0MSw4MTMuODk0IDY4MS43MTksODIxLjcxNSA2NzUuNDU4LDgyOS45NTIgQzY4MC43NDEsODM3Ljg3NiA2NzcuNzk3LDg0My44NzIgNjY4LjM1Miw4NDQuNzAxIEM2NjUuMzg3LDg0OS44MzQgNjU5LjYyNCw4NDkuOTA5IDY1Ni44MDIsODQ0LjU0MyBDNjUzLjg2OSw4NTEuMzAyIDY0OS40MzMsODUxLjI0NCA2NDQuMzU3LDg0Ni45NTcgQzY0MS4xOSw4NTEuNjA0IDYzOC4xMTQsODUyLjk2OCA2MzQuMTMxLDg0Ny44MDkgQzYzMC4yMTEsODU0LjAyNSA2MjYuMDk2LDg1My45MTIgNjIyLjM3NCw4NDcuNjIzIEM2MTguNzEsODUzLjA5MiA2MTQuNTc2LDg1Mi4xNzYgNjExLjY4MSw4NDYuODYxIEM2MDguMTQ2LDg1Mi4wMzcgNjAzLjQwMyw4NTIuMjMgNjAwLjU5Niw4NDYuMTQ1IEM1OTcuNzkzLDg1MS43NiA1OTIuNTgzLDg1Mi4xMDkgNTg5LjYzLDg0Ni4yOSBDNTg0LjYwOSw4NTIuNDgzIDU4MC44MDMsODUxLjY2MyA1NzYuOTc2LDg0NS4xMDUgQzU2OS45MTUsODQwLjc3MiA1NjcuMjc3LDgzNS42MTMgNTc0LjkyOSw4MjkuMzY2IEM1NjkuMzQ1LDgyMy41NjYgNTY5Ljc4OSw4MTcuNjg2IDU3Ny40MzEsODE0LjA0NSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiBmaWxsPSIjRjFGMUYxIi8+PHRleHQgeD0iNTgzLjA3IiB5PSI4MzMuMTQyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0IiB0ZXh0TGVuZ3RoPSIyMi4xNDgiPkFQSTwvdGV4dD48dGV4dCB4PSI2MDUuMjE4IiB5PSI4MzMuMTQyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0Ij7CoDwvdGV4dD48dGV4dCB4PSI2MDkuNjY5IiB5PSI4MzMuMTQyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0IiB0ZXh0TGVuZ3RoPSI1MC4zODgiPk5ldGhyaXM8L3RleHQ+PC9nPjwhLS1lbnRpdHkgc2hhcmVwb2ludC0tPjxnIGNsYXNzPSJlbnRpdHkiIGRhdGEtcXVhbGlmaWVkLW5hbWU9IlNlcnZpY2VzIGV4dGVybmVzLnNoYXJlcG9pbnQiIGlkPSJlbnQwMDEyIiBkYXRhLXNvdXJjZS1saW5lPSIyNyI+PHBhdGggZD0iTTU1My4zODEsODk0Ljg0NiBDNTU3LjEwNCw4ODkuMzM5IDU2MC41Myw4ODkuODcxIDU2NC4yMjYsODk0Ljg3MyBDNTY3LjYxOSw4ODguNzMxIDU3Mi41MjQsODg4LjYyOSA1NzYuMDI0LDg5NC43NyBDNTc4LjU5Nyw4ODkuMjIzIDU4NC4wNjcsODg4LjY1OCA1ODcuMDIsODk0LjM5OSBDNTkwLjQxLDg4OC44NDEgNTk2LjE4Miw4ODguNTQ1IDU5OC44NTcsODk1LjA5NyBDNjAxLjgzMyw4ODkuMjAzIDYwNy40NzcsODg5Ljg1OSA2MTAuODUzLDg5NC42NDggQzYxNC41NDQsODg4Ljk4NiA2MTguMTM2LDg4OS41MzYgNjIyLjQxMSw4OTMuOTc5IEM2MjYuNDgsODg5LjEyMyA2MzAuNDYzLDg4OC4wNDUgNjMzLjk0NCw4OTQuNTc0IEM2MzYuOTM2LDg4OS4yMzMgNjQxLjI4LDg4OC40MTEgNjQ0Ljg5Niw4OTMuOTQ2IEM2NDkuMDI0LDg4OC40ODcgNjUyLjg4Miw4ODguODQ1IDY1Ni41NCw4OTQuNDQxIEM2NjEuMTM0LDg4OS4yNDEgNjY2LjM2LDg4Ny42NDggNjcwLjA2Myw4OTUuMzczIEM2NzIuOTIxLDg4OS44NSA2NzguMzM2LDg4OS41NDggNjgxLjczMiw4OTQuNzkxIEM2ODUuMDg5LDg5MC44MDMgNjg5LjA1Nyw4OTEuMzY1IDY5MS42NDEsODk1LjcxIEM2OTYuMTcsODk4LjQyOSA2OTYuNzUyLDkwMi4zMjkgNjkyLjg0Nyw5MDYuMDMzIEM2OTguNjk0LDkwOS42IDY5OS41MjYsOTE0Ljc0IDY5Mi45Miw5MTguMzggQzY5OC4xMTEsOTIxLjA4NCA2OTkuODEyLDkyNy4wNiA2OTMuNzc3LDkzMC41NTQgQzY5Ny45OTgsOTM0LjU3NCA2OTcuMTk1LDkzOC41MjIgNjkyLjI2Nyw5NDEuMjUxIEM2ODkuMzAyLDk0Ni45MjggNjg0Ljg0Myw5NDcuMjIzIDY4MC41OTUsOTQyLjcyMyBDNjc4LjAwOSw5NDkuNTgzIDY3NC4xMzksOTQ5LjIwNCA2NjkuNDE2LDk0NC44NTMgQzY2NS4xMDQsOTUwLjEyNSA2NTkuOTM2LDk1MS4xNjggNjU2LjU2Niw5NDMuODg5IEM2NTQuNjI2LDk0OS4zODEgNjQ5LjAzNiw5NTEuMDY4IDY0NC44NDUsOTQ2LjUxNSBDNjQxLjU4LDk1Mi4xMTEgNjM4LjIyNiw5NTMuMTM1IDYzMy42NTYsOTQ3Ljg1OSBDNjMwLjQ4Miw5NTMuNTUzIDYyNi44NjEsOTU0LjQzMyA2MjIuNzM3LDk0OC43NzIgQzYxOS42NjEsOTUzLjM1IDYxNC40NzMsOTUyLjY0MSA2MTEuOTQ2LDk0OC4xMjEgQzYwNy4yNjIsOTUzLjA0IDYwMi4zNTMsOTUxLjM4NyA1OTkuOTgzLDk0NS41NDggQzU5NS41MDgsOTUxLjg5NCA1OTAuMjA4LDk1MC40MjEgNTg2Ljg0NSw5NDQuMzY5IEM1ODMuNDU1LDk0OS42MTMgNTc5LjgwOSw5NDguNjI3IDU3Ni41NDEsOTQ0LjIzOCBDNTcyLjQzNCw5NDkuMDQ4IDU2OC4xMDIsOTQ4Ljk0OCA1NjQuMzY3LDk0My43ODQgQzU1OC45MTUsOTQ4LjkxNiA1NTUuMDM1LDk0Ny4zODEgNTUyLjYyNCw5NDAuNzQ4IEM1NDcuOTY4LDkzOC4wNTQgNTQ3LjIwNiw5MzQuNjggNTUxLjAyMyw5MzAuNjQ0IEM1NDQuNzUzLDkyOC42MDIgNTQxLjk2Miw5MjMuMTIxIDU0Ny44Nyw5MTguMDM1IEM1NDMuNTQ5LDkxNC4yODEgNTQzLjI5NSw5MDguOTEzIDU0OS4zMjgsOTA2LjQ2NCBDNTQ1LjQ0Myw5MDAuOTQyIDU0NS45NTIsODk2LjQyMiA1NTMuMzgxLDg5NC44NDYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgZmlsbD0iI0YxRjFGMSIvPjx0ZXh0IHg9IjU1OC43NyIgeT0iOTEzLjk5MiIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxNCIgdGV4dExlbmd0aD0iNzUuOTY4Ij5TaGFyZVBvaW50PC90ZXh0Pjx0ZXh0IHg9IjYzNC43MzgiIHk9IjkxMy45OTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiPsKgPC90ZXh0Pjx0ZXh0IHg9IjYzOS4xODgiIHk9IjkxMy45OTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjQ1LjE1OCI+T25saW5lPC90ZXh0Pjx0ZXh0IHg9IjU4MS4zMjUiIHk9IjkzMC4yODkiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjQ4LjQwNSI+KEdyYXBoPC90ZXh0Pjx0ZXh0IHg9IjYyOS43MyIgeT0iOTMwLjI4OSIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxNCI+wqA8L3RleHQ+PHRleHQgeD0iNjM0LjE4MSIgeT0iOTMwLjI4OSIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxNCIgdGV4dExlbmd0aD0iMjcuNjEiPkFQSSk8L3RleHQ+PC9nPjwhLS1lbnRpdHkgdGltZXItLT48ZyBjbGFzcz0iZW50aXR5IiBkYXRhLXF1YWxpZmllZC1uYW1lPSJ0aW1lciIgaWQ9ImVudDAwMDEiIGRhdGEtc291cmNlLWxpbmU9IjEzIj48ZWxsaXBzZSBjeD0iNTkuNzEzIiBjeT0iNDc3LjQ5NyIgcng9IjgiIHJ5PSI4IiBmaWxsPSIjRjFGMUYxIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNNTkuNzEzLDQ4NS40OTcgTDU5LjcxMyw1MTIuNDk3IE00Ni43MTMsNDkzLjQ5NyBMNzIuNzEzLDQ5My40OTcgTTU5LjcxMyw1MTIuNDk3IEw0Ni43MTMsNTI3LjQ5NyBNNTkuNzEzLDUxMi40OTcgTDcyLjcxMyw1MjcuNDk3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIzOS40ODkiIHk9IjU0MS45OTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjQwLjQ0OCI+VGltZXI8L3RleHQ+PHRleHQgeD0iNiIgeT0iNTU4LjI4OSIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxNCIgdGV4dExlbmd0aD0iNTMuNjAxIj5DaGFxdWU8L3RleHQ+PHRleHQgeD0iNTkuNjAxIiB5PSI1NTguMjg5IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0Ij7CoDwvdGV4dD48dGV4dCB4PSI2NC4wNTEiIHk9IjU1OC4yODkiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjQ5LjM3NiI+bWludXRlPC90ZXh0PjwvZz48IS0tZW50aXR5IG1hbnVhbC0tPjxnIGNsYXNzPSJlbnRpdHkiIGRhdGEtcXVhbGlmaWVkLW5hbWU9Im1hbnVhbCIgaWQ9ImVudDAwMDIiIGRhdGEtc291cmNlLWxpbmU9IjE0Ij48ZWxsaXBzZSBjeD0iNTkuNzA5IiBjeT0iNjA0LjY0NyIgcng9IjgiIHJ5PSI4IiBmaWxsPSIjRjFGMUYxIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiLz48cGF0aCBkPSJNNTkuNzA5LDYxMi42NDcgTDU5LjcwOSw2MzkuNjQ3IE00Ni43MDksNjIwLjY0NyBMNzIuNzA5LDYyMC42NDcgTTU5LjcwOSw2MzkuNjQ3IEw0Ni43MDksNjU0LjY0NyBNNTkuNzA5LDYzOS42NDcgTDcyLjcwOSw2NTQuNjQ3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMy44NiIgeT0iNjY5LjE0MiIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxNCIgdGV4dExlbmd0aD0iOTEuNjk3Ij5IVFRQXE1hbnVlbDwvdGV4dD48L2c+PCEtLWxpbmsgdGltZXIgdG8gZnVuY0FwcC0tPjxnIGNsYXNzPSJsaW5rIiBkYXRhLWVudGl0eS0xPSJlbnQwMDAxIiBkYXRhLWVudGl0eS0yPSJlbnQwMDA0IiBpZD0ibG5rMTMiIGRhdGEtc291cmNlLWxpbmU9IjMwIiBkYXRhLWxpbmstdHlwZT0iZGVwZW5kZW5jeSI+PHBhdGggZD0iTTExMy43MSw1MjguOTc3IEMxNDUuMzUsNTM3LjE0NyAxODEuMDQ5LDU0Ni4zNjYgMjE1LjE4OSw1NTUuMTg2IiBzdHlsZT0ic3Ryb2tlOiM2NjY7c3Ryb2tlLXdpZHRoOjE7IiBmaWxsPSJub25lIiBpZD0idGltZXItdG8tZnVuY0FwcCIvPjxwb2x5Z29uIHBvaW50cz0iMjIwLjAzLDU1Ni40MzcsMjEyLjMxNyw1NTAuMzEzLDIxNS4xODksNTU1LjE4NiwyMTAuMzE2LDU1OC4wNTksMjIwLjAzLDU1Ni40MzciIGZpbGw9IiM2NjYiIHN0eWxlPSJzdHJva2U6IzY2NjtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PHRleHQgeD0iMTQ0LjQzIiB5PSI1MzUuNDM2IiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjEyIiB0ZXh0TGVuZ3RoPSI0My4xNDgiPlRyaWdnZXI8L3RleHQ+PC9nPjwhLS1saW5rIG1hbnVhbCB0byBmdW5jQXBwLS0+PGcgY2xhc3M9ImxpbmsiIGRhdGEtZW50aXR5LTE9ImVudDAwMDIiIGRhdGEtZW50aXR5LTI9ImVudDAwMDQiIGlkPSJsbmsxNCIgZGF0YS1zb3VyY2UtbGluZT0iMzEiIGRhdGEtbGluay10eXBlPSJkZXBlbmRlbmN5Ij48cGF0aCBkPSJNMTA1Ljg2LDYyMi40NDcgQzEzOC41LDYxMy44NjcgMTc4LjM3NCw2MDMuNDA3IDIxNS40NjQsNTkzLjY2NyIgc3R5bGU9InN0cm9rZTojNjY2O3N0cm9rZS13aWR0aDoxOyIgZmlsbD0ibm9uZSIgaWQ9Im1hbnVhbC10by1mdW5jQXBwIi8+PHBvbHlnb24gcG9pbnRzPSIyMjAuMyw1OTIuMzk3LDIxMC41NzksNTkwLjgxNCwyMTUuNDY0LDU5My42NjcsMjEyLjYxMSw1OTguNTUyLDIyMC4zLDU5Mi4zOTciIGZpbGw9IiM2NjYiIHN0eWxlPSJzdHJva2U6IzY2NjtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PHRleHQgeD0iMTQ0LjQzIiB5PSI2MDAuNDM2IiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjEyIiB0ZXh0TGVuZ3RoPSI0My4xNDgiPlRyaWdnZXI8L3RleHQ+PC9nPjwhLS1saW5rIGZ1bmNBcHAgdG8ga3YtLT48ZyBjbGFzcz0ibGluayIgZGF0YS1lbnRpdHktMT0iZW50MDAwNCIgZGF0YS1lbnRpdHktMj0iZW50MDAwNSIgaWQ9ImxuazE1IiBkYXRhLXNvdXJjZS1saW5lPSIzMiIgZGF0YS1saW5rLXR5cGU9ImRlcGVuZGVuY3kiPjxwYXRoIGQ9Ik0zNjAuMDIsNjE0Ljg4NyBDNDAzLjY2LDYzOC4yMTcgNDYyLjIxLDY2NS4yMTcgNTE4LDY3Ny4yOTcgQzYwNy45Nyw2OTYuNzY3IDYzMy43NSw2ODguNDU3IDcyNS4xMyw2NzcuMjk3IEM3NTkuOTEsNjczLjA0NyA3OTMuMTAyLDY2NS4yODQgODIzLjkwMiw2NTYuNzM0IiBzdHlsZT0ic3Ryb2tlOiM2NjY7c3Ryb2tlLXdpZHRoOjE7IiBmaWxsPSJub25lIiBpZD0iZnVuY0FwcC10by1rdiIvPjxwb2x5Z29uIHBvaW50cz0iODI4LjcyLDY1NS4zOTcsODE4Ljk3OCw2NTMuOTUsODIzLjkwMiw2NTYuNzM0LDgyMS4xMTgsNjYxLjY1OCw4MjguNzIsNjU1LjM5NyIgZmlsbD0iIzY2NiIgc3R5bGU9InN0cm9rZTojNjY2O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiLz48dGV4dCB4PSI1OTkuNTYiIHk9IjY3NC40MzYiIGZpbGw9IiM2NjYiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjQ0Ljg3MSI+U2VjcmV0czwvdGV4dD48L2c+PCEtLWxpbmsgZnVuY0FwcCB0byBhcHBDb25maWctLT48ZyBjbGFzcz0ibGluayIgZGF0YS1lbnRpdHktMT0iZW50MDAwNCIgZGF0YS1lbnRpdHktMj0iZW50MDAwNiIgaWQ9ImxuazE2IiBkYXRhLXNvdXJjZS1saW5lPSIzMyIgZGF0YS1saW5rLXR5cGU9ImRlcGVuZGVuY3kiPjxwYXRoIGQ9Ik0zNjAuMjUsNTc0LjI5NyBDNDE2LjA5LDU3NC4yOTcgNDg5LjM3LDU3NC4yOTcgNTQ1LjQ4LDU3NC4yOTciIHN0eWxlPSJzdHJva2U6IzY2NjtzdHJva2Utd2lkdGg6MTsiIGZpbGw9Im5vbmUiIGlkPSJmdW5jQXBwLXRvLWFwcENvbmZpZyIvPjxwb2x5Z29uIHBvaW50cz0iNTUwLjQ4LDU3NC4yOTcsNTQxLjQ4LDU3MC4yOTcsNTQ1LjQ4LDU3NC4yOTcsNTQxLjQ4LDU3OC4yOTcsNTUwLjQ4LDU3NC4yOTciIGZpbGw9IiM2NjYiIHN0eWxlPSJzdHJva2U6IzY2NjtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PHRleHQgeD0iNDIwIiB5PSI1NzEuNDM2IiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjEyIiB0ZXh0TGVuZ3RoPSIzOC41MDIiPkNvbmZpZzwvdGV4dD48L2c+PCEtLWxpbmsgZnVuY0FwcCB0byBhcHBJbnNpZ2h0cy0tPjxnIGNsYXNzPSJsaW5rIiBkYXRhLWVudGl0eS0xPSJlbnQwMDA0IiBkYXRhLWVudGl0eS0yPSJlbnQwMDA3IiBpZD0ibG5rMTciIGRhdGEtc291cmNlLWxpbmU9IjM0IiBkYXRhLWxpbmstdHlwZT0iZGVwZW5kZW5jeSI+PHBhdGggZD0iTTM2MC4yNSw1MzcuMTg3IEM0MDkuMiw1MTAuODg3IDQ3MC45OTYsNDc3LjY3NCA1MjQuMzg2LDQ0OC45ODQiIHN0eWxlPSJzdHJva2U6IzY2NjtzdHJva2Utd2lkdGg6MTsiIGZpbGw9Im5vbmUiIGlkPSJmdW5jQXBwLXRvLWFwcEluc2lnaHRzIi8+PHBvbHlnb24gcG9pbnRzPSI1MjguNzksNDQ2LjYxNyw1MTguOTY5LDQ0Ny4zNTQsNTI0LjM4Niw0NDguOTg0LDUyMi43NTYsNDU0LjQwMSw1MjguNzksNDQ2LjYxNyIgZmlsbD0iIzY2NiIgc3R5bGU9InN0cm9rZTojNjY2O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiLz48dGV4dCB4PSI0MDguNSIgeT0iNDY3LjQzNiIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIxMiIgdGV4dExlbmd0aD0iNjEuMjQyIj5UZWxlbWV0cnk8L3RleHQ+PC9nPjwhLS1saW5rIGZ1bmNBcHAgdG8gc3RvcmFnZS0tPjxnIGNsYXNzPSJsaW5rIiBkYXRhLWVudGl0eS0xPSJlbnQwMDA0IiBkYXRhLWVudGl0eS0yPSJlbnQwMDA4IiBpZD0ibG5rMTgiIGRhdGEtc291cmNlLWxpbmU9IjM1IiBkYXRhLWxpbmstdHlwZT0iZGVwZW5kZW5jeSI+PHBhdGggZD0iTTM0NS4wMSw1MDIuODk3IEMzNTkuMzIsNDg0LjUyNyAzNzQuOTgsNDY0Ljk2NyAzOTAsNDQ3LjI5NyBDNDQ0LjE3LDM4My41NTcgNDU3Ljg3LDM2Ny40NjcgNTE4LDMwOS4yOTcgQzUyNC4wMSwzMDMuNDc3IDUyNi42NCwzMDAuOTMxIDUzMy4wNiwyOTUuMDYxIiBzdHlsZT0ic3Ryb2tlOiM2NjY7c3Ryb2tlLXdpZHRoOjE7IiBmaWxsPSJub25lIiBpZD0iZnVuY0FwcC10by1zdG9yYWdlIi8+PHBvbHlnb24gcG9pbnRzPSI1MzYuNzUsMjkxLjY4Nyw1MjcuNDA5LDI5NC44MDgsNTMzLjA2LDI5NS4wNjEsNTMyLjgwNywzMDAuNzEyLDUzNi43NSwyOTEuNjg3IiBmaWxsPSIjNjY2IiBzdHlsZT0ic3Ryb2tlOiM2NjY7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIvPjx0ZXh0IHg9IjQwMiIgeT0iMzM3LjQzNiIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIxMiIgdGV4dExlbmd0aD0iMjguOTIyIj5TeW5jPC90ZXh0Pjx0ZXh0IHg9IjQzMC45MjIiIHk9IjMzNy40MzYiIGZpbGw9IiM2NjYiIGZvbnQtc2l6ZT0iMTIiPsKgPC90ZXh0Pjx0ZXh0IHg9IjQzNC43MzYiIHk9IjMzNy40MzYiIGZpbGw9IiM2NjYiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjQxLjYxOSI+TGVkZ2VyPC90ZXh0PjwvZz48IS0tbGluayBmdW5jQXBwIHRvIG5ldGhyaXMtLT48ZyBjbGFzcz0ibGluayIgZGF0YS1lbnRpdHktMT0iZW50MDAwNCIgZGF0YS1lbnRpdHktMj0iZW50MDAxMSIgaWQ9ImxuazE5IiBkYXRhLXNvdXJjZS1saW5lPSIzNiIgZGF0YS1saW5rLXR5cGU9ImRlcGVuZGVuY3kiPjxwYXRoIGQ9Ik0zMjMuMDIsNjQ1LjQ4NyBDMzM5LjQ1LDY3NS43OTcgMzYxLjk4LDcwOS41NTcgMzkwLDczMy4yOTcgQzQ0Mi4xOSw3NzcuNTE3IDUxMi45NDYsODAyLjA1OCA1NjMuMTc2LDgxNS4zNDgiIHN0eWxlPSJzdHJva2U6IzY2NjtzdHJva2Utd2lkdGg6MTsiIGZpbGw9Im5vbmUiIGlkPSJmdW5jQXBwLXRvLW5ldGhyaXMiLz48cG9seWdvbiBwb2ludHM9IjU2OC4wMSw4MTYuNjI3LDU2MC4zMzMsODEwLjQ1OCw1NjMuMTc2LDgxNS4zNDgsNTU4LjI4Niw4MTguMTkyLDU2OC4wMSw4MTYuNjI3IiBmaWxsPSIjNjY2IiBzdHlsZT0ic3Ryb2tlOiM2NjY7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIvPjx0ZXh0IHg9IjM5NS45MzgiIHk9IjcxNi40MzYiIGZpbGw9IiM2NjYiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjM2LjM5OCI+TG9naW4sPC90ZXh0Pjx0ZXh0IHg9IjQzMi4zMzYiIHk9IjcxNi40MzYiIGZpbGw9IiM2NjYiIGZvbnQtc2l6ZT0iMTIiPsKgPC90ZXh0Pjx0ZXh0IHg9IjQzNi4xNSIgeT0iNzE2LjQzNiIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIxMiIgdGV4dExlbmd0aD0iNDYuMTc4Ij5HZXRMaXN0LDwvdGV4dD48dGV4dCB4PSIzOTMuNSIgeT0iNzMwLjQwNCIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIxMiIgdGV4dExlbmd0aD0iNDYuMTU0Ij5HZXRGaWxlLDwvdGV4dD48dGV4dCB4PSI0MzkuNjU0IiB5PSI3MzAuNDA0IiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjEyIj7CoDwvdGV4dD48dGV4dCB4PSI0NDMuNDY5IiB5PSI3MzAuNDA0IiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjEyIiB0ZXh0TGVuZ3RoPSI0MS4yOTciPkxvZ291dDwvdGV4dD48L2c+PCEtLWxpbmsgZnVuY0FwcCB0byBzaGFyZXBvaW50LS0+PGcgY2xhc3M9ImxpbmsiIGRhdGEtZW50aXR5LTE9ImVudDAwMDQiIGRhdGEtZW50aXR5LTI9ImVudDAwMTIiIGlkPSJsbmsyMCIgZGF0YS1zb3VyY2UtbGluZT0iMzciIGRhdGEtbGluay10eXBlPSJkZXBlbmRlbmN5Ij48cGF0aCBkPSJNMzA2LjQ0LDY0NS43MDcgQzMyMC41Niw2OTYuOTc3IDM0Ni4xOCw3NjQuNzc3IDM5MCw4MTAuMjk3IEM0MzEuNjIsODUzLjUzNyA0ODkuMzQxLDg3OS40NjIgNTM4Ljc2MSw4OTUuNzQyIiBzdHlsZT0ic3Ryb2tlOiM2NjY7c3Ryb2tlLXdpZHRoOjE7IiBmaWxsPSJub25lIiBpZD0iZnVuY0FwcC10by1zaGFyZXBvaW50Ii8+PHBvbHlnb24gcG9pbnRzPSI1NDMuNTEsODk3LjMwNyw1MzYuMjEzLDg5MC42OTIsNTM4Ljc2MSw4OTUuNzQyLDUzMy43MSw4OTguMjksNTQzLjUxLDg5Ny4zMDciIGZpbGw9IiM2NjYiIHN0eWxlPSJzdHJva2U6IzY2NjtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PHRleHQgeD0iMzkxIiB5PSI4MDcuNDM2IiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjEyIiB0ZXh0TGVuZ3RoPSI0Mi4wNDciPlVwbG9hZDwvdGV4dD48dGV4dCB4PSI0MzMuMDQ3IiB5PSI4MDcuNDM2IiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjEyIj7CoDwvdGV4dD48dGV4dCB4PSI0MzYuODYxIiB5PSI4MDcuNDM2IiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjEyIiB0ZXh0TGVuZ3RoPSI1MC43NTQiPnJhcHBvcnRzPC90ZXh0PjwvZz48IS0tbGluayBmdW5jQXBwIHRvIGFjcy0tPjxnIGNsYXNzPSJsaW5rIiBkYXRhLWVudGl0eS0xPSJlbnQwMDA0IiBkYXRhLWVudGl0eS0yPSJlbnQwMDA5IiBpZD0ibG5rMjEiIGRhdGEtc291cmNlLWxpbmU9IjM4IiBkYXRhLWxpbmstdHlwZT0iZGVwZW5kZW5jeSI+PHBhdGggZD0iTTMwNy4zMiw1MDIuOTY3IEMzMzMuNjIsNDAzLjcxNyAzOTUuNTgsMjI1LjY1NyA1MTgsMTMyLjI5NyBDNTM0LjQzLDExOS43NjcgNTUwLjc3MiwxMTIuNzcyIDU2OS41ODIsMTA3LjI2MiIgc3R5bGU9InN0cm9rZTojNjY2O3N0cm9rZS13aWR0aDoxOyIgZmlsbD0ibm9uZSIgaWQ9ImZ1bmNBcHAtdG8tYWNzIi8+PHBvbHlnb24gcG9pbnRzPSI1NzQuMzgsMTA1Ljg1Nyw1NjQuNjE4LDEwNC41NDgsNTY5LjU4MiwxMDcuMjYyLDU2Ni44NjcsMTEyLjIyNiw1NzQuMzgsMTA1Ljg1NyIgZmlsbD0iIzY2NiIgc3R5bGU9InN0cm9rZTojNjY2O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiLz48dGV4dCB4PSI0MDgiIHk9IjE1NS40MzYiIGZpbGw9IiM2NjYiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjMyLjk2NSI+RW52b2k8L3RleHQ+PHRleHQgeD0iNDQwLjk2NSIgeT0iMTU1LjQzNiIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIxMiI+wqA8L3RleHQ+PHRleHQgeD0iNDQ0Ljc3OSIgeT0iMTU1LjQzNiIgZmlsbD0iIzY2NiIgZm9udC1zaXplPSIxMiIgdGV4dExlbmd0aD0iMjUuNTg4Ij5TTVM8L3RleHQ+PC9nPjwhLS1saW5rIGFwcENvbmZpZyB0byBrdi0tPjxnIGNsYXNzPSJsaW5rIiBkYXRhLWVudGl0eS0xPSJlbnQwMDA2IiBkYXRhLWVudGl0eS0yPSJlbnQwMDA1IiBpZD0ibG5rMjIiIGRhdGEtc291cmNlLWxpbmU9IjQwIiBkYXRhLWxpbmstdHlwZT0iZGVwZW5kZW5jeSI+PHBhdGggZD0iTTY5Mi42LDU5MC41MDcgQzczNC45Miw2MDAuMjk3IDc4My40OTksNjExLjU0IDgyNC4xNjksNjIwLjk1IiBzdHlsZT0ic3Ryb2tlOiM2NjY7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWRhc2hhcnJheTo3LDc7IiBmaWxsPSJub25lIiBpZD0iYXBwQ29uZmlnLXRvLWt2Ii8+PHBvbHlnb24gcG9pbnRzPSI4MjkuMDQsNjIyLjA3Nyw4MjEuMTczLDYxNi4xNTEsODI0LjE2OSw2MjAuOTUsODE5LjM3LDYyMy45NDUsODI5LjA0LDYyMi4wNzciIGZpbGw9IiM2NjYiIHN0eWxlPSJzdHJva2U6IzY2NjtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PHRleHQgeD0iNzU2LjEzIiB5PSI2MDIuNDM2IiBmaWxsPSIjNjY2IiBmb250LXNpemU9IjEyIiB0ZXh0TGVuZ3RoPSIxNi4wNzgiPktWPC90ZXh0Pjx0ZXh0IHg9Ijc3Mi4yMDgiIHk9IjYwMi40MzYiIGZpbGw9IiM2NjYiIGZvbnQtc2l6ZT0iMTIiPsKgPC90ZXh0Pjx0ZXh0IHg9Ijc3Ni4wMjMiIHk9IjYwMi40MzYiIGZpbGw9IiM2NjYiIGZvbnQtc2l6ZT0iMTIiIHRleHRMZW5ndGg9IjIyLjc5MyI+cmVmczwvdGV4dD48L2c+PD9wbGFudHVtbC1zcmMgVkxIQlJqaW00RHRoNTVFajcyMnNzWW9wQTYydUlIaDRKZXBBb1NlUlhYZkJIMlhJOU9Ua3RROTAzejZ4VEQtWnoyR1R3ZkY0R1VFTFBsWlVjbmMtYVZJY204cW8yRERsbVU0b3IxZWdlaVFWUGZhSk5vUWJlWWhTMXV6RU1hRGVRMjlqZEpMUTY2QmdzNUVYck50TVFpVkJVN2d4YzZTRURHZ0ZzU2R1OTJrS2YtSURDYkE3MGVGSkp0cXdyU3BNakpNSlhXelVlSjZaMk9HVF9KbU9JVWdtODJWaEhEYUIta0dXN3NMbVlkUVR1MGZ0VG85ZUVnSnVXRGtSbmRWeVFURGU5S0tTd2o5dUxMUmEzcWFObWwwdURKa1BpTjljcEtRTG1PY2RFb0tRRG1IYW1TTFFLMlk3eE9zSlgxSGZ0ZkVKYkk4LXV1aG16LVNsazRRZ2RGQm12cFZhYlUwc0xYYmdpcU1VOTRBbzBQMmtMOHJrUk1RTC0xbUdRY05PcUhJNDF1aDBtRmd1TVl0TkY2NTB0TzhyWHU5N1FlSHl1QWFYX09KVTFZU0hCZm1ESkdoVmF4c2paM09TeUJNRThIc0VXREVLeXlkcnNHaFVsS3NGYVpzTkhtelIxWmMzRGV0Q2NTRTJ4TDUyLXlYLU9UOTgzMFRDUEgydzkwZnA5NUFjejRFRl9zbWNnZVV1cm16ZmhCMm1IaDRITjZJZXFSeS04enl6T3ZTa1dnY0tEZlhzdWZNdXZ5S0NHRG45bFpDSXZiWUt3QlhJdEEwbTlORkl3SW83NElfY2dGTE5JOV95STl4WkVSZ2pha1cxbG44d1dwdndCQktEMU1rTmJ5RW9NeE5mdVc1LWpsbVJlX2NKTmZsSFhIREQxSXBpLWxiOFFJOGJqY3JOMy1GblUtWk4xZ1VtdWhVRVhxd3dwUnkyM1lTSFZUV29tNS1HR185eG1FRVU2RS0yYl8zV1ZBcENWdW1Rb1V0c0VCdGZpUzZKZHRrQ3RXOWNwNnNmcDM1UzhDdHZadEV5RFhvVEF5cVJPeUc2c1lfeXcwQ2hSbmpqSEc3aUw2RlRvcWw4TUZsQ1JBdGdGd1Y3TXFxY19VTWx4aTNYbmx5Mz8+PC9nPjwvc3ZnPg==" class="uml" alt="uml diagram" title="" /></p>
+<h2 id="sequence-du-cycle-de-synchronisation">Séquence du cycle de synchronisation<a class="headerlink" href="#sequence-du-cycle-de-synchronisation" title="Permanent link">&para;</a></h2>
+<p><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGRhdGEtZGlhZ3JhbS10eXBlPSJTRVFVRU5DRSIgc3R5bGU9IndpZHRoOjExODhweDtoZWlnaHQ6MTEwMnB4O2JhY2tncm91bmQ6I0ZGRkZGRjsiIHdpZHRoPSIxMTg4cHgiIGhlaWdodD0iMTEwMnB4IiB2aWV3Qm94PSIwIDAgMTE4OCAxMTAyIiB6b29tQW5kUGFuPSJtYWduaWZ5IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyI+PD9wbGFudHVtbCAxLjIwMjYuN2JldGE4Pz48ZGVmcy8+PGcgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGxlbmd0aEFkanVzdD0ic3BhY2luZyI+PGc+PHRpdGxlPlRpbWVyIC4gSFRUUDwvdGl0bGU+PHJlY3QgeD0iNTguNTY5IiB5PSI1Ny41OTQiIHdpZHRoPSI4IiBoZWlnaHQ9Ijk4Ni41MjMiIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMCIvPjxsaW5lIHgxPSI2Mi4wNjkiIHkxPSI1Ny41OTQiIHgyPSI2Mi4wNjkiIHkyPSIxMDQ0LjExNyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LDU7Ii8+PC9nPjxnPjx0aXRsZT5TeW5jU2VydmljZTwvdGl0bGU+PHJlY3QgeD0iMjc1Ljg2NiIgeT0iNTcuNTk0IiB3aWR0aD0iOCIgaGVpZ2h0PSI5ODYuNTIzIiBmaWxsPSIjMDAwIiBmaWxsLW9wYWNpdHk9IjAiLz48bGluZSB4MT0iMjc5LjM2NiIgeTE9IjU3LjU5NCIgeDI9IjI3OS4zNjYiIHkyPSIxMDQ0LjExNyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LDU7Ii8+PC9nPjxnPjx0aXRsZT48L3RpdGxlPjxyZWN0IHg9IjI3NC4zNjYiIHk9Ijg2LjcyNyIgd2lkdGg9IjEwIiBoZWlnaHQ9IjkzOS4zOTEiIGZpbGw9IiNGRkYiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTsiLz48L2c+PGc+PHRpdGxlPk5ldGhyaXNBdXRoPC90aXRsZT48cmVjdCB4PSI2NjAuMjkyIiB5PSI1Ny41OTQiIHdpZHRoPSI4IiBoZWlnaHQ9Ijk4Ni41MjMiIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMCIvPjxsaW5lIHgxPSI2NjMuNzkyIiB5MT0iNTcuNTk0IiB4Mj0iNjYzLjc5MiIgeTI9IjEwNDQuMTE3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUsNTsiLz48L2c+PGc+PHRpdGxlPk5ldGhyaXNSZXBvcnQ8L3RpdGxlPjxyZWN0IHg9Ijc3NC42MDUiIHk9IjU3LjU5NCIgd2lkdGg9IjgiIGhlaWdodD0iOTg2LjUyMyIgZmlsbD0iIzAwMCIgZmlsbC1vcGFjaXR5PSIwIi8+PGxpbmUgeDE9Ijc3OC4xMDUiIHkxPSI1Ny41OTQiIHgyPSI3NzguMTA1IiB5Mj0iMTA0NC4xMTciIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41O3N0cm9rZS1kYXNoYXJyYXk6NSw1OyIvPjwvZz48Zz48dGl0bGU+U3luY0xlZGdlcjwvdGl0bGU+PHJlY3QgeD0iODg4LjQ2NyIgeT0iNTcuNTk0IiB3aWR0aD0iOCIgaGVpZ2h0PSI5ODYuNTIzIiBmaWxsPSIjMDAwIiBmaWxsLW9wYWNpdHk9IjAiLz48bGluZSB4MT0iODkxLjk2NyIgeTE9IjU3LjU5NCIgeDI9Ijg5MS45NjciIHkyPSIxMDQ0LjExNyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7c3Ryb2tlLWRhc2hhcnJheTo1LDU7Ii8+PC9nPjxnPjx0aXRsZT5TaGFyZVBvaW50PC90aXRsZT48cmVjdCB4PSI5OTEuNiIgeT0iNTcuNTk0IiB3aWR0aD0iOCIgaGVpZ2h0PSI5ODYuNTIzIiBmaWxsPSIjMDAwIiBmaWxsLW9wYWNpdHk9IjAiLz48bGluZSB4MT0iOTk1LjEiIHkxPSI1Ny41OTQiIHgyPSI5OTUuMSIgeTI9IjEwNDQuMTE3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTtzdHJva2UtZGFzaGFycmF5OjUsNTsiLz48L2c+PHJlY3QgeD0iMTAiIHk9IjI2LjI5NyIgd2lkdGg9IjEwNC4xMzkiIGhlaWdodD0iMzAuMjk3IiBmaWxsPSIjRTJFMkYwIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSIxNyIgeT0iNDYuMjkyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0IiB0ZXh0TGVuZ3RoPSI5MC4xMzkiPlRpbWVyIC8gSFRUUDwvdGV4dD48cmVjdCB4PSIyMTgiIHk9IjEwIiB3aWR0aD0iMTIyLjczMiIgaGVpZ2h0PSI0Ni41OTQiIGZpbGw9IiNFMkUyRjAiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgcng9IjIuNSIgcnk9IjIuNSIvPjx0ZXh0IHg9IjIzNi42MjUiIHk9IjI5Ljk5NSIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxNCIgdGV4dExlbmd0aD0iODUuNDgzIj5TeW5jU2VydmljZTwvdGV4dD48dGV4dCB4PSIyMjUiIHk9IjQ2LjI5MiIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxNCIgdGV4dExlbmd0aD0iMTA4LjczMiI+KE9yY2hlc3RyYXRldXIpPC90ZXh0PjxyZWN0IHg9IjYxNS4xOTIiIHk9IjI2LjI5NyIgd2lkdGg9Ijk3LjIiIGhlaWdodD0iMzAuMjk3IiBmaWxsPSIjRTJFMkYwIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSI2MjIuMTkyIiB5PSI0Ni4yOTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjgzLjIiPk5ldGhyaXNBdXRoPC90ZXh0PjxyZWN0IHg9IjcyMi4zOTMiIHk9IjI2LjI5NyIgd2lkdGg9IjExMS40MjYiIGhlaWdodD0iMzAuMjk3IiBmaWxsPSIjRTJFMkYwIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSI3MjkuMzkzIiB5PSI0Ni4yOTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9Ijk3LjQyNiI+TmV0aHJpc1JlcG9ydDwvdGV4dD48cmVjdCB4PSI4NDMuODE4IiB5PSIyNi4yOTciIHdpZHRoPSI5Ni4yOTgiIGhlaWdodD0iMzAuMjk3IiBmaWxsPSIjRTJFMkYwIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSI4NTAuODE4IiB5PSI0Ni4yOTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjgyLjI5OCI+U3luY0xlZGdlcjwvdGV4dD48cmVjdCB4PSI5NTAuMTE2IiB5PSIyNi4yOTciIHdpZHRoPSI4OS45NjgiIGhlaWdodD0iMzAuMjk3IiBmaWxsPSIjRTJFMkYwIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSI5NTcuMTE2IiB5PSI0Ni4yOTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9Ijc1Ljk2OCI+U2hhcmVQb2ludDwvdGV4dD48cmVjdCB4PSIxMCIgeT0iMTA0NC4xMTciIHdpZHRoPSIxMDQuMTM5IiBoZWlnaHQ9IjMwLjI5NyIgZmlsbD0iI0UyRTJGMCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiByeD0iMi41IiByeT0iMi41Ii8+PHRleHQgeD0iMTciIHk9IjEwNjQuMTEyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0IiB0ZXh0TGVuZ3RoPSI5MC4xMzkiPlRpbWVyIC8gSFRUUDwvdGV4dD48cmVjdCB4PSIyMTgiIHk9IjEwNDQuMTE3IiB3aWR0aD0iMTIyLjczMiIgaGVpZ2h0PSI0Ni41OTQiIGZpbGw9IiNFMkUyRjAiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgcng9IjIuNSIgcnk9IjIuNSIvPjx0ZXh0IHg9IjIzNi42MjUiIHk9IjEwNjQuMTEyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0IiB0ZXh0TGVuZ3RoPSI4NS40ODMiPlN5bmNTZXJ2aWNlPC90ZXh0Pjx0ZXh0IHg9IjIyNSIgeT0iMTA4MC40MDkiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9IjEwOC43MzIiPihPcmNoZXN0cmF0ZXVyKTwvdGV4dD48cmVjdCB4PSI2MTUuMTkyIiB5PSIxMDQ0LjExNyIgd2lkdGg9Ijk3LjIiIGhlaWdodD0iMzAuMjk3IiBmaWxsPSIjRTJFMkYwIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSI2MjIuMTkyIiB5PSIxMDY0LjExMiIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxNCIgdGV4dExlbmd0aD0iODMuMiI+TmV0aHJpc0F1dGg8L3RleHQ+PHJlY3QgeD0iNzIyLjM5MyIgeT0iMTA0NC4xMTciIHdpZHRoPSIxMTEuNDI2IiBoZWlnaHQ9IjMwLjI5NyIgZmlsbD0iI0UyRTJGMCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiByeD0iMi41IiByeT0iMi41Ii8+PHRleHQgeD0iNzI5LjM5MyIgeT0iMTA2NC4xMTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTQiIHRleHRMZW5ndGg9Ijk3LjQyNiI+TmV0aHJpc1JlcG9ydDwvdGV4dD48cmVjdCB4PSI4NDMuODE4IiB5PSIxMDQ0LjExNyIgd2lkdGg9Ijk2LjI5OCIgaGVpZ2h0PSIzMC4yOTciIGZpbGw9IiNFMkUyRjAiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgcng9IjIuNSIgcnk9IjIuNSIvPjx0ZXh0IHg9Ijg1MC44MTgiIHk9IjEwNjQuMTEyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjE0IiB0ZXh0TGVuZ3RoPSI4Mi4yOTgiPlN5bmNMZWRnZXI8L3RleHQ+PHJlY3QgeD0iOTUwLjExNiIgeT0iMTA0NC4xMTciIHdpZHRoPSI4OS45NjgiIGhlaWdodD0iMzAuMjk3IiBmaWxsPSIjRTJFMkYwIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIHJ4PSIyLjUiIHJ5PSIyLjUiLz48dGV4dCB4PSI5NTcuMTE2IiB5PSIxMDY0LjExMiIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxNCIgdGV4dExlbmd0aD0iNzUuOTY4Ij5TaGFyZVBvaW50PC90ZXh0Pjxwb2x5Z29uIHBvaW50cz0iMjYyLjM2Niw4Mi43MjcsMjcyLjM2Niw4Ni43MjcsMjYyLjM2Niw5MC43MjcsMjY2LjM2Niw4Ni43MjciIGZpbGw9IiMxODE4MTgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PGxpbmUgeDE9IjYyLjA2OSIgeTE9Ijg2LjcyNyIgeDI9IjI2OC4zNjYiIHkyPSI4Ni43MjciIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTsiLz48dGV4dCB4PSIxMDEuOTEzIiB5PSI4MS42NjEiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTMiIHRleHRMZW5ndGg9IjEzMi42MDkiPkV4ZWN1dGVTeW5jQXN5bmMoKTwvdGV4dD48cGF0aCBkPSJNMTg3LjM2Niw5OC43MjcgTDI1My40NjYsOTguNzI3IEwyNTMuNDY2LDEwNS44NTkgTDI0My40NjYsMTE1Ljg1OSBMMTg3LjM2NiwxMTUuODU5IEwxODcuMzY2LDk4LjcyNyIgc3R5bGU9InN0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoxLjU7IiBmaWxsPSIjRUVFIi8+PHJlY3QgeD0iMTg3LjM2NiIgeT0iOTguNzI3IiB3aWR0aD0iOTgwLjkxMyIgaGVpZ2h0PSI3ODEuNzI3IiBmaWxsPSJub25lIiBzdHlsZT0ic3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjEuNTsiLz48dGV4dCB4PSIyMDIuMzY2IiB5PSIxMTEuNzkzIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIyMS4xIiBmb250LXdlaWdodD0iNzAwIj50cnk8L3RleHQ+PHBvbHlnb24gcG9pbnRzPSI2NTEuNzkyLDE0Mi45OTIsNjYxLjc5MiwxNDYuOTkyLDY1MS43OTIsMTUwLjk5Miw2NTUuNzkyLDE0Ni45OTIiIGZpbGw9IiMxODE4MTgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PGxpbmUgeDE9IjI4NC4zNjYiIHkxPSIxNDYuOTkyIiB4Mj0iNjU3Ljc5MiIgeTI9IjE0Ni45OTIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTsiLz48dGV4dCB4PSI0MzEuOTg1IiB5PSIxNDEuOTI2IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSI4NC4xODkiPkxvZ2luQXN5bmMoKTwvdGV4dD48cG9seWdvbiBwb2ludHM9IjI5NS4zNjYsMTcyLjEyNSwyODUuMzY2LDE3Ni4xMjUsMjk1LjM2NiwxODAuMTI1LDI5MS4zNjYsMTc2LjEyNSIgZmlsbD0iIzE4MTgxOCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiLz48bGluZSB4MT0iMjg5LjM2NiIgeTE9IjE3Ni4xMjUiIHgyPSI2NjIuNzkyIiB5Mj0iMTc2LjEyNSIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1kYXNoYXJyYXk6MiwyOyIvPjx0ZXh0IHg9IjQ0My45NzYiIHk9IjE3MS4wNTkiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTMiIHRleHRMZW5ndGg9IjYwLjIwOCI+c2Vzc2lvbklkPC90ZXh0Pjxwb2x5Z29uIHBvaW50cz0iNzY2LjEwNSwyMDEuMjU4LDc3Ni4xMDUsMjA1LjI1OCw3NjYuMTA1LDIwOS4yNTgsNzcwLjEwNSwyMDUuMjU4IiBmaWxsPSIjMTgxODE4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIvPjxsaW5lIHgxPSIyODQuMzY2IiB5MT0iMjA1LjI1OCIgeDI9Ijc3Mi4xMDUiIHkyPSIyMDUuMjU4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7Ii8+PHRleHQgeD0iNDEwLjA3NSIgeT0iMjAwLjE5MiIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMyIgdGV4dExlbmd0aD0iMjQyLjMyMiI+R2V0QXZhaWxhYmxlUmVwb3J0c0FzeW5jKHNlc3Npb25JZCk8L3RleHQ+PHBvbHlnb24gcG9pbnRzPSIyOTUuMzY2LDIzMC4zOTEsMjg1LjM2NiwyMzQuMzkxLDI5NS4zNjYsMjM4LjM5MSwyOTEuMzY2LDIzNC4zOTEiIGZpbGw9IiMxODE4MTgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PGxpbmUgeDE9IjI4OS4zNjYiIHkxPSIyMzQuMzkxIiB4Mj0iNzc3LjEwNSIgeTI9IjIzNC4zOTEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtZGFzaGFycmF5OjIsMjsiLz48dGV4dCB4PSI0NjUuMDE0IiB5PSIyMjkuMzI1IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIxMzIuNDQ0Ij5yYXBwb3J0cyBkaXNwb25pYmxlczwvdGV4dD48cGF0aCBkPSJNMjA2LjM2NiwyNDYuMzkxIEwyODIuOTksMjQ2LjM5MSBMMjgyLjk5LDI1My41MjMgTDI3Mi45OSwyNjMuNTIzIEwyMDYuMzY2LDI2My41MjMgTDIwNi4zNjYsMjQ2LjM5MSIgc3R5bGU9InN0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoxLjU7IiBmaWxsPSIjRUVFIi8+PHJlY3QgeD0iMjA2LjM2NiIgeT0iMjQ2LjM5MSIgd2lkdGg9IjkzNi45MTMiIGhlaWdodD0iNTMyLjc5NyIgZmlsbD0ibm9uZSIgc3R5bGU9InN0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoxLjU7Ii8+PHRleHQgeD0iMjIxLjM2NiIgeT0iMjU5LjQ1OCIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMyIgdGV4dExlbmd0aD0iMzEuNjI0IiBmb250LXdlaWdodD0iNzAwIj5sb29wPC90ZXh0Pjx0ZXh0IHg9IjI5Ny45OSIgeT0iMjU4LjYwMSIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMSIgdGV4dExlbmd0aD0iMzEzLjM2NiIgZm9udC13ZWlnaHQ9IjcwMCI+W1BvdXIgY2hhcXVlIHJhcHBvcnQgKHRyacOpIHBhciBFeGVjdXRpb25EYXRlVXRjKV08L3RleHQ+PHBhdGggZD0iTTIyNS4zNjYsMjc3LjUyMyBMNDcwLjE0NiwyNzcuNTIzIEw0NzAuMTQ2LDI4NC42NTYgTDQ2MC4xNDYsMjk0LjY1NiBMMjI1LjM2NiwyOTQuNjU2IEwyMjUuMzY2LDI3Ny41MjMiIHN0eWxlPSJzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MS41OyIgZmlsbD0iI0VFRSIvPjxyZWN0IHg9IjIyNS4zNjYiIHk9IjI3Ny41MjMiIHdpZHRoPSI4OTIuOTEzIiBoZWlnaHQ9IjQ4Ny42NjQiIGZpbGw9Im5vbmUiIHN0eWxlPSJzdHJva2U6IzAwMDtzdHJva2Utd2lkdGg6MS41OyIvPjx0ZXh0IHg9IjI0MC4zNjYiIHk9IjI5MC41OSIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMyIgdGV4dExlbmd0aD0iMTk1LjI1NCIgZm9udC13ZWlnaHQ9IjcwMCI+dHJ5IOKAlCBpc29sYXRpb24gcGFyIHJhcHBvcnQ8L3RleHQ+PHRleHQgeD0iNDg1LjE0NiIgeT0iMjg5LjczNCIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMSIgdGV4dExlbmd0aD0iMjU0LjY2NSIgZm9udC13ZWlnaHQ9IjcwMCI+W2VycmV1ciDiiaAgYW5udWxhdGlvbiDihpIgRmFpbGVkLCBjb250aW51ZXJdPC90ZXh0Pjxwb2x5Z29uIHBvaW50cz0iODc5Ljk2NywzMjEuNzg5LDg4OS45NjcsMzI1Ljc4OSw4NzkuOTY3LDMyOS43ODksODgzLjk2NywzMjUuNzg5IiBmaWxsPSIjMTgxODE4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIvPjxsaW5lIHgxPSIyODQuMzY2IiB5MT0iMzI1Ljc4OSIgeDI9Ijg4NS45NjciIHkyPSIzMjUuNzg5IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7Ii8+PHRleHQgeD0iNDk0LjAzNCIgeT0iMzIwLjcyMyIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMyIgdGV4dExlbmd0aD0iMTg4LjI2NSI+VHJ5Q2xhaW1Bc3luYyhyZXBvcnRQcm9kSWQpPC90ZXh0PjxwYXRoIGQ9Ik0yNDQuMzY2LDMzNy43ODkgTDMwOC44MDksMzM3Ljc4OSBMMzA4LjgwOSwzNDQuOTIyIEwyOTguODA5LDM1NC45MjIgTDI0NC4zNjYsMzU0LjkyMiBMMjQ0LjM2NiwzMzcuNzg5IiBzdHlsZT0ic3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjEuNTsiIGZpbGw9IiNFRUUiLz48cmVjdCB4PSIyNDQuMzY2IiB5PSIzMzcuNzg5IiB3aWR0aD0iODQ4LjkxMyIgaGVpZ2h0PSI0MTMuMzk4IiBmaWxsPSJub25lIiBzdHlsZT0ic3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjEuNTsiLz48dGV4dCB4PSIyNTkuMzY2IiB5PSIzNTAuODU2IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIxOS40NDMiIGZvbnQtd2VpZ2h0PSI3MDAiPmFsdDwvdGV4dD48dGV4dCB4PSIzMjMuODA5IiB5PSIzNTAiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTEiIHRleHRMZW5ndGg9Ijg5LjkzNCIgZm9udC13ZWlnaHQ9IjcwMCI+W2TDqWrDoCByw6ljbGFtw6ldPC90ZXh0PjxsaW5lIHgxPSIyNDQuMzY2IiB5MT0iNDExLjA1NSIgeDI9IjEwOTMuMjc5IiB5Mj0iNDExLjA1NSIgc3R5bGU9InN0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoxO3N0cm9rZS1kYXNoYXJyYXk6MiwyOyIvPjx0ZXh0IHg9IjI0OS4zNjYiIHk9IjQyMy4yNjUiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTEiIHRleHRMZW5ndGg9IjYzLjE1OSIgZm9udC13ZWlnaHQ9IjcwMCI+W25vdXZlYXVdPC90ZXh0Pjxwb2x5Z29uIHBvaW50cz0iMjk1LjM2NiwzODIuMDU1LDI4NS4zNjYsMzg2LjA1NSwyOTUuMzY2LDM5MC4wNTUsMjkxLjM2NiwzODYuMDU1IiBmaWxsPSIjMTgxODE4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIvPjxsaW5lIHgxPSIyODkuMzY2IiB5MT0iMzg2LjA1NSIgeDI9Ijg5MC45NjciIHkyPSIzODYuMDU1IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWRhc2hhcnJheToyLDI7Ii8+PHRleHQgeD0iNTcyLjcwNCIgeT0iMzgwLjk4OSIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMyIgdGV4dExlbmd0aD0iMzAuOTI2Ij5mYWxzZTwvdGV4dD48cGF0aCBkPSJNODk2Ljk2NywzNjkuOTIyIEw4OTYuOTY3LDM5NC45MjIgTDEwNzEuOTY3LDM5NC45MjIgTDEwNzEuOTY3LDM3OS45MjIgTDEwNjEuOTY3LDM2OS45MjIgTDg5Ni45NjcsMzY5LjkyMiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDowLjU7IiBmaWxsPSIjRkVGRkREIi8+PHBhdGggZD0iTTEwNjEuOTY3LDM2OS45MjIgTDEwNjEuOTY3LDM3OS45MjIgTDEwNzEuOTY3LDM3OS45MjIgTDEwNjEuOTY3LDM2OS45MjIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MC41OyIgZmlsbD0iI0ZFRkZERCIvPjx0ZXh0IHg9IjkwMi45NjciIHk9IjM4Ni45ODkiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTMiIHRleHRMZW5ndGg9IjE1NC4zMTIiPlBhc3NlciAoQWxyZWFkeVN5bmNlZCk8L3RleHQ+PHBvbHlnb24gcG9pbnRzPSIyOTUuMzY2LDQ0Ny45OTIsMjg1LjM2Niw0NTEuOTkyLDI5NS4zNjYsNDU1Ljk5MiwyOTEuMzY2LDQ1MS45OTIiIGZpbGw9IiMxODE4MTgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PGxpbmUgeDE9IjI4OS4zNjYiIHkxPSI0NTEuOTkyIiB4Mj0iODkwLjk2NyIgeTI9IjQ1MS45OTIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtZGFzaGFycmF5OjIsMjsiLz48dGV4dCB4PSI1NzQuODI3IiB5PSI0NDYuOTI2IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIyNi42NzkiPnRydWU8L3RleHQ+PHBvbHlnb24gcG9pbnRzPSI3NjYuMTA1LDQ3Ny4xMjUsNzc2LjEwNSw0ODEuMTI1LDc2Ni4xMDUsNDg1LjEyNSw3NzAuMTA1LDQ4MS4xMjUiIGZpbGw9IiMxODE4MTgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PGxpbmUgeDE9IjI4NC4zNjYiIHkxPSI0ODEuMTI1IiB4Mj0iNzcyLjEwNSIgeTI9IjQ4MS4xMjUiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTsiLz48dGV4dCB4PSIzNzcuNjczIiB5PSI0NzYuMDU5IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIzMDcuMTI1Ij5Eb3dubG9hZFJlcG9ydEFzeW5jKHNlc3Npb25JZCwgcmVwb3J0UHJvZElkKTwvdGV4dD48cG9seWdvbiBwb2ludHM9IjI5NS4zNjYsNTA2LjI1OCwyODUuMzY2LDUxMC4yNTgsMjk1LjM2Niw1MTQuMjU4LDI5MS4zNjYsNTEwLjI1OCIgZmlsbD0iIzE4MTgxOCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiLz48bGluZSB4MT0iMjg5LjM2NiIgeTE9IjUxMC4yNTgiIHgyPSI3NzcuMTA1IiB5Mj0iNTEwLjI1OCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1kYXNoYXJyYXk6MiwyOyIvPjx0ZXh0IHg9IjQ2OC4yOTYiIHk9IjUwNS4xOTIiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTMiIHRleHRMZW5ndGg9IjEyNS44OCI+Y29udGVudSBkdSByYXBwb3J0PC90ZXh0Pjxwb2x5Z29uIHBvaW50cz0iOTgzLjEsNTM1LjM5MSw5OTMuMSw1MzkuMzkxLDk4My4xLDU0My4zOTEsOTg3LjEsNTM5LjM5MSIgZmlsbD0iIzE4MTgxOCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiLz48bGluZSB4MT0iMjg0LjM2NiIgeTE9IjUzOS4zOTEiIHgyPSI5ODkuMSIgeTI9IjUzOS4zOTEiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTsiLz48dGV4dCB4PSI0MzAuNTE4IiB5PSI1MzQuMzI1IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSI0MTguNDMxIj5VcGxvYWRGaWxlQXN5bmMocm9vdEZvbGRlciwgYmFzZUZpbGVOYW1lLCBieXRlcywgY29udGVudFR5cGUpPC90ZXh0Pjxwb2x5Z29uIHBvaW50cz0iMjk1LjM2Niw1NjQuNTIzLDI4NS4zNjYsNTY4LjUyMywyOTUuMzY2LDU3Mi41MjMsMjkxLjM2Niw1NjguNTIzIiBmaWxsPSIjMTgxODE4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIvPjxsaW5lIHgxPSIyODkuMzY2IiB5MT0iNTY4LjUyMyIgeDI9Ijk5NC4xIiB5Mj0iNTY4LjUyMyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1kYXNoYXJyYXk6MiwyOyIvPjx0ZXh0IHg9IjU2NS4xNDgiIHk9IjU2My40NTgiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTMiIHRleHRMZW5ndGg9IjE0OS4xNyI+cm9vdFBhdGggKGNvcGllIHJhY2luZSk8L3RleHQ+PHBvbHlnb24gcG9pbnRzPSI5ODMuMSw1OTMuNjU2LDk5My4xLDU5Ny42NTYsOTgzLjEsNjAxLjY1Niw5ODcuMSw1OTcuNjU2IiBmaWxsPSIjMTgxODE4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjEwOyIvPjxsaW5lIHgxPSIyODQuMzY2IiB5MT0iNTk3LjY1NiIgeDI9Ijk4OS4xIiB5Mj0iNTk3LjY1NiIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxOyIvPjx0ZXh0IHg9IjQxMS4xODYiIHk9IjU5Mi41OSIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMyIgdGV4dExlbmd0aD0iNDU3LjA5NSI+VXBsb2FkRmlsZUFzeW5jKGFyY2hpdmVGb2xkZXIsIGFyY2hpdmVGaWxlTmFtZSwgYnl0ZXMsIGNvbnRlbnRUeXBlKTwvdGV4dD48cG9seWdvbiBwb2ludHM9IjI5NS4zNjYsNjIyLjc4OSwyODUuMzY2LDYyNi43ODksMjk1LjM2Niw2MzAuNzg5LDI5MS4zNjYsNjI2Ljc4OSIgZmlsbD0iIzE4MTgxOCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiLz48bGluZSB4MT0iMjg5LjM2NiIgeTE9IjYyNi43ODkiIHgyPSI5OTQuMSIgeTI9IjYyNi43ODkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtZGFzaGFycmF5OjIsMjsiLz48dGV4dCB4PSI1NTAuNDc2IiB5PSI2MjEuNzIzIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIxNzguNTE1Ij5hcmNoaXZlUGF0aCAoY29waWUgYXJjaGl2ZSk8L3RleHQ+PHBvbHlnb24gcG9pbnRzPSI4NzkuOTY3LDY1MS45MjIsODg5Ljk2Nyw2NTUuOTIyLDg3OS45NjcsNjU5LjkyMiw4ODMuOTY3LDY1NS45MjIiIGZpbGw9IiMxODE4MTgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PGxpbmUgeDE9IjI4NC4zNjYiIHkxPSI2NTUuOTIyIiB4Mj0iODg1Ljk2NyIgeTI9IjY1NS45MjIiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTsiLz48dGV4dCB4PSIzNjEuNjA5IiB5PSI2NTAuODU2IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSI0NTMuMTE1Ij5SZWNvcmRTeW5jQXN5bmMocmVwb3J0UHJvZElkLCBhcmNoaXZlUGF0aCwgc3luY2VkQXRVdGMsIGV4ZWNEYXRlKTwvdGV4dD48cGF0aCBkPSJNMjYzLjM2Niw2NjcuOTIyIEwzMzIuODE3LDY2Ny45MjIgTDMzMi44MTcsNjc1LjA1NSBMMzIyLjgxNyw2ODUuMDU1IEwyNjMuMzY2LDY4NS4wNTUgTDI2My4zNjYsNjY3LjkyMiIgc3R5bGU9InN0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoxLjU7IiBmaWxsPSIjRUVFIi8+PHJlY3QgeD0iMjYzLjM2NiIgeT0iNjY3LjkyMiIgd2lkdGg9IjQzNC43NzUiIGhlaWdodD0iNjkuMjY2IiBmaWxsPSJub25lIiBzdHlsZT0ic3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjEuNTsiLz48dGV4dCB4PSIyNzguMzY2IiB5PSI2ODAuOTg5IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIyNC40NTEiIGZvbnQtd2VpZ2h0PSI3MDAiPm9wdDwvdGV4dD48dGV4dCB4PSIzNDcuODE3IiB5PSI2ODAuMTMyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjExIiB0ZXh0TGVuZ3RoPSIzMzQuMzI0IiBmb250LXdlaWdodD0iNzAwIj5bUmFwcG9ydCBzb3VyY2UgU01TIChJUmVjaXBpZW50SW5kZXhDbGllbnQgcHLDqXNlbnQpXTwvdGV4dD48bGluZSB4MT0iMjg0LjM2NiIgeTE9IjcxNi4xODgiIHgyPSIzMjYuMzY2IiB5Mj0iNzE2LjE4OCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxOyIvPjxsaW5lIHgxPSIzMjYuMzY2IiB5MT0iNzE2LjE4OCIgeDI9IjMyNi4zNjYiIHkyPSI3MjkuMTg4IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7Ii8+PGxpbmUgeDE9IjI4NS4zNjYiIHkxPSI3MjkuMTg4IiB4Mj0iMzI2LjM2NiIgeTI9IjcyOS4xODgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTsiLz48cG9seWdvbiBwb2ludHM9IjI5NS4zNjYsNzI1LjE4OCwyODUuMzY2LDcyOS4xODgsMjk1LjM2Niw3MzMuMTg4LDI5MS4zNjYsNzI5LjE4OCIgZmlsbD0iIzE4MTgxOCIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxO3N0cm9rZS1saW5lam9pbjptaXRlcjtzdHJva2UtbWl0ZXJsaW1pdDoxMDsiLz48dGV4dCB4PSIyOTEuMzY2IiB5PSI3MTEuMTIyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIxNTYuODQ0Ij5Jbmdlc3RSZWNpcGllbnRzQXN5bmMoKTwvdGV4dD48cGF0aCBkPSJNMjYzLjM2Niw3OTcuMTg4IEwzMzIuODE3LDc5Ny4xODggTDMzMi44MTcsODA0LjMyIEwzMjIuODE3LDgxNC4zMiBMMjYzLjM2Niw4MTQuMzIgTDI2My4zNjYsNzk3LjE4OCIgc3R5bGU9InN0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoxLjU7IiBmaWxsPSIjRUVFIi8+PHJlY3QgeD0iMjYzLjM2NiIgeT0iNzk3LjE4OCIgd2lkdGg9IjMyMi41MjQiIGhlaWdodD0iNjkuMjY2IiBmaWxsPSJub25lIiBzdHlsZT0ic3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjEuNTsiLz48dGV4dCB4PSIyNzguMzY2IiB5PSI4MTAuMjU0IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIyNC40NTEiIGZvbnQtd2VpZ2h0PSI3MDAiPm9wdDwvdGV4dD48dGV4dCB4PSIzNDcuODE3IiB5PSI4MDkuMzk4IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjExIiB0ZXh0TGVuZ3RoPSIyMjIuMDczIiBmb250LXdlaWdodD0iNzAwIj5bSUJhc2VUaUluZ2VzdGlvblNlcnZpY2UgY29uZmlndXLDqV08L3RleHQ+PGxpbmUgeDE9IjI4NC4zNjYiIHkxPSI4NDUuNDUzIiB4Mj0iMzI2LjM2NiIgeTI9Ijg0NS40NTMiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTsiLz48bGluZSB4MT0iMzI2LjM2NiIgeTE9Ijg0NS40NTMiIHgyPSIzMjYuMzY2IiB5Mj0iODU4LjQ1MyIgc3R5bGU9InN0cm9rZTojMTgxODE4O3N0cm9rZS13aWR0aDoxOyIvPjxsaW5lIHgxPSIyODUuMzY2IiB5MT0iODU4LjQ1MyIgeDI9IjMyNi4zNjYiIHkyPSI4NTguNDUzIiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7Ii8+PHBvbHlnb24gcG9pbnRzPSIyOTUuMzY2LDg1NC40NTMsMjg1LjM2Niw4NTguNDUzLDI5NS4zNjYsODYyLjQ1MywyOTEuMzY2LDg1OC40NTMiIGZpbGw9IiMxODE4MTgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PHRleHQgeD0iMjkxLjM2NiIgeT0iODQwLjM4NyIgZmlsbD0iIzAwMCIgZm9udC1zaXplPSIxMyIgdGV4dExlbmd0aD0iMTcyLjM5Ij5Jbmdlc3RCYXNlVGlTYWZlbHlBc3luYygpPC90ZXh0PjxwYXRoIGQ9Ik0yNjMuMzY2LDg5OC40NTMgTDM1My44OTIsODk4LjQ1MyBMMzUzLjg5Miw5MDUuNTg2IEwzNDMuODkyLDkxNS41ODYgTDI2My4zNjYsOTE1LjU4NiBMMjYzLjM2Niw4OTguNDUzIiBzdHlsZT0ic3Ryb2tlOiMwMDA7c3Ryb2tlLXdpZHRoOjEuNTsiIGZpbGw9IiNFRUUiLz48cmVjdCB4PSIyNjMuMzY2IiB5PSI4OTguNDUzIiB3aWR0aD0iNTgxIiBoZWlnaHQ9Ijc3LjM5OCIgZmlsbD0ibm9uZSIgc3R5bGU9InN0cm9rZTojMDAwO3N0cm9rZS13aWR0aDoxLjU7Ii8+PHRleHQgeD0iMjc4LjM2NiIgeT0iOTExLjUyIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSI0NS41MjUiIGZvbnQtd2VpZ2h0PSI3MDAiPmZpbmFsbHk8L3RleHQ+PHBvbHlnb24gcG9pbnRzPSI2NTEuNzkyLDk0Mi43MTksNjYxLjc5Miw5NDYuNzE5LDY1MS43OTIsOTUwLjcxOSw2NTUuNzkyLDk0Ni43MTkiIGZpbGw9IiMxODE4MTgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PGxpbmUgeDE9IjI4NC4zNjYiIHkxPSI5NDYuNzE5IiB4Mj0iNjU3Ljc5MiIgeTI9Ijk0Ni43MTkiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTsiLz48dGV4dCB4PSIyOTMuODY2IiB5PSI5NDEuNjUzIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIzNjAuNDI2Ij5Mb2dvdXRTYWZlbHlBc3luYyhzZXNzaW9uSWQsIENhbmNlbGxhdGlvblRva2VuLk5vbmUpPC90ZXh0PjxwYXRoIGQ9Ik02NjguNzkyLDkzMC41ODYgTDY2OC43OTIsOTcwLjU4NiBMODIyLjc5Miw5NzAuNTg2IEw4MjIuNzkyLDk0MC41ODYgTDgxMi43OTIsOTMwLjU4NiBMNjY4Ljc5Miw5MzAuNTg2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIGZpbGw9IiNGRUZGREQiLz48cGF0aCBkPSJNODEyLjc5Miw5MzAuNTg2IEw4MTIuNzkyLDk0MC41ODYgTDgyMi43OTIsOTQwLjU4NiBMODEyLjc5Miw5MzAuNTg2IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjAuNTsiIGZpbGw9IiNGRUZGREQiLz48dGV4dCB4PSI2NzQuNzkyIiB5PSI5NDcuNjUzIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIxMzMuNTc0Ij5BdmFsZSBsZXMgZXhjZXB0aW9uczwvdGV4dD48dGV4dCB4PSI2NzQuNzkyIiB5PSI5NjIuNzg2IiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSI4OC42MDEiPihsb2cgV2FybmluZyk8L3RleHQ+PHBvbHlnb24gcG9pbnRzPSI3My4wNjksMTAyMi4xMTcsNjMuMDY5LDEwMjYuMTE3LDczLjA2OSwxMDMwLjExNyw2OS4wNjksMTAyNi4xMTciIGZpbGw9IiMxODE4MTgiIHN0eWxlPSJzdHJva2U6IzE4MTgxODtzdHJva2Utd2lkdGg6MTtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW1pdGVybGltaXQ6MTA7Ii8+PGxpbmUgeDE9IjY3LjA2OSIgeTE9IjEwMjYuMTE3IiB4Mj0iMjczLjM2NiIgeTI9IjEwMjYuMTE3IiBzdHlsZT0ic3Ryb2tlOiMxODE4MTg7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLWRhc2hhcnJheToyLDI7Ii8+PHRleHQgeD0iMTE0LjQxMiIgeT0iMTAwNS45MTgiIGZpbGw9IiMwMDAiIGZvbnQtc2l6ZT0iMTMiIHRleHRMZW5ndGg9IjEwNy42MTIiPlN5bmNDeWNsZVJlc3VsdDwvdGV4dD48dGV4dCB4PSI3NC4wNjkiIHk9IjEwMjEuMDUxIiBmaWxsPSIjMDAwIiBmb250LXNpemU9IjEzIiB0ZXh0TGVuZ3RoPSIxODguMjk3Ij4oVXBsb2FkZWQgLyBTa2lwcGVkIC8gRmFpbGVkKTwvdGV4dD48P3BsYW50dW1sLXNyYyBiTEl6UmppbTREeHY1OFRFNWsycVV1TzJaakVxMWZCS1kxTHFRM2ltcjViY0d2Q2dWdm5ld3JJV1F6NDdvRWhkeTlsYUlOZUs5TGtFWkc4VFI5M0t6enRWVHRWa05rZ0FNeHU0WXd1b3NrNExFaVRCRjREYjdhUk1jV1ZtRFkxcE13MzN4bTZydzgwWjlLaUQwaEw3b25YMWwxSW91amgzZ3Jta3FTOFItOTNkcXJWMDdVSE1iWU4xemIycE1laVBzZktLLTRLRkZiZ25HRVNqem5YaXJoMFlPOXpvWk52WGZIaTVsc1dHeU4wS1NPRUxpUngxZkVFWHdxaWlBQUc2YWV1bDgwamtTTWdhSmJQY0t5UlFCRTNhUkhDUWRDQXhIbkoxT3hvRDdGcURDaVE1Ym9qQThhTkZJY2oySFBNaU1LQ1hRZW9QZzlVY2JCZVpETXlkRXhrRUlZb0RkWEhpSXFqZnFCVnR3NFNoQlhNX0t2V1VOSkFwOU1NaTFWU2lNYnVySzJYYWI1aUlzSjZjWkFiV1FlODVpVTJhUldVM1dSVG9pbVFnSTlpWjZKd2RoNnd6bzdPdm1WRUZGbzJUS0puLVJ6MlRXU3plQkdhOXB4LVVXNmlUTWlacHB6em1HUzVaQ0dIWGo5U3dlRnN3b3A4ZkdWN2NqWHVoQmZTZkRUbGFDeE1jWURibnZRN09oQnpqZGkxa3JhQm52TVJETWNPbHZKYk4zZmFzZjBLOWp1WXJjdEJkMjNHT0FPa3lnMkNHb0kwSTRCRzlBLUpYWUE1YzNXdzVFM1NGTVhiVWY4U042V25YRi1QM0hNQndnMENLZUlsUXBpVGlJZTNSQWJnX2U2QXJISjM2Tm5YTGUxdDI3TlNPbHJwcDlUQWp6a1k2aEtNVnJuTGNaNHBxdklWa2I1RUozT0lmUERIUEk0c2VWdGxhRDlEb1hQdEp4bGVWVmJqQXR0TnhiMXFIX0dRNWlTTGtjbGViN0ZQajNTNHJxZXF5RFVHR2E1ZXFUWVZQRDlNN2N4Tzc3Sk1zZTQ2eWNpNVdHaE9ia1RULWVXank3QWp1WDhod256NFhzektYbkp0SDlJc1pCU1RyV3Vnd1E3d3hHdEd1RUlDdlNmYjg5Ny14ck05WHZoOEN2RUl1X0tJUnlKY2ctaTEzY2hBdnI1b2ZPemwzMUR6ZHpaZmxwQWFzQWFyU1JrdkhseHVzS1VvektRMFRlWDFlMnIzcjE1T0h3c1dEQXJGMjlzd3JyNk1BZlZMQ2hobHJUemVhQ1F2NXQzeWtBNC1xcjNiT3FEQVZ0U2tnUWF2ZnEzRE11RHZJXzBpMD8+PC9nPjwvc3ZnPg==" class="uml" alt="uml diagram" title="" /></p>
+<div class="highlight"><pre><span></span><code>1. Fonction déclenchée (timer ou HTTP GET)
+2. L&#39;orchestrateur appelle INethrisAuthClient.LoginAsync() → identifiant de session
+3. L&#39;orchestrateur appelle INethrisReportClient.GetAvailableReportsAsync(sessionId)
+4. Pour chaque rapport (trié par date d&#39;exécution) — isolation d&#39;erreur par rapport :
+   a. ISyncLedger.TryClaimAsync(reportProdId) → passer si false (déjà réclamé)
+   b. INethrisReportClient.DownloadReportAsync(sessionId, reportProdId) → contenu du rapport
+   c. ISharePointClient.UploadFileAsync(rootFolder, baseFileName, bytes, contentType) → copie racine
+   d. ISharePointClient.UploadFileAsync(archiveFolder, archiveFileName, bytes, contentType) → copie archive
+   e. ISyncLedger.RecordSyncAsync(reportProdId, archivePath, syncedAtUtc, reportExecDate)
+   f. (Optionnel) Si rapport source SMS : ingestion de l&#39;index des destinataires
+5. (Optionnel) Si IBaseTiIngestionService configuré : ingestion du classeur BaseTI
+6. L&#39;orchestrateur appelle LogoutSafelyAsync(sessionId, CancellationToken.None) dans le bloc finally
+7. Retourne SyncCycleResult avec les résultats par rapport
+</code></pre></div>
+<h2 id="responsabilites-par-couche">Responsabilités par couche<a class="headerlink" href="#responsabilites-par-couche" title="Permanent link">&para;</a></h2>
+<h3 id="core-equipelaurencecore">Core (<code>EquipeLaurence.Core</code>)<a class="headerlink" href="#core-equipelaurencecore" title="Permanent link">&para;</a></h3>
+<p>Tout ce qui ne communique pas avec le monde extérieur.</p>
+<ul>
+<li><strong><code>Clients/</code></strong> — Contrats pour les dépendances externes <code>INethrisAuthClient</code>, <code>INethrisReportClient</code>, <code>ISharePointClient</code>,
+  <code>ISyncLedger</code>, <code>ISmsClient</code>, <code>IRecipientIndexClient</code>, <code>IOptOutRegistryClient</code>, <code>ISmsAuditClient</code>, <code>ISmsIdempotencyStore</code></li>
+<li><strong><code>Models/</code></strong> — DTO — pas de logique, pas de dépendances <code>NethrisReportSummary</code>, <code>NethrisReportContent</code>,
+  <code>NethrisApiModels</code>, <code>SyncResult</code>, <code>SmsSendResult</code>, <code>RecipientRecord</code>, <code>SharePointFileInfo</code></li>
+<li><strong><code>Configuration/</code></strong> — POCO d'options (pattern Options) <code>NethrisOptions</code>, <code>SharePointOptions</code>, <code>LedgerOptions</code>,
+  <code>AcsOptions</code>, <code>AadAuthOptions</code></li>
+<li><strong><code>Services/</code></strong> — Orchestrateur — logique métier pure <code>INethrisReportSyncService</code>, <code>NethrisReportSyncService</code></li>
+</ul>
+<h3 id="infrastructure-equipelaurenceinfrastructure">Infrastructure (<code>EquipeLaurence.Infrastructure</code>)<a class="headerlink" href="#infrastructure-equipelaurenceinfrastructure" title="Permanent link">&para;</a></h3>
+<p>Implémentations des interfaces Core qui communiquent avec les systèmes externes.</p>
+<table>
+<thead>
+<tr>
+<th>Classe</th>
+<th>Implémente</th>
+<th>Dépendance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NethrisAuthClient</code></td>
+<td><code>INethrisAuthClient</code></td>
+<td>Nethris REST</td>
+</tr>
+<tr>
+<td><code>NethrisReportClient</code></td>
+<td><code>INethrisReportClient</code></td>
+<td>Nethris REST</td>
+</tr>
+<tr>
+<td><code>SharePointClient</code></td>
+<td><code>ISharePointClient</code></td>
+<td>Graph API</td>
+</tr>
+<tr>
+<td><code>TableStorageSyncLedger</code></td>
+<td><code>ISyncLedger</code></td>
+<td>Table Storage</td>
+</tr>
+<tr>
+<td><code>AcsSmsClient</code></td>
+<td><code>ISmsClient</code></td>
+<td>ACS</td>
+</tr>
+<tr>
+<td><code>DisabledSmsClient</code></td>
+<td><code>ISmsClient</code></td>
+<td>Stub inerte</td>
+</tr>
+<tr>
+<td><code>TableStorageRecipientIndexClient</code></td>
+<td><code>IRecipientIndexClient</code></td>
+<td>Table Storage</td>
+</tr>
+<tr>
+<td><code>TableStorageOptOutRegistryClient</code></td>
+<td><code>IOptOutRegistryClient</code></td>
+<td>Table Storage</td>
+</tr>
+<tr>
+<td><code>TableStorageSmsAuditClient</code></td>
+<td><code>ISmsAuditClient</code></td>
+<td>Table Storage</td>
+</tr>
+<tr>
+<td><code>TableStorageSmsIdempotencyStore</code></td>
+<td><code>ISmsIdempotencyStore</code></td>
+<td>Table Storage</td>
+</tr>
+</tbody>
+</table>
+<h3 id="functions-equipelaurencefunctions">Functions (<code>EquipeLaurence.Functions</code>)<a class="headerlink" href="#functions-equipelaurencefunctions" title="Permanent link">&para;</a></h3>
+<p>Déclencheurs légers uniquement. Aucune logique métier.</p>
+<table>
+<thead>
+<tr>
+<th>Fonction</th>
+<th>Déclencheur</th>
+<th>Route</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NethrisReportSyncFunction</code></td>
+<td>HTTP GET (Function)</td>
+<td><code>sync/nethris-reports</code></td>
+</tr>
+<tr>
+<td><code>NethrisReportSyncTimerFunction</code></td>
+<td>Timer <code>0 * * * * *</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>SendEmergencySmsFunction</code></td>
+<td>HTTP POST (AAD)</td>
+<td><code>sms/send</code></td>
+</tr>
+<tr>
+<td><code>AcsInboundSmsFunction</code></td>
+<td>HTTP POST (ACS sig.)</td>
+<td><code>sms/inbound</code></td>
+</tr>
+<tr>
+<td><code>SharePointListFilesFunction</code></td>
+<td>HTTP GET (Function)</td>
+<td><code>test/sharepoint/files</code></td>
+</tr>
+<tr>
+<td><code>SharePointTestUploadFunction</code></td>
+<td>HTTP POST (Function)</td>
+<td><code>test/sharepoint/upload</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="contrats-dinterfaces">Contrats d'interfaces<a class="headerlink" href="#contrats-dinterfaces" title="Permanent link">&para;</a></h2>
+<h3 id="interfaces-du-pipeline-nethris-sharepoint">Interfaces du pipeline Nethris → SharePoint<a class="headerlink" href="#interfaces-du-pipeline-nethris-sharepoint" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">INethrisAuthClient</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">LoginAsync</span><span class="p">(</span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Task</span><span class="w"> </span><span class="nf">LogoutAsync</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">sessionId</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">INethrisReportClient</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">NethrisReportSummary</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">GetAvailableReportsAsync</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">sessionId</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">NethrisReportContent</span><span class="o">&gt;</span><span class="w"> </span><span class="n">DownloadReportAsync</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">sessionId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">reportProdId</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">ISharePointClient</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">UploadFileAsync</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">folderPath</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">fileName</span><span class="p">,</span><span class="w"> </span><span class="kt">byte</span><span class="p">[]</span><span class="w"> </span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">contentType</span><span class="p">,</span>
+<span class="w">        </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Task</span><span class="w"> </span><span class="nf">ValidateAccessAsync</span><span class="p">(</span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">SharePointFileInfo</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ListFilesAsync</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">folderPath</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">ISyncLedger</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">HasBeenSyncedAsync</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">reportProdId</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">/// Réclame atomiquement un rapport pour la sync.</span>
+<span class="w">    </span><span class="c1">/// Retourne true si la réclamation a été acquise, false si déjà réclamé.</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">TryClaimAsync</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">reportProdId</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Task</span><span class="w"> </span><span class="nf">RecordSyncAsync</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">reportProdId</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">sharePointPath</span><span class="p">,</span>
+<span class="w">        </span><span class="n">DateTimeOffset</span><span class="w"> </span><span class="n">syncedAtUtc</span><span class="p">,</span><span class="w"> </span><span class="n">DateTimeOffset</span><span class="w"> </span><span class="n">reportExecDate</span><span class="p">,</span>
+<span class="w">        </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="interfaces-du-pipeline-sms">Interfaces du pipeline SMS<a class="headerlink" href="#interfaces-du-pipeline-sms" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">ISmsClient</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">SmsSendResult</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SendSmsAsync</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">toE164</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">IRecipientIndexClient</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">RecipientRecord</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">GetByLocationAsync</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">locationCode</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Task</span><span class="w"> </span><span class="nf">ReplaceForLocationAsync</span><span class="p">(</span>
+<span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">locationCode</span><span class="p">,</span><span class="w"> </span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">RecipientRecord</span><span class="o">&gt;</span><span class="w"> </span><span class="n">recipients</span><span class="p">,</span>
+<span class="w">        </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">IOptOutRegistryClient</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">IsOptedOutAsync</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">phoneE164</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Task</span><span class="w"> </span><span class="nf">AddOptOutAsync</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">phoneE164</span><span class="p">,</span><span class="w"> </span><span class="n">DateTimeOffset</span><span class="w"> </span><span class="n">optedOutAtUtc</span><span class="p">,</span>
+<span class="w">        </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Task</span><span class="w"> </span><span class="nf">RemoveOptOutAsync</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">phoneE164</span><span class="p">,</span><span class="w"> </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">ISmsAuditClient</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="w"> </span><span class="nf">RecordBroadcastAsync</span><span class="p">(</span><span class="n">SmsAuditEntry</span><span class="w"> </span><span class="n">entry</span><span class="p">,</span>
+<span class="w">        </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">ISmsIdempotencyStore</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">string?</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GetCachedResponseAsync</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">idempotencyKey</span><span class="p">,</span>
+<span class="w">        </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Task</span><span class="w"> </span><span class="nf">StoreResponseAsync</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">idempotencyKey</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">responseJson</span><span class="p">,</span>
+<span class="w">        </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="service-orchestrateur">Service orchestrateur<a class="headerlink" href="#service-orchestrateur" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">interface</span><span class="w"> </span><span class="n">INethrisReportSyncService</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">SyncCycleResult</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ExecuteSyncAsync</span><span class="p">(</span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="modeles">Modèles<a class="headerlink" href="#modeles" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">NethrisReportSummary</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">ReportProdId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">ReportName</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Format</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">FileExtension</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pdf&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="n">DateTimeOffset</span><span class="w"> </span><span class="n">ExecutionDateUtc</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">NethrisReportContent</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">byte</span><span class="p">[]</span><span class="w"> </span><span class="n">Content</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">ContentType</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SyncCycleResult</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="n">DateTimeOffset</span><span class="w"> </span><span class="n">StartedAtUtc</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="n">DateTimeOffset</span><span class="w"> </span><span class="n">CompletedAtUtc</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="n">IReadOnlyList</span><span class="o">&lt;</span><span class="n">ReportSyncOutcome</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Outcomes</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Calculés : TotalReports, Uploaded, Skipped, Failed, HasFailures</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ReportSyncOutcome</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">ReportProdId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">ReportName</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="n">ReportSyncStatus</span><span class="w"> </span><span class="n">Status</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// Uploaded | AlreadySynced | Failed</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string?</span><span class="w"> </span><span class="n">SharePointPath</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string?</span><span class="w"> </span><span class="n">ErrorMessage</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SharePointFileInfo</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">SizeInBytes</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="n">DateTimeOffset</span><span class="w"> </span><span class="n">LastModifiedUtc</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">ContentType</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string?</span><span class="w"> </span><span class="n">WebUrl</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">record</span><span class="w"> </span><span class="n">SmsSendResult</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">Success</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string?</span><span class="w"> </span><span class="n">MessageId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string?</span><span class="w"> </span><span class="n">Error</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span><span class="w"> </span><span class="k">sealed</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">RecipientRecord</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">EmployeeNumber</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">FirstName</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">LastName</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">MobileNumber</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// E.164</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">LocationCode</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">IsEligibleForSms</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">DateTimeOffset</span><span class="w"> </span><span class="n">LastRefreshedUtc</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">init</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="exigences-de-configuration">Exigences de configuration<a class="headerlink" href="#exigences-de-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="parametres-de-lapplication">Paramètres de l'application<a class="headerlink" href="#parametres-de-lapplication" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Paramètre</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Nethris:BaseUrl</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>Nethris:AppId</code></td>
+<td>Key Vault</td>
+</tr>
+<tr>
+<td><code>Nethris:BusinessCode</code></td>
+<td>Key Vault</td>
+</tr>
+<tr>
+<td><code>Nethris:UserCode</code></td>
+<td>Key Vault</td>
+</tr>
+<tr>
+<td><code>Nethris:UserPassword</code></td>
+<td>Key Vault</td>
+</tr>
+<tr>
+<td><code>Nethris:Language</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>SharePoint:SiteId</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>SharePoint:DriveId</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>SharePoint:RootFolder</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>Ledger:TableServiceUri</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>Ledger:TableName</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>Acs:ConnectionString</code></td>
+<td>Key Vault</td>
+</tr>
+<tr>
+<td><code>Acs:PhoneNumber</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>AzureAd:TenantId</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>AzureAd:ClientId</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>AzureAd:ClientSecret</code></td>
+<td>Key Vault</td>
+</tr>
+<tr>
+<td><code>Sms:Enabled</code></td>
+<td>App Config</td>
+</tr>
+<tr>
+<td><code>AppConfiguration:Endpoint</code></td>
+<td>App setting</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gestion-des-secrets">Gestion des secrets<a class="headerlink" href="#gestion-des-secrets" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Azure Key Vault</strong> stocke tous les identifiants Nethris, Azure Communication Services et les identifiants client Azure AD.</li>
+<li>Le Function App référence Key Vault via une <strong>identité managée</strong> (aucun mot de passe dans la configuration).</li>
+<li><strong>Azure App Configuration</strong> centralise les paramètres non-secrets avec des références Key Vault intégrées.</li>
+<li>Les pipelines d'infrastructure déploient avec <code>provisionSecretValues=false</code> par défaut afin que les valeurs existantes des
+  secrets Key Vault ne soient pas écrasées lors des exécutions de routine.</li>
+<li>L'approvisionnement initial des secrets est une action manuelle explicite (<code>workflow_dispatch</code> avec
+  <code>provision-secrets=true</code>) qui lit les valeurs à partir des secrets d'environnement GitHub plutôt que des fichiers de
+  paramètres versionnés.</li>
+</ul>
+<h2 id="strategie-de-gestion-des-erreurs">Stratégie de gestion des erreurs<a class="headerlink" href="#strategie-de-gestion-des-erreurs" title="Permanent link">&para;</a></h2>
+<h3 id="isolation-par-rapport">Isolation par rapport<a class="headerlink" href="#isolation-par-rapport" title="Permanent link">&para;</a></h3>
+<p>Chaque rapport se synchronise indépendamment. Une erreur sur un rapport n'interrompt pas le cycle — les autres rapports
+continuent d'être traités. Le <code>SyncCycleResult</code> rapporte tous les résultats, y compris les échecs.</p>
+<h3 id="garantie-de-session-nethris">Garantie de session Nethris<a class="headerlink" href="#garantie-de-session-nethris" title="Permanent link">&para;</a></h3>
+<p>Le bloc <code>finally</code> de l'orchestrateur garantit que <code>LogoutAsync</code> est toujours appelé, même en cas d'exception. Cela empêche
+les fuites de session avec l'API Nethris.</p>
+<h3 id="politique-de-reessai">Politique de réessai<a class="headerlink" href="#politique-de-reessai" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Stratégie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP Nethris</td>
+<td>Polly exponentiel (3×, 2s/4s/8s)</td>
+</tr>
+<tr>
+<td>SharePoint</td>
+<td>Polly exponentiel (3×, 429/503)</td>
+</tr>
+<tr>
+<td>Registre sync</td>
+<td>Pas de réessai</td>
+</tr>
+<tr>
+<td>Function</td>
+<td>Réessai auto du runtime</td>
+</tr>
+</tbody>
+</table>
+<h3 id="journalisation-et-observabilite">Journalisation et observabilité<a class="headerlink" href="#journalisation-et-observabilite" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Journalisation structurée via <code>ILogger&lt;T&gt;</code> partout.</li>
+<li>Intégration Application Insights pour la télémétrie, les traces et les alertes.</li>
+<li>Chaque cycle de sync journalise : heure de début, nombre de rapports, résultat par rapport, heure de fin.</li>
+<li>Les échecs incluent les détails de l'exception pour le diagnostic.</li>
+</ul>
+<h3 id="alertes">Alertes<a class="headerlink" href="#alertes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Configurer des alertes Application Insights pour :</li>
+<li>Tout cycle de sync avec <code>HasFailures == true</code></li>
+<li>Échec complet du cycle de sync (exception non gérée)</li>
+<li>Aucune activité de sync depuis 48 heures (vérification de la planification)</li>
+</ul>
+<h2 id="considerations-de-securite">Considérations de sécurité<a class="headerlink" href="#considerations-de-securite" title="Permanent link">&para;</a></h2>
+<h3 id="flux-dauthentification">Flux d'authentification<a class="headerlink" href="#flux-dauthentification" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Système</th>
+<th>Authentification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nethris API</td>
+<td>Login custom (HTTPS/TLS 1.2)</td>
+</tr>
+<tr>
+<td>SharePoint (Graph)</td>
+<td><code>ClientSecretCredential</code> / <code>DefaultAzureCredential</code></td>
+</tr>
+<tr>
+<td>Table Storage</td>
+<td>Identité managée</td>
+</tr>
+<tr>
+<td>Key Vault</td>
+<td>Identité managée</td>
+</tr>
+<tr>
+<td><code>/sms/send</code></td>
+<td>Jeton AAD (Identity.Web)</td>
+</tr>
+<tr>
+<td><code>/sms/inbound</code></td>
+<td>Event Grid + ACS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="securite-reseau">Sécurité réseau<a class="headerlink" href="#securite-reseau" title="Permanent link">&para;</a></h3>
+<ul>
+<li>L'API Nethris requiert TLS 1.2 avec des suites de chiffrement spécifiques.</li>
+<li>Tous les appels sortants passent exclusivement par HTTPS.</li>
+<li>Le Function App peut optionnellement utiliser l'intégration VNet pour contrôler le trafic sortant.</li>
+<li>Aucune exposition réseau entrante au-delà du runtime Functions.</li>
+</ul>
+<h3 id="principe-du-moindre-privilege">Principe du moindre privilège<a class="headerlink" href="#principe-du-moindre-privilege" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Utilisateur de service Nethris : accès en lecture seule (getList, getFile uniquement).</li>
+<li>Inscription d'application SharePoint : permission <code>Sites.Selected</code> limitée au site cible uniquement.</li>
+<li>Table Storage : rôle <code>Table Contributor</code> sur la table spécifique uniquement.</li>
+</ul>
+<h2 id="inscription-di-functionappstartupconfigureservices">Inscription DI (<code>FunctionAppStartup.ConfigureServices</code>)<a class="headerlink" href="#inscription-di-functionappstartupconfigureservices" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">// --- Azure App Configuration ---</span>
+<span class="c1">// Ajouté via ConfigureAppConfiguration() :</span>
+<span class="c1">// configuration.AddAzureAppConfiguration(options =&gt; {</span>
+<span class="c1">//     options.Connect(endpointUri, new DefaultAzureCredential())</span>
+<span class="c1">//         .ConfigureKeyVault(kv =&gt; kv.SetCredential(credential));</span>
+<span class="c1">// });</span>
+
+<span class="c1">// --- Options avec validation au démarrage ---</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddOptions</span><span class="o">&lt;</span><span class="n">NethrisOptions</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">BindConfiguration</span><span class="p">(</span><span class="n">NethrisOptions</span><span class="p">.</span><span class="n">SectionName</span><span class="p">)</span><span class="w">        </span><span class="c1">// &quot;Nethris&quot;</span>
+<span class="w">    </span><span class="p">.</span><span class="n">ValidateDataAnnotations</span><span class="p">().</span><span class="n">ValidateOnStart</span><span class="p">();</span>
+
+<span class="n">services</span><span class="p">.</span><span class="n">AddOptions</span><span class="o">&lt;</span><span class="n">SharePointOptions</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">BindConfiguration</span><span class="p">(</span><span class="n">SharePointOptions</span><span class="p">.</span><span class="n">SectionName</span><span class="p">)</span><span class="w">     </span><span class="c1">// &quot;SharePoint&quot;</span>
+<span class="w">    </span><span class="p">.</span><span class="n">ValidateDataAnnotations</span><span class="p">().</span><span class="n">ValidateOnStart</span><span class="p">();</span>
+
+<span class="n">services</span><span class="p">.</span><span class="n">AddOptions</span><span class="o">&lt;</span><span class="n">LedgerOptions</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">BindConfiguration</span><span class="p">(</span><span class="n">LedgerOptions</span><span class="p">.</span><span class="n">SectionName</span><span class="p">)</span><span class="w">         </span><span class="c1">// &quot;Ledger&quot;</span>
+<span class="w">    </span><span class="p">.</span><span class="n">ValidateDataAnnotations</span><span class="p">().</span><span class="n">ValidateOnStart</span><span class="p">();</span>
+
+<span class="c1">// --- Clients Nethris (HttpClient typé + Polly) ---</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddHttpClient</span><span class="o">&lt;</span><span class="n">INethrisAuthClient</span><span class="p">,</span><span class="w"> </span><span class="n">NethrisAuthClient</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">AddPolicyHandler</span><span class="p">(</span><span class="n">GetRetryPolicy</span><span class="p">());</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddHttpClient</span><span class="o">&lt;</span><span class="n">INethrisReportClient</span><span class="p">,</span><span class="w"> </span><span class="n">NethrisReportClient</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">    </span><span class="p">.</span><span class="n">AddPolicyHandler</span><span class="p">(</span><span class="n">GetRetryPolicy</span><span class="p">());</span>
+
+<span class="c1">// --- GraphServiceClient (singleton) ---</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="o">&lt;</span><span class="n">GraphServiceClient</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sp</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Utilise ClientSecretCredential si AzureAd:TenantId/ClientId/ClientSecret sont présents,</span>
+<span class="w">    </span><span class="c1">// sinon DefaultAzureCredential.</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">GraphServiceClient</span><span class="p">(</span><span class="n">credential</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;https://graph.microsoft.com/.default&quot;</span><span class="p">]);</span>
+<span class="p">});</span>
+
+<span class="c1">// --- SharePoint (Scoped) ---</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="o">&lt;</span><span class="n">ISharePointClient</span><span class="p">,</span><span class="w"> </span><span class="n">SharePointClient</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="c1">// --- Registre de sync (Scoped avec factory) ---</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="o">&lt;</span><span class="n">TableServiceClient</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sp</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Créé via LedgerTableServiceClientFactory à partir de AzureWebJobsStorage + LedgerOptions</span>
+<span class="p">});</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="o">&lt;</span><span class="n">ISyncLedger</span><span class="o">&gt;</span><span class="p">(</span><span class="n">sp</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">serviceClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="o">&lt;</span><span class="n">TableServiceClient</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">ledgerOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sp</span><span class="p">.</span><span class="n">GetRequiredService</span><span class="o">&lt;</span><span class="n">IOptions</span><span class="o">&lt;</span><span class="n">LedgerOptions</span><span class="o">&gt;&gt;</span><span class="p">().</span><span class="n">Value</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">tableClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">serviceClient</span><span class="p">.</span><span class="n">GetTableClient</span><span class="p">(</span><span class="n">ledgerOptions</span><span class="p">.</span><span class="n">TableName</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">TableStorageSyncLedger</span><span class="p">(</span><span class="n">tableClient</span><span class="p">,</span><span class="w"> </span><span class="n">logger</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// --- Orchestrateur ---</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="o">&lt;</span><span class="n">INethrisReportSyncService</span><span class="p">,</span><span class="w"> </span><span class="n">NethrisReportSyncService</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="c1">// --- SMS / Azure Communication Services (conditionnel) ---</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">smsEnabled</span><span class="p">)</span><span class="w">  </span><span class="c1">// Sms:Enabled ou auto-détection via présence des clés Azure Communication Services</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">services</span><span class="p">.</span><span class="n">AddOptions</span><span class="o">&lt;</span><span class="n">AcsOptions</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="n">BindConfiguration</span><span class="p">(</span><span class="n">AcsOptions</span><span class="p">.</span><span class="n">SectionName</span><span class="p">)</span><span class="w">     </span><span class="c1">// &quot;Acs&quot;</span>
+<span class="w">        </span><span class="p">.</span><span class="n">ValidateDataAnnotations</span><span class="p">().</span><span class="n">ValidateOnStart</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="o">&lt;</span><span class="n">ISmsClient</span><span class="p">,</span><span class="w"> </span><span class="n">AcsSmsClient</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">services</span><span class="p">.</span><span class="n">AddAuthentication</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="n">AddMicrosoftIdentityWebApi</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span><span class="w"> </span><span class="n">AadAuthOptions</span><span class="p">.</span><span class="n">SectionName</span><span class="p">);</span><span class="w">  </span><span class="c1">// &quot;AzureAd&quot;</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">services</span><span class="p">.</span><span class="n">AddSingleton</span><span class="o">&lt;</span><span class="n">ISmsClient</span><span class="p">,</span><span class="w"> </span><span class="n">DisabledSmsClient</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// --- Clients SMS Table Storage (toujours enregistrés) ---</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="o">&lt;</span><span class="n">IRecipientIndexClient</span><span class="p">,</span><span class="w"> </span><span class="n">TableStorageRecipientIndexClient</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="o">&lt;</span><span class="n">ISmsIdempotencyStore</span><span class="p">,</span><span class="w"> </span><span class="n">TableStorageSmsIdempotencyStore</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="o">&lt;</span><span class="n">ISmsAuditClient</span><span class="p">,</span><span class="w"> </span><span class="n">TableStorageSmsAuditClient</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">services</span><span class="p">.</span><span class="n">AddScoped</span><span class="o">&lt;</span><span class="n">IOptOutRegistryClient</span><span class="p">,</span><span class="w"> </span><span class="n">TableStorageOptOutRegistryClient</span><span class="o">&gt;</span><span class="p">();</span>
+</code></pre></div>
+<h2 id="structure-de-dossiers-sharepoint">Structure de dossiers SharePoint<a class="headerlink" href="#structure-de-dossiers-sharepoint" title="Permanent link">&para;</a></h2>
+<p>Les fichiers sont déposés <strong>directement à la racine</strong> du <code>RootFolder</code> configuré (<code>/FSources/Nethris</code> en production). Il n'y a
+pas de sous-dossiers par année, mois ou jour.</p>
+<div class="highlight"><pre><span></span><code>Bibliothèque de documents SharePoint
+└── FSources/
+    └── Nethris/
+        ├── Emp2_20260501_010140.xlsx
+        └── Nom00_20260501_010140.xlsx
+</code></pre></div>
+<p><strong>Format du nom de fichier :</strong> <code>{NomRapport}_{yyyyMMdd_HHmmss}.{ext}</code></p>
+<p>Le nom est construit dans <code>NethrisReportSyncService.BuildFileName()</code> : les caractères spéciaux sont remplacés par <code>_</code>, le nom
+est tronqué à 200 caractères, et l'horodatage provient de <code>ExecutionDateUtc</code> du rapport Nethris.</p>
+<h2 id="pipeline-sms-durgence">Pipeline SMS d'urgence<a class="headerlink" href="#pipeline-sms-durgence" title="Permanent link">&para;</a></h2>
+<p>Le pipeline SMS permet de diffuser un message d'urgence à tous les employés éligibles d'un emplacement donné.</p>
+<h3 id="flux-denvoi-post-apismssend">Flux d'envoi (<code>POST /api/sms/send</code>)<a class="headerlink" href="#flux-denvoi-post-apismssend" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Validation du jeton porteur Azure AD (Microsoft.Identity.Web).</li>
+<li>Extraction de l'en-tête <code>Idempotency-Key</code> — rejet si absent.</li>
+<li>Vérification de l'idempotence (<code>ISmsIdempotencyStore</code>) — rejeu de la réponse en cache si déjà traité.</li>
+<li>Lecture des destinataires pour l'emplacement (<code>ISmsRecipientSource.GetByLocationAsync</code>), résolus depuis la table <code>BaseTi</code>.</li>
+<li>Filtrage des opt-out (<code>IOptOutRegistryClient.IsOptedOutAsync</code>).</li>
+<li>Envoi individuel via <code>ISmsClient.SendSmsAsync</code> pour chaque destinataire éligible.</li>
+<li>Enregistrement de la piste d'audit (<code>ISmsAuditClient.RecordBroadcastAsync</code>) — le corps du message est stocké uniquement
+   sous forme de hash SHA-256.</li>
+<li>Mise en cache de la réponse pour l'idempotence.</li>
+</ol>
+<h3 id="webhook-entrant-post-apismsinbound">Webhook entrant (<code>POST /api/sms/inbound</code>)<a class="headerlink" href="#webhook-entrant-post-apismsinbound" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Validation Event Grid de l'abonnement si nécessaire.</li>
+<li>Extraction du mot-clé (STOP/ARRET/START/UNSTOP…).</li>
+<li>Mise à jour du registre opt-out/opt-in (<code>IOptOutRegistryClient</code>).</li>
+<li>Retour d'une réponse de validation Event Grid ou <code>204 No Content</code>.</li>
+</ol>
+<h3 id="activation-conditionnelle">Activation conditionnelle<a class="headerlink" href="#activation-conditionnelle" title="Permanent link">&para;</a></h3>
+<p>Le SMS est activé si <code>Sms:Enabled = true</code> OU si les deux clés ACS (<code>ConnectionString</code>, <code>PhoneNumber</code>) sont présentes dans la
+configuration. Quand désactivé, <code>DisabledSmsClient</code> est injecté (stub inerte qui retourne un échec).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../guide-activites-utilisateurs/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Activités des utilisateurs">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Activités des utilisateurs
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../sms-feature/" class="md-footer__link md-footer__link--next" aria-label="Suivant: SMS Feature">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                SMS Feature
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/equipe-laurence/integration-nethris" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","navigation.tracking","search.suggest","search.highlight","content.code.annotate","content.tabs.link","toc.follow"],"search":"../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copié dans le presse-papier","clipboard.copy":"Copier dans le presse-papier","search.result.more.one":"1 de plus sur cette page","search.result.more.other":"# de plus sur cette page","search.result.none":"Aucun document trouvé","search.result.one":"1 document trouvé","search.result.other":"# documents trouvés","search.result.placeholder":"Taper pour démarrer la recherche","search.result.term.missing":"Non trouvé","select.version":"Sélectionner la version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7f30b55.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

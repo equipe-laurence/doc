@@ -1,0 +1,1631 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://equipe-laurence.github.io/doc/prd-sms-phase5/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.50">
+    
+    
+      
+        <title>Mini PRD — Phase 5 : Finalisation SMS Azure Communication Services - Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mini-prd-phase-5-finalisation-sms-azure-communication-services" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-header__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mini PRD — Phase 5 : Finalisation SMS Azure Communication Services
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Recherche">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Recherche">
+  <button type="button" class="md-search__button">
+    Recherche
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-activites-utilisateurs/" class="md-tabs__link">
+          
+  
+  Utilisation courante
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Architecture & Conception
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../local-development/" class="md-tabs__link">
+          
+  
+  Développement
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Exploitation & Conformité
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plan-de-tests/" class="md-tabs__link">
+          
+  
+  Planification & CI/CD
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-nav__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Accueil
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Utilisation courante
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Utilisation courante
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-activites-utilisateurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Activités des utilisateurs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture & Conception
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Architecture & Conception
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Vue d'ensemble
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-feature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SMS Feature
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Développement
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement local
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-sms-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-bruno-nethris-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tester avec Bruno
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharepoint-permission-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Permissions SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exploitation & Conformité
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Exploitation & Conformité
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-synchronisation-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Synchronisation Nethris → SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-acs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro ACS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-secrets-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration & Secrets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-compliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Conformité SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Planification & CI/CD
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Planification & CI/CD
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-de-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan de tests
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposal-cicd-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Optimisation CI/CD
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publication de la documentation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-objectif" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1. Objectif
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-portee" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2. Portée
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Portée">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        In scope ✅
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Out of scope ❌
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-exigences-fonctionnelles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3. Exigences fonctionnelles
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Exigences fonctionnelles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-callback-de-statut-azure-communication-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3.1 Callback de statut Azure Communication Services
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-api-historique-des-diffusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3.2 API Historique des diffusions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3.3 Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-exigences-non-fonctionnelles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4. Exigences non-fonctionnelles
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-approche-architecturale" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5. Approche architecturale
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Approche architecturale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-composant-a-azure-communication-services-status-callback-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5.1 Composant A — Azure Communication Services Status Callback Function
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-composant-b-table-de-statut-de-livraison" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5.2 Composant B — Table de statut de livraison
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-composant-c-api-historique-des-diffusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        5.3 Composant C — API Historique des diffusions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-criteres-dacceptation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        6. Critères d'acceptation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-estimation-budgetaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        7. Estimation budgétaire
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-dependances-et-risques" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        8. Dépendances et risques
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="mini-prd-phase-5-finalisation-sms-azure-communication-services">Mini PRD — Phase 5 : Finalisation SMS Azure Communication Services<a class="headerlink" href="#mini-prd-phase-5-finalisation-sms-azure-communication-services" title="Permanent link">&para;</a></h1>
+<p><strong>Projet :</strong> EquipeLaurence — Azure Function App<br />
+<strong>Phase :</strong> 5 — Azure Communication Services SMS Completion<br />
+<strong>Date :</strong> 2026-05-13<br />
+<strong>Demandeur :</strong> Eric Decarufel<br />
+<strong>Statut :</strong> Brouillon</p>
+<hr />
+<h2 id="1-objectif">1. Objectif<a class="headerlink" href="#1-objectif" title="Permanent link">&para;</a></h2>
+<p>Les phases précédentes (BL-011, BL-012, BL-013) ont livré l'envoi de SMS d'urgence, la gestion des désabonnements (opt-out)
+et la piste d'audit. Cependant, l'audit actuel ne confirme que l'<strong>acceptation</strong> de l'envoi par Azure Communication Services — pas la <strong>livraison
+réelle</strong> sur le téléphone du destinataire.</p>
+<p>Cette phase complète la boucle en :</p>
+<ul>
+<li>capturant le statut de livraison final (delivered / failed / undelivered) via les callbacks asynchrones de Azure Communication Services ;</li>
+<li>exposant un historique des diffusions passées et leurs statuts de livraison par une API REST ;</li>
+<li>fournissant un guide d'intégration pour les appelants externes.</li>
+</ul>
+<hr />
+<h2 id="2-portee">2. Portée<a class="headerlink" href="#2-portee" title="Permanent link">&para;</a></h2>
+<h3 id="in-scope">In scope ✅<a class="headerlink" href="#in-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Azure Function HTTP trigger pour recevoir les callbacks de statut Azure Communication Services (<code>POST /api/sms/status-callback</code>)</li>
+<li>Table Azure Storage <code>SmsDeliveryStatus</code> pour persister le statut par MessageId</li>
+<li>Mise à jour du résumé de diffusion (<code>SmsAuditEntry</code>) : compteurs delivered, failed, undelivered</li>
+<li>Endpoint <code>GET /api/sms/broadcasts</code> — liste paginée des diffusions passées</li>
+<li>Endpoint <code>GET /api/sms/broadcasts/{idempotencyKey}</code> — détail d'une diffusion (résumé + statuts par destinataire)</li>
+<li>Guide d'intégration API (fichier Markdown + collection Bruno mise à jour)</li>
+<li>Tests unitaires et BDD pour les nouveaux composants</li>
+</ul>
+<h3 id="out-of-scope">Out of scope ❌<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Interface web / dashboard</li>
+<li>Notifications push / alertes en temps réel (SignalR, webhooks sortants)</li>
+<li>Réenvoi automatique des messages échoués</li>
+<li>Export PDF ou Excel des rapports</li>
+<li>Rôles Azure AD supplémentaires (l'auth AAD existante est suffisante)</li>
+<li>Support de fournisseurs SMS autres que Azure Communication Services</li>
+</ul>
+<hr />
+<h2 id="3-exigences-fonctionnelles">3. Exigences fonctionnelles<a class="headerlink" href="#3-exigences-fonctionnelles" title="Permanent link">&para;</a></h2>
+<h3 id="31-callback-de-statut-azure-communication-services">3.1 Callback de statut Azure Communication Services<a class="headerlink" href="#31-callback-de-statut-azure-communication-services" title="Permanent link">&para;</a></h3>
+<p><strong>FR-01</strong> — Le système DOIT exposer un endpoint <code>POST /api/sms/status-callback</code> accessible sans authentification AAD (Azure Communication Services
+ne supporte pas OAuth), mais validé par signature HMAC-SHA1 Azure Communication Services.</p>
+<p><strong>FR-02</strong> — À la réception d'un callback, le système DOIT persister dans <code>SmsDeliveryStatus</code> : <code>MessageId</code>, <code>To</code> (numéro
+masqué), <code>MessageStatus</code>, <code>ErrorCode</code> (si présent), <code>TimestampUtc</code>, <code>IdempotencyKey</code> (clé de corrélation).</p>
+<p><strong>FR-03</strong> — Le système DOIT mettre à jour les compteurs <code>DeliveredCount</code>, <code>FailedCount</code>, <code>UndeliveredCount</code> dans l'entrée
+<code>SmsAuditEntry</code> correspondante, de façon idempotente (un même callback reçu deux fois ne doit pas incrémenter deux fois).</p>
+<p><strong>FR-04</strong> — Les callbacks dont la signature Azure Communication Services est invalide DOIVENT retourner HTTP 403 sans traitement.</p>
+<p><strong>FR-05</strong> — Le système DOIT ignorer silencieusement (HTTP 204) les statuts intermédiaires non pertinents (<code>queued</code>,
+<code>sending</code>, <code>sent</code>) afin de ne stocker que les états finaux : <code>delivered</code>, <code>failed</code>, <code>undelivered</code>.</p>
+<h3 id="32-api-historique-des-diffusions">3.2 API Historique des diffusions<a class="headerlink" href="#32-api-historique-des-diffusions" title="Permanent link">&para;</a></h3>
+<p><strong>FR-06</strong> — <code>GET /api/sms/broadcasts</code> DOIT retourner une liste paginée (page + pageSize, défaut 20, max 100) des diffusions,
+triée par <code>TimestampUtc</code> décroissant, incluant : <code>IdempotencyKey</code>, <code>TimestampUtc</code>, <code>LocationCode</code>, <code>RequesterPrincipal</code>,
+<code>RecipientCount</code>, <code>DeliveredCount</code>, <code>FailedCount</code>, <code>UndeliveredCount</code>, <code>PendingCount</code>.</p>
+<p><strong>FR-07</strong> — <code>GET /api/sms/broadcasts/{idempotencyKey}</code> DOIT retourner le détail d'une diffusion : le résumé de l'audit + la
+liste des statuts par destinataire (numéro masqué, statut, code d'erreur si applicable).</p>
+<p><strong>FR-08</strong> — Les deux endpoints DOIVENT exiger une authentification AAD (Bearer token) identique à <code>POST /api/sms/send</code>.</p>
+<p><strong>FR-09</strong> — Si <code>{idempotencyKey}</code> n'existe pas, le système DOIT retourner HTTP 404 avec un message d'erreur structuré.</p>
+<p><strong>FR-10</strong> — <code>PendingCount</code> DOIT refléter <code>RecipientCount - DeliveredCount - FailedCount - UndeliveredCount</code> pour indiquer les
+messages dont le statut final n'est pas encore reçu.</p>
+<h3 id="33-documentation">3.3 Documentation<a class="headerlink" href="#33-documentation" title="Permanent link">&para;</a></h3>
+<p><strong>FR-11</strong> — Un fichier <code>docs/guide-sms-integration.md</code> DOIT documenter : authentification, tous les endpoints
+(request/response exemples), gestion des erreurs, politique d'idempotence et la procédure de test avec Bruno.</p>
+<p><strong>FR-12</strong> — La collection Bruno DOIT être mise à jour avec des requêtes pour les deux nouveaux endpoints GET.</p>
+<hr />
+<h2 id="4-exigences-non-fonctionnelles">4. Exigences non-fonctionnelles<a class="headerlink" href="#4-exigences-non-fonctionnelles" title="Permanent link">&para;</a></h2>
+<p><strong>NFR-01 — Performance</strong> : Le callback de statut DOIT traiter et répondre en moins de 500 ms (p95). Azure Communication Services abandonne les
+callbacks lents et retente — un traitement lent risque des doublons.</p>
+<p><strong>NFR-02 — Idempotence</strong> : Chaque callback Azure Communication Services peut être livré plusieurs fois. Toute écriture dans <code>SmsDeliveryStatus</code> et
+tout incrément de compteur DOIVENT être idempotents (upsert basé sur <code>MessageId</code> + <code>MessageStatus</code>).</p>
+<p><strong>NFR-03 — Sécurité — Validation HMAC</strong> : La signature Azure Communication Services (<code>X-Azure Communication Services-Signature</code>) DOIT être vérifiée sur chaque callback
+entrant. Le secret de validation (<code>ACS_AUTH_TOKEN</code>) DOIT être stocké dans Azure Key Vault, jamais en clair dans la
+configuration.</p>
+<p><strong>NFR-04 — Sécurité — Masquage des numéros</strong> : Les numéros de téléphone stockés et exposés via l'API DOIVENT être masqués
+(<code>+1416****678</code>). Le numéro complet n'est jamais retourné par l'API d'historique.</p>
+<p><strong>NFR-05 — Conformité</strong> : La rétention des entrées <code>SmsDeliveryStatus</code> DOIT respecter la politique de rétention configurée
+sur le compte de stockage (alignée avec <code>SmsAuditEntry</code>).</p>
+<p><strong>NFR-06 — Observabilité</strong> : Chaque callback reçu DOIT générer un log structuré avec <code>MessageId</code>, <code>MessageStatus</code>,
+<code>IdempotencyKey</code>. Les callbacks rejetés (signature invalide) DOIVENT être loggés en <code>LogWarning</code>.</p>
+<p><strong>NFR-07 — Tolérance aux pannes</strong> : Si la persistance du statut échoue (ex. : Table Storage indisponible), le système DOIT
+retourner HTTP 500 pour que Azure Communication Services retente. Ne pas avaler l'exception silencieusement.</p>
+<hr />
+<h2 id="5-approche-architecturale">5. Approche architecturale<a class="headerlink" href="#5-approche-architecturale" title="Permanent link">&para;</a></h2>
+<h3 id="51-composant-a-azure-communication-services-status-callback-function">5.1 Composant A — Azure Communication Services Status Callback Function<a class="headerlink" href="#51-composant-a-azure-communication-services-status-callback-function" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>POST /api/sms/status-callback
+  → Valider signature HMAC-SHA1 (IAzure Communication ServicesSignatureValidator)
+  → Parser le payload form-urlencoded Azure Communication Services
+  → Filtrer les statuts non-finaux → HTTP 204
+  → ISmsDeliveryStatusRepository.UpsertAsync()   → SmsDeliveryStatus table
+  → ISmsAuditRepository.IncrementDeliveryCountersAsync()  → SmsAuditEntry table
+  → HTTP 204
+</code></pre></div>
+<ul>
+<li><strong>Nouvelle interface</strong> : <code>IAzure Communication ServicesSignatureValidator</code> dans <code>Core/Clients/</code></li>
+<li><strong>Nouvelle interface</strong> : <code>ISmsDeliveryStatusRepository</code> dans <code>Core/Repositories/</code></li>
+<li><strong>Implémentation</strong> : <code>Azure Communication ServicesSignatureValidator</code> + <code>TableStorageSmsDeliveryStatusRepository</code> dans <code>Infrastructure</code></li>
+</ul>
+<h3 id="52-composant-b-table-de-statut-de-livraison">5.2 Composant B — Table de statut de livraison<a class="headerlink" href="#52-composant-b-table-de-statut-de-livraison" title="Permanent link">&para;</a></h3>
+<p><strong>Table Azure Storage</strong> : <code>SmsDeliveryStatus</code></p>
+<table>
+<thead>
+<tr>
+<th>Propriété</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PartitionKey</td>
+<td>string</td>
+<td><code>IdempotencyKey</code></td>
+</tr>
+<tr>
+<td>RowKey</td>
+<td>string</td>
+<td><code>MessageId</code></td>
+</tr>
+<tr>
+<td>MaskedTo</td>
+<td>string</td>
+<td>Numéro masqué</td>
+</tr>
+<tr>
+<td>MessageStatus</td>
+<td>string</td>
+<td>delivered / failed / undelivered</td>
+</tr>
+<tr>
+<td>ErrorCode</td>
+<td>string?</td>
+<td>Code d'erreur Azure Communication Services si applicable</td>
+</tr>
+<tr>
+<td>TimestampUtc</td>
+<td>DateTimeOffset</td>
+<td>Horodatage du callback</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Modèle</strong> : <code>SmsDeliveryStatusEntry</code> dans <code>Core/Models/</code></p>
+<h3 id="53-composant-c-api-historique-des-diffusions">5.3 Composant C — API Historique des diffusions<a class="headerlink" href="#53-composant-c-api-historique-des-diffusions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>GET /api/sms/broadcasts
+  → Vérifier token AAD
+  → INethrisReportSyncService... (non applicable)
+  → ISmsAuditRepository.ListAsync(page, pageSize)  → SmsAuditEntry table
+  → Projeter vers BroadcastSummaryDto[]
+  → HTTP 200
+
+GET /api/sms/broadcasts/{idempotencyKey}
+  → Vérifier token AAD
+  → ISmsAuditRepository.GetAsync(idempotencyKey)   → SmsAuditEntry table
+  → ISmsDeliveryStatusRepository.ListByBroadcastAsync(idempotencyKey)
+  → Assembler BroadcastDetailDto
+  → HTTP 200 | 404
+</code></pre></div>
+<p><strong>Nouveaux DTOs</strong> dans <code>Core/Models/</code> :</p>
+<ul>
+<li><code>BroadcastSummaryDto</code> — résumé pour la liste</li>
+<li><code>BroadcastDetailDto</code> — détail avec <code>IReadOnlyList&lt;RecipientStatusDto&gt;</code></li>
+<li><code>RecipientStatusDto</code> — numéro masqué, statut, code d'erreur</li>
+</ul>
+<hr />
+<h2 id="6-criteres-dacceptation">6. Critères d'acceptation<a class="headerlink" href="#6-criteres-dacceptation" title="Permanent link">&para;</a></h2>
+<p><strong>AC-01</strong> — Après un envoi SMS, dans un délai raisonnable, <code>GET /api/sms/broadcasts/{key}</code> retourne des compteurs
+<code>DeliveredCount</code> ou <code>FailedCount</code> supérieurs à 0 (validé via Azure Communication Services test credentials).</p>
+<p><strong>AC-02</strong> — Un callback avec une signature HMAC invalide reçoit HTTP 403 et ne modifie aucune donnée.</p>
+<p><strong>AC-03</strong> — Un même callback Azure Communication Services envoyé deux fois n'incrémente les compteurs qu'une seule fois.</p>
+<p><strong>AC-04</strong> — <code>GET /api/sms/broadcasts</code> sans token AAD retourne HTTP 401.</p>
+<p><strong>AC-05</strong> — <code>GET /api/sms/broadcasts/{keyInexistant}</code> retourne HTTP 404.</p>
+<p><strong>AC-06</strong> — <code>GET /api/sms/broadcasts?page=1&amp;pageSize=5</code> retourne au plus 5 résultats et inclut des métadonnées de pagination
+(<code>totalCount</code>, <code>hasNextPage</code>).</p>
+<p><strong>AC-07</strong> — Les numéros de téléphone dans toutes les réponses API sont masqués.</p>
+<p><strong>AC-08</strong> — La collection Bruno inclut des requêtes fonctionnelles pour les deux nouveaux endpoints GET.</p>
+<p><strong>AC-09</strong> — La couverture de tests unitaires pour les nouveaux services atteint ≥ 80%.</p>
+<p><strong>AC-10</strong> — <code>docs/guide-sms-integration.md</code> est suffisamment complet pour qu'un développeur externe puisse intégrer l'API
+sans aide supplémentaire.</p>
+<hr />
+<h2 id="7-estimation-budgetaire">7. Estimation budgétaire<a class="headerlink" href="#7-estimation-budgetaire" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Tâches</th>
+<th>Heures estimées</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A — Status Callback Function</strong></td>
+<td>Interface <code>IAzure Communication ServicesSignatureValidator</code>, implémentation HMAC, Function trigger, parsing payload, filtrage statuts, tests unitaires + BDD</td>
+<td><strong>10 h</strong></td>
+</tr>
+<tr>
+<td><strong>B — Delivery Status Table</strong></td>
+<td>Modèle <code>SmsDeliveryStatusEntry</code>, interface + implémentation repo, logique upsert idempotente, mise à jour compteurs <code>SmsAuditEntry</code>, tests</td>
+<td><strong>8 h</strong></td>
+</tr>
+<tr>
+<td><strong>C — Broadcast History API</strong></td>
+<td>DTOs, interfaces repo, implémentation requêtes Table Storage (list paginée + détail), 2 Function triggers GET, tests unitaires + BDD</td>
+<td><strong>12 h</strong></td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td><code>guide-sms-integration.md</code>, mise à jour collection Bruno, mise à jour <code>plan-de-tests.md</code></td>
+<td><strong>4 h</strong></td>
+</tr>
+<tr>
+<td><strong>Intégration &amp; revue</strong></td>
+<td>DI registration, revue sécurité, tests d'intégration manuels avec Azure Communication Services test credentials</td>
+<td><strong>4 h</strong></td>
+</tr>
+<tr>
+<td><strong>Total Phase 5</strong></td>
+<td></td>
+<td><strong>~38 h</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note budgétaire</strong> : Sur un total projet de 125 h, cette phase représente environ 30 % du budget restant après les phases
+précédentes. Le scope est volontairement limité à l'API — aucune interface web — pour rester dans l'enveloppe.</p>
+</blockquote>
+<hr />
+<h2 id="8-dependances-et-risques">8. Dépendances et risques<a class="headerlink" href="#8-dependances-et-risques" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Risque</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Azure Communication Services ne peut pas appeler un endpoint AAD protégé</td>
+<td>Le callback est validé par HMAC-SHA1, non par AAD — prévu dans FR-01</td>
+</tr>
+<tr>
+<td>Délai de livraison des callbacks Azure Communication Services (minutes à heures)</td>
+<td><code>PendingCount</code> gère l'état intermédiaire — prévu dans FR-10</td>
+</tr>
+<tr>
+<td>Table Storage <code>SmsAuditEntry</code> non conçue pour les compteurs atomiques</td>
+<td>Utiliser <code>TableClient</code> merge optimiste avec ETag — documenter le pattern dans l'implémentation</td>
+</tr>
+<tr>
+<td>Azure Communication Services retente les callbacks si HTTP != 2xx</td>
+<td>NFR-07 garantit HTTP 500 en cas d'erreur de persistance</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Document généré le 2026-05-13 par Oracle (Project Manager IA) — EquipeLaurence</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/equipe-laurence/integration-nethris" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","navigation.tracking","search.suggest","search.highlight","content.code.annotate","content.tabs.link","toc.follow"],"search":"../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copié dans le presse-papier","clipboard.copy":"Copier dans le presse-papier","search.result.more.one":"1 de plus sur cette page","search.result.more.other":"# de plus sur cette page","search.result.none":"Aucun document trouvé","search.result.one":"1 document trouvé","search.result.other":"# documents trouvés","search.result.placeholder":"Taper pour démarrer la recherche","search.result.term.missing":"Non trouvé","select.version":"Sélectionner la version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7f30b55.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

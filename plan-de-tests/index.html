@@ -1,0 +1,3490 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://equipe-laurence.github.io/doc/plan-de-tests/">
+      
+      
+        <link rel="prev" href="../sms-compliance/">
+      
+      
+        <link rel="next" href="../proposal-cicd-optimization/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.50">
+    
+    
+      
+        <title>Plan de tests — Equipe Laurence (Intégration Nethris → SharePoint) - Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plan-de-tests-equipe-laurence-integration-nethris-sharepoint" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-header__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plan de tests — Equipe Laurence (Intégration Nethris → SharePoint)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Recherche">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Recherche">
+  <button type="button" class="md-search__button">
+    Recherche
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-activites-utilisateurs/" class="md-tabs__link">
+          
+  
+  Utilisation courante
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Architecture & Conception
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../local-development/" class="md-tabs__link">
+          
+  
+  Développement
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Exploitation & Conformité
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="././" class="md-tabs__link">
+          
+  
+  Planification & CI/CD
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-nav__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Accueil
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Utilisation courante
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Utilisation courante
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-activites-utilisateurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Activités des utilisateurs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture & Conception
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Architecture & Conception
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Vue d'ensemble
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-feature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SMS Feature
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Développement
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement local
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-sms-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-bruno-nethris-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tester avec Bruno
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharepoint-permission-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Permissions SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exploitation & Conformité
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Exploitation & Conformité
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-synchronisation-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Synchronisation Nethris → SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-acs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro ACS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-secrets-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration & Secrets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-compliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Conformité SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Planification & CI/CD
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Planification & CI/CD
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan de tests
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan de tests
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-resume-des-tests-automatises" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1. Résumé des tests automatisés
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Résumé des tests automatisés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-equipelaurencecoretests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.1 EquipeLaurence.Core.Tests
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 EquipeLaurence.Core.Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nethrisreportsyncservicetests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisReportSyncServiceTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optionsvalidationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>OptionsValidationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-equipelaurencefunctionstests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.2 EquipeLaurence.Functions.Tests
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 EquipeLaurence.Functions.Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nethrisreportsyncfunctiontests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisReportSyncFunctionTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functionappstartuptests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>FunctionAppStartupTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-equipelaurenceinfrastructuretests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.3 EquipeLaurence.Infrastructure.Tests
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 EquipeLaurence.Infrastructure.Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nethrisauthclienttests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisAuthClientTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nethrisreportclienttests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisReportClientTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sharepointclienttests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>SharePointClientTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stubsharepointclienttests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>StubSharePointClientTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tablestoragesyncledgertests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>TableStorageSyncLedgerTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-equipelaurenceintegrationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.4 EquipeLaurence.IntegrationTests
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 EquipeLaurence.IntegrationTests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nethrisauthclientintegrationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisAuthClientIntegrationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nethrisreportclientintegrationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisReportClientIntegrationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appconfigurationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>AppConfigurationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acssmsclientintegrationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>AcsSmsClientIntegrationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-equipelaurencespecs-bdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.5 EquipeLaurence.Specs (BDD)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.5 EquipeLaurence.Specs (BDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-nethrisreportsyncfeature" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Feature : <code>NethrisReportSync.feature</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-appconfigurationfeature" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Feature : <code>AppConfiguration.feature</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-plan-de-tests-manuels-tests-dacceptation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2. Plan de tests manuels / Tests d'acceptation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Plan de tests manuels &#x2f; Tests d&#x27;acceptation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-contexte-et-prerequis-generaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.1 Contexte et prérequis généraux
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Contexte et prérequis généraux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-propos-du-systeme" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        À propos du système
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequis-pour-lexecution-des-tests-dacceptation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prérequis pour l'exécution des tests d'acceptation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-scenarios-dacceptation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.2 Scénarios d'acceptation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Scénarios d&#x27;acceptation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-1-synchronisation-automatique-reussie" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 1 — Synchronisation automatique réussie
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-2-synchronisation-manuelle-a-la-demande" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 2 — Synchronisation manuelle à la demande
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-3-prevention-des-doublons" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 3 — Prévention des doublons
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-4-aucun-rapport-disponible-dans-nethris" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 4 — Aucun rapport disponible dans Nethris
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-5-echec-dauthentification-nethris" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 5 — Échec d'authentification Nethris
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-6-echec-de-televersement-vers-sharepoint-isolation-par-rapport" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 6 — Échec de téléversement vers SharePoint (isolation par rapport)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-7-structure-du-dossier-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 7 — Structure du dossier SharePoint
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-8-validation-de-la-configuration-au-demarrage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 8 — Validation de la configuration au démarrage
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-9-verification-de-securite-aucune-fuite-dinformations-sensibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 9 — Vérification de sécurité : aucune fuite d'informations sensibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-comment-declencher-la-synchronisation-manuellement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.3 Comment déclencher la synchronisation manuellement
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Comment déclencher la synchronisation manuellement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-de-declenchement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        URL de déclenchement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etapes-avec-un-navigateur-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étapes avec un navigateur Web
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-signifient-les-champs-de-la-reponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Que signifient les champs de la réponse ?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consulter-les-journaux-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Consulter les journaux Azure
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-grille-de-validation-finale" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.4 Grille de validation finale
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposal-cicd-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Optimisation CI/CD
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publication de la documentation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-resume-des-tests-automatises" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1. Résumé des tests automatisés
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Résumé des tests automatisés">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-equipelaurencecoretests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.1 EquipeLaurence.Core.Tests
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 EquipeLaurence.Core.Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nethrisreportsyncservicetests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisReportSyncServiceTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optionsvalidationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>OptionsValidationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-equipelaurencefunctionstests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.2 EquipeLaurence.Functions.Tests
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 EquipeLaurence.Functions.Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nethrisreportsyncfunctiontests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisReportSyncFunctionTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functionappstartuptests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>FunctionAppStartupTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-equipelaurenceinfrastructuretests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.3 EquipeLaurence.Infrastructure.Tests
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 EquipeLaurence.Infrastructure.Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nethrisauthclienttests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisAuthClientTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nethrisreportclienttests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisReportClientTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sharepointclienttests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>SharePointClientTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stubsharepointclienttests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>StubSharePointClientTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tablestoragesyncledgertests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>TableStorageSyncLedgerTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-equipelaurenceintegrationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.4 EquipeLaurence.IntegrationTests
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 EquipeLaurence.IntegrationTests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nethrisauthclientintegrationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisAuthClientIntegrationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nethrisreportclientintegrationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>NethrisReportClientIntegrationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appconfigurationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>AppConfigurationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acssmsclientintegrationtests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>AcsSmsClientIntegrationTests</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-equipelaurencespecs-bdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1.5 EquipeLaurence.Specs (BDD)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.5 EquipeLaurence.Specs (BDD)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-nethrisreportsyncfeature" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Feature : <code>NethrisReportSync.feature</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-appconfigurationfeature" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Feature : <code>AppConfiguration.feature</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-plan-de-tests-manuels-tests-dacceptation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2. Plan de tests manuels / Tests d'acceptation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Plan de tests manuels &#x2f; Tests d&#x27;acceptation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-contexte-et-prerequis-generaux" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.1 Contexte et prérequis généraux
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Contexte et prérequis généraux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-propos-du-systeme" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        À propos du système
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequis-pour-lexecution-des-tests-dacceptation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Prérequis pour l'exécution des tests d'acceptation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-scenarios-dacceptation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.2 Scénarios d'acceptation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Scénarios d&#x27;acceptation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-1-synchronisation-automatique-reussie" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 1 — Synchronisation automatique réussie
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-2-synchronisation-manuelle-a-la-demande" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 2 — Synchronisation manuelle à la demande
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-3-prevention-des-doublons" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 3 — Prévention des doublons
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-4-aucun-rapport-disponible-dans-nethris" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 4 — Aucun rapport disponible dans Nethris
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-5-echec-dauthentification-nethris" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 5 — Échec d'authentification Nethris
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-6-echec-de-televersement-vers-sharepoint-isolation-par-rapport" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 6 — Échec de téléversement vers SharePoint (isolation par rapport)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-7-structure-du-dossier-sharepoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 7 — Structure du dossier SharePoint
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-8-validation-de-la-configuration-au-demarrage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 8 — Validation de la configuration au démarrage
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-9-verification-de-securite-aucune-fuite-dinformations-sensibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Scénario 9 — Vérification de sécurité : aucune fuite d'informations sensibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-comment-declencher-la-synchronisation-manuellement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.3 Comment déclencher la synchronisation manuellement
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Comment déclencher la synchronisation manuellement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-de-declenchement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        URL de déclenchement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etapes-avec-un-navigateur-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Étapes avec un navigateur Web
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-signifient-les-champs-de-la-reponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Que signifient les champs de la réponse ?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consulter-les-journaux-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Consulter les journaux Azure
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-grille-de-validation-finale" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2.4 Grille de validation finale
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="./.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="././" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Planification & CI/CD
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="plan-de-tests-equipe-laurence-integration-nethris-sharepoint">Plan de tests — Equipe Laurence (Intégration Nethris → SharePoint)<a class="headerlink" href="#plan-de-tests-equipe-laurence-integration-nethris-sharepoint" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="1-resume-des-tests-automatises">1. Résumé des tests automatisés<a class="headerlink" href="#1-resume-des-tests-automatises" title="Permanent link">&para;</a></h2>
+<p>Ce document recense l'ensemble des tests automatisés de la solution. Au total, la suite compte <strong>~100 tests</strong> répartis sur
+cinq projets, couvrant les couches Core, Infrastructure, Functions, intégration et BDD.</p>
+<hr />
+<h3 id="11-equipelaurencecoretests">1.1 EquipeLaurence.Core.Tests<a class="headerlink" href="#11-equipelaurencecoretests" title="Permanent link">&para;</a></h3>
+<p><strong>Type :</strong> Tests unitaires (xUnit)<br />
+<strong>Librairies de simulation :</strong> Moq (INethrisAuthClient, INethrisReportClient, ISharePointClient, ISyncLedger)<br />
+<strong>Objectif :</strong> Valider la logique métier pure de l'orchestrateur de synchronisation et la validation des options de
+configuration.</p>
+<h4 id="nethrisreportsyncservicetests"><code>NethrisReportSyncServiceTests</code><a class="headerlink" href="#nethrisreportsyncservicetests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ExecuteSyncAsync_WhenCancelled_PropagatesOperationCanceledException</code></td>
+<td>Quand le jeton d'annulation est déclenché, l'exception <code>OperationCanceledException</code> se propage (BL-001)</td>
+</tr>
+<tr>
+<td><code>ExecuteSyncAsync_WhenCancelled_StillCallsLogout</code></td>
+<td>Même en cas d'annulation, la déconnexion Nethris est toujours appelée avec <code>CancellationToken.None</code> (BL-002)</td>
+</tr>
+<tr>
+<td><code>ExecuteSyncAsync_WhenTryClaimReturnsFalse_ReportsAlreadySynced</code></td>
+<td>Si le registre indique qu'un rapport est déjà réclamé, il est compté comme ignoré et le téléchargement n'est pas effectué (BL-003)</td>
+</tr>
+<tr>
+<td><code>ExecuteSyncAsync_UsesConfiguredRootFolder</code></td>
+<td>Le dossier racine SharePoint provient de la configuration (<code>SharePointOptions.RootFolder</code>) (BL-004)</td>
+</tr>
+<tr>
+<td><code>ExecuteSyncAsync_SpecialCharsInName_AreSanitized</code></td>
+<td>Les caractères spéciaux (<code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, <code>!</code>) sont supprimés du nom de fichier avant le téléversement (BL-005)</td>
+</tr>
+<tr>
+<td><code>ExecuteSyncAsync_UnknownExtension_FallsToBin</code></td>
+<td>Une extension de fichier inconnue (ex. <code>.exe</code>) est remplacée par <code>.bin</code> (BL-005)</td>
+</tr>
+<tr>
+<td><code>ExecuteSyncAsync_VeryLongName_IsTruncated</code></td>
+<td>Un nom de rapport excessivement long (300 caractères) est tronqué avant le téléversement (BL-005)</td>
+</tr>
+<tr>
+<td><code>ExecuteSyncAsync_EmptyExtension_FallsToBin</code></td>
+<td>Une extension vide est remplacée par <code>.bin</code> (BL-005)</td>
+</tr>
+<tr>
+<td><code>ExecuteSyncAsync_HttpRequestException_ReturnsUploadFailed</code></td>
+<td>Une erreur HTTP pendant le téléchargement produit le statut <code>UploadFailed</code> sans exposer les détails internes (BL-006)</td>
+</tr>
+<tr>
+<td><code>ExecuteSyncAsync_GenericException_ReturnsSyncFailed</code></td>
+<td>Une exception générique produit le statut <code>SyncFailed</code> (BL-006)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mocks utilisés :</strong> <code>INethrisAuthClient</code>, <code>INethrisReportClient</code>, <code>ISharePointClient</code>, <code>ISyncLedger</code></p>
+<h4 id="optionsvalidationtests"><code>OptionsValidationTests</code><a class="headerlink" href="#optionsvalidationtests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NethrisOptions_WhenBaseUrlMissing_FailsValidation</code></td>
+<td>La validation échoue si <code>BaseUrl</code> est absent</td>
+</tr>
+<tr>
+<td><code>NethrisOptions_WhenBaseUrlNotUrl_FailsValidation</code></td>
+<td>La validation échoue si <code>BaseUrl</code> n'est pas une URL valide</td>
+</tr>
+<tr>
+<td><code>NethrisOptions_WhenAllFieldsValid_PassesValidation</code></td>
+<td>La validation réussit avec toutes les valeurs correctes</td>
+</tr>
+<tr>
+<td><code>SharePointOptions_WhenSiteIdMissing_FailsValidation</code></td>
+<td>La validation échoue si <code>SiteId</code> est absent</td>
+</tr>
+<tr>
+<td><code>SharePointOptions_WhenAllFieldsValid_PassesValidation</code></td>
+<td>La validation réussit avec <code>SiteId</code> et <code>DriveId</code> présents</td>
+</tr>
+<tr>
+<td><code>LedgerOptions_WhenTableServiceUriMissing_FailsValidation</code></td>
+<td>La validation échoue si l'URI du Table Storage est absent</td>
+</tr>
+<tr>
+<td><code>LedgerOptions_WhenTableServiceUriNotUrl_FailsValidation</code></td>
+<td>La validation échoue si l'URI n'est pas une URL valide</td>
+</tr>
+<tr>
+<td><code>AcsOptions_WhenRequiredFieldsMissing_FailsValidation</code></td>
+<td>La validation échoue si les champs Azure Communication Services obligatoires sont absents</td>
+</tr>
+<tr>
+<td><code>AcsOptions_WhenAllFieldsValid_PassesValidation</code></td>
+<td>La validation réussit avec tous les champs Azure Communication Services présents</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mocks utilisés :</strong> Aucun — validation par <code>Validator.TryValidateObject</code></p>
+<hr />
+<h3 id="12-equipelaurencefunctionstests">1.2 EquipeLaurence.Functions.Tests<a class="headerlink" href="#12-equipelaurencefunctionstests" title="Permanent link">&para;</a></h3>
+<p><strong>Type :</strong> Tests unitaires (xUnit)<br />
+<strong>Librairies de simulation :</strong> Moq (INethrisReportSyncService), <code>DefaultHttpContext</code>, <code>NullLogger</code><br />
+<strong>Objectif :</strong> Valider le comportement des déclencheurs Azure Functions (HTTP) et le câblage du conteneur de dépendances.</p>
+<h4 id="nethrisreportsyncfunctiontests"><code>NethrisReportSyncFunctionTests</code><a class="headerlink" href="#nethrisreportsyncfunctiontests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RunAsync_WhenSyncSucceeds_ReturnsOkObjectResult</code></td>
+<td>Une synchronisation réussie retourne HTTP 200</td>
+</tr>
+<tr>
+<td><code>RunAsync_WhenSyncSucceeds_ReturnsSyncCycleResult</code></td>
+<td>Le corps de la réponse 200 est de type <code>SyncCycleResult</code></td>
+</tr>
+<tr>
+<td><code>RunAsync_WhenSyncHasPartialFailures_StillReturnsOk</code></td>
+<td>Des échecs partiels (per-rapport) retournent quand même HTTP 200 avec <code>HasFailures = true</code></td>
+</tr>
+<tr>
+<td><code>RunAsync_WhenSyncThrows_ReturnsInternalServerError</code></td>
+<td>Une exception non gérée retourne HTTP 500</td>
+</tr>
+<tr>
+<td><code>RunAsync_WhenSyncThrows_DoesNotLeakExceptionDetails</code></td>
+<td>Le message d'erreur HTTP 500 ne contient pas les détails internes de l'exception ni la stack trace (BL-006)</td>
+</tr>
+<tr>
+<td><code>RunAsync_CallsExecuteSyncAsync_ExactlyOnce</code></td>
+<td>L'orchestrateur est appelé exactement une fois par requête</td>
+</tr>
+<tr>
+<td><code>RunAsync_PassesCancellationToken_ToService</code></td>
+<td>Le jeton d'annulation HTTP est transmis fidèlement à l'orchestrateur</td>
+</tr>
+<tr>
+<td><code>Create_WhenUsingDevelopmentStorage_ReturnsLocalTableEndpoint</code></td>
+<td>En mode émulateur local, la fabrique de client Table Storage pointe vers <code>127.0.0.1:10002</code></td>
+</tr>
+<tr>
+<td><code>Create_WhenNotUsingDevelopmentStorage_ReturnsConfiguredRemoteEndpoint</code></td>
+<td>En production, la fabrique pointe vers l'URI configuré dans <code>LedgerOptions</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mocks utilisés :</strong> <code>INethrisReportSyncService</code></p>
+<h4 id="functionappstartuptests"><code>FunctionAppStartupTests</code><a class="headerlink" href="#functionappstartuptests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsSmsEnabled_WhenFlagIsFalse_ReturnsFalse</code></td>
+<td>Le flag <code>Sms:Enabled = false</code> désactive le SMS</td>
+</tr>
+<tr>
+<td><code>IsSmsEnabled_WhenFlagMissingAndAzure Communication ServicesConfigured_ReturnsTrue</code></td>
+<td>Sans flag explicite, le SMS est activé si Azure Communication Services est configuré</td>
+</tr>
+<tr>
+<td><code>ConfigureServices_WhenSmsDisabled_RegistersDisabledSmsClient</code></td>
+<td>Quand SMS est désactivé, un <code>DisabledSmsClient</code> inerte est enregistré</td>
+</tr>
+<tr>
+<td><code>ConfigureServices_WhenSmsEnabledAndAzure Communication ServicesMissing_ThrowsOptionsValidationException</code></td>
+<td>Quand SMS est activé mais les paramètres Azure Communication Services manquent, une exception de validation est levée au démarrage</td>
+</tr>
+<tr>
+<td><code>ConfigureServices_WhenSharePointMissing_ThrowsOptionsValidationException</code></td>
+<td>Si <code>SharePoint:SiteId</code> est absent, une exception de validation est levée</td>
+</tr>
+<tr>
+<td><code>ConfigureServices_WhenLedgerMissing_ThrowsOptionsValidationException</code></td>
+<td>Si <code>Ledger:TableServiceUri</code> est absent, une exception de validation est levée</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mocks utilisés :</strong> Aucun — tests du conteneur DI avec <code>IConfiguration</code> en mémoire</p>
+<hr />
+<h3 id="13-equipelaurenceinfrastructuretests">1.3 EquipeLaurence.Infrastructure.Tests<a class="headerlink" href="#13-equipelaurenceinfrastructuretests" title="Permanent link">&para;</a></h3>
+<p><strong>Type :</strong> Tests unitaires (xUnit)<br />
+<strong>Librairies de simulation :</strong> <code>StaticHttpMessageHandler</code>, <code>CapturingHttpMessageHandler</code>, <code>RecordingTableClient</code>,
+<code>ThrowingRequestAdapter</code>, <code>SuccessRequestAdapter</code> (implémentations de test internes)<br />
+<strong>Objectif :</strong> Valider les implémentations concrètes des clients qui communiquent avec les systèmes externes, sans appel
+réseau réel.</p>
+<h4 id="nethrisauthclienttests"><code>NethrisAuthClientTests</code><a class="headerlink" href="#nethrisauthclienttests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LoginAsync_HappyPath_ReturnsSessionId</code></td>
+<td>La connexion réussie retourne l'identifiant de session Nethris</td>
+</tr>
+<tr>
+<td><code>LoginAsync_WhenReturnCodeNonZero_ThrowsInvalidOperationException</code></td>
+<td>Un code de retour non nul de l'API Nethris lève une exception</td>
+</tr>
+<tr>
+<td><code>LoginAsync_WhenHttpError_ThrowsHttpRequestException</code></td>
+<td>Une erreur HTTP (503) lève une <code>HttpRequestException</code></td>
+</tr>
+<tr>
+<td><code>LoginAsync_SendsLoginTypeInBody</code></td>
+<td>Le corps de la requête contient le type d'opération <code>"logIn"</code></td>
+</tr>
+<tr>
+<td><code>LoginAsync_ParametersUseJsonSerializer_NotStringConcatenation</code></td>
+<td>Les paramètres (mot de passe avec guillemets) sont sérialisés en JSON — pas de concaténation de chaînes susceptible d'injection</td>
+</tr>
+<tr>
+<td><code>LogoutAsync_HappyPath_CompletesWithoutException</code></td>
+<td>La déconnexion réussie ne lève pas d'exception</td>
+</tr>
+<tr>
+<td><code>LogoutAsync_SendsLogoutTypeAndSessionId</code></td>
+<td>Le corps de la requête contient <code>"logOut"</code> et l'identifiant de session</td>
+</tr>
+<tr>
+<td><code>LoginAsync_DoesNotLogPasswordLength_NoAsteriskSequenceInLogOutput</code></td>
+<td>Les journaux ne contiennent aucune séquence d'astérisques qui révélerait la longueur du mot de passe (sécurité, BL-006)</td>
+</tr>
+<tr>
+<td><code>LoginAsync_AuthenticationLogLine_IsIdenticalRegardlessOfPasswordLength</code></td>
+<td>La ligne de journal d'authentification est identique quelle que soit la longueur du mot de passe (pas de canal latéral)</td>
+</tr>
+<tr>
+<td><code>LoginAsync_AuthenticationLog_ContainsAppIdAndUserCode</code></td>
+<td>Les journaux contiennent <code>AppId</code> et <code>UserCode</code> (identifiants non secrets) pour la traçabilité</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mocks utilisés :</strong> <code>StaticHttpMessageHandler</code>, <code>CapturingHttpMessageHandler</code>, <code>CapturingLogger&lt;T&gt;</code></p>
+<h4 id="nethrisreportclienttests"><code>NethrisReportClientTests</code><a class="headerlink" href="#nethrisreportclienttests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GetAvailableReportsAsync_HappyPath_ReturnsMappedReports</code></td>
+<td>La liste des rapports disponibles est correctement désérialisée et mappée (2 rapports, extensions pdf/csv)</td>
+</tr>
+<tr>
+<td><code>GetAvailableReportsAsync_WhenReturnCodeNonZero_Throws</code></td>
+<td>Un code de retour non nul lève une exception</td>
+</tr>
+<tr>
+<td><code>GetAvailableReportsAsync_WhenNullReturnData_ReturnsEmptyList</code></td>
+<td>Un <code>returnData</code> nul retourne une liste vide</td>
+</tr>
+<tr>
+<td><code>GetAvailableReportsAsync_SendsCorrectEntityAndType</code></td>
+<td>La requête contient le type <code>"getList"</code> et l'entité <code>"automatedreport"</code></td>
+</tr>
+<tr>
+<td><code>DownloadReportAsync_HappyPath_ReturnsDecodedBytes</code></td>
+<td>Le contenu du rapport est correctement décodé depuis Base64</td>
+</tr>
+<tr>
+<td><code>DownloadReportAsync_WhenReturnDataIsQuotedBase64_ReturnsDecodedBytes</code></td>
+<td>Le décodage fonctionne même quand le Base64 est entouré de guillemets JSON supplémentaires</td>
+</tr>
+<tr>
+<td><code>DownloadReportAsync_WhenReturnCodeNonZero_Throws</code></td>
+<td>Un code de retour non nul lève une exception</td>
+</tr>
+<tr>
+<td><code>DownloadReportAsync_SendsCorrectEntityTypeAndId</code></td>
+<td>La requête contient <code>"getFile"</code>, <code>"AutomatedReport"</code> et l'identifiant du rapport</td>
+</tr>
+<tr>
+<td><code>GetAvailableReportsAsync_MapsFormatToExtension</code> (Theory — 13 cas)</td>
+<td>Le code format Nethris (<code>"0"</code> = pdf, <code>"2"</code> = csv, <code>"PDF"</code>, <code>"CSV"</code>, etc.) est correctement traduit en extension de fichier</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mocks utilisés :</strong> <code>StaticHttpMessageHandler</code>, <code>CapturingHttpMessageHandler</code></p>
+<h4 id="sharepointclienttests"><code>SharePointClientTests</code><a class="headerlink" href="#sharepointclienttests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UploadFileAsync_WhenGraphReturns403_ThrowsSharePointAccessDeniedException</code></td>
+<td>Une erreur 403 de Graph API lève <code>SharePointAccessDeniedException</code></td>
+</tr>
+<tr>
+<td><code>UploadFileAsync_WhenGraphReturns401_ThrowsSharePointAccessDeniedException</code></td>
+<td>Une erreur 401 lève également <code>SharePointAccessDeniedException</code></td>
+</tr>
+<tr>
+<td><code>UploadFileAsync_WhenAccessDenied_ExceptionContainsSiteIdDriveIdAndPath</code></td>
+<td>L'exception expose <code>SiteId</code>, <code>DriveId</code> et le chemin cible pour faciliter le diagnostic</td>
+</tr>
+<tr>
+<td><code>UploadFileAsync_WhenAccessDenied_ExceptionContainsHttpStatusCode</code></td>
+<td>L'exception expose le code HTTP (403)</td>
+</tr>
+<tr>
+<td><code>UploadFileAsync_WhenAccessDenied_InnerExceptionIsODataError</code></td>
+<td>L'exception interne est l'<code>ODataError</code> d'origine</td>
+</tr>
+<tr>
+<td><code>UploadFileAsync_WhenAccessDenied_MessageIncludesGraphErrorCodeAndMessage</code></td>
+<td>Le message de l'exception contient le code d'erreur Graph et son libellé</td>
+</tr>
+<tr>
+<td><code>UploadFileAsync_WhenGraphReturns500_PropagatesODataError</code></td>
+<td>Une erreur 500 (serveur) n'est pas interceptée — elle se propage telle quelle</td>
+</tr>
+<tr>
+<td><code>UploadFileAsync_WhenGraphReturns404_PropagatesODataError</code></td>
+<td>Une erreur 404 se propage telle quelle</td>
+</tr>
+<tr>
+<td><code>ValidateAccessAsync_WhenGraphReturns403_ThrowsSharePointAccessDeniedException</code></td>
+<td>La validation d'accès lève <code>SharePointAccessDeniedException</code> sur 403</td>
+</tr>
+<tr>
+<td><code>ValidateAccessAsync_WhenGraphReturns401_ThrowsSharePointAccessDeniedException</code></td>
+<td>La validation d'accès lève l'exception sur 401</td>
+</tr>
+<tr>
+<td><code>ValidateAccessAsync_WhenGraphSucceeds_CompletesWithoutException</code></td>
+<td>Une validation d'accès réussie ne lève pas d'exception</td>
+</tr>
+<tr>
+<td><code>ValidateAccessAsync_WhenAccessDenied_ExceptionTargetPathIsDriveRoot</code></td>
+<td>En cas de refus sur la validation, le chemin cible indique <code>"(drive root)"</code></td>
+</tr>
+<tr>
+<td><code>ValidateAccessAsync_WhenGraphReturns500_PropagatesODataError</code></td>
+<td>Une erreur 500 sur la validation se propage</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mocks utilisés :</strong> <code>ThrowingRequestAdapter</code>, <code>SuccessRequestAdapter</code> (implémentations manuelles de <code>IRequestAdapter</code>)</p>
+<h4 id="stubsharepointclienttests"><code>StubSharePointClientTests</code><a class="headerlink" href="#stubsharepointclienttests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UploadFileAsync_ReturnsPathContainingFolderAndFileName</code></td>
+<td>Le stub retourne un chemin contenant le dossier et le nom de fichier</td>
+</tr>
+<tr>
+<td><code>ValidateAccessAsync_CompletesWithoutException</code></td>
+<td>La validation d'accès du stub ne lève pas d'exception</td>
+</tr>
+<tr>
+<td><code>UploadFileAsync_WithCancellationToken_CompletesNormally</code></td>
+<td>Le stub accepte un jeton d'annulation sans erreur</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mocks utilisés :</strong> Aucun — tests du stub en isolation</p>
+<h4 id="tablestoragesyncledgertests"><code>TableStorageSyncLedgerTests</code><a class="headerlink" href="#tablestoragesyncledgertests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TryClaimAsync_WhenTableDoesNotExist_CreatesTableBeforeAddingClaim</code></td>
+<td>La table est créée automatiquement avant la première réclamation (séquence : create → add)</td>
+</tr>
+<tr>
+<td><code>TryClaimAsync_WhenReportAlreadyClaimed_ReturnsFalse</code></td>
+<td>Un conflit 409 (entité existante) retourne <code>false</code> — le rapport est déjà réclamé</td>
+</tr>
+<tr>
+<td><code>HasBeenSyncedAsync_WhenReportDoesNotExist_CreatesTableBeforeReadAndReturnsFalse</code></td>
+<td>La table est créée avant la lecture ; une entité absente retourne <code>false</code></td>
+</tr>
+<tr>
+<td><code>RecordSyncAsync_WhenTableDoesNotExist_CreatesTableBeforeUpsert</code></td>
+<td>La table est créée avant l'upsert ; l'entité enregistrée contient le chemin SharePoint, la date et le statut <code>"synced"</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mocks utilisés :</strong> <code>RecordingTableClient</code> (implémentation de <code>TableClient</code> qui enregistre les appels)</p>
+<hr />
+<h3 id="14-equipelaurenceintegrationtests">1.4 EquipeLaurence.IntegrationTests<a class="headerlink" href="#14-equipelaurenceintegrationtests" title="Permanent link">&para;</a></h3>
+<p><strong>Type :</strong> Tests d'intégration (xUnit) — s'exécutent contre des services réels ou simulés<br />
+<strong>Trait :</strong> <code>[Trait("Category", "Integration")]</code><br />
+<strong>Librairies :</strong> WireMock.Net (simulation HTTP locale), Azure SDK, DefaultAzureCredential</p>
+<h4 id="nethrisauthclientintegrationtests"><code>NethrisAuthClientIntegrationTests</code><a class="headerlink" href="#nethrisauthclientintegrationtests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LoginAsync_HappyPath_ReturnsSessionId</code></td>
+<td>Le client HTTP réel retourne l'identifiant de session depuis un serveur WireMock</td>
+</tr>
+<tr>
+<td><code>LoginAsync_WhenNethrisReturnsNonZeroReturnCode_ThrowsInvalidOperationException</code></td>
+<td>Des identifiants invalides déclenchent une exception</td>
+</tr>
+<tr>
+<td><code>LogoutAsync_SendsLogoutRequest_DoesNotThrow</code></td>
+<td>La déconnexion envoie une requête HTTP et ne lève pas d'exception</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Infrastructure de test :</strong> WireMock.Net (serveur HTTP local démarré pour chaque test)</p>
+<h4 id="nethrisreportclientintegrationtests"><code>NethrisReportClientIntegrationTests</code><a class="headerlink" href="#nethrisreportclientintegrationtests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GetAvailableReportsAsync_HappyPath_ReturnsMappedReports</code></td>
+<td>La liste des rapports est correctement désérialisée par le client HTTP réel</td>
+</tr>
+<tr>
+<td><code>DownloadReportAsync_HappyPath_ReturnsDecodedBytes</code></td>
+<td>Les octets du rapport sont correctement décodés depuis Base64</td>
+</tr>
+<tr>
+<td><code>GetAvailableReportsAsync_WhenReturnCodeNonZero_Throws</code></td>
+<td>Une session expirée déclenche une exception</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Infrastructure de test :</strong> WireMock.Net</p>
+<h4 id="appconfigurationtests"><code>AppConfigurationTests</code><a class="headerlink" href="#appconfigurationtests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scénario 1 — 17 clés provisionnées</td>
+<td>Toutes les 17 clés de configuration sont présentes dans Azure App Configuration</td>
+</tr>
+<tr>
+<td>Scénario 2 — Valeurs non sensibles</td>
+<td>Les valeurs non sensibles (BaseUrl, AppId, etc.) correspondent aux valeurs attendues</td>
+</tr>
+<tr>
+<td>Scénario 3 — Références Key Vault</td>
+<td>Les clés sensibles (<code>UserPassword</code>, <code>Acs:ConnectionString</code>, <code>Acs:PhoneNumber</code>, <code>AzureAd:ClientSecret</code>) sont des références Key Vault avec le bon content-type</td>
+</tr>
+<tr>
+<td>Scénario 4 — Lecture par identité gérée</td>
+<td>La Function App peut lire App Configuration via son identité gérée</td>
+</tr>
+<tr>
+<td>Scénario 5 — Substitutions par environnement</td>
+<td>Les valeurs spécifiques à l'environnement (<code>dev</code>) sont correctement surchargées</td>
+</tr>
+<tr>
+<td>Scénario 6 — Validation au démarrage</td>
+<td>Toutes les options requises sont validées sans erreur au démarrage</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Infrastructure de test :</strong> Azure App Configuration réel (variable <code>APPCONFIGURATION_CONNECTION_STRING</code> ou
+<code>DefaultAzureCredential</code>)</p>
+<h4 id="acssmsclientintegrationtests"><code>AcsSmsClientIntegrationTests</code><a class="headerlink" href="#acssmsclientintegrationtests" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Méthode de test</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SendSmsAsync_WithAzure Communication ServicesTestCredentials_ReturnsSuccessWithMessageId</code> <em>(ignoré en CI)</em></td>
+<td>L'envoi SMS avec les identifiants de test Azure Communication Services retourne un <code>MessageId</code> (préfixe <code>SM</code>)</td>
+</tr>
+<tr>
+<td><code>SendSmsAsync_WithInvalidToNumber_ReturnsFailed</code> <em>(ignoré en CI)</em></td>
+<td>Un numéro invalide (numéro magique Azure Communication Services) retourne un résultat en échec</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note :</strong> Ces tests sont marqués <code>Skip</code> et s'exécutent uniquement quand les variables d'environnement Azure Communication
+Services de test sont définies.</p>
+<hr />
+<h3 id="15-equipelaurencespecs-bdd">1.5 EquipeLaurence.Specs (BDD)<a class="headerlink" href="#15-equipelaurencespecs-bdd" title="Permanent link">&para;</a></h3>
+<p><strong>Type :</strong> Tests de comportement BDD (SpecFlow + Gherkin)<br />
+<strong>Objectif :</strong> Documenter et valider les comportements métier clés sous forme de scénarios lisibles par des non-développeurs.</p>
+<h4 id="feature-nethrisreportsyncfeature">Feature : <code>NethrisReportSync.feature</code><a class="headerlink" href="#feature-nethrisreportsyncfeature" title="Permanent link">&para;</a></h4>
+<p><em>Contexte : En tant qu'utilisateur des opérations, je veux déclencher manuellement une synchronisation via HTTP.</em></p>
+<table>
+<thead>
+<tr>
+<th>Scénario</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Synchronisation réussie avec de nouveaux rapports</strong></td>
+<td>3 rapports disponibles, aucun synchronisé → 3 téléversements, HTTP 200</td>
+</tr>
+<tr>
+<td><strong>Tous les rapports déjà synchronisés</strong></td>
+<td>2 rapports disponibles, tous déjà synchronisés → 0 téléversements, 2 ignorés, HTTP 200</td>
+</tr>
+<tr>
+<td><strong>Échec partiel pendant la synchronisation</strong></td>
+<td>3 rapports, 1 en échec de téléchargement → 2 téléversements, 1 échec, HTTP 200 (isolation per-rapport)</td>
+</tr>
+<tr>
+<td><strong>Échec d'authentification</strong></td>
+<td>L'authentification Nethris échoue → HTTP 500</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Architecture des étapes :</strong> Orchestrateur réel + Function réelle, tous les clients Nethris/SharePoint/Ledger mockés via
+Moq.</p>
+<h4 id="feature-appconfigurationfeature">Feature : <code>AppConfiguration.feature</code><a class="headerlink" href="#feature-appconfigurationfeature" title="Permanent link">&para;</a></h4>
+<p><em>Contexte : En tant qu'administrateur système, je veux que le magasin App Configuration soit provisionné avec tous les
+paramètres requis.</em></p>
+<table>
+<thead>
+<tr>
+<th>Scénario</th>
+<th>Comportement validé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>17 clés provisionnées</strong></td>
+<td>Toutes les clés requises sont présentes dans le magasin App Configuration</td>
+</tr>
+<tr>
+<td><strong>Valeurs non sensibles correctes</strong></td>
+<td>Les valeurs de configuration (BaseUrl, AppId, etc.) correspondent aux valeurs attendues</td>
+</tr>
+<tr>
+<td><strong>Identifiants sensibles en références Key Vault</strong></td>
+<td>Les clés sensibles pointent vers Key Vault avec le content-type approprié</td>
+</tr>
+<tr>
+<td><strong>Lecture par identité gérée</strong></td>
+<td>La Function App peut résoudre la configuration via son identité gérée</td>
+</tr>
+<tr>
+<td><strong>Substitutions d'environnement</strong></td>
+<td>Les surcharges par environnement (dev) sont correctement appliquées</td>
+</tr>
+<tr>
+<td><strong>Validation au démarrage</strong></td>
+<td>La configuration est valide et le démarrage se complète sans erreur</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-plan-de-tests-manuels-tests-dacceptation">2. Plan de tests manuels / Tests d'acceptation<a class="headerlink" href="#2-plan-de-tests-manuels-tests-dacceptation" title="Permanent link">&para;</a></h2>
+<h3 id="21-contexte-et-prerequis-generaux">2.1 Contexte et prérequis généraux<a class="headerlink" href="#21-contexte-et-prerequis-generaux" title="Permanent link">&para;</a></h3>
+<h4 id="a-propos-du-systeme">À propos du système<a class="headerlink" href="#a-propos-du-systeme" title="Permanent link">&para;</a></h4>
+<p>Le système <strong>Equipe Laurence</strong> est une application automatisée hébergée dans Microsoft Azure. Chaque nuit à 3 h (heure UTC),
+elle se connecte au système de paie <strong>Nethris</strong>, récupère tous les rapports automatisés disponibles, et les dépose dans une
+bibliothèque de documents <strong>SharePoint</strong> privée. Un registre interne empêche le dépôt en double d'un même rapport.</p>
+<p>Le système peut également être déclenché manuellement via une URL sécurisée, ce qui permet de tester la synchronisation ou de
+récupérer des rapports en dehors du cycle automatique.</p>
+<h4 id="prerequis-pour-lexecution-des-tests-dacceptation">Prérequis pour l'exécution des tests d'acceptation<a class="headerlink" href="#prerequis-pour-lexecution-des-tests-dacceptation" title="Permanent link">&para;</a></h4>
+<p>Avant de commencer les tests, s'assurer que les éléments suivants sont en place :</p>
+<table>
+<thead>
+<tr>
+<th>Prérequis</th>
+<th>Responsable</th>
+<th>Vérifié</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L'application Azure Function est déployée (environnement de test ou production)</td>
+<td>Équipe technique</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Les identifiants Nethris (code utilisateur, mot de passe) sont configurés dans Azure Key Vault</td>
+<td>Équipe technique</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>L'identité gérée de la Function App a les droits nécessaires sur SharePoint</td>
+<td>Équipe technique</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>La bibliothèque de documents SharePoint cible existe et est accessible</td>
+<td>Client</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Le registre de synchronisation (Azure Table Storage) est opérationnel</td>
+<td>Équipe technique</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>La personne effectuant les tests a accès aux journaux Azure (Application Insights)</td>
+<td>Client ou équipe</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>La clé d'API de la fonction HTTP est disponible</td>
+<td>Équipe technique</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="22-scenarios-dacceptation">2.2 Scénarios d'acceptation<a class="headerlink" href="#22-scenarios-dacceptation" title="Permanent link">&para;</a></h3>
+<hr />
+<h4 id="scenario-1-synchronisation-automatique-reussie">Scénario 1 — Synchronisation automatique réussie<a class="headerlink" href="#scenario-1-synchronisation-automatique-reussie" title="Permanent link">&para;</a></h4>
+<p><strong>Description :</strong> Vérifier que la synchronisation automatique s'exécute correctement toutes les minutes et dépose les
+rapports dans SharePoint.</p>
+<p><strong>Prérequis :</strong></p>
+<ul>
+<li>L'application est déployée et le déclencheur automatique est activé (toutes les minutes)</li>
+<li>Des rapports sont disponibles dans Nethris</li>
+<li>Aucun de ces rapports n'a été synchronisé précédemment</li>
+</ul>
+<p><strong>Étapes :</strong></p>
+<ol>
+<li>Attendre le prochain déclenchement automatique (toutes les minutes)</li>
+<li>Après le déclenchement, ouvrir la bibliothèque de documents SharePoint cible</li>
+<li>Naviguer vers le dossier <code>FSources/Nethris/{année}/{mois}/{jour}/</code> correspondant à la date d'exécution des rapports</li>
+<li>Vérifier que les fichiers sont présents</li>
+</ol>
+<p><strong>Résultat attendu :</strong></p>
+<ul>
+<li>Les rapports Nethris sont présents dans SharePoint sous le bon chemin de dossier</li>
+<li>Chaque fichier porte un nom du format <code>{NomRapport}_{IdentifiantRapport}_{dateHeure}.{extension}</code></li>
+<li>Dans les journaux Azure, on lit : <code>"Sync completed — X uploaded, 0 skipped, 0 failed"</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Résultat observé</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>☐ ✅ Réussi &nbsp; ☐ ❌ Échec &nbsp; ☐ ⚠️ Partiel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="scenario-2-synchronisation-manuelle-a-la-demande">Scénario 2 — Synchronisation manuelle à la demande<a class="headerlink" href="#scenario-2-synchronisation-manuelle-a-la-demande" title="Permanent link">&para;</a></h4>
+<p><strong>Description :</strong> Vérifier que la synchronisation peut être déclenchée manuellement via l'URL sécurisée.</p>
+<p><strong>Prérequis :</strong></p>
+<ul>
+<li>La clé d'API (<code>code=...</code>) fournie par l'équipe technique est disponible</li>
+<li>Des rapports nouveaux sont disponibles dans Nethris</li>
+</ul>
+<p><strong>Étapes :</strong></p>
+<ol>
+<li>Dans un navigateur ou un outil de requêtes HTTP (ex. Bruno, Postman), exécuter une requête GET vers :
+   <code>https://{nom-de-la-function}.azurewebsites.net/api/sync/nethris-reports?code={clé-api}</code></li>
+<li>Attendre la réponse (peut prendre de quelques secondes à quelques minutes selon le nombre de rapports)</li>
+<li>Lire le corps de la réponse JSON</li>
+<li>Vérifier la présence des fichiers dans SharePoint</li>
+</ol>
+<p><strong>Résultat attendu :</strong></p>
+<ul>
+<li>La réponse HTTP est <code>200 OK</code></li>
+<li>Le corps JSON contient un résumé du type :
+  <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;uploaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;skipped&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;outcomes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></li>
+<li>Les fichiers sont visibles dans SharePoint dans les secondes qui suivent</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Résultat observé</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>☐ ✅ Réussi &nbsp; ☐ ❌ Échec &nbsp; ☐ ⚠️ Partiel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="scenario-3-prevention-des-doublons">Scénario 3 — Prévention des doublons<a class="headerlink" href="#scenario-3-prevention-des-doublons" title="Permanent link">&para;</a></h4>
+<p><strong>Description :</strong> Vérifier que le système ne re-téléverse pas un rapport déjà synchronisé, même si la synchronisation est
+déclenchée plusieurs fois.</p>
+<p><strong>Prérequis :</strong></p>
+<ul>
+<li>Le Scénario 2 a été exécuté avec succès (des rapports ont déjà été synchronisés)</li>
+</ul>
+<p><strong>Étapes :</strong></p>
+<ol>
+<li>Exécuter à nouveau la synchronisation manuelle (même requête que le Scénario 2)</li>
+<li>Lire le corps de la réponse JSON</li>
+<li>Vérifier dans SharePoint qu'aucun doublon n'est apparu</li>
+</ol>
+<p><strong>Résultat attendu :</strong></p>
+<ul>
+<li>La réponse HTTP est <code>200 OK</code></li>
+<li>Le corps JSON indique que tous les rapports ont été ignorés :
+  <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;uploaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;skipped&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></li>
+<li>Aucun nouveau fichier n'est apparu dans SharePoint</li>
+<li>Dans les journaux Azure, on lit : <code>"Already claimed — skipping"</code> pour chaque rapport</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Résultat observé</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>☐ ✅ Réussi &nbsp; ☐ ❌ Échec &nbsp; ☐ ⚠️ Partiel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="scenario-4-aucun-rapport-disponible-dans-nethris">Scénario 4 — Aucun rapport disponible dans Nethris<a class="headerlink" href="#scenario-4-aucun-rapport-disponible-dans-nethris" title="Permanent link">&para;</a></h4>
+<p><strong>Description :</strong> Vérifier le comportement du système quand Nethris ne retourne aucun rapport (ex. en dehors du cycle de
+paie).</p>
+<p><strong>Prérequis :</strong></p>
+<ul>
+<li>Aucun rapport automatisé n'est disponible dans Nethris pour la période en cours</li>
+</ul>
+<p><strong>Étapes :</strong></p>
+<ol>
+<li>Déclencher la synchronisation manuelle</li>
+<li>Lire le corps de la réponse JSON</li>
+</ol>
+<p><strong>Résultat attendu :</strong></p>
+<ul>
+<li>La réponse HTTP est <code>200 OK</code></li>
+<li>Le corps JSON indique zéro rapport traité :
+  <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;uploaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;skipped&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;outcomes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></li>
+<li>Aucun fichier n'est créé dans SharePoint</li>
+<li>Dans les journaux Azure, on lit : <code>"Found 0 reports"</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Résultat observé</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>☐ ✅ Réussi &nbsp; ☐ ❌ Échec &nbsp; ☐ ⚠️ Partiel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="scenario-5-echec-dauthentification-nethris">Scénario 5 — Échec d'authentification Nethris<a class="headerlink" href="#scenario-5-echec-dauthentification-nethris" title="Permanent link">&para;</a></h4>
+<p><strong>Description :</strong> Vérifier le comportement du système en cas d'identifiants Nethris incorrects ou expirés.</p>
+<p><strong>Prérequis :</strong></p>
+<ul>
+<li>Coordonner avec l'équipe technique pour configurer temporairement un mot de passe invalide dans Key Vault (environnement de
+  test uniquement)</li>
+</ul>
+<p><strong>Étapes :</strong></p>
+<ol>
+<li>Déclencher la synchronisation manuelle</li>
+<li>Observer la réponse HTTP</li>
+<li>Consulter les journaux Azure</li>
+</ol>
+<p><strong>Résultat attendu :</strong></p>
+<ul>
+<li>La réponse HTTP est <code>500 Internal Server Error</code></li>
+<li>Le corps de la réponse indique une erreur générique (sans révéler les identifiants ou détails internes)</li>
+<li>Dans les journaux Azure, on lit un message d'erreur indiquant l'échec d'authentification Nethris</li>
+<li>Aucun rapport n'est téléversé dans SharePoint</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Résultat observé</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>☐ ✅ Réussi &nbsp; ☐ ❌ Échec &nbsp; ☐ ⚠️ Partiel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="scenario-6-echec-de-televersement-vers-sharepoint-isolation-par-rapport">Scénario 6 — Échec de téléversement vers SharePoint (isolation par rapport)<a class="headerlink" href="#scenario-6-echec-de-televersement-vers-sharepoint-isolation-par-rapport" title="Permanent link">&para;</a></h4>
+<p><strong>Description :</strong> Vérifier que si un rapport individuel échoue lors du téléversement, les autres rapports sont quand même
+traités (le système n'arrête pas tout).</p>
+<p><strong>Prérequis :</strong></p>
+<ul>
+<li>Plusieurs rapports sont disponibles dans Nethris</li>
+<li>Coordonner avec l'équipe technique pour simuler une condition d'erreur sur un rapport spécifique (environnement de test)</li>
+</ul>
+<p><strong>Étapes :</strong></p>
+<ol>
+<li>Déclencher la synchronisation manuelle</li>
+<li>Lire le corps de la réponse JSON</li>
+<li>Vérifier dans SharePoint quels fichiers ont été créés</li>
+<li>Consulter les journaux Azure</li>
+</ol>
+<p><strong>Résultat attendu :</strong></p>
+<ul>
+<li>La réponse HTTP est <code>200 OK</code> (pas 500 — les erreurs partielles ne font pas échouer la synchronisation globale)</li>
+<li>Le corps JSON indique par exemple : <code>{ "uploaded": 2, "skipped": 0, "failed": 1 }</code></li>
+<li>Dans la liste <code>"outcomes"</code>, le rapport en échec affiche un message d'erreur générique (<code>"UploadFailed"</code> ou <code>"SyncFailed"</code>)</li>
+<li>Les autres rapports sont bien présents dans SharePoint</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Résultat observé</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>☐ ✅ Réussi &nbsp; ☐ ❌ Échec &nbsp; ☐ ⚠️ Partiel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="scenario-7-structure-du-dossier-sharepoint">Scénario 7 — Structure du dossier SharePoint<a class="headerlink" href="#scenario-7-structure-du-dossier-sharepoint" title="Permanent link">&para;</a></h4>
+<p><strong>Description :</strong> Vérifier que les fichiers sont organisés dans la bonne structure de dossiers dans SharePoint.</p>
+<p><strong>Prérequis :</strong></p>
+<ul>
+<li>Au moins une synchronisation réussie a été exécutée (Scénario 1 ou 2)</li>
+</ul>
+<p><strong>Étapes :</strong></p>
+<ol>
+<li>Ouvrir la bibliothèque de documents SharePoint configurée</li>
+<li>Naviguer vers le dossier <code>FSources/Nethris/</code></li>
+<li>Vérifier la structure de sous-dossiers</li>
+</ol>
+<p><strong>Résultat attendu :</strong></p>
+<ul>
+<li>La structure de dossiers suit le format : <code>FSources/Nethris/{année}/{mois à 2 chiffres}/{jour à 2 chiffres}/</code></li>
+<li>Exemple pour un rapport daté du 1er mai 2026 : <code>FSources/Nethris/2026/05/01/</code></li>
+<li>Le nom de chaque fichier contient : le nom du rapport, l'identifiant unique Nethris, et la date/heure de synchronisation</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Résultat observé</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>☐ ✅ Réussi &nbsp; ☐ ❌ Échec &nbsp; ☐ ⚠️ Partiel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="scenario-8-validation-de-la-configuration-au-demarrage">Scénario 8 — Validation de la configuration au démarrage<a class="headerlink" href="#scenario-8-validation-de-la-configuration-au-demarrage" title="Permanent link">&para;</a></h4>
+<p><strong>Description :</strong> Vérifier que l'application refuse de démarrer si des paramètres obligatoires sont manquants, afin d'éviter
+des comportements silencieusement incorrects.</p>
+<p><strong>Prérequis :</strong></p>
+<ul>
+<li>Coordonner avec l'équipe technique pour retirer temporairement un paramètre de configuration dans l'environnement de test</li>
+</ul>
+<p><strong>Étapes :</strong></p>
+<ol>
+<li>Demander à l'équipe technique de retirer la valeur <code>SharePoint:SiteId</code> de la configuration</li>
+<li>Redémarrer l'application Azure Function</li>
+<li>Observer les journaux de démarrage dans Application Insights</li>
+</ol>
+<p><strong>Résultat attendu :</strong></p>
+<ul>
+<li>L'application refuse de démarrer</li>
+<li>Un message d'erreur clair indique que <code>SiteId</code> est requis</li>
+<li>Aucune synchronisation n'est exécutée pendant que la configuration est invalide</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Résultat observé</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>☐ ✅ Réussi &nbsp; ☐ ❌ Échec &nbsp; ☐ ⚠️ Partiel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="scenario-9-verification-de-securite-aucune-fuite-dinformations-sensibles">Scénario 9 — Vérification de sécurité : aucune fuite d'informations sensibles<a class="headerlink" href="#scenario-9-verification-de-securite-aucune-fuite-dinformations-sensibles" title="Permanent link">&para;</a></h4>
+<p><strong>Description :</strong> Vérifier que le système ne retourne jamais d'informations sensibles (mots de passe, chaînes de connexion,
+stack traces) dans les réponses HTTP.</p>
+<p><strong>Prérequis :</strong></p>
+<ul>
+<li>Accès à l'outil de requête HTTP (Bruno, Postman, ou navigateur)</li>
+</ul>
+<p><strong>Étapes :</strong></p>
+<ol>
+<li>Déclencher la synchronisation manuelle</li>
+<li>En cas d'erreur (simulée par l'équipe technique), lire attentivement le corps de la réponse HTTP 500</li>
+<li>Consulter les journaux publics (si disponibles)</li>
+</ol>
+<p><strong>Résultat attendu :</strong></p>
+<ul>
+<li>Le corps de la réponse d'erreur contient uniquement un message générique du type
+  <code>"Une erreur s'est produite. Consultez les journaux pour les détails."</code></li>
+<li>Aucun mot de passe, clé secrète, chaîne de connexion, ou chemin de code interne n'est visible</li>
+<li>Les journaux Azure (côté serveur, accessibles uniquement à l'équipe technique) contiennent les détails complets pour le
+  diagnostic</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Résultat observé</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>☐ ✅ Réussi &nbsp; ☐ ❌ Échec &nbsp; ☐ ⚠️ Partiel</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="23-comment-declencher-la-synchronisation-manuellement">2.3 Comment déclencher la synchronisation manuellement<a class="headerlink" href="#23-comment-declencher-la-synchronisation-manuellement" title="Permanent link">&para;</a></h3>
+<h4 id="url-de-declenchement">URL de déclenchement<a class="headerlink" href="#url-de-declenchement" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>GET https://{nom-de-la-function}.azurewebsites.net/api/sync/nethris-reports?code={clé-api}
+</code></pre></div>
+<p>L'équipe technique fournira l'URL complète avec la clé d'API pour chaque environnement (test, production).</p>
+<h4 id="etapes-avec-un-navigateur-web">Étapes avec un navigateur Web<a class="headerlink" href="#etapes-avec-un-navigateur-web" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Copier l'URL complète fournie par l'équipe technique</li>
+<li>Coller l'URL dans la barre d'adresse du navigateur</li>
+<li>Appuyer sur Entrée</li>
+<li>Attendre la réponse (le navigateur peut rester en attente pendant quelques secondes à quelques minutes)</li>
+<li>Une fois la réponse affichée, lire le texte JSON pour connaître le résumé de la synchronisation</li>
+</ol>
+<h4 id="que-signifient-les-champs-de-la-reponse">Que signifient les champs de la réponse ?<a class="headerlink" href="#que-signifient-les-champs-de-la-reponse" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;startedAtUtc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-05-12T03:00:01Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;completedAtUtc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-05-12T03:00:45Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;uploaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;skipped&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;outcomes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;reportProdId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;45875&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;reportName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Payroll_Register&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Uploaded&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;sharePointPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FSources/Nethris/2026/05/01/Payroll_Register_45875_20260501_030001.pdf&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;reportProdId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;45876&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;reportName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Employee_Contact_Source&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AlreadySynced&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uploaded</code></td>
+<td>Nombre de rapports déposés avec succès dans SharePoint</td>
+</tr>
+<tr>
+<td><code>skipped</code></td>
+<td>Nombre de rapports ignorés car déjà déposés précédemment</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>Nombre de rapports ayant échoué (à investiguer dans les journaux)</td>
+</tr>
+<tr>
+<td><code>status: "Uploaded"</code></td>
+<td>Le rapport a été déposé avec succès</td>
+</tr>
+<tr>
+<td><code>status: "AlreadySynced"</code></td>
+<td>Le rapport existait déjà — aucune action</td>
+</tr>
+<tr>
+<td><code>status: "Failed"</code></td>
+<td>Une erreur s'est produite pour ce rapport</td>
+</tr>
+<tr>
+<td><code>sharePointPath</code></td>
+<td>Chemin du fichier dans SharePoint (visible uniquement pour les rapports déposés)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="consulter-les-journaux-azure">Consulter les journaux Azure<a class="headerlink" href="#consulter-les-journaux-azure" title="Permanent link">&para;</a></h4>
+<p>Pour voir les détails d'une synchronisation (y compris les erreurs), l'équipe technique peut accéder à <strong>Application
+Insights</strong> dans le portail Azure :</p>
+<ol>
+<li>Ouvrir le portail Azure → Application Insights du projet Equipe Laurence</li>
+<li>Cliquer sur <strong>Journaux</strong> (Logs)</li>
+<li>Chercher les entrées liées à <code>NethrisReportSyncService</code> pour la période souhaitée</li>
+<li>En cas d'erreur, les journaux contiendront le détail complet de l'exception</li>
+</ol>
+<hr />
+<h3 id="24-grille-de-validation-finale">2.4 Grille de validation finale<a class="headerlink" href="#24-grille-de-validation-finale" title="Permanent link">&para;</a></h3>
+<p>Cette grille est à compléter par le client ou le responsable de la recette avant la signature finale.</p>
+<p><strong>Projet :</strong> Intégration Nethris → SharePoint (Equipe Laurence)<br />
+<strong>Date de la recette :</strong> <strong>**</strong>___<strong>**</strong><br />
+<strong>Environnement testé :</strong> ☐ Test &nbsp; ☐ Production<br />
+<strong>Testé par :</strong> <strong>**</strong>___<strong>**</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Critère de validation</th>
+<th>Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>La synchronisation automatique (toutes les minutes) s'exécute sans intervention humaine</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Les rapports Nethris apparaissent dans SharePoint dans les 5 minutes suivant la synchronisation</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+<tr>
+<td>3</td>
+<td>La structure de dossiers SharePoint est correcte (<code>FSources/Nethris/{année}/{mois}/{jour}/</code>)</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Les noms de fichiers contiennent le nom du rapport et son identifiant unique Nethris</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Un rapport déjà synchronisé n'est jamais re-déposé (zéro doublon)</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+<tr>
+<td>6</td>
+<td>La synchronisation manuelle fonctionne via l'URL sécurisée</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+<tr>
+<td>7</td>
+<td>En cas d'erreur partielle (un rapport), les autres rapports sont quand même traités</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Aucune information sensible (mot de passe, clé) n'est visible dans les réponses HTTP</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+<tr>
+<td>9</td>
+<td>L'application refuse de démarrer si des paramètres obligatoires sont manquants</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Les journaux Azure permettent de diagnostiquer toute erreur de synchronisation</td>
+<td>☐ ✅ &nbsp; ☐ ❌ &nbsp; ☐ Non testé</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Résultat global :</strong></p>
+<p>☐ <strong>Accepté sans réserve</strong> — Tous les critères sont satisfaits<br />
+☐ <strong>Accepté avec réserves</strong> — Critères non satisfaits : <strong>**</strong>___<strong>**</strong><br />
+☐ <strong>Refusé</strong> — Critères bloquants : <strong>**</strong>___<strong>**</strong></p>
+<p><strong>Signature client :</strong> <strong>**</strong>___<strong>**</strong> &nbsp; <strong>Date :</strong> <strong>**</strong>___<strong>**</strong><br />
+<strong>Signature équipe technique :</strong> <strong>**</strong>___<strong>**</strong> &nbsp; <strong>Date :</strong> <strong>**</strong>___<strong>**</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../sms-compliance/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Conformité SMS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Conformité SMS
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../proposal-cicd-optimization/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Optimisation CI&#x2f;CD">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Optimisation CI/CD
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/equipe-laurence/integration-nethris" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","navigation.tracking","search.suggest","search.highlight","content.code.annotate","content.tabs.link","toc.follow"],"search":"../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copié dans le presse-papier","clipboard.copy":"Copier dans le presse-papier","search.result.more.one":"1 de plus sur cette page","search.result.more.other":"# de plus sur cette page","search.result.none":"Aucun document trouvé","search.result.one":"1 document trouvé","search.result.other":"# documents trouvés","search.result.placeholder":"Taper pour démarrer la recherche","search.result.term.missing":"Non trouvé","select.version":"Sélectionner la version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7f30b55.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
