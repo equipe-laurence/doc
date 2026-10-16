@@ -1,0 +1,11 @@
+/* Force navigation tabs to remain sticky on scroll */
+.md-tabs {
+  position: sticky;
+  top: 2.4rem; /* height of the primary header bar */
+  z-index: 3;
+}
+
+code {
+  font-size: 0.9em;
+  font-family: 'Courier New', Courier, monospace;
+}
