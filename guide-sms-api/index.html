@@ -1,0 +1,2728 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://equipe-laurence.github.io/doc/guide-sms-api/">
+      
+      
+      
+        <link rel="prev" href="../local-development/">
+      
+      
+        <link rel="next" href="../guide-configuration-fournisseur-sms/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.73">
+    
+    
+      
+        <title>API SMS - Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Aller au contenu
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-header__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API SMS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Recherche</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Recherche">
+  <button type="button" class="md-search__button">
+    Recherche
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-activites-utilisateurs/" class="md-tabs__link">
+          
+  
+  Utilisation courante
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Architecture & Conception
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../local-development/" class="md-tabs__link">
+          
+  
+  Développement
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Exploitation & Conformité
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plan-de-tests/" class="md-tabs__link">
+          
+  
+  Planification & CI/CD
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-nav__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Accueil
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Utilisation courante
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Utilisation courante
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-activites-utilisateurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Activités des utilisateurs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture & Conception
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Architecture & Conception
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Vue d'ensemble
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-feature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SMS Feature
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prd-sms-phase5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PRD — SMS phase 5
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prd-poc-sync-ad-date-naissance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PRD — POC synchronisation Active Directory
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Développement
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement local
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API SMS
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#portee" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Portée
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentification-entra-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Authentification Entra ID
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentification Entra ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flux-dauthentification" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flux d'authentification
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtenir-un-token-entra-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Obtenir un token Entra ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrice-des-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Matrice des endpoints
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-get-apinotificationssmsform" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1) GET /api/notifications/sms/form
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1) GET &#x2f;api&#x2f;notifications&#x2f;sms&#x2f;form">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers-requis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Headers requis
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-possibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs possibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-post-apinotificationssmssend-by-bureau" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2) POST /api/notifications/sms/send-by-bureau
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2) POST &#x2f;api&#x2f;notifications&#x2f;sms&#x2f;send-by-bureau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers-requis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Headers requis
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requete-form-encoded" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Requête (form-encoded)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-possibles_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs possibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2b-post-apismssend" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2b) POST /api/sms/send
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2b) POST &#x2f;api&#x2f;sms&#x2f;send">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers-requis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Headers requis
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requete-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Requête (JSON)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-possibles_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs possibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2c-get-apismsbroadcasts-et-get-apismsbroadcastsidempotencykey" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2c) GET /api/sms/broadcasts et GET /api/sms/broadcasts/{idempotencyKey}
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2c) GET &#x2f;api&#x2f;sms&#x2f;broadcasts et GET &#x2f;api&#x2f;sms&#x2f;broadcasts&#x2f;{idempotencyKey}">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200-liste" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code> — liste
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code> — détail
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-possibles_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs possibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-post-apismsinboundtwilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3) POST /api/sms/inbound/twilio
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3) POST &#x2f;api&#x2f;sms&#x2f;inbound&#x2f;twilio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Headers
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payload-attendu-form-encoded" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Payload attendu (form-encoded)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mots-cles-traites" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Mots-clés traités
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-post-apismsdelivery-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4) POST /api/sms/delivery-status
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4) POST &#x2f;api&#x2f;sms&#x2f;delivery-status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#payload-attendu" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Payload attendu
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stockage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Stockage
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Idempotence
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codes-derreur-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Codes d'erreur HTTP
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limites-connues" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Limites connues
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-configuration-fournisseur-sms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration du fournisseur SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-bruno-nethris-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tester avec Bruno
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharepoint-permission-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Permissions SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exploitation & Conformité
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Exploitation & Conformité
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-synchronisation-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Synchronisation Nethris → SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adsync-poc-guide-operateur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  POC AdSync — Guide de l'opérateur
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-twilio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro Twilio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-acs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro ACS (historique)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-migration-acs-vers-twilio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration ACS → Twilio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-secrets-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration & Secrets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-compliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Conformité SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Planification & CI/CD
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Planification & CI/CD
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-de-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan de tests
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposal-cicd-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Optimisation CI/CD
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-migration-managed-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration vers Managed Identity
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publication de la documentation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#portee" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Portée
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentification-entra-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Authentification Entra ID
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentification Entra ID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flux-dauthentification" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flux d'authentification
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtenir-un-token-entra-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Obtenir un token Entra ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrice-des-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Matrice des endpoints
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-get-apinotificationssmsform" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        1) GET /api/notifications/sms/form
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1) GET &#x2f;api&#x2f;notifications&#x2f;sms&#x2f;form">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers-requis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Headers requis
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-possibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs possibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-post-apinotificationssmssend-by-bureau" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2) POST /api/notifications/sms/send-by-bureau
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2) POST &#x2f;api&#x2f;notifications&#x2f;sms&#x2f;send-by-bureau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers-requis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Headers requis
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requete-form-encoded" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Requête (form-encoded)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-possibles_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs possibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2b-post-apismssend" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2b) POST /api/sms/send
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2b) POST &#x2f;api&#x2f;sms&#x2f;send">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers-requis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Headers requis
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requete-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Requête (JSON)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code>
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-possibles_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs possibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2c-get-apismsbroadcasts-et-get-apismsbroadcastsidempotencykey" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        2c) GET /api/sms/broadcasts et GET /api/sms/broadcasts/{idempotencyKey}
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2c) GET &#x2f;api&#x2f;sms&#x2f;broadcasts et GET &#x2f;api&#x2f;sms&#x2f;broadcasts&#x2f;{idempotencyKey}">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200-liste" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code> — liste
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse-200-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse <code>200</code> — détail
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-possibles_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Erreurs possibles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-post-apismsinboundtwilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        3) POST /api/sms/inbound/twilio
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3) POST &#x2f;api&#x2f;sms&#x2f;inbound&#x2f;twilio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Headers
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payload-attendu-form-encoded" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Payload attendu (form-encoded)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mots-cles-traites" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Mots-clés traités
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Réponse
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-post-apismsdelivery-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        4) POST /api/sms/delivery-status
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4) POST &#x2f;api&#x2f;sms&#x2f;delivery-status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#payload-attendu" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Payload attendu
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stockage" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Stockage
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotence" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Idempotence
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codes-derreur-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Codes d'erreur HTTP
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limites-connues" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Limites connues
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="./.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="../local-development/" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Développement
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+
+<h1 id="guide-dintegration-api-sms">Guide d'intégration API SMS<a class="headerlink" href="#guide-dintegration-api-sms" title="Permanent link">&para;</a></h1>
+<p>Ce guide documente l'API SMS actuelle basée sur <strong>Twilio</strong> avec authentification <strong>Entra ID (Azure AD)</strong>.</p>
+<h2 id="portee">Portée<a class="headerlink" href="#portee" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Envoi d'un lot SMS d'urgence aux destinataires éligibles d'un ou plusieurs bureaux (formulaire HTML + <code>send-by-bureau</code>, ou API JSON <code>sms/send</code>)</li>
+<li>Consultation de l'historique de diffusion (<code>sms/broadcasts</code>)</li>
+<li>Réception des SMS entrants Twilio (webhook <code>sms/inbound/twilio</code>, mots-clés STOP/START)</li>
+<li>Réception des rapports de livraison <strong>ACS</strong> via Event Grid (<code>sms/delivery-status</code>) — aucun callback de statut Twilio n'est implémenté à ce jour</li>
+</ul>
+<p>Le fournisseur d'envoi est sélectionné par <code>Sms:Provider</code> (<code>Twilio</code> | <code>Acs</code> | <code>Disabled</code>, voir <a href="../guide-configuration-fournisseur-sms/">Guide de configuration du fournisseur SMS</a>). Seul <code>Twilio</code> envoie réellement des SMS : avec <code>Acs</code> ou <code>Disabled</code>, l'envoi est refusé par le <code>DisabledSmsClient</code> (erreur <code>SmsDisabled</code> par destinataire).</p>
+<h2 id="authentification-entra-id">Authentification Entra ID<a class="headerlink" href="#authentification-entra-id" title="Permanent link">&para;</a></h2>
+<p>Tous les endpoints SMS (sauf le webhook Twilio <code>sms/inbound/twilio</code> et l'endpoint Event Grid <code>sms/delivery-status</code>, qui sont exclus de l'Easy Auth) nécessitent une authentification par <strong>jeton Bearer JWT</strong> émis par votre locataire Entra ID.</p>
+<h3 id="flux-dauthentification">Flux d'authentification<a class="headerlink" href="#flux-dauthentification" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Inscrire l'application</strong> dans Entra ID (Tenant ID, Client ID, secret)</li>
+<li><strong>Obtenir un token</strong> via MSAL, Azure CLI, ou flow client credentials (audience <code>api://&lt;client-id&gt;</code> par défaut)</li>
+<li><strong>Ajouter le header Bearer</strong> à chaque requête (derrière Easy Auth, le jeton peut aussi arriver via <code>X-MS-TOKEN-AAD-ACCESS-TOKEN</code>)</li>
+<li><strong>Le système valide</strong> le token (émetteur, audience) : tout utilisateur authentifié est autorisé — aucune appartenance à un groupe n'est vérifiée par le code</li>
+</ol>
+<h3 id="obtenir-un-token-entra-id">Obtenir un token Entra ID<a class="headerlink" href="#obtenir-un-token-entra-id" title="Permanent link">&para;</a></h3>
+<p><strong>Via Azure CLI (développement local) :</strong></p>
+<div class="highlight"><pre><span></span><code>az<span class="w"> </span>account<span class="w"> </span>get-access-token<span class="w"> </span>--resource<span class="w"> </span>api://votre-client-id<span class="w"> </span>--query<span class="w"> </span>accessToken<span class="w"> </span>-o<span class="w"> </span>tsv
+</code></pre></div>
+<p><strong>Via MSAL (client credentials, pour service-to-service) :</strong></p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"https://login.microsoftonline.com/&lt;tenant-id&gt;/oauth2/v2.0/token"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">"client_id=&lt;client-id&gt;"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">"client_secret=&lt;client-secret&gt;"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">"scope=api://votre-client-id/.default"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">"grant_type=client_credentials"</span>
+</code></pre></div>
+<p><strong>Via MSAL (desktop app, pour utilisateurs interactifs) :</strong></p>
+<p>Utilisez la librairie MSAL.NET ou MSAL.js pour obtenir un token interactif.</p>
+<hr />
+<h2 id="matrice-des-endpoints">Matrice des endpoints<a class="headerlink" href="#matrice-des-endpoints" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Méthode</th>
+<th>Route</th>
+<th>Authentification</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/notifications/sms/form</code></td>
+<td>Bearer Entra ID (redirection de connexion si Easy Auth + navigateur)</td>
+<td>Retourne le formulaire HTML de sélection</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/notifications/sms/send-by-bureau</code></td>
+<td>Bearer Entra ID</td>
+<td>Envoie un SMS d'urgence aux destinataires éligibles d'un ou plusieurs bureaux (form-encoded)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/sms/send</code></td>
+<td>Bearer Entra ID</td>
+<td>Envoie un SMS d'urgence à un bureau (JSON, <code>Idempotency-Key</code> obligatoire)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/sms/broadcasts</code></td>
+<td>Bearer Entra ID</td>
+<td>Liste les diffusions récentes (30 jours, 100 max)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/sms/broadcasts/{idempotencyKey}</code></td>
+<td>Bearer Entra ID</td>
+<td>Détail d'une diffusion et statut de livraison par message</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/sms/inbound/twilio</code></td>
+<td>Signature <code>X-Twilio-Signature</code> (HMAC-SHA1)</td>
+<td>Reçoit les SMS entrants Twilio (STOP/START)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/sms/delivery-status</code></td>
+<td>Aucune (Event Grid, exclu de l'Easy Auth)</td>
+<td>Reçoit les rapports de livraison ACS</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-get-apinotificationssmsform">1) GET /api/notifications/sms/form<a class="headerlink" href="#1-get-apinotificationssmsform" title="Permanent link">&para;</a></h2>
+<p>Retourne un formulaire HTML (en français) listant les bureaux distincts de la table <code>BaseTi</code> avec le nombre de destinataires éligibles (cases <code>locationCode</code>, sélection multiple), un choix de niveau d'urgence (<code>urgencyLevel</code>) et le message (<code>messageBody</code>). Le formulaire soumet en <code>fetch</code> vers <code>POST /api/notifications/sms/send-by-bureau</code> (<code>credentials: include</code>).</p>
+<h3 id="headers-requis">Headers requis<a class="headerlink" href="#headers-requis" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;token-entra-id&gt;
+</code></pre></div>
+<h3 id="reponse-200">Réponse <code>200</code><a class="headerlink" href="#reponse-200" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">"fr"</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Envoi SMS — Équipe Laurence<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">"smsForm"</span> <span class="na">method</span><span class="o">=</span><span class="s">"POST"</span> <span class="na">action</span><span class="o">=</span><span class="s">"/api/notifications/sms/send-by-bureau"</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"checkbox"</span> <span class="na">name</span><span class="o">=</span><span class="s">"locationCode"</span> <span class="na">value</span><span class="o">=</span><span class="s">"MTL"</span> <span class="na">data-count</span><span class="o">=</span><span class="s">"12"</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"checkbox"</span> <span class="na">name</span><span class="o">=</span><span class="s">"locationCode"</span> <span class="na">value</span><span class="o">=</span><span class="s">"TOR"</span> <span class="na">data-count</span><span class="o">=</span><span class="s">"5"</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"radio"</span> <span class="na">name</span><span class="o">=</span><span class="s">"urgencyLevel"</span> <span class="na">value</span><span class="o">=</span><span class="s">"info"</span> <span class="na">checked</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"radio"</span> <span class="na">name</span><span class="o">=</span><span class="s">"urgencyLevel"</span> <span class="na">value</span><span class="o">=</span><span class="s">"important"</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"radio"</span> <span class="na">name</span><span class="o">=</span><span class="s">"urgencyLevel"</span> <span class="na">value</span><span class="o">=</span><span class="s">"urgent"</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">"messageBody"</span> <span class="na">id</span><span class="o">=</span><span class="s">"messageBody"</span> <span class="na">required</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">"submit"</span><span class="p">&gt;</span>Envoyer<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>(Extrait simplifié ; les codes de bureau et les compteurs proviennent de <code>BaseTi</code>.)</p>
+<h3 id="erreurs-possibles">Erreurs possibles<a class="headerlink" href="#erreurs-possibles" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>401 Unauthorized</code> — Token manquant ou invalide (avec Easy Auth actif et un navigateur <code>Accept: text/html</code>, redirection vers <code>/.auth/login/aad</code> à la place)</li>
+<li><code>500 Internal Server Error</code> — Erreur lors de la lecture de <code>BaseTi</code></li>
+</ul>
+<hr />
+<h2 id="2-post-apinotificationssmssend-by-bureau">2) POST /api/notifications/sms/send-by-bureau<a class="headerlink" href="#2-post-apinotificationssmssend-by-bureau" title="Permanent link">&para;</a></h2>
+<p>Envoie un SMS à tous les destinataires éligibles d'un ou plusieurs <code>locationCode</code>. Les destinataires sont résolus depuis <strong>BaseTi</strong> (table Azure Table Storage alimentée par la synchronisation Nethris), filtrés sur <code>IsEligibleForSms</code> puis sur le registre d'opt-out (<code>SmsOptOut</code>).</p>
+<h3 id="headers-requis_1">Headers requis<a class="headerlink" href="#headers-requis_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Authorization: Bearer &lt;token-entra-id&gt;
+Content-Type: application/x-www-form-urlencoded
+Idempotency-Key: &lt;cle-unique-uuid&gt; (recommandé; généré si absent)
+</code></pre></div>
+<h3 id="requete-form-encoded">Requête (form-encoded)<a class="headerlink" href="#requete-form-encoded" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Obligatoire</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>locationCode</code></td>
+<td>oui</td>
+<td>Code de bureau ; répétable pour plusieurs bureaux (valeurs vides ignorées, doublons retirés)</td>
+</tr>
+<tr>
+<td><code>messageBody</code></td>
+<td>oui</td>
+<td>Corps du message</td>
+</tr>
+<tr>
+<td><code>urgencyLevel</code></td>
+<td>non</td>
+<td><code>info</code> (préfixe ℹ️), <code>important</code> (⚠️) ou <code>urgent</code> (🚨) ; toute autre valeur = aucun préfixe</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>locationCode=MTL&amp;locationCode=TOR&amp;urgencyLevel=urgent&amp;messageBody=Alerte+securite+evacuation
+</code></pre></div>
+<h3 id="reponse-200_1">Réponse <code>200</code><a class="headerlink" href="#reponse-200_1" title="Permanent link">&para;</a></h3>
+<p><code>auditId</code> reprend la valeur de <code>Idempotency-Key</code> (générée si absente). <code>totalEmployees</code> = nombre de destinataires éligibles non désinscrits. Le numéro est masqué (<code>****</code> + 4 derniers chiffres).</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"locationCodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"MTL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"TOR"</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"urgencyLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urgent"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"totalEmployees"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"sent"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"failed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"auditId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f1c9d1e-7a52-4c1e-9d2b-0a1b2c3d4e5f"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"employeeNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000123"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jean Tremblay"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"****7890"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"messageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-05-22T18:32:15Z"</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"employeeNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000124"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marie Côté"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"****1234"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"failed"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TwilioError:21211"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-05-22T18:32:15Z"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Valeurs possibles de <code>error</code> par destinataire : <code>TwilioError:&lt;code Twilio&gt;</code>, <code>UnexpectedError</code>, <code>SmsDisabled</code> (fournisseur <code>Acs</code>/<code>Disabled</code>). La réponse reste <code>200</code> même si tous les envois échouent.</p>
+<h3 id="erreurs-possibles_1">Erreurs possibles<a class="headerlink" href="#erreurs-possibles_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>400 Bad Request</code> — <code>{"error":"MissingLocationCode"}</code> ou <code>{"error":"MissingMessageBody"}</code></li>
+<li><code>401 Unauthorized</code> — Token manquant ou expiré</li>
+<li><code>404 Not Found</code> — <code>{"error":"NoRecipientsFound","locationCodes":[...]}</code> (aucun enregistrement) ou <code>{"error":"NoEligibleRecipientsFound","locationCodes":[...]}</code> (tous inéligibles ou désinscrits)</li>
+<li><code>500 Internal Server Error</code> — Exception non gérée (corps vide)</li>
+</ul>
+<hr />
+<h2 id="2b-post-apismssend">2b) POST /api/sms/send<a class="headerlink" href="#2b-post-apismssend" title="Permanent link">&para;</a></h2>
+<p>Variante JSON pour un seul bureau, destinée aux clients API. Même résolution des destinataires et même filtrage opt-out que <code>send-by-bureau</code>.</p>
+<h3 id="headers-requis_2">Headers requis<a class="headerlink" href="#headers-requis_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Content-Type: application/json
+Idempotency-Key: &lt;cle-unique-uuid&gt; (obligatoire)
+</code></pre></div>
+<p>(plus l'en-tête <code>Authorization</code> Bearer décrit ci-dessus)</p>
+<h3 id="requete-json">Requête (JSON)<a class="headerlink" href="#requete-json" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"locationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MTL"</span><span class="p">,</span><span class="w"> </span><span class="nt">"messageBody"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bonjour {firstName}, alerte sécurité"</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Variables de gabarit remplacées par destinataire (insensibles à la casse) : <code>{firstName}</code>, <code>{lastName}</code>, <code>{fullName}</code>, <code>{employeeNumber}</code>, <code>{locationCode}</code>.</p>
+<h3 id="reponse-200_2">Réponse <code>200</code><a class="headerlink" href="#reponse-200_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"locationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MTL"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"totalRecipients"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"sent"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"failed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"employeeNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000123"</span><span class="p">,</span><span class="w"> </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"messageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"employeeNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000124"</span><span class="p">,</span><span class="w"> </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TwilioError:21211"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="erreurs-possibles_2">Erreurs possibles<a class="headerlink" href="#erreurs-possibles_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>400 Bad Request</code> — <code>{"error":"MissingIdempotencyKey"}</code>, <code>{"error":"InvalidJsonBody"}</code>, <code>{"error":"MissingLocationCode"}</code> ou <code>{"error":"MissingMessageBody"}</code></li>
+<li><code>401 Unauthorized</code> — Token manquant ou expiré</li>
+<li><code>404 Not Found</code> — <code>{"error":"NoRecipientsFound","locationCode":"MTL"}</code></li>
+</ul>
+<blockquote>
+<p><strong>Déploiement :</strong> <code>infra/modules/functionApp.bicep</code> positionne <code>AzureWebJobs.SendEmergencySms.Disabled=true</code> tant que le paramètre Bicep <code>smsEnabled</code> est <code>false</code> (valeur par défaut dans tous les environnements) ; cet endpoint est alors désactivé.</p>
+</blockquote>
+<hr />
+<h2 id="2c-get-apismsbroadcasts-et-get-apismsbroadcastsidempotencykey">2c) GET /api/sms/broadcasts et GET /api/sms/broadcasts/{idempotencyKey}<a class="headerlink" href="#2c-get-apismsbroadcasts-et-get-apismsbroadcastsidempotencykey" title="Permanent link">&para;</a></h2>
+<p>Historique des diffusions, lu dans la table d'audit <code>SmsAuditLog</code>. Authentification Bearer Entra ID (<code>401</code> sinon). Aucun paramètre de requête : la liste couvre les 30 derniers jours, 100 diffusions maximum, de la plus récente à la plus ancienne.</p>
+<h3 id="reponse-200-liste">Réponse <code>200</code> — liste<a class="headerlink" href="#reponse-200-liste" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"timestampUtc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-05-22T18:32:15Z"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"requesterPrincipal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jean.tremblay@exemple.com"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"locationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MTL"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"recipientCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"filteredOptOutCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"idempotencyKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f1c9d1e-7a52-4c1e-9d2b-0a1b2c3d4e5f"</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="reponse-200-detail">Réponse <code>200</code> — détail<a class="headerlink" href="#reponse-200-detail" title="Permanent link">&para;</a></h3>
+<p>Le détail joint, pour chaque <code>messageId</code> de la diffusion, le statut stocké dans <code>SmsDeliveryStatus</code> ; sans rapport de livraison reçu, le statut est <code>pending</code>. <code>deliveredCount</code> regroupe <code>delivered</code>/<code>read</code>, <code>failedCount</code> regroupe <code>failed</code>/<code>undelivered</code>, le reste est <code>pendingCount</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"broadcast"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"timestampUtc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-05-22T18:32:15Z"</span><span class="p">,</span><span class="w"> </span><span class="nt">"requesterPrincipal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jean.tremblay@exemple.com"</span><span class="p">,</span><span class="w"> </span><span class="nt">"locationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MTL"</span><span class="p">,</span><span class="w"> </span><span class="nt">"recipientCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">"filteredOptOutCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">"idempotencyKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f1c9d1e-7a52-4c1e-9d2b-0a1b2c3d4e5f"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"deliveredCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"failedCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"pendingCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"recipients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"messageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span><span class="w"> </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered"</span><span class="p">,</span><span class="w"> </span><span class="nt">"toE164"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1******7890"</span><span class="p">,</span><span class="w"> </span><span class="nt">"updatedAtUtc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-05-22T18:32:20Z"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"messageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"</span><span class="p">,</span><span class="w"> </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="erreurs-possibles_3">Erreurs possibles<a class="headerlink" href="#erreurs-possibles_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>401 Unauthorized</code> — Token manquant ou expiré</li>
+<li><code>404 Not Found</code> — Clé d'idempotence inconnue (détail uniquement, corps vide)</li>
+</ul>
+<hr />
+<h2 id="3-post-apismsinboundtwilio">3) POST /api/sms/inbound/twilio<a class="headerlink" href="#3-post-apismsinboundtwilio" title="Permanent link">&para;</a></h2>
+<p>Webhook Twilio « A message comes in » (route : <code>sms/inbound/twilio</code>, fonction <code>TwilioInboundSms</code>). Exclu de l'Easy Auth ; l'authentification repose sur la signature Twilio.</p>
+<h3 id="headers">Headers<a class="headerlink" href="#headers" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>Content-Type: application/x-www-form-urlencoded</code> (sinon <code>400 Bad Request</code>)</li>
+<li><code>X-Twilio-Signature</code> : HMAC-SHA1 (base64) de l'URL complète + paramètres triés, calculé avec <code>Twilio:AuthToken</code> (l'URL est reconstruite avec <code>X-Forwarded-Proto</code>/<code>X-Forwarded-Host</code> si présents). Signature absente ou invalide → <code>403 Forbidden</code>.</li>
+</ul>
+<h3 id="payload-attendu-form-encoded">Payload attendu (form-encoded)<a class="headerlink" href="#payload-attendu-form-encoded" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>From=%2B15145557890&amp;Body=STOP
+</code></pre></div>
+<p>Seuls <code>From</code> et le premier mot de <code>Body</code> (insensible à la casse) sont utilisés. Sans <code>From</code>, la requête est ignorée.</p>
+<h3 id="mots-cles-traites">Mots-clés traités<a class="headerlink" href="#mots-cles-traites" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>STOP</code>, <code>STOPALL</code>, <code>UNSUBSCRIBE</code>, <code>CANCEL</code>, <code>END</code>, <code>QUIT</code>, <code>ARRET</code> → Ajout au registre opt-out (<code>SmsOptOut</code>)</li>
+<li><code>START</code>, <code>UNSTOP</code>, <code>YES</code> → Retrait du registre opt-out</li>
+<li>Tout autre mot est ignoré (journalisé uniquement)</li>
+</ul>
+<h3 id="reponse">Réponse<a class="headerlink" href="#reponse" title="Permanent link">&para;</a></h3>
+<p>Toujours <code>200 OK</code>, <code>Content-Type: text/xml</code>, avec un TwiML vide : <code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;Response&gt;&lt;/Response&gt;</code> (aucune réponse SMS automatique).</p>
+<blockquote>
+<p>Il n'existe aucune fonction pour les SMS entrants ACS : le helper <code>AcsIncomingSmsData</code> n'est utilisé par aucune fonction.</p>
+</blockquote>
+<hr />
+<h2 id="4-post-apismsdelivery-status">4) POST /api/sms/delivery-status<a class="headerlink" href="#4-post-apismsdelivery-status" title="Permanent link">&para;</a></h2>
+<p>Endpoint Event Grid (fonction <code>AcsDeliveryStatus</code>) pour recevoir les rapports de livraison SMS <strong>ACS</strong>. Il n'existe pas de callback équivalent pour Twilio : avec le fournisseur Twilio, les messages restent <code>pending</code> dans l'historique de diffusion.</p>
+<p>L'endpoint est exclu de l'Easy Auth et ne valide aucune signature. Il répond aux événements <code>Microsoft.EventGrid.SubscriptionValidationEvent</code> (handshake) par <code>200 {"validationResponse":"&lt;code&gt;"}</code>. Les événements <code>Microsoft.Communication.SMSDeliveryReportReceived</code> sont enregistrés puis la réponse est <code>204 No Content</code> ; un corps JSON illisible ou vide donne <code>400</code> (<code>InvalidEventGridPayload</code>).</p>
+<h3 id="payload-attendu">Payload attendu<a class="headerlink" href="#payload-attendu" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"eventType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Microsoft.Communication.SMSDeliveryReportReceived"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15145557890"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"messageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"acs-msg-123"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delivered"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"deliveryStatusDetails"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"broadcast-idempotency-key"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h3 id="stockage">Stockage<a class="headerlink" href="#stockage" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Table : <code>SmsDeliveryStatus</code></li>
+<li>Clé : <code>PartitionKey = 8 premiers caractères du MessageId</code>, <code>RowKey = MessageId</code></li>
+<li>Colonnes : <code>Status</code> (normalisé en minuscules), <code>ToE164</code> (numéro masqué avant persistance, ex. <code>+1******7890</code>), <code>ErrorCode</code>/<code>ErrorMessage</code> (copie de <code>deliveryStatusDetails</code>, uniquement pour <code>failed</code>/<code>undelivered</code>), <code>UpdatedAt</code>, <code>BroadcastIdempotencyKey</code></li>
+<li><code>tag</code> est utilisé comme corrélation avec la diffusion (clé d'idempotence)</li>
+<li>Un statut de rang inférieur à celui déjà stocké (ex. <code>sent</code> après <code>delivered</code>) est ignoré</li>
+</ul>
+<hr />
+<h2 id="idempotence">Idempotence<a class="headerlink" href="#idempotence" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Le header <code>Idempotency-Key</code> est <strong>obligatoire</strong> pour <code>POST /api/sms/send</code> (<code>400 MissingIdempotencyKey</code> sinon) et recommandé pour <code>POST /api/notifications/sms/send-by-bureau</code> (un UUID est généré si absent, ce qui désactive de fait la protection contre les retries)</li>
+<li>La réponse <code>200</code> est mise en cache dans la table <code>SmsIdempotency</code> (<code>PartitionKey = idempotency</code>, <code>RowKey = clé</code>) pendant 24 h</li>
+<li>En cas de retry avec la même clé, la réponse mise en cache est rejouée sans renvoyer le lot</li>
+<li>La clé est aussi transmise à l'enregistrement d'audit (<code>SmsAuditLog</code>) et sert de clé de lecture pour <code>GET /api/sms/broadcasts/{idempotencyKey}</code></li>
+</ul>
+<hr />
+<h2 id="codes-derreur-http">Codes d'erreur HTTP<a class="headerlink" href="#codes-derreur-http" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td>Succès — le lot a été traité (des envois individuels peuvent avoir échoué : voir <code>failed</code> / <code>details</code>)</td>
+</tr>
+<tr>
+<td><code>204</code></td>
+<td>Événements Event Grid enregistrés (<code>delivery-status</code>)</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Requête malformée (champ obligatoire manquant, <code>Idempotency-Key</code> manquant sur <code>sms/send</code>, JSON invalide, payload Event Grid invalide, content type non form pour le webhook Twilio)</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Token Entra ID manquant, expiré ou invalide</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Signature <code>X-Twilio-Signature</code> invalide ou absente (webhook Twilio uniquement ; l'application ne vérifie pas d'appartenance à un groupe)</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Aucun destinataire trouvé/éligible, ou diffusion inconnue (<code>sms/broadcasts/{key}</code>)</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td>Erreur serveur (exception non gérée dans <code>send-by-bureau</code> ou le formulaire)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="limites-connues">Limites connues<a class="headerlink" href="#limites-connues" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>GET /api/sms/broadcasts</code> ne supporte pas de pagination ni de filtrage via query params (fenêtre fixe de 30 jours, 100 résultats max)</li>
+<li>Les statuts de livraison ne sont alimentés que par la souscription Event Grid <strong>ACS</strong> (<code>delivery-status</code>) ; aucun callback de statut Twilio n'est implémenté, donc les diffusions Twilio apparaissent <code>pending</code> dans le détail</li>
+<li>Aucune vérification d'appartenance à un groupe Entra ID n'est faite par le code : tout utilisateur authentifié peut envoyer (le paramètre <code>AzureAd:AuthorizedGroupId</code> provisionné par Bicep n'est lu par aucun code)</li>
+<li>Le webhook <code>sms/inbound/twilio</code> n'est validé que par la signature Twilio : <code>Twilio:AuthToken</code> doit correspondre au compte qui appelle le webhook</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../local-development/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Développement local">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Développement local
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../guide-configuration-fournisseur-sms/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Configuration du fournisseur SMS">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Configuration du fournisseur SMS
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/equipe-laurence/integration-nethris" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","navigation.tracking","search.suggest","search.highlight","content.code.annotate","content.tabs.link","toc.follow"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copié dans le presse-papier","clipboard.copy":"Copier dans le presse-papier","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 de plus sur cette page","search.result.more.other":"# de plus sur cette page","search.result.none":"Aucun document trouvé","search.result.one":"1 document trouvé","search.result.other":"# documents trouvés","search.result.placeholder":"Taper pour démarrer la recherche","search.result.term.missing":"Non trouvé","select.version":"Sélectionner la version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

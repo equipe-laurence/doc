@@ -1,0 +1,2274 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://equipe-laurence.github.io/doc/sms-compliance/">
+      
+      
+      
+        <link rel="prev" href="../configuration-secrets-audit/">
+      
+      
+        <link rel="next" href="../plan-de-tests/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.73">
+    
+    
+      
+        <title>Conformité SMS - Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Aller au contenu
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-header__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Conformité SMS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Recherche</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Recherche">
+  <button type="button" class="md-search__button">
+    Recherche
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-activites-utilisateurs/" class="md-tabs__link">
+          
+  
+  Utilisation courante
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Architecture & Conception
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../local-development/" class="md-tabs__link">
+          
+  
+  Développement
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Exploitation & Conformité
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plan-de-tests/" class="md-tabs__link">
+          
+  
+  Planification & CI/CD
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-nav__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Accueil
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Utilisation courante
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Utilisation courante
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-activites-utilisateurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Activités des utilisateurs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture & Conception
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Architecture & Conception
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Vue d'ensemble
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-feature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SMS Feature
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prd-sms-phase5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PRD — SMS phase 5
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prd-poc-sync-ad-date-naissance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PRD — POC synchronisation Active Directory
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Développement
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement local
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-sms-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-configuration-fournisseur-sms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration du fournisseur SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-bruno-nethris-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tester avec Bruno
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharepoint-permission-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Permissions SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exploitation & Conformité
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Exploitation & Conformité
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-synchronisation-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Synchronisation Nethris → SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adsync-poc-guide-operateur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  POC AdSync — Guide de l'opérateur
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-twilio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro Twilio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-acs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro ACS (historique)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-migration-acs-vers-twilio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration ACS → Twilio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-secrets-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration & Secrets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Conformité SMS
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Conformité SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Vue d'ensemble
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consentement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Consentement
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consentement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comment-le-consentement-est-obtenu" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Comment le consentement est obtenu
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exigence-de-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exigence de documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desinscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Désinscription
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Désinscription">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gestion-du-mot-cle-stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Gestion du mot-clé STOP
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propagation-de-la-desinscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Propagation de la désinscription
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desinscription-manuelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Désinscription manuelle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#journal-daudit" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Journal d'audit
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Journal d&#x27;audit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Rétention
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classification-des-donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Classification des données
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lcap-loi-canadienne-anti-pourriel" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        LCAP (Loi canadienne anti-pourriel)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcpa-telephone-consumer-protection-act-etats-unis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        TCPA (Telephone Consumer Protection Act — États-Unis)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configuration Twilio
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Twilio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-du-webhook-entrant" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        URL du webhook entrant
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abonnement-de-suivi-de-livraison-acs-uniquement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Abonnement de suivi de livraison (ACS uniquement)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10dlc-numeros-americains" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        10DLC (numéros américains)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#considerations-relatives-a-la-loi-25-quebec" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Considérations relatives à la Loi 25 (Québec)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Planification & CI/CD
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Planification & CI/CD
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-de-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan de tests
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposal-cicd-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Optimisation CI/CD
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-migration-managed-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration vers Managed Identity
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publication de la documentation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Vue d'ensemble
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consentement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Consentement
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consentement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comment-le-consentement-est-obtenu" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Comment le consentement est obtenu
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exigence-de-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exigence de documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desinscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Désinscription
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Désinscription">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gestion-du-mot-cle-stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Gestion du mot-clé STOP
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propagation-de-la-desinscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Propagation de la désinscription
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desinscription-manuelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Désinscription manuelle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#journal-daudit" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Journal d'audit
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Journal d&#x27;audit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Rétention
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classification-des-donnees" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Classification des données
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lcap-loi-canadienne-anti-pourriel" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        LCAP (Loi canadienne anti-pourriel)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tcpa-telephone-consumer-protection-act-etats-unis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        TCPA (Telephone Consumer Protection Act — États-Unis)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-twilio" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configuration Twilio
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Twilio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url-du-webhook-entrant" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        URL du webhook entrant
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abonnement-de-suivi-de-livraison-acs-uniquement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Abonnement de suivi de livraison (ACS uniquement)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10dlc-numeros-americains" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        10DLC (numéros américains)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#considerations-relatives-a-la-loi-25-quebec" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Considérations relatives à la Loi 25 (Québec)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="./.." class="md-path__link">
+        
+  
+  <span class="md-ellipsis">
+    Accueil
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+    
+    
+    
+      <li class="md-path__item">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-path__link">
+          
+  
+  <span class="md-ellipsis">
+    Exploitation & Conformité
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+
+<h1 id="conformite-sms-equipelaurence">Conformité SMS — EquipeLaurence<a class="headerlink" href="#conformite-sms-equipelaurence" title="Permanent link">&para;</a></h1>
+<h2 id="vue-densemble">Vue d'ensemble<a class="headerlink" href="#vue-densemble" title="Permanent link">&para;</a></h2>
+<p>Ce document décrit le modèle de consentement, le flux de désinscription, la politique de rétention des données et les
+considérations de conformité juridique pour la fonctionnalité de diffusion SMS d'urgence d'EquipeLaurence.</p>
+<hr />
+<h2 id="consentement">Consentement<a class="headerlink" href="#consentement" title="Permanent link">&para;</a></h2>
+<h3 id="comment-le-consentement-est-obtenu">Comment le consentement est obtenu<a class="headerlink" href="#comment-le-consentement-est-obtenu" title="Permanent link">&para;</a></h3>
+<p>Les employés sont inscrits comme destinataires SMS via le système RH Nethris. Plus précisément :</p>
+<ol>
+<li>Le classeur <code>BDNethris_BaseTI.xlsx</code> produit par Nethris fournit les données employés utilisées par l'ingestion BaseTI,
+   dont les champs de statut et de partage du cellulaire.</li>
+<li>Les employés fournissent leur numéro de cellulaire et leur consentement lors de l'intégration dans le cadre de leur profil
+   RH Nethris.</li>
+<li>La synchronisation périodique (<code>NethrisReportSyncService</code>, planifiée par <code>Nethris:SyncSchedule</code> — toutes les minutes par
+   défaut dans <code>infra/main.bicep</code>) ingère <code>BDNethris_BaseTI.xlsx</code> et peuple la table <code>BaseTi</code> dans Azure Table Storage. Le
+   pipeline SMS lit ensuite cette table comme source de vérité pour les destinataires éligibles.</li>
+<li>L'ingestion conserve uniquement les lignes dont <code>Statut employé</code> vaut <code>Actif</code> ou <code>Congé</code>, après retrait des espaces en
+   début et fin et comparaison sans tenir compte de la casse. Les autres statuts sont ignorés avant validation des champs
+   employés. <code>TotalRowsRead</code> compte toutes les lignes de données non vides, même ignorées.</li>
+<li>Le cellulaire brut (<code>MobilePhoneRaw</code>) et sa forme normalisée (<code>MobilePhoneE164</code>) sont toujours conservés, quelle que soit
+   la valeur du champ de partage externe du cellulaire. Ce champ (<code>Partage cell. externe</code> en priorité, sinon un en-tête
+   commençant par <code>Partager</code>) est une règle de confidentialité propre à Active Directory : <code>ShareMobile</code> conserve le texte
+   source rogné et ne sert qu'à la synchronisation Active Directory, jamais à la liste de destinataires SMS.</li>
+<li><code>IsEligibleForSms</code> vaut <code>true</code> seulement pour un employé <code>Actif</code> dont le cellulaire normalisé et l'emplacement ne sont pas
+   vides; le champ de partage n'intervient pas. Un employé <code>Congé</code> reste enregistré, mais n'est jamais admissible aux SMS. Le
+   registre de désinscription reste vérifié avant chaque envoi.</li>
+<li>La prochaine synchronisation retire de l'instantané les statuts autres que <code>Actif</code> et <code>Congé</code> et retire l'admissibilité
+   SMS des employés en <code>Congé</code>; elle ne vide plus les téléphones en fonction du partage.</li>
+</ol>
+<p>Les RH et la conformité doivent confirmer que le consentement obtenu à l'intégration couvre les SMS d'urgence indépendamment
+du partage externe du cellulaire. Les mots-clés STOP/ARRET et le registre <code>SmsOptOut</code> demeurent en vigueur.</p>
+<h3 id="exigence-de-documentation">Exigence de documentation<a class="headerlink" href="#exigence-de-documentation" title="Permanent link">&para;</a></h3>
+<p>Les RH doivent conserver un dossier du consentement SMS obtenu de chaque employé dans le cadre du processus d'intégration. Le
+libellé du consentement doit préciser :</p>
+<ul>
+<li>Objectif : communications d'urgence et de sécurité uniquement</li>
+<li>Droit de se désinscrire à tout moment en envoyant STOP (anglais) ou ARRET (français)</li>
+<li>Langue des communications : anglais ou français selon le lieu</li>
+</ul>
+<hr />
+<h2 id="desinscription">Désinscription<a class="headerlink" href="#desinscription" title="Permanent link">&para;</a></h2>
+<h3 id="gestion-du-mot-cle-stop">Gestion du mot-clé STOP<a class="headerlink" href="#gestion-du-mot-cle-stop" title="Permanent link">&para;</a></h3>
+<p>La fonction <code>TwilioInboundSmsFunction</code> (<code>POST /api/sms/inbound/twilio</code>) reçoit les webhooks Twilio « A message comes in »
+(form-encoded, signature <code>X-Twilio-Signature</code>) et traite le premier mot du message (insensible à la casse) :</p>
+<table>
+<thead>
+<tr>
+<th>Mot-clé</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STOP, STOPALL, UNSUBSCRIBE, CANCEL, END, QUIT, ARRET</td>
+<td>Enregistrer la désinscription dans la table <code>SmsOptOut</code> (<code>ARRET</code> ajouté selon l'exigence linguistique québécoise)</td>
+</tr>
+<tr>
+<td>START, UNSTOP, YES</td>
+<td>Retirer la désinscription (réinscription)</td>
+</tr>
+</tbody>
+</table>
+<p>Tout autre mot est ignoré. La réponse est toujours un TwiML vide (<code>200</code>, <code>text/xml</code>). Les listes de mots-clés sont définies
+dans <code>SmsKeywords</code> (Core).</p>
+<p>Twilio applique également le STOP au niveau du transporteur. La désinscription au niveau de l'application garantit que tout
+SMS futur envoyé via l'API (y compris les envois de test) respecte également la désinscription.</p>
+<h3 id="propagation-de-la-desinscription">Propagation de la désinscription<a class="headerlink" href="#propagation-de-la-desinscription" title="Permanent link">&para;</a></h3>
+<p>Les fonctions d'envoi (<code>SendSmsByBureauFunction</code>, <code>SendEmergencySmsFunction</code>) interrogent la table <code>BaseTi</code>, puis le registre
+de désinscription pour chaque destinataire avant l'envoi. Les destinataires figurant dans la table de désinscription sont
+silencieusement ignorés ; le nombre est consigné dans le journal d'audit.</p>
+<h3 id="desinscription-manuelle">Désinscription manuelle<a class="headerlink" href="#desinscription-manuelle" title="Permanent link">&para;</a></h3>
+<p>Si un employé demande son retrait par courriel ou verbalement, un opérateur peut insérer un enregistrement directement dans
+la table <code>SmsOptOut</code> : PartitionKey = <code>"optout"</code>, RowKey = numéro de téléphone au format E.164 avec le <code>+</code> encodé en <code>P</code> (p.
+ex. <code>P15141234567</code>).</p>
+<hr />
+<h2 id="journal-daudit">Journal d'audit<a class="headerlink" href="#journal-daudit" title="Permanent link">&para;</a></h2>
+<p>Toutes les tentatives de diffusion sont enregistrées dans la table Azure Table Storage <code>SmsAuditLog</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PartitionKey</td>
+<td><code>yyyy-MM</code> (mois de la diffusion)</td>
+</tr>
+<tr>
+<td>RowKey</td>
+<td><code>yyyyMMddTHHmmssZ-{idempotencyKey}</code></td>
+</tr>
+<tr>
+<td>RequesterPrincipal</td>
+<td>Identité de l'utilisateur authentifié (nom, <code>preferred_username</code>, <code>email</code> ou <code>sub</code> selon l'endpoint)</td>
+</tr>
+<tr>
+<td>LocationCode</td>
+<td>Emplacement cible</td>
+</tr>
+<tr>
+<td>RecipientCount</td>
+<td>Nombre de destinataires après filtrage des désinscriptions</td>
+</tr>
+<tr>
+<td>FilteredOptOutCount</td>
+<td>Nombre de destinataires exclus pour cause de désinscription</td>
+</tr>
+<tr>
+<td>MessageHash</td>
+<td>SHA-256 du corps du message (hexadécimal) — <strong>jamais en clair</strong></td>
+</tr>
+<tr>
+<td>IdempotencyKey</td>
+<td>Clé fournie par le client</td>
+</tr>
+<tr>
+<td>MessageIds</td>
+<td>Liste des SID de messages Twilio séparés par des virgules</td>
+</tr>
+</tbody>
+</table>
+<p>Une ligne d'audit est écrite par bureau ciblé. Les rapports de livraison <strong>Azure Communication Services</strong> (Event Grid,
+<code>POST /api/sms/delivery-status</code>) sont enregistrés séparément dans la table <code>SmsDeliveryStatus</code> ; aucun callback de statut
+Twilio n'est implémenté à ce jour, donc les messages Twilio n'y apparaissent pas :</p>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PartitionKey</td>
+<td>8 premiers caractères du <code>MessageId</code></td>
+</tr>
+<tr>
+<td>RowKey</td>
+<td><code>MessageId</code> complet</td>
+</tr>
+<tr>
+<td>Status</td>
+<td><code>queued</code>, <code>sent</code>, <code>delivered</code>, <code>failed</code>, <code>undelivered</code>, etc.</td>
+</tr>
+<tr>
+<td>ToE164</td>
+<td>Numéro masqué uniquement (ex. <code>+1******7890</code>)</td>
+</tr>
+<tr>
+<td>ErrorCode</td>
+<td>Détail d'erreur ACS (<code>deliveryStatusDetails</code>) si <code>failed</code>/<code>undelivered</code></td>
+</tr>
+<tr>
+<td>ErrorMessage</td>
+<td>Idem (même valeur que <code>ErrorCode</code>)</td>
+</tr>
+<tr>
+<td>UpdatedAt</td>
+<td>Horodatage UTC du dernier callback reçu</td>
+</tr>
+<tr>
+<td>BroadcastIdempotencyKey</td>
+<td>Clé de diffusion propagée via le champ <code>tag</code> de l'événement ACS pour corrélation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="retention">Rétention<a class="headerlink" href="#retention" title="Permanent link">&para;</a></h3>
+<p>Les entrées du journal d'audit doivent être conservées pendant un <strong>minimum de 2 ans</strong> pour satisfaire :</p>
+<ul>
+<li>Les obligations de conservation des dossiers de la Loi sur la protection des renseignements personnels dans le secteur
+  privé du Québec (Loi 25)</li>
+<li>Le TCPA (si des destinataires américains sont présents) — recommandation de 4 ans</li>
+</ul>
+<p>Implémenter une politique de cycle de vie Azure Table Storage ou une fonction de nettoyage planifiée pour purger les
+enregistrements plus anciens que la période de rétention.</p>
+<hr />
+<h2 id="classification-des-donnees">Classification des données<a class="headerlink" href="#classification-des-donnees" title="Permanent link">&para;</a></h2>
+<p>La revue de vie privée et de limitation des finalités a explicitement approuvé l'extension des champs RH conservés dans
+<code>BaseTi</code>. Cette approbation concerne le périmètre de stockage; elle ne modifie pas les finalités SMS déjà décrites. Les
+critères techniques de sélection et les conditions de conservation décrits ci-dessus s'appliquent. La présence d'un champ
+dans <code>BaseTi</code> ne l'ajoute pas au contenu des SMS.</p>
+<p><code>BirthDate</code> est conservé seulement si <code>Publier la date d'anniversaire</code> vaut <code>oui</code> (espaces périphériques retirés, comparaison
+sans tenir compte de la casse). Sinon, ou si cet en-tête est absent, la propriété reste vide. <code>PublishBirthday</code> conserve le
+texte source rogné; les dates reconnues restent normalisées en <code>yyyy-MM-dd</code>. Cette règle de stockage n'ajoute aucune
+utilisation de la date de naissance dans les SMS.</p>
+<p>Le téléphone de travail (<code>WorkPhone</code>) reste distinct du cellulaire : chaque <code>/</code> est remplacé par <code>p.</code>, par exemple
+<code>(450) 555-0101/272</code> devient <code>(450) 555-0101 p.272</code>. Cette transformation ne s'applique pas au cellulaire.</p>
+<table>
+<thead>
+<tr>
+<th>Éléments de données conservés dans <code>BaseTi</code></th>
+<th>Classification</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MobilePhoneRaw</code>, <code>MobilePhoneE164</code>, <code>WorkPhone</code>, <code>ShareMobile</code></td>
+<td>RP</td>
+<td>Cellulaire conservé quel que soit le partage; texte de partage conservé séparément et appliqué seulement à la synchro AD</td>
+</tr>
+<tr>
+<td><code>FirstName</code>, <code>LastName</code>, <code>EmployeeNumber</code>, <code>UniqueCode</code></td>
+<td>RP</td>
+<td>Données identifiant l'employé</td>
+</tr>
+<tr>
+<td><code>EmploymentStatus</code>, <code>DivisionCode</code>, <code>LocationName</code>, <code>JobTitleCode</code>, <code>JobTitleDescription</code>, <code>PositionCode</code>, <code>PositionDescription</code>, <code>DepartmentCode</code>, <code>DepartmentDescription</code>, <code>DirectManagerCode</code>, <code>Address</code></td>
+<td>RP</td>
+<td>Données d'emploi et coordonnées conservées depuis BaseTI</td>
+</tr>
+<tr>
+<td><code>BirthDate</code>, <code>HireDate</code>, <code>EmployeeType</code>, <code>RehireDate</code>, <code>LastPaidDay</code>, <code>PositionExperienceDate</code>, <code>RelevantExperienceBeforeEqlDate</code>, <code>PermanenceDate</code>, <code>ProfessionalExpertise</code>, <code>AcademicExpertise</code>, <code>SignatureTitle</code>, <code>SignaturePosition</code>, <code>PublishBirthday</code></td>
+<td>RP</td>
+<td>Champs RH supplémentaires couverts par l'extension approuvée; <code>BirthDate</code> conservé uniquement si la publication vaut <code>oui</code></td>
+</tr>
+<tr>
+<td><code>RequesterPrincipal</code> (audit)</td>
+<td>RP</td>
+<td>UPN de l'initiateur de la diffusion</td>
+</tr>
+<tr>
+<td><code>MessageHash</code> (audit)</td>
+<td>Non-RP</td>
+<td>Hachage SHA-256 uniquement</td>
+</tr>
+<tr>
+<td>SID de messages Twilio</td>
+<td>Non-RP</td>
+<td>Identifiants opaques Twilio</td>
+</tr>
+</tbody>
+</table>
+<p>Tous les renseignements personnels sont stockés dans Azure Table Storage dans la même région Azure que le Function App. Le
+compte de stockage est approvisionné par <code>infra/main.bicep</code> et l'accès est accordé uniquement à l'identité managée du
+Function App.</p>
+<hr />
+<h2 id="lcap-loi-canadienne-anti-pourriel">LCAP (Loi canadienne anti-pourriel)<a class="headerlink" href="#lcap-loi-canadienne-anti-pourriel" title="Permanent link">&para;</a></h2>
+<p>Les communications d'urgence et de sécurité aux employés sont généralement exemptées de l'exigence de consentement exprès de
+la LCAP (elles se qualifient comme messages « transactionnels » ou « relationnels »). Cependant :</p>
+<ol>
+<li>Les communications doivent être liées à la relation d'emploi (alertes de sécurité, notifications d'urgence).</li>
+<li>Le contenu marketing ou promotionnel ne doit jamais être envoyé via ce pipeline.</li>
+<li>Si la fonction est réutilisée pour des communications non urgentes, un flux de consentement LCAP distinct doit être
+   implémenté.</li>
+</ol>
+<hr />
+<h2 id="tcpa-telephone-consumer-protection-act-etats-unis">TCPA (Telephone Consumer Protection Act — États-Unis)<a class="headerlink" href="#tcpa-telephone-consumer-protection-act-etats-unis" title="Permanent link">&para;</a></h2>
+<p>Si des destinataires se trouvent aux États-Unis :</p>
+<ol>
+<li>Un consentement écrit exprès est requis pour les SMS vers les numéros de cellulaire.</li>
+<li>La gestion STOP / UNSTOP (déjà implémentée) est obligatoire.</li>
+<li>Le volume de diffusion doit respecter les limites de débit des transporteurs (Twilio gère cela via l'inscription 10DLC).</li>
+</ol>
+<hr />
+<h2 id="configuration-twilio">Configuration Twilio<a class="headerlink" href="#configuration-twilio" title="Permanent link">&para;</a></h2>
+<h3 id="url-du-webhook-entrant">URL du webhook entrant<a class="headerlink" href="#url-du-webhook-entrant" title="Permanent link">&para;</a></h3>
+<p>Définissez le webhook <strong>Messaging → A Message Comes In</strong> sur le numéro de téléphone Twilio (ou sur le service de messagerie)
+à :</p>
+<div class="highlight"><pre><span></span><code>https://&lt;nom-function-app&gt;.azurewebsites.net/api/sms/inbound/twilio
+</code></pre></div>
+<p>Méthode HTTP : POST</p>
+<p>Cela peut être configuré via la console Twilio ou via le CLI Twilio :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Avec le CLI Twilio</span>
+twilio<span class="w"> </span>api:core:incoming-phone-numbers:update<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sid<span class="w"> </span>&lt;PHONE_NUMBER_SID&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sms-url<span class="w"> </span><span class="s2">"https://&lt;nom-function-app&gt;.azurewebsites.net/api/sms/inbound/twilio"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--sms-method<span class="w"> </span>POST
+</code></pre></div>
+<p>L'endpoint est exclu de l'Easy Auth (<code>infra/modules/functionApp.bicep</code>) et valide l'en-tête <code>X-Twilio-Signature</code> avec
+<code>Twilio:AuthToken</code> ; une signature invalide donne <code>403</code>.</p>
+<h3 id="abonnement-de-suivi-de-livraison-acs-uniquement">Abonnement de suivi de livraison (ACS uniquement)<a class="headerlink" href="#abonnement-de-suivi-de-livraison-acs-uniquement" title="Permanent link">&para;</a></h3>
+<p>Seul le suivi de livraison <strong>ACS</strong> est implémenté : l'abonnement Event Grid des rapports de livraison ACS doit pointer vers :</p>
+<div class="highlight"><pre><span></span><code>https://&lt;nom-function-app&gt;.azurewebsites.net/api/sms/delivery-status
+</code></pre></div>
+<p>Le client ACS (<code>AcsSmsClient</code>, non câblé dans le Function App actuel) renseignait le champ <code>tag</code> avec le
+<code>broadcastIdempotencyKey</code> afin que chaque événement de livraison puisse être corrélé à la diffusion d'origine sans
+enregistrer le corps du message ni le numéro complet. Pour Twilio, aucun <code>StatusCallback</code> n'est configuré par
+<code>TwilioSmsClient</code> : les statuts de livraison ne sont pas suivis dans <code>SmsDeliveryStatus</code>.</p>
+<h3 id="10dlc-numeros-americains">10DLC (numéros américains)<a class="headerlink" href="#10dlc-numeros-americains" title="Permanent link">&para;</a></h3>
+<p>Si l'envoi se fait vers des numéros américains, le numéro Twilio doit être enregistré sous une campagne 10DLC avec le cas
+d'utilisation « Emergency ». L'inscription se fait via la console Twilio → Regulatory Compliance.</p>
+<hr />
+<h2 id="considerations-relatives-a-la-loi-25-quebec">Considérations relatives à la Loi 25 (Québec)<a class="headerlink" href="#considerations-relatives-a-la-loi-25-quebec" title="Permanent link">&para;</a></h2>
+<p>La Loi sur la protection des renseignements personnels dans le secteur privé du Québec (en vigueur depuis septembre 2023)
+exige :</p>
+<ol>
+<li><strong>Évaluation des facteurs relatifs à la vie privée (EFVP)</strong> avant tout nouveau système traitant des renseignements
+   personnels. Documenter ce pipeline.</li>
+<li><strong>Limitation des finalités</strong> : les numéros de cellulaire collectés pour la paie ne doivent être utilisés que pour les fins
+   auxquelles les employés ont consenti (le SMS d'urgence se qualifie si le consentement est explicite).</li>
+<li><strong>Droit d'accès et de rectification</strong> : les employés peuvent demander à consulter ou à corriger leurs coordonnées via les
+   RH (Nethris).</li>
+<li><strong>Notification en cas d'incident</strong> : si les tables <code>BaseTi</code> ou <code>SmsOptOut</code> sont compromises, aviser la Commission d'accès
+   à l'information (CAI) dans les 72 heures s'il existe un risque de préjudice sérieux.</li>
+<li><strong>Minimisation des données</strong> : la table <code>BaseTi</code> reste limitée aux champs du périmètre RH approuvé et décrits ci-dessus.
+   Toute extension ultérieure de ce périmètre doit faire l'objet d'une revue de vie privée et de limitation des finalités;
+   les règles d'admissibilité SMS et les autres contrôles existants restent applicables.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../configuration-secrets-audit/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Configuration &amp; Secrets">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Configuration & Secrets
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../plan-de-tests/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Plan de tests">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Plan de tests
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/equipe-laurence/integration-nethris" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","navigation.tracking","search.suggest","search.highlight","content.code.annotate","content.tabs.link","toc.follow"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copié dans le presse-papier","clipboard.copy":"Copier dans le presse-papier","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 de plus sur cette page","search.result.more.other":"# de plus sur cette page","search.result.none":"Aucun document trouvé","search.result.one":"1 document trouvé","search.result.other":"# documents trouvés","search.result.placeholder":"Taper pour démarrer la recherche","search.result.term.missing":"Non trouvé","select.version":"Sélectionner la version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

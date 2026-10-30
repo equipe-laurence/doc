@@ -1,0 +1,1864 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://equipe-laurence.github.io/doc/guide-service-adsync/">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.73">
+    
+    
+      
+        <title>Service Windows de synchronisation AD (EquipeLaurence.AdSync) - Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
+    <div data-md-component="skip">
+      <a href="#__skip" class="md-skip">
+        Aller au contenu
+      </a>
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-header__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Service Windows de synchronisation AD (EquipeLaurence.AdSync)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Recherche</span>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Recherche">
+  <button type="button" class="md-search__button">
+    Recherche
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./.." class="md-tabs__link">
+        
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-activites-utilisateurs/" class="md-tabs__link">
+          
+  
+  Utilisation courante
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Architecture & Conception
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../local-development/" class="md-tabs__link">
+          
+  
+  Développement
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide-synchronisation-nethris-sharepoint/" class="md-tabs__link">
+          
+  
+  Exploitation & Conformité
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plan-de-tests/" class="md-tabs__link">
+          
+  
+  Planification & CI/CD
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" class="md-nav__button md-logo" aria-label="Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    Equipe Laurence – Documentation - Intégration Nethris-SharePoint-SMS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Accueil
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Utilisation courante
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Utilisation courante
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-activites-utilisateurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Activités des utilisateurs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Architecture & Conception
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Architecture & Conception
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Vue d'ensemble
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-feature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SMS Feature
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prd-sms-phase5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PRD — SMS phase 5
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prd-poc-sync-ad-date-naissance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PRD — POC synchronisation Active Directory
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Développement
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../local-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Développement local
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-sms-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-configuration-fournisseur-sms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration du fournisseur SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-bruno-nethris-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tester avec Bruno
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharepoint-permission-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Permissions SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Exploitation & Conformité
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Exploitation & Conformité
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-synchronisation-nethris-sharepoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Synchronisation Nethris → SharePoint
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adsync-poc-guide-operateur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  POC AdSync — Guide de l'opérateur
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-twilio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro Twilio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-acquisition-numero-acs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Acquisition numéro ACS (historique)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide-migration-acs-vers-twilio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration ACS → Twilio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration-secrets-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration & Secrets
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sms-compliance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Conformité SMS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Planification & CI/CD
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Planification & CI/CD
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-de-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Plan de tests
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposal-cicd-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Optimisation CI/CD
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plan-migration-managed-identity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration vers Managed Identity
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publication-documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publication de la documentation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Installation
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-minimale-a-renseigner" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configuration minimale à renseigner
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connexion-a-active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Connexion à Active Directory
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connexion-a-azure-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Connexion à Azure Table
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connexion à Azure Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repli-cle-dacces-du-compte-de-stockage-accountkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Repli : clé d'accès du compte de stockage (<code>AccountKey</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-en-ligne-de-commande-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Test en ligne de commande (simulation)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test en ligne de commande (simulation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#utilisateurs-introuvables-usernotfound" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Utilisateurs introuvables (<code>UserNotFound</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sauvegarde-des-changements-a-venir-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Sauvegarde des changements à venir (<code>--backup</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restauration-des-anciennes-valeurs-restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Restauration des anciennes valeurs (<code>--restore</code>)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Restauration des anciennes valeurs (--restore)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemple-de-reprise" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Exemple de reprise
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploiement-progressif" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Déploiement progressif
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disjoncteurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Disjoncteurs
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attributs-etendus-dates-de-naissance-et-dembauche" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Attributs étendus (dates de naissance et d'embauche)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables-denvironnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Variables d'environnement
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
+                
+                  
+
+
+<h1 id="service-windows-de-synchronisation-ad-equipelaurenceadsync">Service Windows de synchronisation AD (EquipeLaurence.AdSync)<a class="headerlink" href="#service-windows-de-synchronisation-ad-equipelaurenceadsync" title="Permanent link">&para;</a></h1>
+<p>Le service lit la table Azure <code>BaseTi</code> et met à jour les attributs Active Directory autorisés. Un cycle s'exécute toutes les
+<code>AdSync:ScheduleInterval</code> (1 h par défaut). Un cycle en échec n'arrête pas le service.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Obtenir le paquet : télécharger l'artefact <code>adsync-service-package</code> de l'exécution CI/déploiement (GitHub Actions →
+   Artifacts; le zip téléchargé contient directement <code>EquipeLaurence.AdSync.exe</code>, <code>appsettings.json</code>,
+   <code>install-adsync-service.ps1</code> et <code>LISEZMOI.md</code>), ou le générer localement avec <code>.\scripts\package-adsync-service.ps1</code>
+   (produit <code>artifacts\adsync-service.zip</code>). Extraire le tout (ex. <code>D:\Services\AdSync</code>).</li>
+<li>Éditer <code>appsettings.json</code> (ou utiliser des variables d'environnement, voir ci-dessous).</li>
+<li>En PowerShell élevé, depuis le dossier extrait :
+   <code>.\install-adsync-service.ps1 -BinPath D:\Services\AdSync\EquipeLaurence.AdSync.exe -Account 'DOMAINE\svc-adsync$'</code> (gMSA
+   recommandé).</li>
+<li>Valider avec <code>EquipeLaurence.AdSync.exe --simulate</code> (sous le compte du service), puis
+   <code>Start-Service EquipeLaurence.AdSync</code>.</li>
+</ol>
+<h2 id="configuration-minimale-a-renseigner">Configuration minimale à renseigner<a class="headerlink" href="#configuration-minimale-a-renseigner" title="Permanent link">&para;</a></h2>
+<p><code>appsettings.json</code> est livré avec des valeurs de remplacement entre chevrons (<code>&lt;...&gt;</code>). Tant qu'elles ne sont pas remplacées,
+le service refuse de démarrer (code 2) avec un message qui nomme la clé.</p>
+<table>
+<thead>
+<tr>
+<th>Clé</th>
+<th>Valeur livrée</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AdSync:DomainController</code></td>
+<td><code>&lt;dc01.domaine.local&gt;</code></td>
+<td>Nom d'hôte ou IPv4 du contrôleur de domaine (sans port ni schéma)</td>
+</tr>
+<tr>
+<td><code>AdSync:UseLdaps</code>, <code>AdSync:RequireSecureBind</code></td>
+<td><code>true</code>, <code>true</code></td>
+<td>Liaison sécurisée (obligatoire pour écrire)</td>
+</tr>
+<tr>
+<td><code>AdSync:AllowedSearchBase</code></td>
+<td><code>&lt;OU=Employes,DC=domaine,DC=local&gt;</code></td>
+<td>OU maximale où le service peut lire et écrire</td>
+</tr>
+<tr>
+<td><code>AdSync:MailDomains</code>, <code>AdSync:UpnSuffixes</code></td>
+<td><code>&lt;domaine.com&gt;</code></td>
+<td>Domaines reconnus pour le rapprochement des identités</td>
+</tr>
+<tr>
+<td><code>AdSync:MatchOn</code></td>
+<td><code>UserPrincipalName</code> (défaut)</td>
+<td>Attribut(s) de rapprochement : l'utilisateur est trouvé par son <code>userPrincipalName</code> = <code>&lt;code&gt;@&lt;UpnSuffixes&gt;</code> (son adresse courriel). Options : <code>Mail</code>, <code>SamAccountName</code>, combinables (<code>"UserPrincipalName, Mail"</code>)</td>
+</tr>
+<tr>
+<td><code>AdSync:BackupPath</code>, <code>AdSync:ReportPath</code></td>
+<td><code>&lt;D:\Services\AdSync\backup&gt;</code>, <code>&lt;...\reports&gt;</code></td>
+<td>Sauvegarde avant écriture et rapports (chemins absolus)</td>
+</tr>
+<tr>
+<td><code>AdSync:AllowedUsers</code></td>
+<td><code>[]</code></td>
+<td>Liste du pilote (voir « Déploiement progressif »)</td>
+</tr>
+<tr>
+<td><code>AzureTable:TableServiceUri</code></td>
+<td><code>&lt;https://compte.table.core.windows.net&gt;</code></td>
+<td>URI du service Table Azure</td>
+</tr>
+<tr>
+<td><code>AzureTable:AuthMode</code>, <code>AzureTable:TableName</code></td>
+<td><code>DefaultAzureCredential</code>, <code>BaseTi</code></td>
+<td>Authentification (<code>DefaultAzureCredential</code> ou <code>AccountKey</code>) et table lue</td>
+</tr>
+</tbody>
+</table>
+<h2 id="connexion-a-active-directory">Connexion à Active Directory<a class="headerlink" href="#connexion-a-active-directory" title="Permanent link">&para;</a></h2>
+<p>Aucun mot de passe : la liaison LDAP utilise l'identité du compte qui exécute le service (Negotiate/Kerberos).</p>
+<ul>
+<li>Exécuter le service sous un gMSA (<code>-Account 'DOMAINE\svc-adsync$'</code>).</li>
+<li>Déléguer à ce compte la lecture sur l'OU <code>AllowedSearchBase</code> et l'écriture uniquement sur les attributs de
+  <code>AdSync:AllowedAttributes</code>.</li>
+<li>Utiliser LDAPS (<code>UseLdaps: true</code>) ; <code>RequireSecureBind</code> doit rester à <code>true</code> pour écrire.</li>
+</ul>
+<h2 id="connexion-a-azure-table">Connexion à Azure Table<a class="headerlink" href="#connexion-a-azure-table" title="Permanent link">&para;</a></h2>
+<p>Le service lit la table avec <code>DefaultAzureCredential</code> (identité Entra) par défaut, ou avec la clé du compte de stockage
+(<code>AccountKey</code>, voir plus bas). Il ne fait aucune écriture.</p>
+<ul>
+<li>Donner le rôle <strong>Storage Table Data Reader</strong> sur le compte de stockage à l'identité utilisée.</li>
+<li>Un service Windows ne voit ni <code>az login</code> ni Visual Studio. Utiliser :</li>
+<li>une <strong>identité managée</strong> (Azure Arc ou VM Azure) : aucune configuration supplémentaire ; ou</li>
+<li>un <strong>principal de service</strong> : définir <code>AZURE_TENANT_ID</code>, <code>AZURE_CLIENT_ID</code> et <code>AZURE_CLIENT_SECRET</code> (ou un certificat) au
+    niveau machine ou dans l'environnement du service. Ces variables n'utilisent pas le préfixe <code>ADSYNC_</code>.</li>
+<li>Une erreur <code>403 AuthorizationPermissionMismatch</code> signifie que l'identité est reconnue mais n'a pas le rôle de <strong>données</strong>
+  <em>Storage Table Data Reader</em> (<em>Owner</em> ou <em>Contributor</em> ne suffisent pas).</li>
+</ul>
+<h3 id="repli-cle-dacces-du-compte-de-stockage-accountkey">Repli : clé d'accès du compte de stockage (<code>AccountKey</code>)<a class="headerlink" href="#repli-cle-dacces-du-compte-de-stockage-accountkey" title="Permanent link">&para;</a></h3>
+<p>Si l'identité Entra n'est pas utilisable, le service peut s'authentifier avec une clé d'accès du compte de stockage.
+<strong>Exception au principe <em>lecteur</em></strong> : la clé donne un accès complet au compte (le service, lui, ne fait que lire). La faire
+pivoter après la POC.</p>
+<ul>
+<li><code>AzureTable:AuthMode</code> = <code>AccountKey</code> (dans <code>appsettings.json</code> ou <code>ADSYNC_AzureTable__AuthMode</code>).</li>
+<li>La clé se fournit <strong>uniquement</strong> par la variable d'environnement <code>ADSYNC_AzureTable__AccountKey</code>, définie pour le service
+  (valeur <code>Environment</code> de la clé de registre <code>HKLM\SYSTEM\CurrentControlSet\Services\EquipeLaurence.AdSync</code>), jamais dans
+  <code>appsettings.json</code>.</li>
+<li><code>AzureTable:AccountName</code> est facultatif : il est déduit de <code>TableServiceUri</code>.</li>
+<li>Une clé absente ou qui n'est pas en base64 empêche le démarrage (code 2) ; la valeur n'est jamais journalisée.</li>
+</ul>
+<h2 id="test-en-ligne-de-commande-simulation">Test en ligne de commande (simulation)<a class="headerlink" href="#test-en-ligne-de-commande-simulation" title="Permanent link">&para;</a></h2>
+<p><code>EquipeLaurence.AdSync.exe --simulate</code> exécute un seul cycle en simulation puis quitte, sans démarrer le service. Aucune
+écriture n'est faite, même si <code>ApplyEnabled</code> vaut true. Un résumé est affiché et le code de sortie reflète le résultat (0 =
+succès, 1 = échecs de traitement, 2 = configuration invalide, 3 = infrastructure, 4 = refus par un garde-fou). Sans l'option,
+le programme tourne en boucle (console) ou comme service Windows.</p>
+<p>Dans une console interactive (<code>--simulate</code> ou exécution en boucle en console), chaque utilisateur ayant au moins un écart est
+affiché sous forme de tableau ; <code>Nom</code> est le <code>displayName</code> actuel de l'annuaire. Rien n'est affiché lorsque la sortie est
+redirigée (fichier, tube) ou lorsque le programme s'exécute comme service Windows, afin que les valeurs ne se retrouvent
+jamais dans un fichier :</p>
+<div class="highlight"><pre><span></span><code>UniqueCode: AAlwan
+Nom: Adam Alwan
+Changements:
+| Attribut | Avant     | Après            |
+| ======== | ========= | ================ |
+| title    | Ingénieur | Chef de division |
+</code></pre></div>
+<ul>
+<li><code>&lt;&lt;null&gt;&gt;</code> signifie attribut absent (avant) ou effacé (après) ; les valeurs ne sont jamais tronquées.</li>
+<li>Seuls les attributs configurés <code>"Sensitive": false</code> sont affichés en clair ; les autres apparaissent <code>[masqué]</code>. Les 8
+  attributs livrés dans <code>appsettings.json</code> sont explicitement <code>Sensitive: false</code>.</li>
+<li>Hors simulation, une colonne <code>Résultat</code> indique le sort de chaque écriture (<code>écrit et vérifié</code>, <code>échec de vérification</code>,
+  <code>limite atteinte (non écrit)</code>, etc.).</li>
+<li>Ces valeurs ne sont <strong>jamais</strong> envoyées au journal (journal d'événements Windows, Application Insights) ni aux rapports
+  JSONL, et rien n'est affiché quand le programme tourne comme service Windows.</li>
+</ul>
+<p>En cas de code 3, le journal donne la cause sans aucune donnée sensible (ni DN, ni valeur, ni secret), par exemple :</p>
+<ul>
+<li><code>Azure Table read failed (status 403, code AuthorizationPermissionMismatch)</code> : l'identité n'a pas le rôle <em>Storage Table
+  Data Reader</em>, ou le mode <code>AccountKey</code> n'est pas activé.</li>
+<li><code>Directory access failed (Unavailable, code 81 ServerDown). Connect/bind to dc01:636 (LDAPS, Negotiate as DOMAINE\svc-adsync$) failed: The LDAP server is unavailable. Hint: …</code>
+  : le contrôleur de domaine <code>AdSync:DomainController</code> est injoignable (DNS, réseau/VPN, pare-feu, port 636, certificat
+  LDAPS).</li>
+</ul>
+<p>Quand l'annuaire ne peut pas être lu, le journal indique :</p>
+<ul>
+<li>l'<strong>étape</strong> : connexion/liaison (<em>Connect/bind</em>), recherche (<em>search</em>), lecture (<em>read</em>) ou écriture (<em>write</em>) ;</li>
+<li>le <strong>serveur, le port, le transport et le compte d'exécution</strong> ;</li>
+<li>le <strong>code LDAP et son nom</strong> (par exemple <code>49 InvalidCredentials</code>, <code>50 InsufficientAccessRights</code>, <code>10 Referral</code>,
+  <code>32 NoSuchObject</code>) ;</li>
+<li>une <strong>piste de résolution</strong> (<code>Hint:</code>) ;</li>
+<li>l'<strong>utilisateur et l'attribut</strong> en cause (ligne <code>Directory could not be read while resolving user …</code> ou
+  <code>… for user …, attribute …</code>).</li>
+</ul>
+<p>Pour une connexion ou une liaison refusée, le texte d'erreur du client et du serveur est repris : par exemple <code>data 52e</code>
+signifie identifiants refusés. Pour les autres opérations, seul le code est conservé, car le texte du serveur peut citer un
+DN.</p>
+<h3 id="utilisateurs-introuvables-usernotfound">Utilisateurs introuvables (<code>UserNotFound</code>)<a class="headerlink" href="#utilisateurs-introuvables-usernotfound" title="Permanent link">&para;</a></h3>
+<p>Pour chaque utilisateur introuvable, le journal indique ce qui a été cherché et combien d'entrées l'annuaire a renvoyées, par
+exemple :
+<code>User code AAlwan not found: searched userPrincipalName=aalwan@equipelaurence.ca (enabled user accounts under AdSync:AllowedSearchBase); 0 entries returned, none kept.</code></p>
+<ul>
+<li><strong><code>0 entries returned</code></strong> : aucun compte actif sous l'OU n'a cette valeur exacte. Soit le compte est ailleurs dans
+  l'annuaire (OU différente de <code>AllowedSearchBase</code>), soit son UPN ou son courriel n'a pas la forme <code>&lt;code&gt;@&lt;domaine&gt;</code>.</li>
+<li><strong><code>N entries returned, none kept</code></strong> : des comptes ont été trouvés mais écartés. La mention <code>Discarded:</code> donne la raison :</li>
+<li><code>outside AllowedSearchBase</code> : le compte est hors de la base de recherche ;</li>
+<li><code>not a user account</code> : l'objet n'est pas un compte utilisateur ;</li>
+<li><code>account disabled</code> : le compte est désactivé ;</li>
+<li><code>userAccountControl not readable by the execution account (treated as disabled)</code> : le compte d'exécution ne peut pas lire
+    l'état du compte. Par sécurité, l'outil le considère alors comme désactivé. Il faut déléguer à ce compte la <strong>lecture de
+    <code>userAccountControl</code></strong> (avec <code>givenName</code>, <code>sn</code>, <code>displayName</code>, <code>userPrincipalName</code>, <code>mail</code> et <code>objectGUID</code>) sur l'OU des
+    utilisateurs. Un compte voit toujours son propre <code>userAccountControl</code>, mais pas forcément celui des autres.</li>
+</ul>
+<p>Pour voir où est le compte et quelles valeurs il porte, sans l'outil et sans RSAT, depuis un poste du domaine :</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$code</span> <span class="p">=</span> <span class="s1">'aalwan'</span>
+<span class="nv">$s</span> <span class="p">=</span> <span class="no">[adsisearcher]</span><span class="s2">"(&amp;(objectCategory=person)(objectClass=user)(|(sAMAccountName=$code)(mail=$code@*)(userPrincipalName=$code@*)))"</span>
+<span class="nv">$s</span><span class="p">.</span><span class="n">SearchRoot</span> <span class="p">=</span> <span class="no">[adsi]</span><span class="s1">''</span>        <span class="c"># tout le domaine courant</span>
+<span class="s1">'distinguishedName'</span><span class="p">,</span><span class="s1">'userPrincipalName'</span><span class="p">,</span><span class="s1">'mail'</span><span class="p">,</span><span class="s1">'sAMAccountName'</span><span class="p">,</span><span class="s1">'userAccountControl'</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span> <span class="no">[void]</span><span class="nv">$s</span><span class="p">.</span><span class="n">PropertiesToLoad</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="nv">$_</span><span class="p">)</span> <span class="p">}</span>
+<span class="nv">$s</span><span class="p">.</span><span class="n">FindAll</span><span class="p">()</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Properties</span> <span class="p">|</span> <span class="nb">Format-List</span> <span class="p">}</span>
+</code></pre></div>
+<p>À comparer avec la configuration :</p>
+<ul>
+<li>le <code>distinguishedName</code> doit se terminer par <code>AdSync:AllowedSearchBase</code> ;</li>
+<li>le domaine de <code>userPrincipalName</code> (ou de <code>mail</code>) doit figurer dans <code>AdSync:UpnSuffixes</code> (ou <code>AdSync:MailDomains</code>) ;</li>
+<li><code>userAccountControl</code> ne doit pas contenir le bit 2 (compte désactivé, exclu par défaut).</li>
+</ul>
+<p>Les options <code>--simulate</code>, <code>--backup</code> et <code>--restore</code> exécutent une commande puis quittent ; le service n'est jamais démarré. <code>--backup</code> et <code>--restore</code> ne peuvent pas être combinées (code 2).</p>
+<h2 id="sauvegarde-des-changements-a-venir-backup">Sauvegarde des changements à venir (<code>--backup</code>)<a class="headerlink" href="#sauvegarde-des-changements-a-venir-backup" title="Permanent link">&para;</a></h2>
+<p><code>EquipeLaurence.AdSync.exe --backup</code> calcule le prochain cycle <strong>en lecture seule</strong> (mêmes règles que la simulation : liste blanche d'attributs, utilisateurs autorisés, formats) et écrit les changements qui <strong>seraient appliqués</strong> dans le fichier <code>AdSyncBackup.csv</code> du <strong>répertoire courant</strong> (le fichier existant est remplacé). Rien n'est écrit dans Active Directory.</p>
+<table>
+<thead>
+<tr>
+<th>Colonne</th>
+<th>Contenu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UniqueId</code></td>
+<td>Code unique de l'employé (celui de la table)</td>
+</tr>
+<tr>
+<td><code>Attribut modifié</code></td>
+<td>Nom LDAP de l'attribut</td>
+</tr>
+<tr>
+<td><code>Ancienne valeur</code></td>
+<td>Valeur actuelle dans AD (vide = attribut absent)</td>
+</tr>
+<tr>
+<td><code>Nouvelle valeur</code></td>
+<td>Valeur qui sera écrite (vide = l'attribut sera vidé)</td>
+</tr>
+</tbody>
+</table>
+<p>Seuls les changements à écrire figurent dans le fichier (pas les attributs déjà à jour ni les rejets). Format compatible Excel : UTF-8 avec BOM, séparateur <code>;</code>, fins de ligne CRLF, guillemets selon la RFC 4180 (champ contenant <code>;</code>, <code>"</code>, un saut de ligne ou des espaces en début/fin). Pour éviter l'injection de formules, une valeur qui commence par <code>=</code>, <code>+</code>, <code>-</code>, <code>@</code>, une tabulation ou un retour chariot est précédée d'une apostrophe <code>'</code> ; <code>--restore</code> la retire (une apostrophe n'est retirée que si elle précède, éventuellement après d'autres apostrophes, l'un de ces caractères). Ouvrir le fichier dans Excel <strong>pour consultation seulement</strong> : un nouvel enregistrement depuis Excel peut le corrompre pour <code>--restore</code> (Excel retire notamment les zéros en tête d'un <code>UniqueId</code> numérique, ex. <code>000123</code> devient <code>123</code>, ce qui vise un autre code ou aucun). S'il faut absolument le modifier, le faire dans un éditeur de texte, ou dans Excel en important les colonnes au format Texte puis en enregistrant au format « CSV UTF-8 (délimité par des virgules) » avec le séparateur <code>;</code>.</p>
+<blockquote>
+<p><strong>Un nouveau <code>--backup</code> écrase le <code>AdSyncBackup.csv</code> précédent</strong> du répertoire courant. Si le fichier précédent est encore utile (ex. pour annuler un cycle déjà appliqué), le <strong>copier ailleurs</strong> (ou le renommer) avant de relancer <code>--backup</code>. Si <code>--backup</code> échoue ou est interrompu (Ctrl+C), le fichier partiel est supprimé.</p>
+</blockquote>
+<p>La console affiche le chemin du fichier et le nombre de lignes. Code de sortie : 0 = succès, 1 = le fichier n'a pas pu être écrit, 2 = schéma de table invalide, 3 = Azure ou AD indisponible.</p>
+<blockquote>
+<p><strong>Attention — données personnelles en clair.</strong> Ce fichier contient les valeurs des attributs (ex. dates de naissance) <strong>en clair</strong>. C'est une exception documentée et approuvée à la règle G13 (« aucune valeur dans les journaux ni les rapports ») : les valeurs ne vont <strong>jamais</strong> dans les journaux ni dans les rapports JSONL, seulement dans ce fichier. Le générer dans un dossier à accès restreint, ne pas le transmettre par courriel et le <strong>supprimer</strong> dès qu'il n'est plus nécessaire.</p>
+</blockquote>
+<h2 id="restauration-des-anciennes-valeurs-restore">Restauration des anciennes valeurs (<code>--restore</code>)<a class="headerlink" href="#restauration-des-anciennes-valeurs-restore" title="Permanent link">&para;</a></h2>
+<p><code>EquipeLaurence.AdSync.exe --restore &lt;fichier.csv&gt; [--simulate]</code> remet la colonne <strong><code>Ancienne valeur</code></strong> de chaque ligne d'un fichier produit par <code>--backup</code> (vide = l'attribut est vidé, seulement si <code>AllowClear</code> est vrai pour cet attribut).</p>
+<ul>
+<li><strong>Validation du fichier</strong> : l'en-tête doit être exactement <code>UniqueId;Attribut modifié;Ancienne valeur;Nouvelle valeur</code> ; une ligne mal formée, un <code>UniqueId</code> ou un attribut vide, ou un même couple (utilisateur, attribut) en double (après normalisation du code) fait <strong>refuser tout le fichier</strong> (code 2, rien n'est écrit). Un fichier absent ou illisible, ou l'option sans nom de fichier, donne aussi le code 2. Le message indique le numéro de ligne, jamais une valeur.</li>
+<li><strong>Écriture ou simulation</strong> : les écritures n'ont lieu que si <code>AdSync:ApplyEnabled</code> vaut true <strong>et</strong> que <code>--simulate</code> est absent. Sinon, la commande indique seulement ce qui serait fait.</li>
+<li><strong>Garde-fous conservés</strong> : identité d'exécution (G15, en mode écriture), liste blanche et liste d'interdits d'attributs, validation du format de la valeur à remettre (c'est la valeur <strong>normalisée</strong> qui est écrite, ex. espaces et sauts de ligne en début/fin retirés pour les formats <code>Text</code> et <code>Regex</code> ; une valeur refusée par le format donne <code>InvalidValue</code>), <code>AllowClear</code> respecté (une <code>Ancienne valeur</code> vide n'est remise que si <code>AllowClear</code> est vrai pour l'attribut, sinon la ligne est rejetée avec <code>InvalidValue</code>), <code>AllowedUsers</code> (sauf <code>AllowAllUsers</code>, même normalisation des codes que la synchronisation), utilisateurs désactivés exclus sauf <code>IncludeDisabled</code>, résolution de l'utilisateur dans l'OU autorisée (<code>AllowedSearchBase</code>).</li>
+<li><strong>Contrôle de conflit</strong> : la valeur actuelle dans AD doit être égale à la <code>Nouvelle valeur</code> du fichier (vide = attribut absent). Sinon la ligne est ignorée avec la raison <code>Conflict</code> (quelqu'un a modifié la valeur depuis). Si la valeur actuelle est déjà l'<code>Ancienne valeur</code>, la ligne est <code>AlreadyUpToDate</code>.</li>
+<li><strong>Chaque écriture</strong> est précédée d'une sauvegarde DPAPI (<code>AdSync:BackupPath</code> ; en cas d'échec, rien n'est écrit pour cette ligne) puis vérifiée par relecture. Chaque résultat et le résumé vont dans le rapport JSONL (<code>AdSync:ReportPath</code>), sans valeur.</li>
+<li><strong>Disjoncteurs contournés</strong> : <code>MaxWritesPerRun</code>, <code>MaxClearsPerRun</code> et <code>MaxDiffPercent</code> ne s'appliquent <strong>pas</strong> à <code>--restore</code>, qui est une reprise explicite de l'opérateur. Simuler d'abord.</li>
+</ul>
+<p>Un résumé est affiché (<code>mode=dry-run|apply</code>, lignes traitées, écrites, à jour, rejetées, en échec). Code de sortie : 0 = succès (y compris lignes rejetées ou en conflit), 1 = au moins un échec (sauvegarde, écriture, vérification), 2 = fichier ou arguments invalides, 4 = refus par la garde d'identité.</p>
+<h3 id="exemple-de-reprise">Exemple de reprise<a class="headerlink" href="#exemple-de-reprise" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>Arrêter le service avant de restaurer.</strong> Tant que la table source contient les mêmes valeurs, chaque cycle du service réapplique la <code>Nouvelle valeur</code> : une restauration faite pendant que le service tourne est annulée au cycle suivant. Avant de <strong>redémarrer</strong> le service, corriger la cause : corriger la table source, <strong>ou</strong> retirer l'utilisateur de <code>AllowedUsers</code>, <strong>ou</strong> remettre <code>AdSync:ApplyEnabled</code> à false. <code>--restore</code> n'écrit que si <code>ApplyEnabled</code> vaut true : ne passer <code>ApplyEnabled</code> à false qu'<strong>après</strong> la restauration.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nb">cd </span><span class="n">D</span><span class="p">:\</span><span class="n">Securise</span><span class="p">\</span><span class="n">AdSync</span>                                   <span class="c"># dossier à accès restreint</span>
+<span class="n">D</span><span class="p">:\</span><span class="n">Services</span><span class="p">\</span><span class="n">AdSync</span><span class="p">\</span><span class="n">EquipeLaurence</span><span class="p">.</span><span class="n">AdSync</span><span class="p">.</span><span class="n">exe</span> <span class="p">-</span><span class="n">-backup</span>   <span class="c"># 1. AdSyncBackup.csv : changements à venir</span>
+<span class="c"># 2. Le service applique les changements (ApplyEnabled = true) au prochain cycle.</span>
+<span class="c"># 3. Pour annuler : arrêter le service, simuler, puis restaurer.</span>
+<span class="nb">Stop-Service</span> <span class="n">EquipeLaurence</span><span class="p">.</span><span class="n">AdSync</span>
+<span class="n">D</span><span class="p">:\</span><span class="n">Services</span><span class="p">\</span><span class="n">AdSync</span><span class="p">\</span><span class="n">EquipeLaurence</span><span class="p">.</span><span class="n">AdSync</span><span class="p">.</span><span class="n">exe</span> <span class="p">-</span><span class="n">-restore</span> <span class="p">.\</span><span class="n">AdSyncBackup</span><span class="p">.</span><span class="n">csv</span> <span class="p">-</span><span class="n">-simulate</span>
+<span class="n">D</span><span class="p">:\</span><span class="n">Services</span><span class="p">\</span><span class="n">AdSync</span><span class="p">\</span><span class="n">EquipeLaurence</span><span class="p">.</span><span class="n">AdSync</span><span class="p">.</span><span class="n">exe</span> <span class="p">-</span><span class="n">-restore</span> <span class="p">.\</span><span class="n">AdSyncBackup</span><span class="p">.</span><span class="n">csv</span>
+<span class="c"># 4. Corriger la table source, OU retirer l'utilisateur de AllowedUsers, OU mettre ApplyEnabled = false,</span>
+<span class="c">#    sinon le prochain cycle réapplique la « Nouvelle valeur ». Puis redémarrer le service.</span>
+<span class="nb">Start-Service</span> <span class="n">EquipeLaurence</span><span class="p">.</span><span class="n">AdSync</span>
+<span class="nb">Remove-Item</span> <span class="p">.\</span><span class="n">AdSyncBackup</span><span class="p">.</span><span class="n">csv</span>                          <span class="c"># 5. Supprimer le fichier</span>
+</code></pre></div>
+<h2 id="deploiement-progressif">Déploiement progressif<a class="headerlink" href="#deploiement-progressif" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Simulation</strong> : <code>AdSync:ApplyEnabled = false</code> (défaut). Chaque cycle calcule les changements et les journalise sans rien
+   écrire. Vérifier les rapports.</li>
+<li><strong>Pilote</strong> : renseigner <code>AdSync:AllowedUsers</code> (liste restreinte) puis <code>ApplyEnabled = true</code>.</li>
+<li><strong>Généralisation</strong> : <code>AdSync:AllowAllUsers = true</code> après validation du pilote.</li>
+</ol>
+<h2 id="disjoncteurs">Disjoncteurs<a class="headerlink" href="#disjoncteurs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>MaxUsersPerRun</code>, <code>MaxWritesPerRun</code>, <code>MaxClearsPerRun</code> (défaut : 1 chacun, à relever après le pilote) : un cycle qui
+  dépasse une limite s'arrête sans écrire.</li>
+<li><code>MaxDiffPercent</code> / <code>MaxDiffMinPopulation</code> : refus du cycle si la table diffère trop de l'état précédent.</li>
+<li>Une valeur vide dans la table ne vide un attribut que si <code>AllowClear</code> est vrai pour cet attribut.</li>
+</ul>
+<h2 id="attributs-etendus-dates-de-naissance-et-dembauche">Attributs étendus (dates de naissance et d'embauche)<a class="headerlink" href="#attributs-etendus-dates-de-naissance-et-dembauche" title="Permanent link">&para;</a></h2>
+<p>Les deux dates sont écrites dans des attributs d'extension natifs d'Active Directory, déclarés dans
+<code>AdSync:AllowedAttributes</code> (<code>appsettings.json</code>) :</p>
+<table>
+<thead>
+<tr>
+<th>Champ Nethris</th>
+<th>Colonne de la table</th>
+<th>Attribut AD</th>
+<th><code>AllowClear</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Date d'embauche</td>
+<td><code>HireDate</code></td>
+<td><code>msDS-cloudExtensionAttribute1</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>Date de naissance</td>
+<td><code>BirthDate</code></td>
+<td><code>msDS-cloudExtensionAttribute2</code></td>
+<td><code>true</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"msDS-cloudExtensionAttribute1"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IsoDate"</span><span class="p">,</span><span class="w"> </span><span class="nt">"TableColumn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HireDate"</span><span class="p">,</span><span class="w"> </span><span class="nt">"MinAgeYears"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nt">"AllowClear"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">"Sensitive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+<span class="p">{</span><span class="w"> </span><span class="nt">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"msDS-cloudExtensionAttribute2"</span><span class="p">,</span><span class="w"> </span><span class="nt">"Format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IsoDate"</span><span class="p">,</span><span class="w"> </span><span class="nt">"TableColumn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BirthDate"</span><span class="p">,</span><span class="w"> </span><span class="nt">"AllowClear"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"Sensitive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Format <code>IsoDate</code> : seule une date <code>yyyy-MM-dd</code> passée est acceptée ; une valeur illisible est rejetée
+  (<code>InvalidValue</code>) sans rien écrire. La date de naissance doit en plus correspondre à un âge de 14 à 100 ans (défaut).</li>
+<li><code>BirthDate</code> n'est renseignée dans la table que si l'employé publie sa date d'anniversaire. Quand la colonne est vide
+  (consentement retiré), l'attribut AD est <strong>effacé</strong>.</li>
+<li>Une <code>HireDate</code> vide n'efface jamais l'attribut AD : l'écart est rejeté (<code>SourceEmpty</code>) et la valeur existante est conservée.</li>
+<li>Les deux valeurs sont affichées en clair dans la console interactive (<code>Sensitive: false</code>).</li>
+<li>Le gMSA du service doit avoir le droit d'écriture sur ces deux attributs, sur les OU des employés seulement.</li>
+</ul>
+<h2 id="variables-denvironnement">Variables d'environnement<a class="headerlink" href="#variables-denvironnement" title="Permanent link">&para;</a></h2>
+<p>Les clés se surchargent avec le préfixe <code>ADSYNC_</code> et <code>__</code> comme séparateur (ex. <code>ADSYNC_AdSync__ApplyEnabled=true</code>).</p>
+<p><code>AdSync:LocalDirectory:Path</code> (simulation avec un annuaire local en JSON, pour le développement sans contrôleur de domaine)
+doit rester <strong>vide</strong> sur le serveur : s'il est défini, Active Directory n'est jamais contacté. Lancé comme service Windows,
+le programme refuse alors de démarrer (code 2).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/equipe-laurence/integration-nethris" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M216.5 362.5c-66-8-112.5-55.5-112.5-117 0-25 9-52 24-70-6.5-16.5-5.5-51.5 2-66 20-2.5 47 8 63 22.5 19-6 39-9 63.5-9s44.5 3 62.5 8.5c15.5-14 43-24.5 63-22 7 13.5 8 48.5 1.5 65.5 16 19 24.5 44.5 24.5 70.5 0 61.5-46.5 108-113.5 116.5 17 11 28.5 35 28.5 62.5v52c0 15 12.5 23.5 27.5 17.5C441 459.5 512 369 512 257 512 115.5 397 0 255.5 0S0 115.5 0 257c0 111 70.5 203 165.5 237.5 13.5 5 26.5-4 26.5-17.5v-40c-7 3-16 5-24 5-33 0-52.5-18-66.5-51.5-5.5-13.5-11.5-21.5-23-23-6-.5-8-3-8-6 0-6 10-10.5 20-10.5 14.5 0 27 9 40 27.5 10 14.5 20.5 21 33 21s20.5-4.5 32-16c8.5-8.5 15-16 21-21"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.path","navigation.top","navigation.footer","navigation.tracking","search.suggest","search.highlight","content.code.annotate","content.tabs.link","toc.follow"],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copié dans le presse-papier","clipboard.copy":"Copier dans le presse-papier","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 de plus sur cette page","search.result.more.other":"# de plus sur cette page","search.result.none":"Aucun document trouvé","search.result.one":"1 document trouvé","search.result.other":"# documents trouvés","search.result.placeholder":"Taper pour démarrer la recherche","search.result.term.missing":"Non trouvé","select.version":"Sélectionner la version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.77dd0ce9.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
